@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply h-[100dvh];
+    @apply w-full sm:max-w-xl;
+    @apply mx-auto;
+
+    @apply text-neutral-900;
+
+    @apply flex flex-col;
+    @apply px-4;
+  }
+
+  button,
+  a,
+  select,
+  input {
+    @apply appearance-none;
+  }
+
+  :focus {
+    @apply outline-2 outline-offset-4 outline-neutral-900;
+  }
+
+  input[type="submit"] {
+    @apply cursor-pointer;
+  }
+
+  h1,
+  h2 {
+    @apply cursor-default;
+  }
+}
+
+@layer components {
+  .input {
+    @apply rounded-lg border;
+    @apply h-11 px-4;
+  }
+
+  .line-input {
+    @apply h-11;
+    @apply text-xl;
+    @apply border-b-2 border-neutral-300 border-dashed;
+  }
+
+  .line-input:focus {
+    @apply outline-none;
+    @apply border-neutral-900;
+  }
+
+  .select {
+    @apply bg-[url('img/chevron-down.svg')];
+    @apply bg-[length:12px];
+    @apply bg-no-repeat;
+    @apply bg-[center_right_16px];
+  }
+
+  .btn {
+    @apply rounded-lg;
+    @apply h-11 px-5;
+    @apply font-semibold;
+    @apply transition-shadow hover:shadow-md;
+    @apply flex items-center justify-center;
+  }
+
+  .icon-btn {
+    @apply rounded-full;
+    @apply h-11 w-11;
+    @apply transition-shadow hover:shadow-md;
+    @apply flex items-center justify-center;
+  }
+
+  .btn--primary {
+    @apply bg-neutral-900 text-white;
+  }
+
+  .btn--secondary {
+    @apply bg-neutral-100 text-neutral-900;
+    @apply border;
+  }
+
+  .card {
+    @apply p-4;
+    @apply rounded-xl border;
+    @apply transition-shadow hover:shadow-md;
+  }
+}
+
+@layer utilities {
+  .input-container {
+    @apply flex flex-col gap-y-1;
+  }
+
+  .form-flow {
+    @apply flex flex-col gap-y-8;
+  }
+
+  .form-inputs-flow {
+    @apply flex flex-col gap-y-4;
+  }
+}

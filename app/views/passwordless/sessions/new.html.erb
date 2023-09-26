@@ -1,0 +1,14 @@
+<main class="w-full max-w-[320px] m-auto flex flex-col gap-y-16">
+  <header class="w-full flex flex-col">
+    <%= link_to root_path, class: 'text-xl font-black flex items-center gap-x-2' do %>
+      <%= heroicon 'chevron-left', options: { class: "h-4 w-4" } %>
+      1210
+    <% end %>
+    <h1 class="text-5xl font-black">Hello there.</h1>
+  </header>
+  <%= form_with(model: @session, url: url_for(action: 'new'), data: { turbo: false }, class: 'w-full form-flow') do |form| %>
+    <% email_field_name = :"passwordless[#{email_field}]" %>
+    <%= email_field_tag email_field_name, params.fetch(email_field_name, nil), required: true, placeholder: 'you@awesome.com', class: 'input' %>
+    <%= form.submit t('passwordless.sessions.new.submit'), class: 'btn btn--primary' %>
+  <% end %>
+</main>

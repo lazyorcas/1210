@@ -1,0 +1,6 @@
+<%= link_to(path, class: class_names("transition-colors hover:text-neutral-900 text-lg font-semibold", { "text-neutral-400": !active }) ) do %>
+  <%= yield %>
+  <% if active %>
+    <div class="h-1 bg-neutral-900"></div>
+  <% end %>
+<% end %>

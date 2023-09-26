@@ -1,0 +1,19 @@
+<%= form_with model: meetup, class: 'form-flow sm:w-[400px]' do |form| %>
+  <div class="form-inputs-flow">
+    <div class="flex items-center gap-x-2 py-2">
+      <%= form.label :title, "I'm free to", class: "shrink-0 text-xl" %>
+      <%= form.select :title, options_from_collection_for_select(Meetup::Title.all, :value, :label, Meetup::Title.find_by_value(meetup.title)&.value), { include_blank: true }, { class: "grow line-input", required: true } %>
+    </div>
+    <div class="input-container">
+      <%= form.label :description %>
+      <%= form.text_field :description, placeholder: "give details on location, preferences, …", class: "input" %>
+    </div>
+    <%= field_set_tag "When?" do %>
+      <div class="mt-1 flex gap-x-2">
+        <%= form.time_field :start_time, value: meetup.start_time, required: true, class: "flex-1 input" %>
+        <%= form.time_field :end_time, value: meetup.end_time, required: true, class: "flex-1 input" %>
+      </div>
+    <% end %>
+  </div>
+  <%= form.submit "Let your friends know", class: "btn btn--primary" %>
+<% end %>

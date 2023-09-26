@@ -1,0 +1,18 @@
+<main class="grow w-full flex flex-col gap-y-4 py-4">
+  <header>
+    <h1 class="text-xl font-bold">Plans</h1>
+    <% if @meetups.empty? %>
+      <p>Nothing yet.</p>
+    <% end %>
+  </header>
+  <% if @meetups.empty? %>
+    <%= link_to meetups_path, class: "btn btn--primary w-fit" do %>
+      See what's up
+    <% end %>
+  <% end %>
+  <% if @meetups.any? %>
+    <div class="flex flex-col gap-y-2">
+      <%= render partial: "meetup", collection: @meetups %>
+    </div>
+  <% end %>
+</main>

@@ -1,0 +1,10 @@
+<article class="card flex flex-col gap-y-2" id="<%= dom_id meetup %>">
+  <div>
+    <p class="text-sm"><%= [meetup.organizer.name, meetup.attendees.map(&:name)].flatten.join(', ') %></p>
+    <p class="text-sm"><%= meetup.start_time  %> - <%= meetup.end_time  %></p>
+  </div>
+  <h2 class="text-xl font-bold"><%= meetup.title %></h2>
+  <% if meetup.description.present? %>
+    <p><%= meetup.description %></p>
+  <% end %>
+</article>

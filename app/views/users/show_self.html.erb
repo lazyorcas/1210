@@ -1,0 +1,18 @@
+<%= render layout: "shared/modal" do %>
+  <header class="flex items-center justify-between gap-x-4">
+    <h1 class="text-2xl font-bold">Invite your friends</h1>
+    <%= link_to :back, class: 'shrink-0 icon-btn btn--secondary' do %>
+      <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
+    <% end %>
+  </header>
+  <div class="w-full max-w-[400px]">
+    <div data-controller="clipboard">
+      <input data-clipboard-target="source" type="text" value="<%= user_url(id: current_user.id) %>" readonly hidden>
+      <button class="btn btn--primary flex items-center gap-x-2 w-full my-8" data-action="clipboard#copy">
+        <%= heroicon "clipboard-document", options: { class: "h-6 w-6" } %>
+        <span data-clipboard-target="buttonLabel">Copy invite link</span>
+      </button>
+    </div>
+    <p>The accounts created from this link will automatically be added to your friend list. </p>
+  </div>
+<% end %>

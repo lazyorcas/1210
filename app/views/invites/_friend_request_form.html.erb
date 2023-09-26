@@ -1,0 +1,8 @@
+<%= form_with model: invite do |form| %>
+  <%= form.hidden_field :invitee_id %>
+  <%= form.hidden_field :invite_type, value: :friend_request  %>
+  <%= form.button :submit, class: "btn btn--primary flex items-center gap-x-2 w-full" do %>
+    <%= heroicon "user-plus", options: { class: "h-6 w-6" } %>
+    Add friend
+  <% end %>
+<% end %>

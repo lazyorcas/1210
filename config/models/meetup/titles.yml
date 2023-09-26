@@ -1,0 +1,13 @@
+development: &default
+  - value: Lunch
+    label: have lunch
+  - value: Coffee
+    label: have coffee
+  - value: Study session
+    label: study together
+  - value: Dinner
+    label: have dinner
+  - value: Hang out
+    label: hang out
+production:
+  <<: *default
