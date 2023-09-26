@@ -70,6 +70,8 @@
     @apply font-semibold;
     @apply transition-shadow hover:shadow-md;
     @apply flex items-center justify-center;
+
+    @apply whitespace-nowrap;
   }
 
   .icon-btn {
