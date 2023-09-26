@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="w-full h-[100dvh] fixed inset-0 z-50 flex flex-col items-center justify-end sm:justify-center bg-neutral-900/[0.8]">
-    <dialog class="w-full sm:w-fit max-h-full overflow-y-scroll sm:h-fit bg-white p-4 rounded-t-xl sm:rounded-xl" open>
+    <dialog class="w-full sm:w-fit max-h-full overflow-y-scroll sm:h-fit bg-white px-4 pt-4 pb-12 sm:pb-4 rounded-t-xl sm:rounded-xl" open>
       <%= yield %>
     </dialog>
   </div>
