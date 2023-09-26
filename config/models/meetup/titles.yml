@@ -7,8 +7,12 @@ default: &default
     label: study together
   - value: Dinner
     label: have dinner
+  - value: Exercise
+    label: do exercise
   - value: Hang out
     label: hang out
+  - value: Other
+    label: do something
 
 development: *default
 
