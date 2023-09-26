@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/mikker/passwordless.git
-  revision: 1156cc46eac8bacbba209ba4f2f888832e1d1702
+  revision: e1ccafded62036960f69ac67f2813040bfba0fd5
   specs:
-    passwordless (0.12.0)
+    passwordless (1.0.0.beta1)
       bcrypt (>= 3.1.11)
       rails (>= 5.1.4)
 
@@ -139,7 +139,7 @@ GEM
       net-protocol
     net-protocol (0.2.1)
       timeout
-    net-smtp (0.3.3)
+    net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
     nokogiri (1.15.4)
@@ -216,7 +216,7 @@ GEM
       rubocop (~> 1.51)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
-    selenium-webdriver (4.12.0)
+    selenium-webdriver (4.13.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -230,7 +230,7 @@ GEM
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     stringio (3.0.8)
-    strong_migrations (1.6.2)
+    strong_migrations (1.6.3)
       activerecord (>= 5.2)
     tailwindcss-rails (2.0.30)
       railties (>= 6.0.0)
@@ -250,13 +250,13 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    websocket (1.2.9)
+    websocket (1.2.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.11)
+    zeitwerk (2.6.12)
 
 PLATFORMS
   ruby
@@ -285,7 +285,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.1.4p223
 
 BUNDLED WITH
-   2.2.3
+   2.3.26
