@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: one_to_ten_production
-  username: one_to_ten
-  password: <%= ENV["ONE_TO_TEN_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
