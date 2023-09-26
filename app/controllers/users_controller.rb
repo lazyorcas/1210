@@ -26,6 +26,8 @@ class UsersController < ApplicationController
     if current_user.present?
       if current_user.id == @user.id
         render("show_self")
+      elsif current_user.friends.include?(@user)
+        redirect_to(friends_path)
       else
         @invite = Invite.new(invitee_id: @user.id)
 
