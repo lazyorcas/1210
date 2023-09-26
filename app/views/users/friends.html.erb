@@ -1,9 +1,14 @@
 <main class="grow w-full flex flex-col gap-y-4 py-4">
   <header class="flex-1 shrink-0 flex flex-col gap-y-2">
     <h1 class="text-xl font-bold">Friends</h1>
-    <%= link_to user_path(id: current_user.id), class: "btn btn--primary w-fit", data: { turbo_frame: "modal" } do %>
-      Invite friends
-    <% end %>
+    <div class="flex gap-x-2">
+      <%= link_to user_path(id: current_user.id), class: "btn btn--primary w-fit", data: { turbo_frame: "modal" } do %>
+        Invite friends
+      <% end %>
+      <%= link_to user_path(id: current_user.id, add_friend: true), class: "btn btn--secondary w-fit", data: { turbo_frame: "modal" } do %>
+        Add friend
+      <% end %>
+    </div>
     <p>
       <% if current_user.friends.empty? %>
         You have no friends on here yet.
