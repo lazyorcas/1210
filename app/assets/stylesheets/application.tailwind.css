@@ -21,6 +21,11 @@
     @apply appearance-none;
   }
 
+  select,
+  input {
+    @apply bg-transparent;
+  }
+
   :focus {
     @apply outline-2 outline-offset-4 outline-neutral-900;
   }
