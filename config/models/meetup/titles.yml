@@ -1,4 +1,4 @@
-development: &default
+default: &default
   - value: Lunch
     label: have lunch
   - value: Coffee
@@ -9,5 +9,7 @@ development: &default
     label: have dinner
   - value: Hang out
     label: hang out
-production:
-  <<: *default
+
+development: *default
+
+production: *default
