@@ -72,6 +72,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "ahoy_matey"
 gem "heroicon"
 gem "passwordless", github: "mikker/passwordless"
 gem "rubocop-shopify", require: false
