@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        standalone: "@media all and (display-mode: standalone)"
+        standalone: { raw: "@media all and (display-mode: standalone)" }
       }
     }
   }
