@@ -3,13 +3,37 @@
 class HomeController < ApplicationController
   layout "landing"
 
-  before_action :redirect_to_today_plans, if: -> { current_user.present? }
+  def index
+    if current_user.nil?
+      return
+    end
 
-  def index; end
+    if today_meetups.empty?
+      redirect_to(today_meetups_path)
+    else
+      redirect_to(today_plans_path)
+    end
+  end
 
   private
 
-  def redirect_to_today_plans
-    redirect_to(plans_path(date: Time.zone.today))
+  def today_plans_path
+    plans_path(date: Time.zone.today)
+  end
+
+  def today_meetups_path
+    meetups_path(date: Time.zone.today)
+  end
+
+  def organized_today_meetups
+    current_user.organized_meetups.where(date: Time.zone.today)
+  end
+
+  def attended_today_meetups
+    current_user.attended_meetups.where(date: Time.zone.today)
+  end
+
+  def today_meetups
+    organized_today_meetups + attended_today_meetups
   end
 end

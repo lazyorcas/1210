@@ -7,28 +7,22 @@ class PlansController < ApplicationController
 
   before_action :require_user!
   before_action :load_date
-  before_action :load_meetups, only: [:index]
 
-  def index; end
+  def index
+    @meetups = meetups.sort_by(&:start_time)
+  end
 
   private
 
-  def load_organized_meetups
-    @organized_meetups = current_user
-      .organized_meetups
-      .where(date: @date)
+  def organized_meetups
+    current_user.organized_meetups.where(date: @date)
   end
 
-  def load_attended_meetups
-    @attended_meetups = current_user
-      .attended_meetups
-      .where(date: @date)
+  def attended_meetups
+    current_user.attended_meetups.where(date: @date)
   end
 
-  def load_meetups
-    load_organized_meetups
-    load_attended_meetups
-
-    @meetups = (@organized_meetups + @attended_meetups).sort_by(&:start_time)
+  def meetups
+    organized_meetups + attended_meetups
   end
 end
