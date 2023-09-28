@@ -1,12 +1,9 @@
-<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-16 standalone:pb-24">
-  <header>
-    <h1 class="text-xl font-bold">Meetups</h1>
-    <%= turbo_frame_tag "meetups_summary" do %>
-      <% if @meetups.empty? %>
-        No one has said anything yet.
-      <% end %>
+<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[76px] standalone:pb-24">
+  <%= turbo_frame_tag "meetups_summary" do %>
+    <% if @meetups.empty? %>
+      No one has said anything yet.
     <% end %>
-  </header>
+  <% end %>
   <%= link_to new_meetup_path, class: "btn btn--primary w-fit gap-x-2", data: { turbo_frame: "modal" } do %>
     <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
     Post

@@ -3,8 +3,6 @@
 class PlansController < ApplicationController
   include Dateful
 
-  layout "social_network"
-
   before_action :require_user!
   before_action :load_date
 

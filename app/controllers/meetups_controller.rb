@@ -45,7 +45,7 @@ class MeetupsController < ApplicationController
   def resolve_layout
     case action_name
     when "index"
-      "social_network"
+      "meetups"
     end
   end
 

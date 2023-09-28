@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  layout :resolve_layout
-
   before_action :require_user!, only: [:friends]
   before_action :load_user, only: [:show]
 
@@ -42,13 +40,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def resolve_layout
-    case action_name
-    when "friends"
-      "social_network"
-    end
-  end
 
   def load_user
     @user = User.find(params[:id])

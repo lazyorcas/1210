@@ -1,24 +1,17 @@
-<main class="grow w-full flex flex-col gap-y-4 py-4">
-  <header class="flex-1 shrink-0 flex flex-col gap-y-2">
-    <h1 class="text-xl font-bold">Friends</h1>
-    <div class="flex gap-x-2">
-      <%= link_to user_path(id: current_user.id), class: "btn btn--primary w-fit", data: { turbo_frame: "modal" } do %>
-        Invite friends
-      <% end %>
-      <%= link_to user_path(id: current_user.id, add_friend: true), class: "btn btn--secondary w-fit", data: { turbo_frame: "modal" } do %>
-        Add friend
-      <% end %>
-    </div>
-    <p>
-      <% if current_user.friends.empty? %>
-        You have no friends on here yet.
-      <% else %>
-        Your friends are listed here. <br/>
-        <%= current_user.friends.map(&:name).join(', ') %>
-      <% end %>
-    </p>
-    <% %>
-  </header>
+<header class="flex items-center gap-x-4 py-4">
+  <%= link_to :back do %>
+    <%= heroicon "chevron-left", options: { class: "h-6 w-6" } %>
+  <% end %>
+  <h1 class="text-4xl font-black">Friends</h1>
+</header>
+<main class="grow w-full flex flex-col gap-y-4 pb-16 standalone:pb-24">
+  <p>
+    <% if current_user.friends.empty? %>
+      You have no friends on here yet.
+    <% else %>
+      <%= current_user.friends.map(&:name).join(', ') %>
+    <% end %>
+  </p>
   <section class="flex-1 shrink-0 flex flex-col gap-y-2">
     <h2 class="text-lg font-semibold border-b">Received Requests</h2>
     <ul class="flex flex-col gap-y-2">
@@ -47,3 +40,11 @@
     </p>
   </section>
 </main>
+<nav class="bottom-nav gap-x-4">
+  <%= link_to user_path(id: current_user.id, add_friend: true), class: "btn btn--secondary flex-1", data: { turbo_frame: "modal" } do %>
+    Add friend
+  <% end %>
+  <%= link_to user_path(id: current_user.id), class: "btn btn--primary flex-1", data: { turbo_frame: "modal" } do %>
+    Invite friends
+  <% end %>
+</nav>
