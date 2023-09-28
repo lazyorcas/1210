@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/invites/:id/accept", to: "invites#accept", as: "accept_invite"
 
   resources :meetups, only: [:edit, :update, :destroy]
-  resources :meetup_attendances, only: [:create]
+  resources :meetup_attendances, only: [:create, :update]
 
   scope path: ":date" do
     get "/plans", to: "plans#index", as: "plans"

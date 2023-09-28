@@ -1,0 +1,6 @@
+<%= form_with model: meetup_attendance, method: :patch do |form| %>
+  <%= form.hidden_field :is_cancelled, value: true %>
+  <%= form.button :submit, class: "btn btn--secondary" do %>
+    Cancel
+  <% end %>
+<% end %>
