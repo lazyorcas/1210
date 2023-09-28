@@ -8,13 +8,14 @@
       <%= form.label :description %>
       <%= form.text_field :description, placeholder: "give details on location, preferences, …", class: "input" %>
     </div>
-    <%= field_set_tag "When?" do %>
-      <div class="mt-1 flex items-center gap-x-2">
+    <div class="input-container">
+      <div>When?</div>
+      <div class="flex items-center gap-x-2">
         <%= form.time_field :start_time, value: meetup.start_time, required: true, step: 900, class: "flex-1 input" %>
         -
         <%= form.time_field :end_time, value: meetup.end_time, required: true, step: 900, class: "flex-1 input" %>
       </div>
-    <% end %>
+    </div>
   </div>
   <%= form.submit "Let your friends know", class: "btn btn--primary" %>
 <% end %>
