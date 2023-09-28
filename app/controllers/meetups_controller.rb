@@ -56,7 +56,7 @@ class MeetupsController < ApplicationController
   end
 
   def load_meetup
-    @meetup = Meetup.find(params[:id])
+    @meetup = current_user.organized_meetups.find(params[:id])
   end
 
   def meetup_params
