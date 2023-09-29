@@ -1,5 +1,5 @@
 <header class="flex items-center gap-x-4 py-4">
-  <%= link_to :back do %>
+  <%= link_to root_path do %>
     <%= heroicon "chevron-left", options: { class: "h-6 w-6" } %>
   <% end %>
   <h1 class="text-4xl font-black">Friends</h1>
@@ -15,14 +15,17 @@
   <section class="flex-1 shrink-0 flex flex-col gap-y-2">
     <h2 class="text-lg font-semibold border-b">Received Requests</h2>
     <ul class="flex flex-col gap-y-2">
-      <% if current_user.received_invites.friend_requests.pending.empty? %>
+      <% if current_user.received_friendships.pending.empty? %>
         You don't have any pending request from others.
       <% else %>
-        <% current_user.received_invites.friend_requests.pending.each do |friend_request| %>
+        <% current_user.received_friendships.pending.each do |invitation| %>
           <li class="flex items-center hover:bg-neutral-100 transition rounded-xl justify-between pl-4">
-            <%= friend_request.inviter.name %>
-            <%= link_to accept_invite_path(id: friend_request.id), class: "icon-btn btn--primary" do %>
-              <%= heroicon "hand-thumb-up", options: { class: "h-6 w-6" } %>
+            <%= invitation.inviter.name %>
+            <%= form_with model: invitation, url: friendship_path(invitation) do |form| %>
+              <%= form.hidden_field :is_accepted, value: true, required: true %>
+              <%= form.button :submit, class: "btn btn--primary" do %>
+                Accept
+              <% end %>
             <% end %>
           </li>
         <% end %>
@@ -32,10 +35,10 @@
   <section class="flex-1 shrink-0 flex flex-col gap-y-2">
     <h2 class="text-lg font-semibold border-b">Sent Requests</h2>
     <p>
-      <% if current_user.sent_invites.friend_requests.pending.empty? %>
+      <% if current_user.sent_friendships.pending.empty? %>
         You don't have any pending request to others.
       <% else %>
-        <%= current_user.sent_invites.friend_requests.pending.map(&:invitee).map(&:name).join(', ') %>
+        <%= current_user.sent_friendships.pending.map(&:invitee).map(&:name).join(', ') %>
       <% end %>
     </p>
   </section>

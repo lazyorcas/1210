@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :require_user!, only: [:friends]
-  before_action :load_user, only: [:show]
-
-  def new; end
-
   def create
     @user = User.create!(user_params)
 
@@ -21,22 +16,23 @@ class UsersController < ApplicationController
   end
 
   def show
+    load_user
+
     if current_user.present?
       if current_user.id == @user.id
         render("show_self")
       elsif current_user.friends.include?(@user)
-        redirect_to(friends_path)
+        redirect_to(user_invitations_path)
       else
-        @invite = Invite.new(invitee_id: @user.id)
+        @invitation = current_user.received_friendships.find_by(inviter: @user)
+        @invitation ||= current_user.sent_friendships.find_by(invitee: @user)
+        @invitation ||= Invitation.new(inviter: current_user, invitee: @user)
 
         render("show_signed_in_user")
       end
     else
       render("show_new_user")
     end
-  end
-
-  def friends
   end
 
   private

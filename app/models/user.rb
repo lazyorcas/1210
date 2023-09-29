@@ -3,8 +3,8 @@
 class User < ApplicationRecord
   has_many :visits, class_name: "Ahoy::Visit"
 
-  has_many :sent_invites, class_name: "Invite", foreign_key: "inviter_id"
-  has_many :received_invites, class_name: "Invite", foreign_key: "invitee_id"
+  has_many :sent_friendships, class_name: "Invitation", as: :inviter
+  has_many :received_friendships, class_name: "Invitation", as: :invitee
 
   has_many :meetup_attendances
   has_many :attended_meetups, through: :meetup_attendances, source: :meetup
@@ -19,11 +19,11 @@ class User < ApplicationRecord
   passwordless_with :email
 
   after_create :create_session
-  after_create :create_accepted_friend_request, if: -> { inviter_id.present? }
+  after_create :create_accepted_friendship, if: -> { inviter_id.present? }
 
   def friend_ids
-    sent_invites.friend_requests.accepted.pluck(:invitee_id) +
-      received_invites.friend_requests.accepted.pluck(:inviter_id)
+    sent_friendships.accepted.pluck(:invitee_id) +
+      received_friendships.accepted.pluck(:inviter_id)
   end
 
   def friends
@@ -37,11 +37,10 @@ class User < ApplicationRecord
   end
 
   def create_accepted_friend_request
-    Invite.create(
-      invite_type: :friend_request,
-      is_accepted: true,
-      inviter_id: inviter_id,
-      invitee_id: id,
-    )
+    invitation = Invitation.new
+    invitation.inviter_id = inviter_id
+    invitation.invitee = self
+    invitation.is_accepted = true
+    invitation.save
   end
 end
