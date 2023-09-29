@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_131816) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_163253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,17 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_131816) do
     t.datetime("updated_at", null: false)
     t.index(["invitee_type", "invitee_id"], name: "index_invitations_on_invitee")
     t.index(["inviter_type", "inviter_id"], name: "index_invitations_on_inviter")
-  end
-
-  create_table "invites", force: :cascade do |t|
-    t.integer("invite_type", default: 0)
-    t.boolean("is_accepted")
-    t.bigint("inviter_id")
-    t.bigint("invitee_id")
-    t.datetime("created_at", null: false)
-    t.datetime("updated_at", null: false)
-    t.index(["invitee_id"], name: "index_invites_on_invitee_id")
-    t.index(["inviter_id"], name: "index_invites_on_inviter_id")
   end
 
   create_table "meetup_attendances", force: :cascade do |t|
