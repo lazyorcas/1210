@@ -3,8 +3,8 @@
 class User < ApplicationRecord
   has_many :visits, class_name: "Ahoy::Visit"
 
-  has_many :sent_friendships, class_name: "Invitation", as: :inviter
-  has_many :received_friendships, class_name: "Invitation", as: :invitee
+  has_many :sent_friendships, -> { where(invitee_type: "User") }, class_name: "Invitation", as: :inviter
+  has_many :received_friendships, -> { where(inviter_type: "User") }, class_name: "Invitation", as: :invitee
 
   has_many :meetup_attendances
   has_many :attended_meetups, through: :meetup_attendances, source: :meetup

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       if current_user.id == @user.id
         render("show_self")
       elsif current_user.friends.include?(@user)
-        redirect_to(user_invitations_path)
+        redirect_to(users_invitations_path)
       else
         @invitation = current_user.received_friendships.find_by(inviter: @user)
         @invitation ||= current_user.sent_friendships.find_by(invitee: @user)
