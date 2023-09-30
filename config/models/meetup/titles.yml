@@ -1,18 +1,10 @@
 default: &default
-  - value: Lunch
-    label: have lunch
-  - value: Coffee
-    label: have coffee
-  - value: Study session
-    label: study together
-  - value: Dinner
-    label: have dinner
-  - value: Exercise
-    label: do exercise
-  - value: Hang out
-    label: hang out
-  - value: Other
-    label: do something
+  - Lunch
+  - Coffee
+  - Study session
+  - Dinner
+  - Exercise
+  - Hang out
 
 development: *default
 
