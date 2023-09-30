@@ -36,11 +36,13 @@ class User < ApplicationRecord
     Passwordless::Session.create(authenticatable: self)
   end
 
-  def create_accepted_friend_request
-    invitation = Invitation.new
-    invitation.inviter_id = inviter_id
-    invitation.invitee = self
-    invitation.is_accepted = true
-    invitation.save
+  def create_accepted_friendship
+    inviter = User.find(inviter_id)
+
+    Invitation.create(
+      inviter: inviter,
+      invitee: self,
+      is_accepted: true,
+    )
   end
 end

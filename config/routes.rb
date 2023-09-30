@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   passwordless_for :users
 
   resources :users, only: [:new, :create, :show]
-  scope module: :users do
-    resources :invitations, only: [:index, :create, :update], path: "/friends", as: "user_invitations"
+  namespace :user do
+    resources :invitations, only: [:index, :create, :update], path: "/friends"
   end
 
   resources :meetups, only: [:edit, :update, :destroy]
