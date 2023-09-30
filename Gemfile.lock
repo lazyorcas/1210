@@ -224,6 +224,8 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     safely_block (0.4.0)
+    scout_apm (5.3.5)
+      parser
     selenium-webdriver (4.13.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -287,6 +289,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   redis (~> 4.0)
   rubocop-shopify
+  scout_apm
   selenium-webdriver
   sprockets-rails
   stimulus-rails
