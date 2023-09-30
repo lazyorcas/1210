@@ -7,34 +7,39 @@ class MeetupsController < ApplicationController
 
   before_action :require_user!
   before_action :load_date, only: [:index, :new, :create]
-  before_action :load_meetups, only: [:index]
-  before_action :load_meetup, only: [:edit, :update, :destroy]
 
-  def index; end
+  def index
+    load_organized_meetups
+    load_invited_meetups
+    @meetups = (@organized_meetups + @invited_meetups).sort_by(&:start_time)
+  end
 
   def new
     @meetup = Meetup.new
   end
-
-  def edit; end
 
   def create
     @meetup = Meetup.new(meetup_params)
     @meetup.organizer_id = current_user.id
     @meetup.date = @date
 
-    @meetup.save
+    if @meetup.save
+      turbo_stream
+    end
+  end
 
-    turbo_stream
+  def edit
+    load_meetup
   end
 
   def update
+    load_meetup
     @meetup.update(meetup_params)
-
     turbo_stream
   end
 
   def destroy
+    load_meetup
     if @meetup.soft_delete
       turbo_stream
     end
@@ -49,10 +54,12 @@ class MeetupsController < ApplicationController
     end
   end
 
-  def load_meetups
-    @meetups = Meetup
-      .where(date: @date, organizer_id: [current_user.id] + current_user.friend_ids)
-      .order(:start_time)
+  def load_organized_meetups
+    @organized_meetups = current_user.organized_meetups.where(date: @date)
+  end
+
+  def load_invited_meetups
+    @invited_meetups = current_user.invited_meetups.where(date: @date)
   end
 
   def load_meetup

@@ -11,7 +11,7 @@
   </div>
   <% if meetup.organizer_id != current_user.id %>
     <aside class="shrink-0 mt-auto">
-      <%= render partial: "meetup_attendances/edit_form", locals: { meetup_attendance: meetup.meetup_attendances.find_by(user_id: current_user.id) } %>
+      <%= render partial: "meetups/invitations/invitee_form", locals: { invitation: meetup.invitations.find_by(invitee: current_user) } %>
     </aside>
   <% end %>
 </article>

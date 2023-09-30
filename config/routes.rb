@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:new, :create, :show]
 
+  namespace :meetups do
+    resources :invitations, only: [:update]
+  end
   resources :meetups, only: [:edit, :update, :destroy]
-  resources :meetup_attendances, only: [:create, :update]
 
   scope path: ":date" do
     get "/plans", to: "plans#index", as: "plans"

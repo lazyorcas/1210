@@ -6,9 +6,19 @@ class User < ApplicationRecord
   has_many :sent_friendships, -> { where(invitee_type: "User") }, class_name: "Invitation", as: :inviter
   has_many :received_friendships, -> { where(inviter_type: "User") }, class_name: "Invitation", as: :invitee
 
-  has_many :meetup_attendances
-  has_many :attended_meetups, through: :meetup_attendances, source: :meetup
   has_many :organized_meetups, class_name: "Meetup", foreign_key: "organizer_id"
+
+  has_many :meetup_invitations,
+    -> { where(inviter_type: "Meetup") },
+    class_name: "Invitation",
+    as: :invitee
+  has_many :invited_meetups, through: :meetup_invitations, source: :inviter, source_type: "Meetup"
+
+  has_many :accepted_meetup_invitations,
+    -> { where(inviter_type: "Meetup", is_accepted: true) },
+    class_name: "Invitation",
+    as: :invitee
+  has_many :accepted_meetups, through: :accepted_meetup_invitations, source: :inviter, source_type: "Meetup"
 
   validates_presence_of :name, :email, :time_zone
 

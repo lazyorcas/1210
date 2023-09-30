@@ -29,11 +29,11 @@ class HomeController < ApplicationController
     current_user.organized_meetups.where(date: Time.zone.today)
   end
 
-  def attended_today_meetups
-    current_user.attended_meetups.where(date: Time.zone.today)
+  def accepted_today_meetups
+    current_user.accepted_meetups.where(date: Time.zone.today)
   end
 
   def today_meetups
-    organized_today_meetups + attended_today_meetups
+    organized_today_meetups + accepted_today_meetups
   end
 end
