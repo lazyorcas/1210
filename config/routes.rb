@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   passwordless_for :users
 
-  resources :users, only: [:new, :create, :show]
-  namespace :user do
+  namespace :users do
     resources :invitations, only: [:index, :create, :update], path: "/friends"
   end
+  resources :users, only: [:new, :create, :show]
 
   resources :meetups, only: [:edit, :update, :destroy]
   resources :meetup_attendances, only: [:create, :update]
