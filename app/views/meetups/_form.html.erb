@@ -1,13 +1,11 @@
 <%= form_with model: meetup, class: 'form-flow sm:w-[400px]' do |form| %>
   <div class="form-inputs-flow">
-    <div class="flex items-center gap-x-2 py-2">
-      <%= form.text_field :title, list: "titles", class: "grow line-input", required: true, placeholder: "Untitled" %>
-      <datalist class="grow line-input" id="titles">
-        <% Meetup::Title.all.each do |title| %>
-          <option value="<%= title %>"></option>
-        <% end %>
-      </datalist>
-    </div>
+    <%= form.text_field :title, list: "titles", class: "grow line-input my-2", required: true, placeholder: "Untitled" %>
+    <datalist class="grow line-input" id="titles">
+      <% Meetup::Title.all.each do |title| %>
+        <option value="<%= title %>"></option>
+      <% end %>
+    </datalist>
     <div class="input-container">
       <%= form.label :description %>
       <%= form.text_field :description, placeholder: "give details on location, preferences, …", class: "input", autocomplete: "off" %>
