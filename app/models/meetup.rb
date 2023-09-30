@@ -5,6 +5,7 @@ class Meetup < ApplicationRecord
   scope :deleted, -> { unscoped.where(is_deleted: true) }
 
   belongs_to :organizer, class_name: "User"
+  has_many :invitations, as: :inviter
 
   has_many :meetup_attendances
   has_many :attendees, class_name: "User", through: :meetup_attendances, source: :user
