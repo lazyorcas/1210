@@ -24,9 +24,9 @@ class UsersController < ApplicationController
       elsif current_user.friends.include?(@user)
         redirect_to(users_invitations_path)
       else
-        @invitation = current_user.received_friendships.find_by(inviter: @user)
-        @invitation ||= current_user.sent_friendships.find_by(invitee: @user)
-        @invitation ||= Invitation.new(inviter: current_user, invitee: @user)
+        @invitation = current_user.received_invitations.find_by(inviter: @user)
+        @invitation ||= current_user.sent_invitations.find_by(invitee: @user)
+        @invitation ||= User::Invitation.new(inviter: current_user, invitee: @user)
 
         render("show_signed_in_user")
       end

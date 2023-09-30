@@ -15,10 +15,10 @@
   <section class="flex-1 shrink-0 flex flex-col gap-y-2">
     <h2 class="text-lg font-semibold border-b">Received Requests</h2>
     <ul class="flex flex-col gap-y-2">
-      <% if current_user.received_friendships.pending.empty? %>
+      <% if current_user.received_invitations.pending.empty? %>
         You don't have any pending request from others.
       <% else %>
-        <% current_user.received_friendships.pending.each do |invitation| %>
+        <% current_user.received_invitations.pending.each do |invitation| %>
           <li class="flex items-center hover:bg-neutral-100 transition rounded-xl justify-between pl-4">
             <%= invitation.inviter.name %>
             <%= form_with model: invitation, url: users_invitation_path(invitation) do |form| %>
@@ -35,10 +35,10 @@
   <section class="flex-1 shrink-0 flex flex-col gap-y-2">
     <h2 class="text-lg font-semibold border-b">Sent Requests</h2>
     <p>
-      <% if current_user.sent_friendships.pending.empty? %>
+      <% if current_user.sent_invitations.pending.empty? %>
         You don't have any pending request to others.
       <% else %>
-        <%= current_user.sent_friendships.pending.map(&:invitee).map(&:name).join(', ') %>
+        <%= current_user.sent_invitations.pending.map(&:invitee).map(&:name).join(', ') %>
       <% end %>
     </p>
   </section>

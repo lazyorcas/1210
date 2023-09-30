@@ -2,7 +2,7 @@
 
 class Users::InvitationsController < ApplicationController
   def create
-    @invitation = Invitation.new
+    @invitation = User::Invitation.new
     @invitation.inviter = current_user
     @invitation.invitee = User.find(invitation_params[:invitee_id])
 
@@ -12,7 +12,7 @@ class Users::InvitationsController < ApplicationController
   end
 
   def update
-    @invitation = Invitation.find_by(
+    @invitation = User::Invitation.find_by(
       id: params[:id],
       invitee: current_user,
     )
@@ -26,6 +26,6 @@ class Users::InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:invitee_id, :is_accepted)
+    params.require(:user_invitation).permit(:invitee_id, :is_accepted)
   end
 end
