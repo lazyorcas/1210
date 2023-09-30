@@ -5,6 +5,7 @@
       1210
     <% end %>
     <h1 class="text-5xl font-black">Sign Up</h1>
+    <%= render partial: "shared/flash/error" %>
   </header>
   <%= form_for User.new, html: { class: "w-full sm:w-[320px] form-flow" } do |form| %>
     <div class="form-inputs-flow">

@@ -5,6 +5,7 @@
       1210
     <% end %>
     <h1 class="text-5xl font-black">Hello there.</h1>
+    <%= render partial: "shared/flash/error" %>
   </header>
   <%= form_with(model: @session, url: url_for(action: 'new'), data: { turbo: false }, class: 'w-full form-flow') do |form| %>
     <% email_field_name = :"passwordless[#{email_field}]" %>

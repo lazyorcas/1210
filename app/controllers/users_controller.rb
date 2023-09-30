@@ -2,17 +2,21 @@
 
 class UsersController < ApplicationController
   def create
-    @user = User.create!(user_params)
+    @user = User.new(user_params)
 
-    @session = Passwordless::Session
-      .where(authenticatable_id: @user.id)
-      .order(created_at: :desc).first
-
-    sign_in(@session)
-
-    redirect_to(plans_path)
-  rescue StandardError
-    redirect_to(root_path)
+    if @user.save
+      @session = build_passwordless_session(@user)
+      if @session.save
+        sign_in(@session)
+        redirect_to(root_path)
+      else
+        flash[:error] = I18n.t("passwordless.sessions.create.error")
+        render(:new, status: :unprocessable_entity)
+      end
+    else
+      flash[:error] = "There's already a user with that email address."
+      render(:new, status: :not_found)
+    end
   end
 
   def show

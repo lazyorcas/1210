@@ -104,6 +104,13 @@
     @apply min-h-[76px] pt-4 standalone:pb-12 px-6;
     @apply bg-white;
   }
+
+  .flash {
+    @apply py-2 px-3;
+    @apply font-medium;
+    @apply rounded-lg;
+    @apply my-2;
+  }
 }
 
 @layer utilities {
