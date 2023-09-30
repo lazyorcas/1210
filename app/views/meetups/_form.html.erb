@@ -1,7 +1,7 @@
 <%= form_with model: meetup, class: 'form-flow sm:w-[400px]' do |form| %>
   <div class="form-inputs-flow">
     <div class="flex items-center gap-x-2 py-2">
-      <%= form.text_field :title, list: "titles", class: "grow line-input", required: true, autocomplete: "off", placeholder: "Untitled" %>
+      <%= form.text_field :title, list: "titles", class: "grow line-input", required: true, placeholder: "Untitled" %>
       <datalist class="grow line-input" id="titles">
         <% Meetup::Title.all.each do |title| %>
           <option value="<%= title %>"></option>
