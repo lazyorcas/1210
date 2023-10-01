@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ScheduleController < ApplicationController
+class PlansController < ApplicationController
   include Dateful
 
   before_action :require_user!
