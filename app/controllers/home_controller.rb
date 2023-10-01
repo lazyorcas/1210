@@ -11,14 +11,14 @@ class HomeController < ApplicationController
     if today_meetups.empty?
       redirect_to(today_meetups_path)
     else
-      redirect_to(today_plans_path)
+      redirect_to(today_schedule_path)
     end
   end
 
   private
 
-  def today_plans_path
-    plans_path(date: Time.zone.today)
+  def today_schedule_path
+    schedule_path(date: Time.zone.today)
   end
 
   def today_meetups_path
