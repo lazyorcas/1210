@@ -43,10 +43,11 @@
     @apply rounded-lg border;
     @apply h-11 sm:h-auto;
     @apply divide-y;
+    @apply px-4;
   }
 
   select[multiple] option {
-    @apply py-2 px-4;
+    @apply py-2;
   }
 
   select[multiple] option:checked {
