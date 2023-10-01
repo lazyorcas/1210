@@ -14,8 +14,8 @@ class UsersController < ApplicationController
         render(:new, status: :unprocessable_entity)
       end
     else
-      flash[:error] = "There's already a user with that email address."
-      render(:new, status: :not_found)
+      flash[:error] = @user.errors.first.full_message
+      render(:new, status: :unprocessable_entity)
     end
   end
 

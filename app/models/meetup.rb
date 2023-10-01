@@ -5,19 +5,21 @@ class Meetup < ApplicationRecord
   scope :deleted, -> { unscoped.where(is_deleted: true) }
 
   belongs_to :organizer, class_name: "User"
-  has_many :invitations, as: :inviter
+  has_many :invitations,
+    -> { where(invitee_type: "User") },
+    as: :inviter
+  has_many :invitees, through: :invitations, source: :invitee, source_type: "User"
 
   has_many :accepted_invitations,
-    -> {
-      where(inviter_type: "Meetup", invitee_type: "User", is_accepted: true)
-    },
+    -> { where(invitee_type: "User", is_accepted: true) },
     class_name: "Invitation",
     as: :inviter
   has_many :attendees, through: :accepted_invitations, source: :invitee, source_type: "User"
 
-  validates_presence_of :title, :date, :start_time, :end_time
+  validates_presence_of :title, :date, :start_time, :end_time, :organizer
 
-  after_create :create_invitations
+  before_commit :limit_invitees_to_organizer_friends, if: -> { invitees.present? }, on: [:create, :update]
+  before_create :set_invitees_to_organizer_friends, if: -> { !invitees.present? }
 
   validates :start_time,
     :end_time,
@@ -33,9 +35,11 @@ class Meetup < ApplicationRecord
 
   private
 
-  def create_invitations
-    organizer.friends.each do |user|
-      Invitation.create(inviter: self, invitee: user)
-    end
+  def limit_invitees_to_organizer_friends
+    self.invitees &= organizer.friends
+  end
+
+  def set_invitees_to_organizer_friends
+    self.invitees = organizer.friends
   end
 end

@@ -15,12 +15,12 @@ class MeetupsController < ApplicationController
   end
 
   def new
-    @meetup = Meetup.new
+    @meetup = Meetup.new(organizer: current_user)
   end
 
   def create
     @meetup = Meetup.new(meetup_params)
-    @meetup.organizer_id = current_user.id
+    @meetup.organizer = current_user
     @meetup.date = @date
 
     if @meetup.save
@@ -67,6 +67,8 @@ class MeetupsController < ApplicationController
   end
 
   def meetup_params
-    params.require(:meetup).permit(:title, :description, :start_time, :end_time)
+    params
+      .require(:meetup)
+      .permit(:title, :description, :start_time, :end_time, invitee_ids: [])
   end
 end

@@ -38,6 +38,24 @@
   h2 {
     @apply cursor-default;
   }
+
+  select[multiple] {
+    @apply rounded-lg border;
+    @apply h-11 sm:h-auto;
+    @apply divide-y;
+  }
+
+  select[multiple] option {
+    @apply py-2 px-4;
+  }
+
+  select[multiple] option:checked {
+    @apply bg-[url('img/check.svg')];
+    @apply bg-[length:16px];
+    @apply bg-transparent;
+    @apply bg-no-repeat;
+    @apply bg-[center_right_16px];
+  }
 }
 
 @layer components {

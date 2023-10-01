@@ -18,6 +18,13 @@
         <%= form.time_field :end_time, value: meetup.end_time, required: true, class: "flex-1 input" %>
       </div>
     </div>
+    <div class="input-container">
+      <%= form.label :invitee_ids do %>
+        Whom do you want to share with?
+      <% end %>
+      <p class="text-sm text-neutral-400">Leave it empty to share with all your friends.</p>
+      <%= form.collection_select :invitee_ids, meetup.organizer.friends.order(:name), :id, :name, {}, { multiple: true } %>
+    </div>
   </div>
   <%= form.submit "Let your friends know", class: "btn btn--primary" %>
 <% end %>

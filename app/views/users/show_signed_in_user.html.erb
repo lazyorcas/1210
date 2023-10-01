@@ -5,18 +5,18 @@
       1210
     <% end %>
     <h1 class="text-5xl font-black"><%= @user.name %> <br/>
-      <% if @invitation.inviter_id == current_user.id %>
+      <% if @invitation.inviter == current_user %>
         is here.
       <% else %>
         says hi.
       <% end %>
     </h1>
   </header>
-  <% if @invitation.inviter_id == current_user.id && @invitation.persisted? %>
+  <% if @invitation.inviter == current_user && @invitation.persisted? %>
     <p>Your friend request has been sent.</p>
-  <% elsif @invitation.inviter_id == current_user.id && !@invitation.persisted? %>
+  <% elsif @invitation.inviter == current_user && !@invitation.persisted? %>
     <%= render partial: "users/invitations/inviter_form", locals: { invitation: @invitation } %>
-  <% elsif @invitation.invitee_id == current_user.id %>
+  <% elsif @invitation.invitee == current_user %>
     <%= render partial: "users/invitations/invitee_form", locals: { invitation: @invitation } %>
   <% end %>
 </main>

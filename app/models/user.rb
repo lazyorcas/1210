@@ -1,31 +1,28 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  belongs_to :inviter, class_name: "User", optional: true
   has_many :visits, class_name: "Ahoy::Visit"
 
   has_many :sent_invitations,
-    -> {
-      where(inviter_type: "User", invitee_type: "User")
-    },
+    -> { where(invitee_type: "User") },
     class_name: "Invitation",
     as: :inviter
   has_many :received_invitations,
-    -> {
-      where(inviter_type: "User", invitee_type: "User")
-    },
+    -> { where(inviter_type: "User") },
     class_name: "Invitation",
     as: :invitee
 
   has_many :organized_meetups, class_name: "Meetup", foreign_key: "organizer_id"
 
   has_many :meetup_invitations,
-    -> { where(inviter_type: "Meetup", invitee_type: "User") },
+    -> { where(inviter_type: "Meetup") },
     class_name: "Invitation",
     as: :invitee
   has_many :invited_meetups, through: :meetup_invitations, source: :inviter, source_type: "Meetup"
 
   has_many :accepted_meetup_invitations,
-    -> { where(inviter_type: "Meetup", invitee_type: "User", is_accepted: true) },
+    -> { where(inviter_type: "Meetup", is_accepted: true) },
     class_name: "Invitation",
     as: :invitee
   has_many :accepted_meetups, through: :accepted_meetup_invitations, source: :inviter, source_type: "Meetup"
@@ -39,7 +36,7 @@ class User < ApplicationRecord
   passwordless_with :email
 
   after_create :create_session
-  after_create :create_accepted_invitation, if: -> { inviter_id.present? }
+  after_create :create_accepted_invitation, if: -> { inviter.present? }
 
   def friend_ids
     sent_invitations.accepted.pluck(:invitee_id) +
@@ -57,8 +54,6 @@ class User < ApplicationRecord
   end
 
   def create_accepted_invitation
-    inviter = User.find(inviter_id)
-
     User::Invitation.create(
       inviter: inviter,
       invitee: self,
