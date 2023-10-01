@@ -7,9 +7,7 @@
         Invite your friends
       <% end %>
     </h1>
-    <%= button_tag type: "button", data: { action: "click->modal#close" }, class: 'shrink-0 icon-btn btn--secondary' do %>
-      <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
-    <% end %>
+    <%= render partial: "shared/modal_close_button" %>
   </header>
   <div class="w-full max-w-[400px]">
     <div data-controller="clipboard">
