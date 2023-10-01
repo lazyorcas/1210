@@ -10,7 +10,15 @@
     <% end %>
     <% if meetup.organizer == current_user %>
       <hr/>
-      <p class="text-sm text-neutral-500">Shared with <%= meetup.invitees.count == meetup.organizer.friends.count ? "all friends" : meetup.invitees.map(&:name).join(", ") %></p>
+      <p class="text-sm text-neutral-500">Shared with
+        <% if meetup.invitees.empty? %>
+          no one.
+        <% elsif meetup.invitees.count == meetup.organizer.friends.count %>
+          all friends.
+        <% else %>
+          <%= meetup.invitees.map(&:name).sort.join(", ") %>.
+        <% end %>
+      </p>
     <% end %>
   </div>
   <% if meetup.organizer == current_user %>
