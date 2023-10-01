@@ -1,7 +1,7 @@
 <%= render layout: "shared/modal" do %>
   <header class="flex items-center justify-between gap-x-4">
     <h1 class="text-2xl font-bold">Edit meetup</h1>
-    <%= link_to meetups_path(date: @meetup.date), class: 'shrink-0 icon-btn btn--secondary' do %>
+    <%= button_tag type: "button", data: { action: "click->modal#close" }, class: 'shrink-0 icon-btn btn--secondary' do %>
       <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
     <% end %>
   </header>
