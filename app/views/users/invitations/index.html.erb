@@ -44,10 +44,10 @@
   </section>
 </main>
 <nav class="bottom-nav gap-x-4">
-  <%= link_to user_path(id: current_user.id, add_friend: true), class: "btn btn--secondary flex-1", data: { turbo_frame: "modal" } do %>
+  <%= link_to user_path(current_user, add_friend: true), class: "btn btn--secondary flex-1", data: { turbo_frame: "modal" } do %>
     Add friend
   <% end %>
-  <%= link_to user_path(id: current_user.id), class: "btn btn--primary flex-1", data: { turbo_frame: "modal" } do %>
+  <%= link_to user_path(current_user), class: "btn btn--primary flex-1", data: { turbo_frame: "modal" } do %>
     Invite friends
   <% end %>
 </nav>

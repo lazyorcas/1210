@@ -11,7 +11,7 @@
   </header>
   <div class="w-full max-w-[400px]">
     <div data-controller="clipboard">
-      <input data-clipboard-target="source" type="text" value="<%= user_url(id: current_user.id) %>" readonly hidden>
+      <input data-clipboard-target="source" type="text" value="<%= user_url(current_user) %>" readonly hidden>
       <button class="btn btn--primary flex items-center gap-x-2 w-full my-8" data-action="clipboard#copy">
         <%= heroicon "clipboard-document", options: { class: "h-6 w-6" } %>
         <span data-clipboard-target="buttonLabel">

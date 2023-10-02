@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     load_user
 
     if current_user.present?
-      if current_user.id == @user.id
+      if current_user == @user
         render("show_self")
       elsif current_user.friends.include?(@user)
         redirect_to(users_invitations_path)

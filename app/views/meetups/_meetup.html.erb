@@ -30,7 +30,7 @@
         <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
       <% end %>
     </aside>
-  <% elsif !meetup.attendees.exists?(current_user.id) %>
+  <% elsif !meetup.attendees.exists?(current_user) %>
     <aside class="shrink-0 mt-auto">
       <%= render partial: "meetups/invitations/invitee_form", locals: { invitation: meetup.invitations.find_by(invitee: current_user) } %>
     </aside>
