@@ -6,7 +6,7 @@ class Meetup < ApplicationRecord
 
   belongs_to :organizer, class_name: "User"
   has_many :invitations,
-    -> { where(invitee_type: "User") },
+    class_name: "Meetup::Invitation",
     as: :inviter
   has_many :invitees, through: :invitations, source: :invitee, source_type: "User"
 
