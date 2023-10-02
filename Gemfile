@@ -77,5 +77,7 @@ gem "heroicon"
 gem "passwordless", github: "mikker/passwordless"
 gem "rubocop-shopify", require: false
 gem "scout_apm"
+gem "sentry-ruby"
+gem "sentry-rails"
 gem "strong_migrations"
 gem "tailwindcss-rails", "~> 2.0"
