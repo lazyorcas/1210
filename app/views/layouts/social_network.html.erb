@@ -25,6 +25,11 @@
         <%= render layout: "shared/date_tab", locals: { path: request.params.merge(date: Time.zone.today + 1.day), active: @date == Time.zone.today + 1.day } do %>
           Tomorrow
         <% end %>
+        <% [2.day, 3.day, 4.day].map do |duration| %>
+          <%= render layout: "shared/date_tab", locals: { path: request.params.merge(date: Time.zone.today + duration), active: @date == Time.zone.today + duration } do %>
+            <%= (Time.zone.today + duration).strftime('%a') %>
+          <% end %>
+        <% end %>
       </nav>
     <% end %>
     <%= yield %>
