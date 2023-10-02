@@ -12,3 +12,6 @@
     <%= render @meetups %>
   <% end %>
 </main>
+<% if current_user.friends.empty? %>
+  <%= turbo_frame_tag "modal", src: user_path(current_user) %>
+<% end %>

@@ -3,6 +3,8 @@
     <h1 class="text-2xl font-bold">
       <% if params[:add_friend].present? %>
         Add friend
+      <% elsif current_user.friends.empty? %>
+        No friends here yet
       <% else %>
         Invite your friends
       <% end %>
