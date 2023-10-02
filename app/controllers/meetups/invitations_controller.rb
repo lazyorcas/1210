@@ -2,7 +2,7 @@
 
 class Meetups::InvitationsController < ApplicationController
   def update
-    @invitation = Invitation.find_by(
+    @invitation = Meetup::Invitation.find_by(
       id: params[:id],
       invitee: current_user,
     )
