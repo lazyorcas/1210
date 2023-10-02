@@ -11,8 +11,8 @@ class Meetup < ApplicationRecord
   has_many :invitees, through: :invitations, source: :invitee, source_type: "User"
 
   has_many :accepted_invitations,
-    -> { where(invitee_type: "User", is_accepted: true) },
-    class_name: "Invitation",
+    -> { where(is_accepted: true) },
+    class_name: "Meetup::Invitation",
     as: :inviter
   has_many :attendees, through: :accepted_invitations, source: :invitee, source_type: "User"
 

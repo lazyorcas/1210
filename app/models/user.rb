@@ -5,25 +5,22 @@ class User < ApplicationRecord
   has_many :visits, class_name: "Ahoy::Visit"
 
   has_many :sent_invitations,
-    -> { where(invitee_type: "User") },
-    class_name: "Invitation",
+    class_name: "User::Invitation",
     as: :inviter
   has_many :received_invitations,
-    -> { where(inviter_type: "User") },
-    class_name: "Invitation",
+    class_name: "User::Invitation",
     as: :invitee
 
   has_many :organized_meetups, class_name: "Meetup", foreign_key: "organizer_id"
 
   has_many :meetup_invitations,
-    -> { where(inviter_type: "Meetup") },
-    class_name: "Invitation",
+    class_name: "Meetup::Invitation",
     as: :invitee
   has_many :invited_meetups, through: :meetup_invitations, source: :inviter, source_type: "Meetup"
 
   has_many :accepted_meetup_invitations,
-    -> { where(inviter_type: "Meetup", is_accepted: true) },
-    class_name: "Invitation",
+    -> { where(is_accepted: true) },
+    class_name: "Meetup::Invitation",
     as: :invitee
   has_many :accepted_meetups, through: :accepted_meetup_invitations, source: :inviter, source_type: "Meetup"
 
