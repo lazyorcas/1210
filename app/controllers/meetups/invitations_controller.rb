@@ -16,6 +16,6 @@ class Meetups::InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:is_accepted)
+    params.require(:meetup_invitation).permit(:is_accepted)
   end
 end
