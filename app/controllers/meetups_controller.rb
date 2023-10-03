@@ -34,8 +34,9 @@ class MeetupsController < ApplicationController
 
   def update
     load_meetup
-    @meetup.update(meetup_params)
-    turbo_stream
+    if @meetup.update(meetup_params)
+      turbo_stream
+    end
   end
 
   def destroy

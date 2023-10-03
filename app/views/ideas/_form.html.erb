@@ -1,0 +1,13 @@
+<%= form_with model: idea, class: "form-flow sm:w-[400px]" do |form| %>
+  <div class="form-inputs-flow">
+    <%= form.text_field :title, class: "line-input text-xl my-2", required: true, placeholder: "Untitled", autocomplete: "off" %>
+    <div class="input-container">
+      <%= form.label :invitee_ids do %>
+        Whom do you want to vote?
+      <% end %>
+      <p class="text-sm text-neutral-400">Leave it empty to let all of your friends vote.</p>
+      <%= form.collection_select :invitee_ids, idea.user.friends.order(:name), :id, :name, {}, { multiple: true } %>
+    </div>
+  </div>
+  <%= form.button "Pitch your idea", class: "btn btn--primary" %>
+<% end %>

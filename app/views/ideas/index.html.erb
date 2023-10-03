@@ -1,0 +1,14 @@
+<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-24">
+  <p>Have an idea for the next meetup? <br />
+    Do you wish for something to happen?</p>
+  <%= link_to new_idea_path, class: "btn btn--primary w-fit gap-x-2", data: { turbo_frame: "modal" } do %>
+    <%= heroicon "chart-bar", options: { class: "h-6 w-6" } %>
+    New poll
+  <% end %>
+  <hr />
+  <%= turbo_frame_tag "user_ideas", class: "flex flex-col gap-y-2" do %>
+    <% @user_ideas.each do |user, ideas| %>
+      <%= render partial: "ideas", locals: { user: user, ideas: ideas } %>
+    <% end %>
+  <% end %>
+</main>

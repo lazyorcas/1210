@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   end
   resources :meetups, only: [:edit, :update, :destroy]
 
+  namespace :ideas do
+    resources :invitations, only: [:update]
+  end
+  resources :ideas, except: [:show, :destroy]
+
   scope path: ":date" do
     resources :meetups, only: [:index, :new, :create]
   end

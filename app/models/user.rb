@@ -24,6 +24,13 @@ class User < ApplicationRecord
     as: :invitee
   has_many :accepted_meetups, through: :accepted_meetup_invitations, source: :inviter, source_type: "Meetup"
 
+  has_many :ideas
+
+  has_many :idea_invitations,
+    class_name: "Idea::Invitation",
+    as: :invitee
+  has_many :invited_ideas, through: :idea_invitations, source: :inviter, source_type: "Idea"
+
   validates_presence_of :name, :email, :time_zone
 
   validates :email,

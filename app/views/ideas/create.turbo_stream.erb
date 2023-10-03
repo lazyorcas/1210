@@ -1,0 +1,6 @@
+<%= turbo_stream.update "user_ideas" do %>
+  <% @user_ideas.each do |user, ideas| %>
+    <%= render partial: "ideas", locals: { user: user, ideas: ideas } %>
+  <% end %>
+<% end %>
+<%= turbo_stream.update "modal", "" %>

@@ -1,0 +1,44 @@
+<article id="<%= dom_id idea %>" class="card flex gap-x-4">
+  <div class="grow">
+    <header class="mb-2">
+      <h3><%= idea.title %></h3>
+      <p class="text-xs text-neutral-500"><%= time_ago_in_words(idea.created_at, highest_measures: 1) %> ago</p>
+    </header>
+    <% if idea.upvoters.present? %>
+      <section class="flex items-center gap-x-2 text-sm">
+        <div class="flex items-center gap-x-0.5">
+          <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
+          <%= idea.upvoters.count %>
+        </div>
+        <p><%= idea.upvoters.map(&:name).join(', ') %></p>
+      </section>
+    <% end %>
+    <% if idea.downvoters.present? %>
+      <section class="flex items-center gap-x-2 text-sm">
+        <div class="flex items-center gap-x-0.5">
+          <%= heroicon "hand-thumb-down", options: { class: "h-4 w-4" } %>
+          <%= idea.downvoters.count %>
+        </div>
+        <p><%= idea.downvoters.map(&:name).join(', ') %></p>
+      </section>
+    <% end %>
+    <% if idea.pending_voters.present? %>
+      <section class="flex items-center gap-x-2 text-sm">
+        <div class="flex items-center gap-x-0.5">
+          <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
+          <%= idea.pending_voters.count %>
+        </div>
+        <p><%= idea.pending_voters.map(&:name).join(', ') %></p>
+      </section>
+    <% end %>
+  </div>
+  <aside class="mt-auto">
+    <% if idea.user == current_user %>
+      <%= link_to edit_idea_path(idea), class: "icon-btn btn--secondary", data: { turbo_frame: "modal" } do %>
+        <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
+      <% end %>
+    <% else %>
+      <%= render partial: "ideas/invitations/invitee_form", locals: { invitation: idea.invitations.find_by(invitee: current_user) } %>
+    <% end %>
+  </aside>
+</article>
