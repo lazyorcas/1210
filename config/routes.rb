@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   resources :meetups, only: [:edit, :update, :destroy]
 
   scope path: ":date" do
-    get "/plans", to: "plans#index", as: "plans"
-
     resources :meetups, only: [:index, :new, :create]
   end
 end

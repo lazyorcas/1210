@@ -34,13 +34,5 @@
     <% end %>
     <%= yield %>
     <%= turbo_frame_tag "modal" %>
-    <nav class="bottom-nav">
-      <%= render layout: "shared/page_tab", locals: { icon_name: "bolt", path: meetups_path(date: @date || Time.zone.today) } do %>
-        Meetups
-      <% end %>
-      <%= render layout: "shared/page_tab", locals: { icon_name: "calendar-days", path: plans_path(date: @date || Time.zone.today) } do %>
-        Planned
-      <% end %>
-    </nav>
   </body>
 </html>
