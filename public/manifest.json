@@ -1,8 +1,8 @@
 {
-  "name": "1210 - Hang Out More",
+  "name": "1210 - Meetups With Your Friends",
   "short_name": "1210",
   "theme_color": "#ffffff",
-  "description": "Spend less time online. Spend more meaningful time in person.",
+  "description": "Instead of messaging everyone, you can post your spontaneous plans, so your friends know when you are free.",
   "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",
