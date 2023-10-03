@@ -47,7 +47,7 @@ class IdeasController < ApplicationController
 
   def load_user_ideas
     ideas = current_user.ideas + current_user.invited_ideas
-    @user_ideas = ideas.group_by(&:user)
+    @user_ideas = ideas.group_by(&:user).sort_by { |user, _| user.name }
   end
 
   def idea_params
