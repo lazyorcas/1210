@@ -1,6 +1,16 @@
-<%= form_with model: invitation, url: ideas_invitation_path(invitation) do |form| %>
-  <%= form.hidden_field :is_accepted, value: !invitation.is_accepted, required: true %>
-  <%= form.button :submit, class: class_names("icon-btn", invitation.is_accepted ? "btn--secondary" : "btn--primary") do %>
-    <%= heroicon invitation.is_accepted ? "hand-thumb-down" : "hand-thumb-up", options: { class: "h-6 w-6" } %>
+<% if !invitation.is_accepted || invitation.is_accepted.nil? %>
+  <%= form_with model: invitation, url: ideas_invitation_path(invitation) do |form| %>
+    <%= form.hidden_field :is_accepted, value: true, required: true %>
+    <%= form.button :submit, class: "icon-btn btn--primary" do %>
+      <%= heroicon "hand-thumb-up", options: { class: "h-6 w-6" } %>
+    <% end %>
+  <% end %>
+<% end %>
+<% if invitation.is_accepted || invitation.is_accepted.nil? %>
+  <%= form_with model: invitation, url: ideas_invitation_path(invitation) do |form| %>
+    <%= form.hidden_field :is_accepted, value: false, required: true %>
+    <%= form.button :submit, class: "icon-btn btn--secondary" do %>
+      <%= heroicon "hand-thumb-down", options: { class: "h-6 w-6" } %>
+    <% end %>
   <% end %>
 <% end %>
