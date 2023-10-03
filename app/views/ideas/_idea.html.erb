@@ -32,13 +32,21 @@
       </section>
     <% end %>
   </div>
-  <aside class="mt-auto">
-    <% if idea.user == current_user %>
+  <% if idea.user == current_user %>
+    <aside class="shrink-0 flex flex-col gap-y-4 items-end justify-between">
+      <%= form_with model: idea, data: { turbo_confirm: "No one (including you) will be able to see or vote on this idea anymore. Are you sure?" } do |form| %>
+        <%= form.hidden_field :is_done, value: true, required: true %>
+        <%= form.button class: "icon-btn btn--secondary" do %>
+          <%= heroicon "check", options: { class: "h-6 w-6" } %>
+        <% end %>
+      <% end %>
       <%= link_to edit_idea_path(idea), class: "icon-btn btn--secondary", data: { turbo_frame: "modal" } do %>
         <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
       <% end %>
-    <% else %>
+    </aside>
+  <% else %>
+    <aside class="shrink-0 mt-auto">
       <%= render partial: "ideas/invitations/invitee_form", locals: { invitation: idea.invitations.find_by(invitee: current_user) } %>
-    <% end %>
-  </aside>
+    </aside>
+  <% end %>
 </article>

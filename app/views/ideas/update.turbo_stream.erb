@@ -1,2 +1,6 @@
-<%= turbo_stream.replace @idea %>
-<%= turbo_stream.update "modal", "" %>
+<% if @idea.is_done %>
+  <%= turbo_stream.remove @idea %>
+<% else %>
+  <%= turbo_stream.replace @idea %>
+  <%= turbo_stream.update "modal", "" %>
+<% end %>
