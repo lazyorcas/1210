@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Meetup < ApplicationRecord
+  include FriendsOnly
+
   default_scope { where(is_deleted: false) }
   scope :deleted, -> { unscoped.where(is_deleted: true) }
 
@@ -18,9 +20,6 @@ class Meetup < ApplicationRecord
 
   validates_presence_of :title, :date, :start_time, :end_time, :organizer
 
-  before_commit :limit_invitees_to_organizer_friends, if: -> { invitees.present? }, on: [:create, :update]
-  before_create :set_invitees_to_organizer_friends, if: -> { !invitees.present? }
-
   validates :start_time,
     :end_time,
     format: { with: /\A([0-1]?[0-9]|2[0-3]):[0-5][0-9]\z/ }
@@ -35,11 +34,7 @@ class Meetup < ApplicationRecord
 
   private
 
-  def limit_invitees_to_organizer_friends
-    self.invitees &= organizer.friends
-  end
-
-  def set_invitees_to_organizer_friends
-    self.invitees = organizer.friends
+  def main_user
+    organizer
   end
 end
