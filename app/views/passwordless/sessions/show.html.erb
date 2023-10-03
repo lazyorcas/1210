@@ -10,6 +10,6 @@
   </header>
   <%= form_with(model: @session, url: url_for(action: 'update'), scope: 'passwordless', method: 'patch', data: { turbo: false }, class: 'w-full form-flow') do |form| %>
     <%= form.text_field :token, placeholder: 'enter your token', class: 'input' %>
-    <%= form.submit "Confirm", class: 'btn btn--primary' %>
+    <%= form.button "Confirm", class: 'btn btn--primary' %>
   <% end %>
 </main>

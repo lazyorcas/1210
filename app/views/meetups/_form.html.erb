@@ -1,6 +1,6 @@
 <%= form_with model: meetup, class: "form-flow sm:w-[400px]" do |form| %>
   <div class="form-inputs-flow">
-    <%= form.text_field :title, list: "titles", class: "grow line-input my-2", required: true, placeholder: "Untitled", autocomplete: "off" %>
+    <%= form.text_field :title, list: "titles", class: "grow line-input text-xl my-2", required: true, placeholder: "Untitled", autocomplete: "off" %>
     <datalist id="titles">
       <% Meetup::Title.all.each do |title| %>
         <option value="<%= title %>"></option>
@@ -26,5 +26,5 @@
       <%= form.collection_select :invitee_ids, meetup.organizer.friends.order(:name), :id, :name, {}, { multiple: true } %>
     </div>
   </div>
-  <%= form.submit "Let your friends know", class: "btn btn--primary" %>
+  <%= form.button "Let your friends know", class: "btn btn--primary" %>
 <% end %>

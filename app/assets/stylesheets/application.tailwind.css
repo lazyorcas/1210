@@ -80,7 +80,6 @@
 
   .line-input {
     @apply h-11;
-    @apply text-xl;
     @apply border-b-2 border-neutral-300 border-dashed;
   }
 

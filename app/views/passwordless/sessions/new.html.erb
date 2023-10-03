@@ -10,6 +10,6 @@
   <%= form_with(model: @session, url: url_for(action: 'new'), data: { turbo: false }, class: 'w-full form-flow') do |form| %>
     <% email_field_name = :"passwordless[#{email_field}]" %>
     <%= email_field_tag email_field_name, params.fetch(email_field_name, nil), required: true, placeholder: 'you@awesome.com', class: 'input' %>
-    <%= form.submit t('passwordless.sessions.new.submit'), class: 'btn btn--primary' %>
+    <%= form.button t('passwordless.sessions.new.submit'), class: 'btn btn--primary' %>
   <% end %>
 </main>
