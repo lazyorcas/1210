@@ -1,7 +1,7 @@
 <article id="<%= dom_id idea %>" class="card flex gap-x-4">
   <div class="grow">
     <header class="mb-2">
-      <h3><%= idea.title %></h3>
+      <h3 class="font-semibold"><%= idea.title %></h3>
       <p class="text-xs text-neutral-500"><%= time_ago_in_words(idea.created_at, highest_measures: 1) %> ago</p>
     </header>
     <% if idea.upvoters.present? %>
