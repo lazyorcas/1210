@@ -2,7 +2,7 @@
   <%= render layout: "shared/date_tab", locals: { path: request.params.merge(date: Time.zone.today), active: @date == Time.zone.today } do %>
     Today
   <% end %>
-  <%= render layout: "shared/date_tab", locals: { path: request.params.merge(date: Time.zone.today + 1.day), active: @date == Time.zone.today + 1.day } do %>
+  <%= render layout: "shared/date_tab", locals: { path: request.params.merge(date: Time.zone.tomorrow), active: @date == Time.zone.tomorrow } do %>
     Tomorrow
   <% end %>
   <% [2.day, 3.day, 4.day].map do |duration| %>

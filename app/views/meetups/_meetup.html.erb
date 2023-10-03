@@ -2,7 +2,12 @@
   <div class="grow flex flex-col gap-y-2">
     <div>
       <p class="text-sm"><%= [meetup.organizer.name, meetup.attendees.map(&:name)].flatten.join(', ') %></p>
-      <p class="text-sm"><%= meetup.start_time  %> - <%= meetup.end_time  %></p>
+      <p class="text-sm">
+        <%= meetup.local_start_time  %> - <%= meetup.local_end_time  %>
+        <% if meetup.local_start_time != meetup.start_time %>
+          (your time)
+        <% end %>
+      </p>
     </div>
     <h2 class="text-xl font-bold"><%= meetup.title %></h2>
     <% if meetup.description.present? %>
