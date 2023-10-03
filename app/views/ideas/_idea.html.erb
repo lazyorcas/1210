@@ -6,7 +6,7 @@
     </header>
     <% if idea.upvoters.present? %>
       <section class="flex gap-x-2 text-sm">
-        <div class="flex items-center gap-x-0.5">
+        <div class="flex items-center gap-x-0.5 h-fit">
           <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
           <%= idea.upvoters.count %>
         </div>
@@ -15,7 +15,7 @@
     <% end %>
     <% if idea.downvoters.present? %>
       <section class="flex gap-x-2 text-sm">
-        <div class="flex items-center gap-x-0.5">
+        <div class="flex items-center gap-x-0.5 h-fit">
           <%= heroicon "hand-thumb-down", options: { class: "h-4 w-4" } %>
           <%= idea.downvoters.count %>
         </div>
@@ -24,7 +24,7 @@
     <% end %>
     <% if idea.pending_voters.present? %>
       <section class="flex gap-x-2 text-sm">
-        <div class="flex items-center gap-x-0.5">
+        <div class="flex items-center gap-x-0.5 h-fit">
           <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
           <%= idea.pending_voters.count %>
         </div>
