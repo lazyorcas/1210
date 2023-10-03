@@ -1,4 +1,4 @@
-<%= link_to path, class: class_names("flex gap-x-2 items-center h-fit hover:text-neutral-900 transition-colors", { "text-neutral-400": !current_page?(path) }) do %>
+<%= link_to path, class: class_names("flex-1 flex gap-x-2 items-center justify-center h-fit hover:text-neutral-900 transition-colors", { "text-neutral-400": !current_page?(path) }) do %>
   <%= heroicon icon_name, variant: current_page?(path) ? "solid" : "outline", options: { class: "h-6 w-6" } %>
   <%= yield %>
 <% end %>

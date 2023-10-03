@@ -1,3 +1,4 @@
+<%= render partial: "shared/date_tabs" %>
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-24">
   <%= turbo_frame_tag "meetups_summary" do %>
     <% if @meetups.empty? %>
