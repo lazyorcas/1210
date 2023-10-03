@@ -1,18 +1,28 @@
-<main class="w-full max-w-[320px] m-auto flex flex-col gap-y-16">
-  <header class="w-full flex flex-col">
+<main class="max-w-[320px] sm:max-w-none mx-auto">
+  <header class="py-32 sm:py-64">
     <h1 class="text-5xl font-black">1210</h1>
     <p class="text-3xl font-bold">
-      <s>Spam messages.</s> <br/>
-      Meet up with friends. <br/>
+      Meetups. <br />
+      With your friends. <br/>
       More often.
     </p>
+    <div class="flex flex-col gap-y-4 sm:flex-row sm:gap-y-0 sm:gap-x-2 mt-16">
+      <%= link_to new_user_path, class: "sm:flex-1 btn btn--primary" do %>
+        Create account
+      <% end %>
+      <%= link_to users_sign_in_path, class: "sm:flex-1 btn btn--secondary" do %>
+        Sign in
+      <% end %>
+    </div>
   </header>
-  <div class="flex flex-col gap-y-4">
-    <%= link_to new_user_path, class: 'btn btn--primary' do %>
-      Create account
-    <% end %>
-    <%= link_to users_sign_in_path, class: 'btn btn--secondary' do %>
-      Sign in
-    <% end %>
-  </div>
+  <section class="flex flex-col gap-y-4" id="how-it-works">
+    <header>
+      <h2 class="text-2xl font-bold">How it works</h2>
+      <p>Instead of spam messaging everyone, you can just let your friends know when you are free.</p>
+    </header>
+    <div class="flex flex-col gap-y-4 sm:flex-row sm:gap-y-0 sm:gap-x-2">
+      <%= image_tag "new-meetup.webp", class: "sm:flex-1 sm:w-64 rounded-xl border-2" %>
+      <%= image_tag "planned.webp", class: "sm:flex-1 sm:w-64 rounded-xl border-2" %>
+    </div>
+  </section>
 </main>
