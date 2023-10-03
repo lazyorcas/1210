@@ -5,7 +5,7 @@
 @layer base {
   @font-face {
     font-family: "Inter";
-    src: font-url("Inter.ttf") format("truetype");
+    src: url("Inter.ttf") format("truetype");
     font-weight: 1 999;
     font-style: normal;
     font-stretch: 1% 200%;
