@@ -2,8 +2,8 @@
   <article class="sm:w-[400px] flex flex-col gap-y-8">
     <header class="flex justify-between gap-x-4">
       <div>
-        <h1 class="text-xl font-bold"><%= @idea.title %></h1>
-        <p class="text-sm">Suggested by <%= @idea.user.name %></p>
+        <h1 class="text-2xl font-bold"><%= @idea.title %></h1>
+        <p>Suggested by <%= @idea.user.name %></p>
       </div>
       <%= render partial: "shared/modal_close_button" %>
     </header>
