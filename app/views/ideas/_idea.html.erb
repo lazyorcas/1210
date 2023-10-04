@@ -1,9 +1,9 @@
-<%= link_to idea_path(idea), class: "card flex items-center gap-x-4", id: dom_id(idea), data: { turbo_frame: "modal" } do %>
+<%= link_to idea_path(idea), class: "card flex gap-x-4", id: dom_id(idea), data: { turbo_frame: "modal" } do %>
   <header class="grow">
     <h3 class="text-lg font-semibold"><%= idea.title %></h3>
     <p class="text-xs text-neutral-500"><%= time_ago_in_words(idea.created_at, highest_measures: 1) %> ago</p>
   </header>
-  <div class="flex flex-col gap-y-1 items-end justify-between">
+  <div class="flex flex-col gap-y-1 items-end">
     <section class="flex items-center gap-x-1 text-sm">
       <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
       <%= idea.upvoters.count %>/<%= idea.invitees.count %>
