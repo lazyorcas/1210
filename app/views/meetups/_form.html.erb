@@ -19,10 +19,12 @@
       </div>
     </div>
     <div class="input-container">
-      <%= form.label :invitee_ids do %>
-        Whom do you want to share with?
-      <% end %>
-      <p class="text-sm text-neutral-400">Leave it empty to share with all your friends.</p>
+      <div>
+        <%= form.label :invitee_ids do %>
+          Whom do you want to share with?
+        <% end %>
+        <p class="text-sm text-neutral-400">Leave it empty to share with all your friends.</p>
+      </div>
       <%= form.collection_select :invitee_ids, meetup.organizer.friends.order(:name), :id, :name, {}, { multiple: true } %>
     </div>
   </div>
