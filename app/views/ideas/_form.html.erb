@@ -2,10 +2,12 @@
   <div class="form-inputs-flow">
     <%= form.text_field :title, class: "line-input text-xl my-2", required: true, placeholder: "Untitled", autocomplete: "off" %>
     <div class="input-container">
-      <%= form.label :invitee_ids do %>
-        Who can vote?
-      <% end %>
-      <p class="text-sm text-neutral-400">Leave it empty to let all of your friends vote.</p>
+      <div>
+        <%= form.label :invitee_ids do %>
+          Who can vote?
+        <% end %>
+        <p class="text-sm text-neutral-400">Leave it empty to let all of your friends vote.</p>
+      </div>
       <%= form.collection_select :invitee_ids, idea.user.friends.order(:name), :id, :name, {}, { multiple: true } %>
     </div>
   </div>

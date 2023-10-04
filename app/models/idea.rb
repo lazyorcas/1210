@@ -18,12 +18,6 @@ class Idea < ApplicationRecord
     as: :inviter
   has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"
 
-  has_many :downvotes,
-    -> { where(is_accepted: false) },
-    class_name: "Idea::Invitation",
-    as: :inviter
-  has_many :downvoters, through: :downvotes, source: :invitee, source_type: "User"
-
   has_many :pending_votes,
     -> { where(is_accepted: nil) },
     class_name: "Idea::Invitation",

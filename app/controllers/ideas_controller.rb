@@ -4,7 +4,7 @@ class IdeasController < ApplicationController
   layout :resolve_layout
 
   def index
-    load_user_ideas
+    load_user_to_ideas
   end
 
   def new
@@ -16,17 +16,21 @@ class IdeasController < ApplicationController
     @idea.user = current_user
 
     if @idea.save
-      load_user_ideas
+      load_user_to_ideas
       turbo_stream
     end
   end
 
-  def edit
+  def show
     load_idea
   end
 
+  def edit
+    load_current_user_idea
+  end
+
   def update
-    load_idea
+    load_current_user_idea
     if @idea.update(idea_params)
       turbo_stream
     end
@@ -41,13 +45,20 @@ class IdeasController < ApplicationController
     end
   end
 
-  def load_idea
+  def load_current_user_idea
     @idea = current_user.ideas.find(params[:id])
   end
 
-  def load_user_ideas
-    ideas = current_user.ideas + current_user.invited_ideas
-    @user_ideas = ideas.group_by(&:user).sort_by { |user, _| user.name }
+  def load_idea
+    @idea = idea_scope.find(params[:id])
+  end
+
+  def load_user_to_ideas
+    @user_to_ideas = idea_scope.group_by(&:user).sort_by { |user, _| user.name }
+  end
+
+  def idea_scope
+    Idea.where(id: current_user.idea_ids + current_user.invited_idea_ids)
   end
 
   def idea_params
