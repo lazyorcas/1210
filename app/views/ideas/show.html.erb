@@ -7,22 +7,24 @@
       </div>
       <%= render partial: "shared/modal_close_button" %>
     </header>
-    <div class="flex flex-col gap-y-2">
-      <section class="flex justify-between">
-        <h2 class="shrink-0 text-neutral-500 flex gap-x-2">
-          <%= heroicon "hand-thumb-up", options: { class: "shrink-0 h-6 w-6" } %>
-          Upvoted by
-        </h2>
-        <p>
-          <%= @idea.upvoters.empty? ? "None" : @idea.upvoters.map(&:name).join(', ') %>
-        </p>
+    <div class="flex flex-col gap-y-4">
+      <section class="flex flex-col gap-y-1">
+        <header class="flex gap-x-2 items-center text-neutral-500">
+          <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
+          <h2 class="text-sm">
+            Upvoted by
+          </h2>
+        </header>
+        <p><%= @idea.upvoters.empty? ? "None" : @idea.upvoters.map(&:name).join(', ') %></p>
       </section>
-      <section class="flex justify-between gap-x-4">
-        <h2 class="shrink-0 text-neutral-500 flex gap-x-2">
-          <%= heroicon "question-mark-circle", options: { class: "shrink-0 h-6 w-6" } %>
-          Haven't voted
-        </h2>
-        <p class="grow text-right"><%= @idea.pending_voters.empty? ? "None" : @idea.pending_voters.map(&:name).join(', ') %></p>
+      <section class="flex flex-col gap-y-1">
+        <header class="flex gap-x-2 items-center text-neutral-500">
+          <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
+          <h2 class="text-sm">
+            Haven't voted
+          </h2>
+        </header>
+        <p><%= @idea.pending_voters.empty? ? "None" : @idea.pending_voters.map(&:name).join(', ') %></p>
       </section>
     </div>
     <% if @idea.user == current_user %>
