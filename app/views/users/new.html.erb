@@ -10,7 +10,7 @@
   <%= form_for User.new, html: { class: "w-full sm:w-[320px] form-flow" } do |form| %>
     <div class="form-inputs-flow">
       <div class="input-container">
-        <%= form.label :name %>
+        <%= form.label :name, "Display name" %>
         <%= form.text_field :name, required: true, placeholder: "enter your name", class: "input" %>
       </div>
       <div class="input-container">
