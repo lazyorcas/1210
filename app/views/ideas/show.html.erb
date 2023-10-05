@@ -12,7 +12,7 @@
         <header class="flex gap-x-2 items-center text-neutral-500">
           <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
           <h2 class="text-sm">
-            Upvoted by
+            Upvotes
           </h2>
         </header>
         <p><%= @idea.upvoters.empty? ? "None" : @idea.upvoters.map(&:name).join(', ') %></p>
@@ -21,7 +21,7 @@
         <header class="flex gap-x-2 items-center text-neutral-500">
           <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
           <h2 class="text-sm">
-            Haven't voted
+            Pending / Not interested
           </h2>
         </header>
         <p><%= @idea.pending_voters.empty? ? "None" : @idea.pending_voters.map(&:name).join(', ') %></p>
