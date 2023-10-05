@@ -28,6 +28,7 @@
       </section>
     </div>
     <% if @idea.user == current_user %>
+      <p class="text-sm text-neutral-500">When there are enough upvotes, you can mark this as done and create a group chat on your favorite messaging app.</p>
       <div class="flex gap-x-4">
         <%= form_with model: @idea, class: "w-1/2", data: { turbo_confirm: "No one (including you) will be able to see or vote on this idea anymore. Are you sure?" } do |form| %>
           <%= form.hidden_field :is_done, value: true, required: true %>
