@@ -3,6 +3,8 @@
 class IdeasController < ApplicationController
   layout :resolve_layout
 
+  before_action :require_user!
+
   def index
     load_user_to_ideas
   end
