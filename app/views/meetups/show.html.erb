@@ -11,11 +11,21 @@
       <section class="flex flex-col gap-y-1">
         <header class="flex gap-x-2 items-center text-neutral-500">
           <%= heroicon "sparkles", options: { class: "h-4 w-4" } %>
-          <h2 class="text-sm">
-            Who's coming?
-          </h2>
+          <h2 class="text-sm">Who's going?</h2>
         </header>
         <p><%= (@meetup.attendees + [@meetup.organizer]).map(&:name).join(', ') %></p>
+      </section>
+      <section class="flex flex-col gap-y-1">
+        <header class="flex gap-x-2 items-center text-neutral-500">
+          <%= heroicon "clock", options: { class: "h-4 w-4" } %>
+          <h2 class="text-sm">Time</h2>
+        </header>
+        <p class="text-sm">
+          <%= @meetup.local_start_time  %> - <%= @meetup.local_end_time  %>
+          <% if @meetup.local_start_time != @meetup.start_time %>
+            (your time)
+          <% end %>
+        </p>
       </section>
     </div>
     <% if @meetup.organizer == current_user %>
