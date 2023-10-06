@@ -20,7 +20,7 @@
           <%= heroicon "clock", options: { class: "h-4 w-4" } %>
           <h2 class="text-sm">Time</h2>
         </header>
-        <p class="text-sm">
+        <p>
           <%= @meetup.local_start_time  %> - <%= @meetup.local_end_time  %>
           <% if @meetup.local_start_time != @meetup.start_time %>
             (your time)
