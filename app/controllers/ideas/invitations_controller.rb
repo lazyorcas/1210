@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Ideas::InvitationsController < ApplicationController
+  before_action :require_user!
+
   def update
     @invitation = Idea::Invitation.find_by(
       id: params[:id],

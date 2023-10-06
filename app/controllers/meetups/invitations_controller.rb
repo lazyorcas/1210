@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Meetups::InvitationsController < ApplicationController
+  before_action :require_user!
+
   def update
     @invitation = Meetup::Invitation.find_by(
       id: params[:id],

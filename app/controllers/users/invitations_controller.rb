@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::InvitationsController < ApplicationController
+  before_action :require_user!
+
   def create
     @invitation = User::Invitation.new
     @invitation.inviter = current_user
