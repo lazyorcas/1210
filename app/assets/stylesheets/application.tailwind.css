@@ -47,11 +47,6 @@
     @apply cursor-pointer;
   }
 
-  h1,
-  h2 {
-    @apply cursor-default;
-  }
-
   select[multiple] {
     @apply rounded-lg border;
     @apply h-11 sm:h-auto;
