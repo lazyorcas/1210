@@ -72,7 +72,13 @@ class MeetupsController < ApplicationController
   end
 
   def load_meetups
-    @meetups = meetup_scope.where(date: @date)
+    @meetups = meetup_scope
+      .where(date: @date)
+      .where(
+        "date > :today OR (date = :today AND end_time >= :time_now)",
+        today: Time.zone.today,
+        time_now: Time.zone.now.strftime("%H:%M"),
+      )
   end
 
   def meetup_scope
