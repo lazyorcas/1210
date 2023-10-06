@@ -11,7 +11,7 @@
           <%= heroicon "users", options: { class: "h-6 w-6" } %>
           <% if current_user.received_invitations.pending.present? %>
             <div class="text-xs absolute right-0 top-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center font-bold">
-              <%= current_user.received_invitations.pending.count %>
+              <%= current_user.received_invitations.pending.length %>
             </div>
           <% end %>
         <% end %>

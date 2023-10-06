@@ -25,7 +25,7 @@
     <p class="text-sm text-neutral-500">Shared with
       <% if meetup.invitees.empty? %>
         no one.
-      <% elsif meetup.invitees.count == meetup.organizer.friends.count %>
+      <% elsif meetup.invitees.length == meetup.organizer.friends.length %>
         all friends.
       <% else %>
         <%= meetup.invitees.map(&:name).sort.join(", ") %>.

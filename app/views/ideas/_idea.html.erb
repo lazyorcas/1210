@@ -6,7 +6,7 @@
   <div class="shrink-0 flex flex-col items-end">
     <div class="flex items-center gap-x-1 text-sm">
       <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
-      <%= idea.upvoters.count %>/<%= idea.invitees.count %>
+      <%= idea.upvoters.length %>/<%= idea.invitees.length %>
     </div>
     <% if idea.upvoters.include?(current_user) %>
       <div class="flex items-center gap-x-1">
