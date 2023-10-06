@@ -3,6 +3,8 @@
   <%= turbo_frame_tag "meetups_summary" do %>
     <% if @meetups.empty? %>
       No one has said anything yet.
+    <% else %>
+      What are you up to?
     <% end %>
   <% end %>
   <%= link_to new_meetup_path, class: "btn btn--primary w-fit gap-x-2", data: { turbo_frame: "modal" } do %>
