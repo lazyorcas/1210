@@ -6,4 +6,8 @@ module Dateful
   def load_date
     @date = params[:date].to_date
   end
+
+  def date_in_past?
+    @date < Time.zone.today
+  end
 end

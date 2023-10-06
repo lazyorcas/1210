@@ -7,6 +7,7 @@ class MeetupsController < ApplicationController
 
   before_action :require_user!
   before_action :load_date, only: [:index, :new, :create]
+  before_action :redirect_to_today, only: [:index, :new, :create], if: :date_in_past?
 
   def index
     load_meetups
@@ -56,6 +57,10 @@ class MeetupsController < ApplicationController
     when "index"
       "meetups"
     end
+  end
+
+  def redirect_to_today
+    redirect_to(meetups_path(date: Time.zone.today))
   end
 
   def load_current_user_meetup
