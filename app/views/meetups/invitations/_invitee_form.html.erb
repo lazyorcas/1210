@@ -1,5 +1,5 @@
 <% if invitation.is_accepted %>
-  <%= form_with model: invitation, url: meetups_invitation_path(invitation) do |form| %>
+  <%= form_with model: invitation, url: meetups_invitation_path(invitation), data: { turbo_confirm: "Please message the organizer if you are cancelling this last minute." } do |form| %>
     <%= form.hidden_field :is_accepted, value: false, required: true %>
     <%= form.button :submit, class: "w-full btn btn--secondary" do %>
       Cancel
