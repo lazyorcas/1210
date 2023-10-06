@@ -10,4 +10,8 @@ module Dateful
   def date_in_past?
     @date < Time.zone.today
   end
+
+  def today?
+    @date == Time.zone.today
+  end
 end
