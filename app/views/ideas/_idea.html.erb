@@ -4,10 +4,10 @@
     <p class="text-xs text-neutral-500"><%= time_ago_in_words(idea.created_at, highest_measures: 1) %> ago</p>
   </header>
   <div class="flex flex-col items-end">
-    <section class="flex items-center gap-x-1 text-sm">
+    <div class="flex items-center gap-x-1 text-sm">
       <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
       <%= idea.upvoters.count %>/<%= idea.invitees.count %>
-    </section>
+    </div>
     <% if idea.upvoters.include?(current_user) %>
       <div class="flex items-center gap-x-1">
         <span class="rounded-full bg-green-500 h-2 w-2"></span>
