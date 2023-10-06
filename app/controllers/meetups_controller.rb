@@ -9,9 +9,8 @@ class MeetupsController < ApplicationController
   before_action :load_date, only: [:index, :new, :create]
 
   def index
-    load_organized_meetups
-    load_invited_meetups
-    @meetups = (@organized_meetups + @invited_meetups).sort_by(&:start_time)
+    load_meetups
+    @meetups.order(:local_start_time)
   end
 
   def new
@@ -28,19 +27,23 @@ class MeetupsController < ApplicationController
     end
   end
 
-  def edit
+  def show
     load_meetup
   end
 
+  def edit
+    load_current_user_meetup
+  end
+
   def update
-    load_meetup
+    load_current_user_meetup
     if @meetup.update(meetup_params)
       turbo_stream
     end
   end
 
   def destroy
-    load_meetup
+    load_current_user_meetup
     if @meetup.soft_delete
       turbo_stream
     end
@@ -55,16 +58,20 @@ class MeetupsController < ApplicationController
     end
   end
 
-  def load_organized_meetups
-    @organized_meetups = current_user.organized_meetups.where(date: @date)
-  end
-
-  def load_invited_meetups
-    @invited_meetups = current_user.invited_meetups.where(date: @date)
+  def load_current_user_meetup
+    @meetup = current_user.organized_meetups.find(params[:id])
   end
 
   def load_meetup
-    @meetup = current_user.organized_meetups.find(params[:id])
+    @meetup = meetup_scope.find(params[:id])
+  end
+
+  def load_meetups
+    @meetups = meetup_scope.where(date: @date)
+  end
+
+  def meetup_scope
+    Meetup.where(id: current_user.organized_meetup_ids + current_user.invited_meetup_ids)
   end
 
   def meetup_params

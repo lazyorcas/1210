@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :meetups do
     resources :invitations, only: [:update]
   end
-  resources :meetups, only: [:edit, :update, :destroy]
+  resources :meetups, only: [:show, :edit, :update, :destroy]
 
   namespace :ideas do
     resources :invitations, only: [:update]
