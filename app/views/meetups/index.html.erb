@@ -1,15 +1,11 @@
 <%= render partial: "shared/date_tabs" %>
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-24">
-  <%= turbo_frame_tag "meetups_summary" do %>
+  <%= turbo_frame_tag "meetups_header" do %>
     <% if @meetups.empty? %>
-      No one has said anything yet.
+      <%= render partial: "no_meetups" %>
     <% else %>
-      What are you up to?
+      <%= render partial: "new_button" %>
     <% end %>
-  <% end %>
-  <%= link_to new_meetup_path, class: "btn btn--primary w-fit gap-x-2", data: { turbo_frame: "modal" } do %>
-    <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
-    Post
   <% end %>
   <%= turbo_frame_tag "meetups", class: "flex flex-col gap-y-2" do %>
     <%= render @meetups %>
