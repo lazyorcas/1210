@@ -76,7 +76,6 @@ gem "ahoy_matey"
 gem "heroicon"
 gem "passwordless", github: "mikker/passwordless"
 gem "rubocop-shopify", require: false
-gem "scout_apm"
 gem "sentry-ruby"
 gem "sentry-rails"
 gem 'sidekiq'
