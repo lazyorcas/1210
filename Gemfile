@@ -79,6 +79,7 @@ gem "rubocop-shopify", require: false
 gem "scout_apm"
 gem "sentry-ruby"
 gem "sentry-rails"
+gem 'sidekiq'
 gem "strong_migrations"
 gem "tailwindcss-rails", "~> 2.0"
 gem 'web-push'
