@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+require "sidekiq/web"
+require "admin_constraint"
+
 Rails.application.routes.draw do
   root "home#index"
 
   passwordless_for :users
+  mount Sidekiq::Web => "/sidekiq", constraints: AdminConstraint.new
 
   namespace :users do
     resources :invitations, only: [:index, :create, :update], path: "/friends"
