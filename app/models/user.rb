@@ -51,6 +51,10 @@ class User < ApplicationRecord
     User.where(id: friend_ids)
   end
 
+  def admin?
+    id == 1
+  end
+
   private
 
   def create_session
