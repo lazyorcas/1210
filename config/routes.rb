@@ -6,6 +6,8 @@ require "admin_constraint"
 Rails.application.routes.draw do
   root "home#index"
 
+  get "/install", to: "home#install", as: :install
+
   passwordless_for :users
   mount Sidekiq::Web => "/sidekiq", constraints: AdminConstraint.new
 

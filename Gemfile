@@ -73,6 +73,7 @@ group :test do
 end
 
 gem "ahoy_matey"
+gem "browser"
 gem "heroicon"
 gem "passwordless", github: "mikker/passwordless"
 gem "rubocop-shopify", require: false

@@ -7,6 +7,11 @@
         <%= yield :page_title %>
       </h1>
       <nav class="flex gap-x-2">
+        <% if browser.device.mobile? %>
+          <%= link_to install_path, class: "icon-btn", data: { turbo_frame: "modal" } do %>
+            <%= heroicon "arrow-down-tray", options: { class: "h-6 w-6" } %>
+          <% end %>
+        <% end %>
         <button class="hidden icon-btn" data-controller="notification-permission" data-action="notification-permission#request">
           <%= heroicon "bell-alert", options: { class: "h-6 w-6" } %>
         </button>
