@@ -1,6 +1,6 @@
-<%= link_to meetup_path(meetup), class: "card flex flex-col gap-y-2", id: dom_id(meetup), data: { turbo_frame: "modal" } do %>
-  <div class="flex gap-x-4 justify-between items-start">
-    <div class="grow">
+<%= link_to meetup_path(meetup), class: "card flex gap-x-4 justify-between", id: dom_id(meetup), data: { turbo_frame: "modal" } do %>
+  <div class="grow flex flex-col gap-y-2">
+    <div>
       <p class="text-sm"><%= [meetup.organizer.name, meetup.attendees.map(&:name)].flatten.join(', ') %></p>
       <p class="text-sm">
         <%= meetup.local_start_time  %> - <%= meetup.local_end_time  %>
@@ -9,27 +9,37 @@
         <% end %>
       </p>
     </div>
+    <h2 class="text-xl font-bold"><%= meetup.title %></h2>
+    <% if meetup.description.present? %>
+      <p class="text-sm"><%= meetup.description %></p>
+    <% end %>
+    <% if meetup.organizer == current_user %>
+      <hr/>
+      <p class="text-sm text-neutral-500">Shared with
+        <% if meetup.invitees.empty? %>
+          no one.
+        <% elsif meetup.invitees.length == meetup.organizer.friends.length %>
+          all friends.
+        <% else %>
+          <%= meetup.invitees.map(&:name).sort.join(", ") %>.
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+  <% if meetup.organizer == current_user %>
+    <div class="shrink-0 icon-btn btn--secondary">
+      <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
+    </div>
+  <% else %>
     <% if meetup.attendees.include?(current_user) %>
-      <div class="shrink-0 flex items-center gap-x-1">
+      <div class="shrink-0 flex items-center gap-x-1 h-fit">
         <span class="rounded-full bg-green-500 h-2 w-2"></span>
         <p class="text-sm">Going</p>
       </div>
+    <% else %>
+      <div class="shrink-0 icon-btn btn--secondary">
+        <%= heroicon "eye", options: { class: "h-6 w-6" } %>
+      </div>
     <% end %>
-  </div>
-  <h2 class="text-xl font-bold"><%= meetup.title %></h2>
-  <% if meetup.description.present? %>
-    <p class="text-sm"><%= meetup.description %></p>
-  <% end %>
-  <% if meetup.organizer == current_user %>
-    <hr/>
-    <p class="text-sm text-neutral-500">Shared with
-      <% if meetup.invitees.empty? %>
-        no one.
-      <% elsif meetup.invitees.length == meetup.organizer.friends.length %>
-        all friends.
-      <% else %>
-        <%= meetup.invitees.map(&:name).sort.join(", ") %>.
-      <% end %>
-    </p>
   <% end %>
 <% end %>
