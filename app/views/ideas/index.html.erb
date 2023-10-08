@@ -1,13 +1,13 @@
 <hr class="mt-8" />
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-24">
-  <%= turbo_frame_tag "ideas_header" do %>
+  <%= turbo_frame_tag "ideas-header" do %>
     <% if @user_to_ideas.empty? %>
       <%= render partial: "no_ideas" %>
     <% else %>
       <%= render partial: "new_button" %>
     <% end %>
   <% end %>
-  <%= turbo_frame_tag "user_ideas", class: "flex flex-col gap-y-8" do %>
+  <%= turbo_frame_tag "user-ideas", class: "flex flex-col gap-y-8" do %>
     <% @user_to_ideas.each do |user, ideas| %>
       <%= render partial: "ideas", locals: { user: user, ideas: ideas } %>
     <% end %>

@@ -83,3 +83,6 @@ Rails.application.configure do
   # ngrok
   config.hosts << Rails.application.credentials[:ngrok][:host]
 end
+
+Rails.application.routes.default_url_options[:protocol] = "https"
+Rails.application.routes.default_url_options[:host] = Rails.application.credentials[:ngrok][:host]
