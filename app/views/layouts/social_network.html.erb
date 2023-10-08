@@ -8,7 +8,7 @@
       </h1>
       <nav class="flex gap-x-2">
         <% if browser.device.mobile? %>
-          <%= link_to install_path, class: "icon-btn", data: { turbo_frame: "modal" } do %>
+          <%= link_to install_path, class: "icon-btn standalone:hidden", data: { turbo_frame: "modal" } do %>
             <%= heroicon "arrow-down-tray", options: { class: "h-6 w-6" } %>
           <% end %>
         <% end %>
