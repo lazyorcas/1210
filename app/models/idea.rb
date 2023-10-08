@@ -26,9 +26,23 @@ class Idea < ApplicationRecord
 
   validates_presence_of :title, :user
 
+  after_create :notify_invitees
+
   private
 
   def main_user
     user
+  end
+
+  def notify_invitees
+    invitees.each do |invitee|
+      invitee.push_subscriptions.each do |push_subscription|
+        PushNotificationJob.perform_later(
+          push_subscription: push_subscription,
+          title: title,
+          body: "#{user.name} suggests this idea",
+        )
+      end
+    end
   end
 end
