@@ -42,6 +42,8 @@ class User < ApplicationRecord
   after_create :create_session
   after_create :create_accepted_invitation, if: -> { inviter.present? }
 
+  has_many :push_subscriptions
+
   def friend_ids
     sent_invitations.accepted.pluck(:invitee_id) +
       received_invitations.accepted.pluck(:inviter_id)

@@ -9,4 +9,7 @@
   <%= preload_link_tag "Inter.ttf", as: "font", type: "font/ttf" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
+  <% if current_user %>
+    <%= javascript_include_tag 'register_service_worker' %>
+  <% end %>
 </head>

@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   end
   resources :ideas, except: [:destroy]
 
+  resources :push_subscriptions, only: [:create]
+
   scope path: ":date" do
     resources :meetups, only: [:index, :new, :create]
   end
