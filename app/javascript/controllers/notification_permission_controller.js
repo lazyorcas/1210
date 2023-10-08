@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   connect() {
     if (Notification.permission != "granted") {
-      this.element.classList.remove("standalone:hidden");
+      this.element.classList.remove("hidden");
     }
   }
 
