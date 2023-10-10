@@ -2,7 +2,7 @@
   <div class="card flex gap-x-4 justify-between">
     <%= link_to meetup_path(meetup), class: "grow flex flex-col gap-y-1", data: { turbo_frame: "modal" } do %>
       <div>
-        <p class="text-sm"><%= [meetup.organizer.name, meetup.attendees.map(&:name)].flatten.join(', ') %></p>
+        <p class="text-sm"><%= ([meetup.organizer] +  meetup.attendees).map(&:name).join(', ') %></p>
         <p class="text-sm">
           <%= meetup.local_start_time  %> - <%= meetup.local_end_time  %>
           <% if meetup.local_start_time != meetup.start_time %>

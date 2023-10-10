@@ -1,7 +1,3 @@
 <%= turbo_stream.update "ideas-header", partial: "new_button" %>
-<%= turbo_stream.update "user-ideas" do %>
-  <% @user_to_ideas.each do |user, ideas| %>
-    <%= render partial: "ideas", locals: { user: user, ideas: ideas } %>
-  <% end %>
-<% end %>
+<%= turbo_stream.append "ideas", @idea %>
 <%= turbo_stream.update "modal", "" %>

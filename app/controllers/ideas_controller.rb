@@ -6,7 +6,8 @@ class IdeasController < ApplicationController
   before_action :require_user!
 
   def index
-    load_user_to_ideas
+    load_ideas
+    order_ideas
   end
 
   def new
@@ -18,7 +19,6 @@ class IdeasController < ApplicationController
     @idea.user = current_user
 
     if @idea.save
-      load_user_to_ideas
       turbo_stream
     end
   end
@@ -55,8 +55,12 @@ class IdeasController < ApplicationController
     @idea = idea_scope.find(params[:id])
   end
 
-  def load_user_to_ideas
-    @user_to_ideas = idea_scope.group_by(&:user).sort_by { |user, _| user.name }
+  def load_ideas
+    @ideas = idea_scope
+  end
+
+  def order_ideas
+    @ideas.order!(created_at: :desc)
   end
 
   def idea_scope
@@ -64,6 +68,6 @@ class IdeasController < ApplicationController
   end
 
   def idea_params
-    params.require(:idea).permit(:title, :is_done, invitee_ids: [])
+    params.require(:idea).permit(:title, :is_done, :is_deleted, invitee_ids: [])
   end
 end

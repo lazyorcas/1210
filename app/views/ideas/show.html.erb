@@ -24,7 +24,7 @@
             Pending / Not interested
           </h2>
         </header>
-        <p><%= (@idea.pending_voters + @idea.downvoters).empty? ? "None" : (@idea.pending_voters + @idea.downvoters).map(&:name).join(', ') %></p>
+        <p><%= @idea.pending_voters_and_downvoters.empty? ? "None" : @idea.pending_voters_and_downvoters.sort_by(&:name).map(&:name).join(', ') %></p>
       </section>
     </div>
     <% if @idea.user == current_user %>

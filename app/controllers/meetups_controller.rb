@@ -11,7 +11,6 @@ class MeetupsController < ApplicationController
 
   def index
     load_meetups
-    filter_out_past_meetups if today?
     sort_meetups
   end
 
@@ -76,14 +75,8 @@ class MeetupsController < ApplicationController
     @meetups = meetup_scope.where(date: @date).to_a
   end
 
-  def filter_out_past_meetups
-    @meetups.select! do |meetup|
-      meetup.local_end_time.in_time_zone(meetup.organizer.time_zone) >= Time.zone.now
-    end
-  end
-
   def sort_meetups
-    @meetups.sort_by!(&:local_start_time)
+    @meetups.sort_by(&:local_start_time)
   end
 
   def meetup_scope

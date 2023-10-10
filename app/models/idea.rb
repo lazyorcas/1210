@@ -34,6 +34,10 @@ class Idea < ApplicationRecord
 
   after_create :notify_invitees
 
+  def pending_voters_and_downvoters
+    pending_voters + downvoters
+  end
+
   private
 
   def main_user

@@ -1,8 +1,9 @@
 <%= link_to idea_path(idea), class: "card flex gap-x-4", id: dom_id(idea), data: { turbo_frame: "modal" } do %>
-  <header class="grow">
-    <h3 class="font-semibold"><%= idea.title %></h3>
+  <div class="grow">
+    <p class="text-sm"><%= idea.user.name %></p>
+    <h2 class="font-semibold"><%= idea.title %></h2>
     <p class="text-xs text-neutral-500"><%= time_ago_in_words(idea.created_at, highest_measures: 1) %> ago</p>
-  </header>
+  </div>
   <div class="shrink-0 flex flex-col items-end">
     <% if idea.upvoters.include?(current_user) %>
       <div class="flex items-center gap-x-1">
