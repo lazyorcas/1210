@@ -10,6 +10,6 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
   <% if current_user %>
-    <%= javascript_include_tag 'register_service_worker' %>
+    <%= render partial: "shared/push_subscription" %>
   <% end %>
 </head>
