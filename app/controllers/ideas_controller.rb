@@ -38,6 +38,13 @@ class IdeasController < ApplicationController
     end
   end
 
+  def destroy
+    load_current_user_idea
+    if @idea.soft_delete
+      turbo_stream
+    end
+  end
+
   private
 
   def resolve_layout
@@ -68,6 +75,6 @@ class IdeasController < ApplicationController
   end
 
   def idea_params
-    params.require(:idea).permit(:title, :is_done, :is_deleted, invitee_ids: [])
+    params.require(:idea).permit(:title, :is_done, invitee_ids: [])
   end
 end

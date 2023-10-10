@@ -3,7 +3,8 @@
 class Idea < ApplicationRecord
   include FriendsOnly
 
-  default_scope { where(is_done: false) }
+  default_scope { where(is_done: false, is_deleted: false) }
+  scope :deleted, -> { unscoped.where(is_deleted: true) }
 
   belongs_to :user
 
@@ -36,6 +37,11 @@ class Idea < ApplicationRecord
 
   def pending_voters_and_downvoters
     pending_voters + downvoters
+  end
+
+  def soft_delete
+    self.is_deleted = true
+    save
   end
 
   private

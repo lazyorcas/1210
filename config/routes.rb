@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   namespace :ideas do
     resources :invitations, only: [:update]
   end
-  resources :ideas, except: [:destroy]
+  resources :ideas
 
   resources :push_subscriptions, only: [:create]
 

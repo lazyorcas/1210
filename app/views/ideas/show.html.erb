@@ -30,14 +30,17 @@
     <% if @idea.user == current_user %>
       <p class="text-sm text-neutral-500">When there are enough upvotes, you can mark this as done and create a group chat on your favorite messaging app.</p>
       <div class="flex gap-x-4">
+        <%= button_to idea_path(@idea), method: :delete, class: "icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this idea?" } do |form| %>
+          <%= heroicon "trash", options: { class: "h-6 w-6" } %>
+        <% end %>
+        <%= link_to edit_idea_path(@idea), class: "w-1/2 btn btn--secondary", data: { turbo_frame: "modal" } do %>
+          Edit
+        <% end %>
         <%= form_with model: @idea, class: "w-1/2", data: { turbo_confirm: "No one (including you) will be able to see or vote on this idea anymore. Are you sure?" } do |form| %>
           <%= form.hidden_field :is_done, value: true, required: true %>
           <%= form.button class: "w-full btn btn--primary" do %>
             Mark as done
           <% end %>
-        <% end %>
-        <%= link_to edit_idea_path(@idea), class: "w-1/2 btn btn--secondary", data: { turbo_frame: "modal" } do %>
-          Edit
         <% end %>
       </div>
     <% else %>
