@@ -76,7 +76,7 @@ class MeetupsController < ApplicationController
   end
 
   def sort_meetups
-    @meetups.sort_by(&:local_start_time)
+    @meetups.sort_by!(&:local_start_time)
   end
 
   def meetup_scope
