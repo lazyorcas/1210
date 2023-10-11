@@ -46,7 +46,7 @@ Rails.application.configure do
     address: "smtp.gmail.com",
     port: 587,
     user_name: "oscar.1210.social@gmail.com",
-    password: Rails.application.credentials[:mailer][:password],
+    password: Rails.application.credentials.dig(:mailer, :password),
     authentication: "plain",
     enable_starttls_auto: true,
   }
@@ -81,8 +81,8 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # ngrok
-  config.hosts << Rails.application.credentials[:ngrok][:host]
+  config.hosts << Rails.application.credentials.dig(:ngrok, :host)
 end
 
 Rails.application.routes.default_url_options[:protocol] = "https"
-Rails.application.routes.default_url_options[:host] = Rails.application.credentials[:ngrok][:host]
+Rails.application.routes.default_url_options[:host] = Rails.application.credentials.dig(:ngrok, :host)

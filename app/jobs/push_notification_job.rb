@@ -16,8 +16,8 @@ class PushNotificationJob < ApplicationJob
       auth: push_subscription.auth_key,
       vapid: {
         subject: root_url,
-        public_key: Rails.application.credentials[:vapid][:public_key],
-        private_key: Rails.application.credentials[:vapid][:private_key],
+        public_key: Rails.application.credentials.dig(:vapid, :public_key),
+        private_key: Rails.application.credentials.dig(:vapid, :private_key),
       },
     )
   end
