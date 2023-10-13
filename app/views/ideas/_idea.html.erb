@@ -5,7 +5,7 @@
     <p class="text-xs text-neutral-500"><%= time_ago_in_words(idea.created_at, highest_measures: 1) %> ago</p>
   </div>
   <div class="shrink-0 flex flex-col items-end">
-    <% if idea.upvoters.include?(current_user) %>
+    <% if idea.upvoters.find_by(id: current_user.id) %>
       <div class="flex items-center gap-x-1">
         <span class="rounded-full bg-green-500 h-2 w-2"></span>
         <p class="text-sm">Upvoted</p>
