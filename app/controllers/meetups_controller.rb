@@ -56,6 +56,8 @@ class MeetupsController < ApplicationController
     case action_name
     when "index"
       "meetups"
+    else
+      "application"
     end
   end
 

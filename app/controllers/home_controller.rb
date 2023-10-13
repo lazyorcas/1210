@@ -17,6 +17,8 @@ class HomeController < ApplicationController
     case action_name
     when "index"
       "landing"
+    else
+      "application"
     end
   end
 end

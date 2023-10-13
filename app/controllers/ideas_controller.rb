@@ -51,6 +51,8 @@ class IdeasController < ApplicationController
     case action_name
     when "index"
       "ideas"
+    else
+      "application"
     end
   end
 
