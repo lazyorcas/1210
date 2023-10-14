@@ -76,7 +76,7 @@ gem "ahoy_matey"
 gem "aws-sdk-s3", require: false
 gem "browser"
 gem "heroicon"
-gem "passwordless", github: "mikker/passwordless"
+gem "passwordless"
 gem "rubocop-shopify", require: false
 gem "sentry-ruby"
 gem "sentry-rails"
