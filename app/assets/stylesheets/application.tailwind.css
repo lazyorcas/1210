@@ -47,6 +47,18 @@
     @apply cursor-pointer;
   }
 
+  input[type="file"] {
+    @apply cursor-pointer;
+    @apply text-neutral-400;
+    @apply file:cursor-pointer;
+    @apply file:mr-4;
+    @apply file:rounded-lg;
+    @apply file:h-11 file:px-5;
+    @apply file:font-semibold;
+    @apply file:border-0;
+    @apply file:bg-neutral-100 file:text-neutral-900;
+  }
+
   select[multiple] {
     @apply rounded-lg border;
     @apply h-11 sm:h-auto;
@@ -114,6 +126,12 @@
   .btn--secondary {
     @apply bg-neutral-100 text-neutral-900;
     @apply border;
+  }
+
+  .btn:disabled {
+    @apply bg-neutral-100 text-neutral-300;
+    @apply hover:shadow-none;
+    @apply cursor-not-allowed;
   }
 
   .card {

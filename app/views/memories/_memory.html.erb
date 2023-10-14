@@ -1,0 +1,18 @@
+<%= link_to memory_path(memory), class: "rounded-xl border transition-shadow hover:shadow-md flex flex-col", data: { turbo_frame: "modal" }, id: dom_id(memory) do %>
+  <% if memory.photos.present? %>
+    <%= image_tag memory.photos.first.variant(:webp), class: "w-full aspect-square rounded-t-xl object-cover bg-neutral-200" %>
+  <% end %>
+  <div class="p-4 flex gap-x-4 items-end">
+    <div class="grow">
+      <p class="text-sm text-neutral-500"><%= memory.meetup.date.strftime("%A, %B") %> <%= memory.meetup.date.strftime("%d").to_i.ordinalize %></p>
+      <h2 class="text-xl font-bold"><%= memory.meetup.title %></h2>
+      <p class="text-sm"><%= ([memory.meetup.organizer] +  memory.meetup.attendees).map(&:name).join(', ') %></p>
+    </div>
+    <% if memory.photos.empty? %>
+      <div class="shrink-0 btn btn--primary gap-x-2">
+        <%= heroicon "camera", options: { class: "h-6 w-6" } %>
+        Add
+      </div>
+    <% end %>
+  </div>
+<% end %>

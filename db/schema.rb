@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_11_191024) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_13_122421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -127,6 +127,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_191024) do
     t.index(["date"], name: "index_meetups_on_date")
     t.index(["is_deleted"], name: "index_meetups_on_is_deleted")
     t.index(["organizer_id"], name: "index_meetups_on_organizer_id")
+  end
+
+  create_table "memories", force: :cascade do |t|
+    t.bigint("meetup_id")
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.index(["meetup_id"], name: "index_memories_on_meetup_id")
   end
 
   create_table "passwordless_sessions", force: :cascade do |t|

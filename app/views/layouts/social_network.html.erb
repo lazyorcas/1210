@@ -31,6 +31,9 @@
       <%= render layout: "shared/page_tab", locals: { icon_name: "bolt", path: meetups_path(date: @date || Time.zone.today) } do %>
         Meetups
       <% end %>
+      <%= render layout: "shared/page_tab", locals: { icon_name: "photo", path: memories_path } do %>
+        Memories
+      <% end %>
       <%= render layout: "shared/page_tab", locals: { icon_name: "queue-list", path: ideas_path } do %>
         Ideas
       <% end %>

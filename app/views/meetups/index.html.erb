@@ -1,5 +1,5 @@
 <%= render partial: "shared/date_tabs" %>
-<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-24">
+<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
   <%= turbo_frame_tag "meetups-header" do %>
     <% if @meetups.empty? %>
       <%= render partial: "no_meetups" %>

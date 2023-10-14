@@ -1,0 +1,10 @@
+<%= form_with model: @memory, class: "flex flex-col sm:flex-row items-center gap-y-4 sm:gap-y-0 sm:gap-x-2" do |form| %>
+  <% @memory.photos.each do |photo| %>
+    <%= form.hidden_field :photos, multiple: true, value: photo.signed_id %>
+  <% end %>
+  <%= form.file_field :photos, multiple: true, required: true, accept: 'image/*', class: "w-full sm:grow" %>
+  <%= form.button class: "w-full sm:w-fit sm:shrink-0 btn btn--primary gap-x-2" do %>
+    <%= heroicon "cloud-arrow-up", options: { class: "h-6 w-6" } %>
+    Upload
+  <% end %>
+<% end %>

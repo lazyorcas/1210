@@ -1,0 +1,24 @@
+<%= render layout: "shared/modal" do %>
+  <header class="flex justify-between gap-x-4 sm:sticky sm:-top-4 pb-4 sm:pt-4 bg-white">
+    <div>
+      <h1 class="text-2xl font-bold">Photos</h1>
+      <% if browser.device.mobile? %>
+        <p class="text-sm text-neutral-500">Slide to see more photos. <br />
+          View on desktop for a better experience.</p>
+      <% end %>
+    </div>
+    <%= render partial: "shared/modal_close_button" %>
+  </header>
+  <div class="flex flex-col divide-y gap-y-4">
+    <%= turbo_frame_tag "photos" do %>
+      <% if @memory.photos.empty? %>
+        <%= render partial: "no_photos" %>
+      <% else %>
+        <%= render partial: "photos", locals: { photos: @memory.photos } %>
+      <% end %>
+    <% end %>
+    <div class="sm:sticky sm:-bottom-4 pt-4 sm:pb-4 bg-white">
+      <%= render partial: "form" %>
+    </div>
+  </div>
+<% end %>

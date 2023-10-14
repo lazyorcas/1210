@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
   resources :meetups, only: [:show, :edit, :update, :destroy]
 
+  resources :memories, except: [:new, :create, :edit, :destroy]
+
   namespace :ideas do
     resources :invitations, only: [:update]
   end
