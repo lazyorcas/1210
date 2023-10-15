@@ -3,7 +3,5 @@
   <p class="text-center mb-2">
     No memories yet.
   </p>
-  <%= link_to meetups_path(date: Time.zone.today), class: "w-fit btn btn--primary", data: { turbo_frame: "_top" } do %>
-    Meet friends
-  <% end %>
+  <%= render partial: "past_meetups/new_button" %>
 </div>

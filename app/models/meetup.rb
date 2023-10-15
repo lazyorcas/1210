@@ -21,11 +21,12 @@ class Meetup < ApplicationRecord
 
   has_one :memory
 
-  validates_presence_of :title, :date, :start_time, :end_time, :organizer
+  validates_presence_of :title, :date, :organizer
 
   validates :start_time,
     :end_time,
-    format: { with: /\A([0-1]?[0-9]|2[0-3]):[0-5][0-9]\z/ }
+    format: { with: /\A([0-1]?[0-9]|2[0-3]):[0-5][0-9]\z/ },
+    if: -> { start_time.present? || end_time.present? }
 
   validates :date,
     format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }

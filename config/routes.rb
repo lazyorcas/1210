@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :invitations, only: [:update]
   end
   resources :meetups, only: [:show, :edit, :update, :destroy]
+  resources :past_meetups, only: [:new, :create]
 
   scope module: "memories", path: "/memories/:memory_id", as: "memories" do
     resources :photos, only: [:show]

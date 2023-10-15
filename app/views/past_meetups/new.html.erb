@@ -1,0 +1,10 @@
+<%= render layout: "shared/modal" do %>
+  <header class="flex justify-between gap-x-4">
+    <div>
+      <h1 class="text-2xl font-bold">Past meetup</h1>
+      <p class="text-sm text-neutral-500">You can add photos once this memory is created.</p>
+    </div>
+    <%= render partial: "shared/modal_close_button" %>
+  </header>
+  <%= render "form", past_meetup: @past_meetup %>
+<% end %>

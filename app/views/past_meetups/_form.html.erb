@@ -1,0 +1,23 @@
+<%= form_with model: past_meetup, class: "form-flow sm:w-[400px]" do |form| %>
+  <div class="form-inputs-flow">
+    <%= form.text_field :title, list: "titles", class: "line-input text-xl my-2", required: true, placeholder: "Untitled", autocomplete: "off", maxlength: 20 %>
+    <datalist id="titles">
+      <% Meetup::Title.all.each do |title| %>
+        <option value="<%= title %>"></option>
+      <% end %>
+    </datalist>
+    <div class="input-container">
+      <%= form.label :date do %>
+        When was it?
+      <% end %>
+      <%= form.date_field :date, required: true, class: "input" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :attendee_ids do %>
+        Who were there?
+      <% end %>
+      <%= form.collection_select :attendee_ids, past_meetup.organizer.friends.order(:name), :id, :name, {}, { required: true, multiple: true } %>
+    </div>
+  </div>
+  <%= form.button "Create memory", class: "btn btn--primary" %>
+<% end %>
