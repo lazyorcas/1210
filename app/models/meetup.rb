@@ -30,7 +30,7 @@ class Meetup < ApplicationRecord
   validates :date,
     format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }
 
-  after_create :notify_invitees, if: -> { date == Time.zone.today || date == Time.zone.tomorrow }
+  after_create :notify_invitees
 
   def soft_delete
     self.is_deleted = true
@@ -61,13 +61,23 @@ class Meetup < ApplicationRecord
 
   private
 
+  def relative_day
+    if date == Time.zone.today
+      "Today"
+    elsif date == Time.zone.tomorrow
+      "Tomorrow"
+    else
+      date.strftime("%A")
+    end
+  end
+
   def notify_invitees
     invitees.each do |invitee|
       invitee.push_subscriptions.each do |push_subscription|
         PushNotificationJob.perform_later(
           push_subscription: push_subscription,
           title: "#{title} - #{organizer.name}",
-          body: "#{date == Time.zone.today ? "Today" : "Tomorrow"}, #{local_start_time} - #{local_end_time}",
+          body: "#{relative_day}, #{local_start_time} - #{local_end_time}",
         )
       end
     end
