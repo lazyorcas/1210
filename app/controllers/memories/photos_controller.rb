@@ -13,11 +13,11 @@ class Memories::PhotosController < ApplicationController
   private
 
   def load_memory
-    @memory = memory_scope.find(memories_photos_params[:memory_id])
+    @memory = memory_scope.find(params[:memory_id])
   end
 
   def load_photo
-    @photo = @memory.photos.find(memories_photos_params[:id])
+    @photo = @memory.photos.find(params[:id])
   end
 
   def build_variant
@@ -26,9 +26,5 @@ class Memories::PhotosController < ApplicationController
 
   def memory_scope
     Memory.where(meetup_id: current_user.organized_meetup_ids + current_user.accepted_meetup_ids)
-  end
-
-  def memories_photos_params
-    params.permit(:memory_id, :id)
   end
 end
