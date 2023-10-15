@@ -1,0 +1,9 @@
+<div class="flex flex-col items-center">
+  <%= image_tag "person-leaving.svg", width: 320, height: 320 %>
+  <p class="text-center mb-2">
+    No memories yet.
+  </p>
+  <%= link_to meetups_path(date: Time.zone.today), class: "w-fit btn btn--primary", data: { turbo_frame: "_top" } do %>
+    Meet friends
+  <% end %>
+</div>
