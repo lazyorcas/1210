@@ -6,7 +6,13 @@ class PastMeetup < Meetup
   after_create :create_memory
   after_create :accept_invitations
 
+  validate :in_past
+
   private
+
+  def in_past
+    errors.add(:date, "can't be in the future") if date >= Time.zone.today
+  end
 
   def accept_invitations
     invitations.each(&:accept)
