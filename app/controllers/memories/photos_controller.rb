@@ -21,7 +21,7 @@ class Memories::PhotosController < ApplicationController
   end
 
   def build_variant
-    @photo = @photo.variant(:webp)
+    @photo = @photo.variant(:webp).processed.image
   end
 
   def memory_scope
