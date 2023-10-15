@@ -2,6 +2,7 @@
 
 class Memories::PhotosController < ApplicationController
   before_action :require_user!
+  skip_before_action :track_ahoy_visit
 
   def show
     load_memory
