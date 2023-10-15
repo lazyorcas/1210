@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   end
   resources :meetups, only: [:show, :edit, :update, :destroy]
 
+  scope module: "memories", path: "/memories/:memory_id", as: "memories" do
+    resources :photos, only: [:show]
+  end
   resources :memories, except: [:new, :create, :edit, :destroy]
 
   namespace :ideas do

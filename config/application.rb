@@ -22,5 +22,8 @@ module OneToTen
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.active_job.queue_adapter = :sidekiq
+
+    # https://edgeguides.rubyonrails.org/active_storage_overview.html#authenticated-controllers
+    config.active_storage.draw_routes = false
   end
 end
