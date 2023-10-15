@@ -11,10 +11,12 @@ task create_memories: :environment do
     .each do |meetup|
       puts "Creating memory for meetup #{meetup.id}..."
 
-      if meetup.create_memory
+      memory = meetup.create_memory
+
+      if memory.persisted?
         puts "Memory created!"
       else
-        puts "Memory not created!", meetup.errors.full_messages
+        puts "Memory not created!", memory.errors.full_messages
       end
     end
 end
