@@ -1,6 +1,6 @@
 <%= link_to memory_path(memory), class: "rounded-xl border transition-shadow hover:shadow-md flex flex-col", data: { turbo_frame: "modal" }, id: dom_id(memory) do %>
   <% if memory.photos.present? %>
-    <%= image_tag memory.photos.first.variant(:webp), class: "w-full aspect-square rounded-t-xl object-cover bg-neutral-200" %>
+    <%= image_tag memory.photos.sample.variant(:webp), class: "w-full aspect-square rounded-t-xl object-cover bg-neutral-200" %>
   <% end %>
   <div class="p-4 flex gap-x-4 items-end">
     <div class="grow">
