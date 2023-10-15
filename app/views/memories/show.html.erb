@@ -2,7 +2,7 @@
   <header class="flex justify-between gap-x-4 sm:sticky sm:-top-4 pb-4 sm:pt-4 bg-white">
     <div>
       <h1 class="text-2xl font-bold">Photos</h1>
-      <% if browser.device.mobile? %>
+      <% if @memory.photos.present? && browser.device.mobile? %>
         <p class="text-sm text-neutral-500">Slide to see more photos. <br />
           View on desktop for a better experience.</p>
       <% end %>
