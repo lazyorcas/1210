@@ -10,4 +10,8 @@ class Invitation < ApplicationRecord
   scope :pending, -> { where(is_accepted: nil) }
   scope :accepted, -> { where(is_accepted: true) }
   scope :denied, -> { where(is_accepted: false) }
+
+  def accept
+    update(is_accepted: true)
+  end
 end

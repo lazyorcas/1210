@@ -21,6 +21,6 @@ class PastMeetupsController < ApplicationController
   def past_meetup_params
     params
       .require(:past_meetup)
-      .permit(:title, :date, attendee_ids: [])
+      .permit(:title, :date, invitee_ids: [])
   end
 end

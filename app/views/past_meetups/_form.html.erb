@@ -13,10 +13,10 @@
       <%= form.date_field :date, required: true, class: "input" %>
     </div>
     <div class="input-container">
-      <%= form.label :attendee_ids do %>
+      <%= form.label :invitee_ids do %>
         Who were there?
       <% end %>
-      <%= form.collection_select :attendee_ids, past_meetup.organizer.friends.order(:name), :id, :name, {}, { required: true, multiple: true } %>
+      <%= form.collection_select :invitee_ids, past_meetup.organizer.friends.order(:name), :id, :name, {}, { required: true, multiple: true } %>
     </div>
   </div>
   <%= form.button "Create memory", class: "btn btn--primary" %>
