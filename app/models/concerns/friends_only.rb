@@ -5,7 +5,7 @@ module FriendsOnly
 
   included do
     before_commit :limit_invitees_to_main_user_friends, if: -> { invitees.present? }, on: [:create, :update]
-    before_create :set_invitees_to_main_user_friends, if: -> { !invitees.present? }
+    before_create :set_invitees_to_main_user_friends, if: -> { invitees.empty? }
   end
 
   private
