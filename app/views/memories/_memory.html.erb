@@ -1,6 +1,12 @@
 <%= link_to memory_path(memory), class: "rounded-xl border transition-shadow hover:shadow-md flex flex-col", data: { turbo_frame: "modal" }, id: dom_id(memory) do %>
   <% if memory.photos.present? %>
-    <%= image_tag memory.photos.sample.variant(:webp), class: "w-full aspect-square rounded-t-xl object-cover bg-neutral-200" %>
+    <div class="relative">
+      <%= image_tag memory.photos.sample.variant(:webp), class: "w-full aspect-square rounded-t-xl object-cover bg-neutral-200" %>
+      <div class="absolute top-4 right-4 flex items-center gap-x-1 bg-white rounded-xl px-2 py-1 text-sm">
+        <%= heroicon "photo", options: { class: "h-4 w-4" } %>
+        <%= memory.photos.count %>
+      </div>
+    </div>
   <% end %>
   <div class="p-4 flex gap-x-4 items-end">
     <div class="grow">
