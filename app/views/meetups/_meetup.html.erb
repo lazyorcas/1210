@@ -12,7 +12,7 @@
       </div>
       <h2 class="text-xl font-bold"><%= meetup.title %></h2>
       <% if meetup.description.present? %>
-        <p class="text-sm"><%= meetup.description %></p>
+        <p class="text-sm break-all"><%= meetup.description %></p>
       <% end %>
     <% end %>
     <% if meetup.organizer != current_user %>
