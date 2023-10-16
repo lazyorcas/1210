@@ -8,9 +8,12 @@
       <%= form.date_field :date, required: true, max: Time.zone.yesterday, class: "input" %>
     </div>
     <div class="input-container">
-      <%= form.label :invitee_ids do %>
-        Who were there?
-      <% end %>
+      <div>
+        <%= form.label :invitee_ids do %>
+          Who were there?
+        <% end %>
+        <p class="text-sm text-neutral-400">They can also add and see photos.</p>
+      </div>
       <%= form.collection_select :invitee_ids, past_meetup.organizer.friends.order(:name), :id, :name, {}, { required: true, multiple: true } %>
     </div>
   </div>
