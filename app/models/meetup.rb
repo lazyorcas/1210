@@ -31,7 +31,11 @@ class Meetup < ApplicationRecord
   validates :date,
     format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }
 
-  after_create :notify_invitees, if: -> { date >= Time.zone.today }
+  after_create :notify_invitees, if: :today_or_future?
+
+  def today_or_future?
+    date >= Time.zone.today
+  end
 
   def soft_delete
     self.is_deleted = true

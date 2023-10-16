@@ -11,7 +11,7 @@ class PastMeetup < Meetup
   private
 
   def in_past
-    errors.add(:date, "can't be in the future") if date >= Time.zone.today
+    errors.add(:date, "can't be today or future") if today_or_future?
   end
 
   def accept_invitations
