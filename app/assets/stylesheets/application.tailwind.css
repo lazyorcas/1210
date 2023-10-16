@@ -77,6 +77,10 @@
     @apply bg-no-repeat;
     @apply bg-[center_right_16px];
   }
+
+  p {
+    word-break: break-word;
+  }
 }
 
 @layer components {

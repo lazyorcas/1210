@@ -3,7 +3,7 @@
     <header class="flex justify-between gap-x-4">
       <div>
         <h1 class="text-2xl font-bold"><%= @meetup.title %></h1>
-        <p class="break-words"><%= @meetup.description %></p>
+        <p><%= @meetup.description %></p>
       </div>
       <%= render partial: "shared/modal_close_button" %>
     </header>
