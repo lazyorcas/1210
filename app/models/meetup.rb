@@ -47,10 +47,6 @@ class Meetup < ApplicationRecord
     end
   end
 
-  def create_memory
-    Memory.create(meetup: self)
-  end
-
   def local_end_time
     if local?
       end_time
@@ -58,6 +54,10 @@ class Meetup < ApplicationRecord
       organizer_end_time = end_time.in_time_zone(time_zone)
       organizer_end_time.in_time_zone(Time.zone).to_s(:time)
     end
+  end
+
+  def create_memory
+    Memory.create(meetup: self)
   end
 
   private

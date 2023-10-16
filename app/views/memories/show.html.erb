@@ -3,8 +3,7 @@
     <div>
       <h1 class="text-2xl font-bold">Photos</h1>
       <% if @memory.photos.present? && browser.device.mobile? %>
-        <p class="text-sm text-neutral-500">Slide to see more photos. <br />
-          View on desktop for a better experience.</p>
+        <p class="text-sm text-neutral-500">Slide to see more photos.</p>
       <% end %>
     </div>
     <%= render partial: "shared/modal_close_button" %>
