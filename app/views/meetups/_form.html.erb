@@ -15,7 +15,7 @@
         <%= form.label :date %>
         <p class="text-sm text-neutral-400">Default to today.</p>
       </div>
-      <%= form.date_field :date, value: Time.zone.today, min: Time.zone.today, class: "input", autocomplete: "off" %>
+      <%= form.date_field :date, value: meetup.date || Time.zone.today, min: Time.zone.today, class: "input", autocomplete: "off" %>
     </div>
     <div class="input-container">
       <div>Time</div>
