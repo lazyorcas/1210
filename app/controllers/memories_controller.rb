@@ -37,7 +37,7 @@ class MemoriesController < ApplicationController
   end
 
   def load_memories
-    @memories = memory_scope
+    @memories = memory_scope.with_attached_photos
   end
 
   def order_memories
