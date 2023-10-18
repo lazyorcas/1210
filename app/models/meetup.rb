@@ -6,9 +6,14 @@ class Meetup < ApplicationRecord
 
   default_scope { where(is_deleted: false) }
   scope :deleted, -> { unscoped.where(is_deleted: true) }
-  scope :upcoming, -> {
-                     where("date > :today OR (date = :today AND start_time >= :now)", today: Time.zone.today, now: Time.zone.now)
-                   }
+  scope :upcoming,
+    -> {
+      where(
+        "date > :today OR (date = :today AND start_time >= :now)",
+        today: Time.zone.today,
+        now: Time.zone.now.strftime("%H:%M"),
+      )
+    }
 
   belongs_to :organizer, class_name: "User"
   has_many :invitations,
@@ -67,8 +72,6 @@ class Meetup < ApplicationRecord
     Memory.create(meetup: self)
   end
 
-  private
-
   def relative_day
     if date == Time.zone.today
       "Today"
@@ -78,6 +81,8 @@ class Meetup < ApplicationRecord
       date.strftime("%A")
     end
   end
+
+  private
 
   def notify_invitees
     invitees.each do |invitee|
