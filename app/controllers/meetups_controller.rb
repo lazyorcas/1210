@@ -8,6 +8,8 @@ class MeetupsController < ApplicationController
   def index
     load_meetups
     order_meetups
+    build_date_meetups
+    sort_date_meetups
   end
 
   def new
@@ -19,7 +21,7 @@ class MeetupsController < ApplicationController
     @meetup.organizer = current_user
 
     if @meetup.save
-      turbo_stream
+      redirect_to(meetups_path)
     end
   end
 
@@ -70,6 +72,14 @@ class MeetupsController < ApplicationController
 
   def order_meetups
     @meetups.order!(:date, :start_time)
+  end
+
+  def build_date_meetups
+    @date_meetups = @meetups.group_by(&:date)
+  end
+
+  def sort_date_meetups
+    @date_meetups.keys.sort!
   end
 
   def meetup_scope

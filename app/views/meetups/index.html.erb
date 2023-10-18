@@ -1,13 +1,24 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
   <%= turbo_frame_tag "meetups-header" do %>
-    <% if @meetups.empty? %>
+    <% if @date_meetups.empty? %>
       <%= render partial: "no_meetups" %>
     <% else %>
       <%= render partial: "new_button" %>
     <% end %>
   <% end %>
-  <%= turbo_frame_tag "meetups", class: "flex flex-col gap-y-2" do %>
-    <%= render @meetups %>
+  <%= turbo_frame_tag "date-meetups", class: "flex flex-col gap-y-8" do %>
+    <% @date_meetups.each do |date, meetups| %>
+      <section class="flex flex-col gap-y-2">
+        <h2 class="text-lg font-semibold">
+          <% if meetups.first.date >= Time.zone.today && meetups.first.date <= 1.week.from_now %>
+            <%= meetups.first.relative_day %>
+          <% else %>
+            <%= meetups.first.date.strftime("%B #{meetups.first.date.day.ordinalize}") %>
+          <% end %>
+        </h2>
+        <%= render meetups %>
+      </section>
+    <% end %>
   <% end %>
 </main>
 <% if current_user.friends.empty? %>
