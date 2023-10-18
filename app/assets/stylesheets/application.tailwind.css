@@ -159,6 +159,12 @@
     @apply rounded-lg;
     @apply my-2;
   }
+
+  .avatar {
+    @apply rounded-full;
+    @apply aspect-square w-full;
+    @apply flex items-center justify-center;
+  }
 }
 
 @layer utilities {

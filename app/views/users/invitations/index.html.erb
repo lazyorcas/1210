@@ -4,44 +4,30 @@
   <% end %>
   <h1 class="text-4xl font-black">Friends</h1>
 </header>
-<main class="grow w-full flex flex-col gap-y-4 pb-[92px] standalone:pb-24">
-  <p>
-    <% if current_user.friends.empty? %>
-      You have no friends on here yet.
-    <% else %>
-      <%= current_user.friends.map(&:name).join(', ') %>
-    <% end %>
-  </p>
-  <section class="flex-1 shrink-0 flex flex-col gap-y-2">
-    <h2 class="text-lg font-semibold border-b">Received Requests</h2>
-    <ul class="flex flex-col gap-y-2">
-      <% if current_user.received_invitations.pending.empty? %>
-        You don't have any pending request from others.
-      <% else %>
-        <% current_user.received_invitations.pending.each do |invitation| %>
-          <li class="flex items-center hover:bg-neutral-100 transition rounded-xl justify-between pl-4">
-            <%= invitation.inviter.name %>
-            <%= form_with model: invitation, url: users_invitation_path(invitation) do |form| %>
-              <%= form.hidden_field :is_accepted, value: true, required: true %>
-              <%= form.button :submit, class: "btn btn--primary" do %>
-                Accept
-              <% end %>
+<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
+  <% if current_user.friends.empty? %>
+    <p>You have no friends on here yet.</p>
+  <% else %>
+    <ul class="grid grid-cols-3 sm:grid-cols-5 gap-4">
+      <% current_user.friends.order(:name).each do |user| %>
+        <li class="flex flex-col items-center gap-y-2 text-center">
+          <%= render partial: "users/avatar", locals: { user: user } %>
+          <%= user.name %>
+        </li>
+      <% end %>
+      <% current_user.received_invitations.pending.each do |invitation| %>
+        <li class="flex flex-col items-center gap-y-2 text-center">
+          <%= form_with model: invitation, url: users_invitation_path(invitation), class: "w-full" do |form| %>
+            <%= form.hidden_field :is_accepted, value: true, required: true %>
+            <%= form.button :submit, class: "avatar bg-neutral-200 hover:bg-neutral-900 transition-colors group" do %>
+              <%= heroicon "check", options: { class: "group-hover:text-white h-8 w-8" } %>
             <% end %>
-          </li>
-        <% end %>
+          <% end %>
+          <%= invitation.inviter.name %>
+        </li>
       <% end %>
     </ul>
-  </section>
-  <section class="flex-1 shrink-0 flex flex-col gap-y-2">
-    <h2 class="text-lg font-semibold border-b">Sent Requests</h2>
-    <p>
-      <% if current_user.sent_invitations.pending.empty? %>
-        You don't have any pending request to others.
-      <% else %>
-        <%= current_user.sent_invitations.pending.map(&:invitee).map(&:name).join(', ') %>
-      <% end %>
-    </p>
-  </section>
+  <% end %>
 </main>
 <nav class="bottom-nav gap-x-4">
   <%= link_to user_path(current_user, add_friend: true), class: "btn btn--secondary flex-1", data: { turbo_frame: "modal" } do %>
