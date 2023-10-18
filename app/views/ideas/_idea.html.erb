@@ -1,9 +1,9 @@
 <% current_user_upvoted = idea.upvoters.exists?(current_user.id) %>
-<%= link_to idea_path(idea), class: class_names("card flex gap-x-4", { "bg-neutral-900 text-white": current_user_upvoted }), id: dom_id(idea), data: { turbo_frame: "modal" } do %>
+<%= link_to idea_path(idea), class: "card flex gap-x-4", id: dom_id(idea), data: { turbo_frame: "modal" } do %>
   <div class="grow">
     <p class="text-sm"><%= idea.user.name %></p>
     <h2 class="font-semibold"><%= idea.title %></h2>
-    <p class="<%= class_names("text-xs", current_user_upvoted ? "text-neutral-400" : "text-neutral-500") %>"><%= time_ago_in_words(idea.created_at, highest_measures: 1) %> ago</p>
+    <p class="text-xs text-neutral-500"><%= time_ago_in_words(idea.created_at, highest_measures: 1) %> ago</p>
   </div>
   <div class="shrink-0 flex flex-col items-end">
     <% if current_user_upvoted %>
@@ -13,7 +13,7 @@
       </div>
     <% end %>
     <div class="flex items-center gap-x-1 text-sm">
-      <%= heroicon "hand-thumb-up", variant: current_user_upvoted ? "solid" : "outline", options: { class: "h-4 w-4" } %>
+      <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
       <%= idea.upvoters.length %>/<%= idea.invitees.length %>
     </div>
   </div>
