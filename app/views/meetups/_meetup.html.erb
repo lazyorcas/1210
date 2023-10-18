@@ -5,7 +5,11 @@
       <div>
         <p class="text-sm"><%= ([meetup.organizer] +  meetup.attendees).map(&:name).join(', ') %></p>
         <p class="text-sm">
-          <% if meetup.date >= Time.zone.today && meetup.date <= 1.week.from_now %>
+          <% if meetup.date == Time.zone.today %>
+            Today,
+          <% elsif meetup.date == Time.zone.tomorrow %>
+            Tomorrow,
+          <% elsif meetup.date >= Time.zone.today && meetup.date <= 1.week.from_now %>
             <%= meetup.date.strftime("%A") %>,
           <% else %>
             <%= meetup.date.strftime("%B #{meetup.date.day.ordinalize}") %>,
