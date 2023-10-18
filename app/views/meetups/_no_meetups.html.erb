@@ -1,11 +1,7 @@
 <div class="flex flex-col items-center">
   <%= image_tag "person-waving.svg", width: 320, height: 320 %>
   <p class="text-center mb-2">
-    <% if @date == Time.zone.today %>
-      Meet your friends today.
-    <% else %>
-      No one said anything yet.
-    <% end %>
+    No upcoming meetups.
   </p>
   <%= render partial: "new_button" %>
 </div>

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :meetups do
     resources :invitations, only: [:update]
   end
-  resources :meetups, only: [:show, :edit, :update, :destroy]
+  resources :meetups
   resources :past_meetups, only: [:new, :create]
 
   scope module: "memories", path: "/memories/:memory_id", as: "memories" do
@@ -34,7 +34,5 @@ Rails.application.routes.draw do
 
   resources :push_subscriptions, only: [:create]
 
-  scope path: ":date" do
-    resources :meetups, only: [:index, :new, :create]
-  end
+  get "/:date/meetups", to: redirect("/meetups", status: 301)
 end

@@ -6,6 +6,7 @@ class Meetup < ApplicationRecord
 
   default_scope { where(is_deleted: false) }
   scope :deleted, -> { unscoped.where(is_deleted: true) }
+  scope :upcoming, -> { where("date >= ?", Time.zone.today) }
 
   belongs_to :organizer, class_name: "User"
   has_many :invitations,
@@ -31,9 +32,9 @@ class Meetup < ApplicationRecord
   validates :date,
     format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }
 
-  after_create :notify_invitees, if: :today_or_future?
+  after_create :notify_invitees, if: :upcoming?
 
-  def today_or_future?
+  def upcoming?
     date >= Time.zone.today
   end
 

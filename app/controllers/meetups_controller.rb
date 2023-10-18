@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
 class MeetupsController < ApplicationController
-  include Dateful
-
   layout :resolve_layout
 
   before_action :require_user!
-  before_action :load_date, only: [:index, :new, :create]
-  before_action :redirect_to_today, only: [:index, :new, :create], if: :date_in_past?
 
   def index
     load_meetups
-    sort_meetups
+    order_meetups
   end
 
   def new
@@ -21,7 +17,6 @@ class MeetupsController < ApplicationController
   def create
     @meetup = Meetup.new(meetup_params)
     @meetup.organizer = current_user
-    @meetup.date = @date
 
     if @meetup.save
       turbo_stream
@@ -61,10 +56,6 @@ class MeetupsController < ApplicationController
     end
   end
 
-  def redirect_to_today
-    redirect_to(meetups_path(date: Time.zone.today))
-  end
-
   def load_current_user_meetup
     @meetup = current_user.organized_meetups.find(params[:id])
   end
@@ -74,20 +65,22 @@ class MeetupsController < ApplicationController
   end
 
   def load_meetups
-    @meetups = meetup_scope.where(date: @date).to_a
+    @meetups = meetup_scope
   end
 
-  def sort_meetups
-    @meetups.sort_by!(&:local_start_time)
+  def order_meetups
+    @meetups.order(:start_time)
   end
 
   def meetup_scope
-    Meetup.where(id: current_user.organized_meetup_ids + current_user.invited_meetup_ids)
+    Meetup
+      .where(id: current_user.organized_meetup_ids + current_user.invited_meetup_ids)
+      .upcoming
   end
 
   def meetup_params
     params
       .require(:meetup)
-      .permit(:title, :description, :start_time, :end_time, invitee_ids: [])
+      .permit(:title, :description, :date, :start_time, :end_time, invitee_ids: [])
   end
 end
