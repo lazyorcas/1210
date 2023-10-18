@@ -6,7 +6,9 @@ class Meetup < ApplicationRecord
 
   default_scope { where(is_deleted: false) }
   scope :deleted, -> { unscoped.where(is_deleted: true) }
-  scope :upcoming, -> { where("date >= ?", Time.zone.today) }
+  scope :upcoming, -> {
+                     where("date > :today OR (date = :today AND start_time >= :now)", today: Time.zone.today, now: Time.zone.now)
+                   }
 
   belongs_to :organizer, class_name: "User"
   has_many :invitations,
