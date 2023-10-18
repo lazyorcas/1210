@@ -18,9 +18,10 @@
       <section class="flex flex-col gap-y-1">
         <header class="flex gap-x-2 items-center text-neutral-500">
           <%= heroicon "clock", options: { class: "h-4 w-4" } %>
-          <h2 class="text-sm">Time</h2>
+          <h2 class="text-sm">Date & Time</h2>
         </header>
         <p>
+          <%= @meetup.date.strftime("%B #{@meetup.date.day.ordinalize}") %>,
           <%= @meetup.local_start_time  %> - <%= @meetup.local_end_time  %>
           <% if @meetup.local_start_time != @meetup.start_time %>
             (your time)

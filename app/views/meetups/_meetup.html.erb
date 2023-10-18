@@ -8,7 +8,7 @@
           <% if meetup.date >= Time.zone.today && meetup.date <= 1.week.from_now %>
             <%= meetup.date.strftime("%A") %>,
           <% else %>
-            <%= meetup.date.strftime("#{meetup.date.day.ordinalize} %B") %>,
+            <%= meetup.date.strftime("%B #{meetup.date.day.ordinalize}") %>,
           <% end %>
           <%= meetup.local_start_time  %> - <%= meetup.local_end_time  %>
           <% if meetup.local_start_time != meetup.start_time %>
