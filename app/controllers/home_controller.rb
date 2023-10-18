@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       return
     end
 
-    redirect_to(meetups_path(date: Time.zone.today))
+    redirect_to(meetups_path)
   end
 
   private
