@@ -69,7 +69,7 @@ class MeetupsController < ApplicationController
   end
 
   def order_meetups
-    @meetups.order(:start_time)
+    @meetups.order(:date, :start_time)
   end
 
   def meetup_scope
