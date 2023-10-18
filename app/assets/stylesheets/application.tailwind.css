@@ -162,7 +162,7 @@
 
   .avatar {
     @apply rounded-full;
-    @apply aspect-square w-full;
+    @apply aspect-square;
     @apply flex items-center justify-center;
   }
 }

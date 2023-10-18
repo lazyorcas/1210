@@ -11,7 +11,9 @@
     <ul class="grid grid-cols-3 sm:grid-cols-5 gap-4">
       <% current_user.friends.order(:name).each do |user| %>
         <li class="flex flex-col items-center gap-y-2 text-center">
-          <%= render partial: "users/avatar", locals: { user: user } %>
+          <div class="w-full avatar bg-neutral-900 text-white text-2xl font-bold">
+            <%= user.name.first %>
+          </div>
           <%= user.name %>
         </li>
       <% end %>
