@@ -1,10 +1,14 @@
 <article class="flex flex-col gap-y-0.5" id="<%= dom_id(meetup) %>">
   <div class="card flex gap-x-4 justify-between">
-    <%= link_to meetup_path(meetup), class: "grow flex flex-col gap-y-1", data: { turbo_frame: "modal" } do %>
+    <%= link_to meetup_path(meetup), class: "grow flex flex-col gap-y-2", data: { turbo_frame: "modal" } do %>
       <div>
         <p class="text-sm"><%= ([meetup.organizer] +  meetup.attendees).map(&:name).join(', ') %></p>
         <p class="text-sm">
-          <%= meetup.date.strftime("%A") %>,
+          <% if meetup.date >= Time.zone.today && meetup.date <= 1.week.from_now %>
+            <%= meetup.date.strftime("%A") %>,
+          <% else %>
+            <%= meetup.date.strftime("#{meetup.date.day.ordinalize} %B") %>,
+          <% end %>
           <%= meetup.local_start_time  %> - <%= meetup.local_end_time  %>
           <% if meetup.local_start_time != meetup.start_time %>
             (your time)
