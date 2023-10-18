@@ -77,8 +77,10 @@ class Meetup < ApplicationRecord
       "Today"
     elsif date == Time.zone.tomorrow
       "Tomorrow"
-    else
+    elsif date >= Time.zone.today && date <= 1.week.from_now
       date.strftime("%A")
+    else
+      "#{date.strftime("%B")} #{date.day.ordinalize}"
     end
   end
 

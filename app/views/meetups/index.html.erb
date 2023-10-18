@@ -10,11 +10,7 @@
     <% @date_meetups.each do |date, meetups| %>
       <section class="flex flex-col gap-y-2">
         <h2 class="text-lg font-semibold">
-          <% if meetups.first.date >= Time.zone.today && meetups.first.date <= 1.week.from_now %>
-            <%= meetups.first.relative_day %>
-          <% else %>
-            <%= meetups.first.date.strftime("%B #{meetups.first.date.day.ordinalize}") %>
-          <% end %>
+          <%= meetups.first.relative_day %>
         </h2>
         <%= render meetups %>
       </section>
