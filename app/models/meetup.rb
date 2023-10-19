@@ -9,7 +9,7 @@ class Meetup < ApplicationRecord
   scope :upcoming,
     -> {
       where(
-        "date > :today OR (date = :today AND start_time >= :now)",
+        "date > :today OR (date = :today AND :now <= end_time)",
         today: Time.zone.today,
         now: Time.zone.now.strftime("%H:%M"),
       )
