@@ -5,7 +5,7 @@
       <%= form.label :date do %>
         When was it?
       <% end %>
-      <%= form.date_field :date, required: true, max: Time.zone.yesterday, class: "input" %>
+      <%= form.date_field :date, required: true, max: Time.zone.today, class: "input" %>
     </div>
     <div class="input-container">
       <div>
