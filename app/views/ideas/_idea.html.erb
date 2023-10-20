@@ -1,5 +1,5 @@
 <article class="flex flex-col gap-y-0.5" id="<%= dom_id(idea) %>">
-  <%= link_to idea_path(idea), class: "card flex gap-x-4", id: dom_id(idea) do %>
+  <%= link_to idea_path(idea), class: "card flex gap-x-4", data: { turbo_frame: "modal" } do %>
     <div class="grow">
       <p class="text-sm"><%= idea.user.name %></p>
       <div>
