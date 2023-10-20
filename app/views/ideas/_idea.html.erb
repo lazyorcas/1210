@@ -1,4 +1,4 @@
-<article class="flex flex-col gap-y-1" id="<%= dom_id(idea) %>">
+<article class="flex flex-col gap-y-0.5" id="<%= dom_id(idea) %>">
   <%= link_to idea_path(idea), class: "card flex gap-x-4", id: dom_id(idea) do %>
     <div class="grow">
       <p class="text-sm"><%= idea.user.name %></p>
@@ -25,12 +25,12 @@
   <% if idea.user == current_user %>
     <aside class="px-4 flex self-end items-center gap-x-1 text-xs text-neutral-500">
       <p class="flex items-center gap-x-0.5">
-        <%= heroicon "eye", options: { class: "h-4 w-4" } %>
+        <%= heroicon "eye", options: { class: "h-3.5 w-3.5" } %>
         <%= idea.seen_invitees.count %>
       </p>
       /
       <p class="flex items-center gap-x-0.5">
-        <%= heroicon "envelope", options: { class: "h-4 w-4" } %>
+        <%= heroicon "envelope", options: { class: "h-3.5 w-3.5" } %>
         <%= idea.invitees.count %>
       </p>
     </aside>
