@@ -77,6 +77,6 @@ class IdeasController < ApplicationController
   end
 
   def idea_params
-    params.require(:idea).permit(:title, :is_done, invitee_ids: [])
+    params.require(:idea).permit(:title, :description, :is_done, invitee_ids: [])
   end
 end
