@@ -44,6 +44,16 @@ class Idea < ApplicationRecord
     save
   end
 
+  def seen_events
+    Ahoy::Event
+      .where(name: "saw_idea")
+      .where("properties->>'idea_id' = ?", id.to_s)
+  end
+
+  def seen_invitees
+    User.where(id: seen_events.joins(:visit).pluck("ahoy_visits.user_id"))
+  end
+
   private
 
   def main_user

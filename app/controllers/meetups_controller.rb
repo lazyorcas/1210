@@ -5,6 +5,8 @@ class MeetupsController < ApplicationController
 
   before_action :require_user!
 
+  after_action :track_saw_meetups, only: [:index]
+
   def index
     load_meetups
     order_meetups
@@ -55,6 +57,19 @@ class MeetupsController < ApplicationController
       "meetups"
     else
       "application"
+    end
+  end
+
+  def track_saw_meetups
+    name = "saw_meetup"
+    invited_meetups = @meetups & current_user.invited_meetups
+
+    invited_meetups.each do |meetup|
+      properties = { meetup_id: meetup.id }
+
+      unless meetup.seen_events.exists?(name: name, properties: properties)
+        ahoy.track(name, properties)
+      end
     end
   end
 

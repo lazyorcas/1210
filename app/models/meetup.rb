@@ -84,6 +84,16 @@ class Meetup < ApplicationRecord
     end
   end
 
+  def seen_events
+    Ahoy::Event
+      .where(name: "saw_meetup")
+      .where("properties->>'meetup_id' = ?", id.to_s)
+  end
+
+  def seen_invitees
+    User.where(id: seen_events.joins(:visit).pluck("ahoy_visits.user_id"))
+  end
+
   private
 
   def notify_invitees

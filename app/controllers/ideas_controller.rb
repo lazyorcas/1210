@@ -5,6 +5,8 @@ class IdeasController < ApplicationController
 
   before_action :require_user!
 
+  after_action :track_saw_ideas, only: [:index]
+
   def index
     load_ideas
     order_ideas
@@ -53,6 +55,19 @@ class IdeasController < ApplicationController
       "ideas"
     else
       "application"
+    end
+  end
+
+  def track_saw_ideas
+    name = "saw_idea"
+    invited_ideas = @ideas & current_user.invited_ideas
+
+    invited_ideas.each do |idea|
+      properties = { idea_id: idea.id }
+
+      unless idea.seen_events.exists?(name: name, properties: properties)
+        ahoy.track(name, properties)
+      end
     end
   end
 
