@@ -63,15 +63,15 @@ class Idea < ApplicationRecord
   end
 
   def notify_invitees
-    invitees.each do |invitee|
-      invitee.push_subscriptions.each do |push_subscription|
-        PushNotificationJob.perform_later(
-          push_subscription: push_subscription,
-          title: title,
-          body: "#{user.name} suggests this idea",
-        )
-      end
+    PushSubscription.where(user: invitee_ids).each do |push_subscription|
+      PushNotificationJob.perform_later(
+        push_subscription: push_subscription,
+        title: title,
+        body: "#{user.name} suggests this idea",
+      )
     end
+
+    IdeaMailer.with(idea: self).new_idea_notification.deliver_later
   end
 
   def seen_events
