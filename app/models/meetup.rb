@@ -84,14 +84,16 @@ class Meetup < ApplicationRecord
     end
   end
 
-  def seen_events
-    Ahoy::Event
-      .where(name: "saw_meetup")
-      .where("properties->>'meetup_id' = ?", id.to_s)
-  end
-
   def seen_invitees
     User.where(id: seen_events.joins(:visit).pluck("ahoy_visits.user_id"))
+  end
+
+  def seen_event_name
+    "saw_meetup"
+  end
+
+  def seen_event_properties
+    { meetup_id: id }
   end
 
   private
@@ -114,5 +116,11 @@ class Meetup < ApplicationRecord
 
   def main_user
     organizer
+  end
+
+  def seen_events
+    Ahoy::Event
+      .where(name: seen_event_name)
+      .where("properties->>'meetup_id' = ?", id.to_s)
   end
 end

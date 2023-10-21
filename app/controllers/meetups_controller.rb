@@ -61,14 +61,11 @@ class MeetupsController < ApplicationController
   end
 
   def track_saw_meetups
-    name = "saw_meetup"
     invited_meetups = @meetups & current_user.invited_meetups
 
     invited_meetups.each do |meetup|
-      properties = { meetup_id: meetup.id }
-
-      unless meetup.seen_events.exists?(name: name, properties: properties)
-        ahoy.track(name, properties)
+      unless meetup.seen_invitees.exists?(current_user.id)
+        ahoy.track(meetup.seen_event_name, meetup.seen_event_properties)
       end
     end
   end

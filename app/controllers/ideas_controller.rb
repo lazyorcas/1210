@@ -59,14 +59,11 @@ class IdeasController < ApplicationController
   end
 
   def track_saw_ideas
-    name = "saw_idea"
     invited_ideas = @ideas & current_user.invited_ideas
 
     invited_ideas.each do |idea|
-      properties = { idea_id: idea.id }
-
-      unless idea.seen_events.exists?(name: name, properties: properties)
-        ahoy.track(name, properties)
+      unless idea.seen_invitees.exists?(current_user.id)
+        ahoy.track(idea.seen_event_name, idea.seen_event_properties)
       end
     end
   end
