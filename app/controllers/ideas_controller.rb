@@ -85,7 +85,7 @@ class IdeasController < ApplicationController
   end
 
   def idea_scope
-    Idea.where(id: current_user.idea_ids + current_user.invited_idea_ids)
+    Idea.voting.where(id: current_user.idea_ids + current_user.invited_idea_ids)
   end
 
   def idea_params

@@ -5,8 +5,6 @@ class Idea < ApplicationRecord
 
   include FriendsOnly
 
-  default_scope { where(status: :voting) }
-
   enum status: { voting: 0, deleted: -1, realized: 1 }
 
   belongs_to :user
