@@ -3,8 +3,9 @@
 class Idea < ApplicationRecord
   include FriendsOnly
 
-  default_scope { where(is_done: false, is_deleted: false) }
-  scope :deleted, -> { unscoped.where(is_deleted: true) }
+  default_scope { where(status: :voting) }
+
+  enum status: { voting: 0, deleted: -1, realized: 1 }
 
   belongs_to :user
 
@@ -40,7 +41,7 @@ class Idea < ApplicationRecord
   end
 
   def soft_delete
-    self.is_deleted = true
+    deleted!
     save
   end
 

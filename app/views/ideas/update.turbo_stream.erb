@@ -1,4 +1,4 @@
-<% if @idea.is_done %>
+<% if @idea.realized? %>
   <%= turbo_stream.remove @idea %>
 <% else %>
   <%= turbo_stream.replace @idea %>

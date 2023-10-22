@@ -37,7 +37,7 @@
           Edit
         <% end %>
         <%= form_with model: @idea, class: "w-1/2", data: { turbo_confirm: "No one (including you) will be able to see or vote on this idea anymore. Are you sure?" } do |form| %>
-          <%= form.hidden_field :is_done, value: true, required: true %>
+          <%= form.hidden_field :status, value: :realized, required: true %>
           <%= form.button class: "w-full btn btn--primary" do %>
             Mark as done
           <% end %>
