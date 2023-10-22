@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Idea < ApplicationRecord
+  self.ignored_columns = ["is_done", "is_deleted"]
+
   include FriendsOnly
 
   default_scope { where(status: :voting) }
