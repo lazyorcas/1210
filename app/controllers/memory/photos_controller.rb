@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Memories::PhotosController < ApplicationController
+class Memory::PhotosController < ApplicationController
   before_action :require_user!
   skip_before_action :track_ahoy_visit
 

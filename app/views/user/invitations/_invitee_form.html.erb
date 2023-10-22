@@ -1,4 +1,4 @@
-<%= form_with model: invitation, url: users_invitation_path(invitation) do |form| %>
+<%= form_with model: invitation do |form| %>
   <%= form.hidden_field :is_accepted, value: true, required: true %>
   <%= form.button :submit, class: "btn btn--primary w-full" do %>
     Accept

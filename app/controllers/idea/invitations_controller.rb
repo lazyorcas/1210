@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class Meetups::InvitationsController < ApplicationController
+class Idea::InvitationsController < ApplicationController
   before_action :require_user!
 
   def update
-    @invitation = Meetup::Invitation.find_by(
+    @invitation = Idea::Invitation.find_by(
       id: params[:id],
       invitee: current_user,
     )
@@ -18,6 +18,6 @@ class Meetups::InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:meetup_invitation).permit(:is_accepted)
+    params.require(:idea_invitation).permit(:is_accepted)
   end
 end

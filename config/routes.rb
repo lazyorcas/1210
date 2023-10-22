@@ -11,28 +11,29 @@ Rails.application.routes.draw do
   passwordless_for :users
   mount Sidekiq::Web => "/sidekiq", constraints: AdminConstraint.new
 
-  namespace :users do
+  resources :users, only: [:new, :create, :show]
+  namespace :user do
     resources :invitations, only: [:index, :create, :update], path: "/friends"
   end
-  resources :users, only: [:new, :create, :show]
 
-  namespace :meetups do
+  resources :meetups
+  namespace :meetup do
     resources :invitations, only: [:update]
   end
-  resources :meetups
   resources :past_meetups, only: [:new, :create]
 
-  scope module: "memories", path: "/memories/:memory_id", as: "memories" do
+  resources :memories, except: [:new, :create, :edit, :destroy]
+  scope module: "memory", path: "/memory/:memory_id", as: "memory" do
     resources :photos, only: [:show]
   end
-  resources :memories, except: [:new, :create, :edit, :destroy]
 
-  namespace :ideas do
+  resources :ideas
+  namespace :idea do
     resources :invitations, only: [:update]
   end
-  resources :ideas
 
   resources :push_subscriptions, only: [:create]
 
+  # redirects
   get "/:date/meetups", to: redirect("/meetups", status: 301)
 end

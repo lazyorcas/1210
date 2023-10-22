@@ -15,7 +15,7 @@
         <button class="icon-btn hidden standalone:hidden" data-controller="notification-permission" data-action="notification-permission#request">
           <%= heroicon "bell-alert", options: { class: "h-6 w-6" } %>
         </button>
-        <%= link_to users_invitations_path, class: "icon-btn relative" do %>
+        <%= link_to user_invitations_path, class: "icon-btn relative" do %>
           <%= heroicon "users", options: { class: "h-6 w-6" } %>
           <% if current_user.received_invitations.pending.present? %>
             <div class="text-xs absolute right-0 top-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center font-bold">

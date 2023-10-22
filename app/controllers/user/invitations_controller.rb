@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::InvitationsController < ApplicationController
+class User::InvitationsController < ApplicationController
   before_action :require_user!
 
   def create
@@ -9,7 +9,7 @@ class Users::InvitationsController < ApplicationController
     @invitation.invitee = User.find(invitation_params[:invitee_id])
 
     if @invitation.save
-      redirect_to(users_invitations_path)
+      redirect_to(user_invitations_path)
     end
   end
 
@@ -21,7 +21,7 @@ class Users::InvitationsController < ApplicationController
     @invitation.is_accepted = invitation_params[:is_accepted]
 
     if @invitation.save
-      redirect_to(users_invitations_path)
+      redirect_to(user_invitations_path)
     end
   end
 

@@ -39,7 +39,7 @@
         <% end %>
       </div>
     <% else %>
-      <%= render partial: "meetups/invitations/invitee_form", locals: { invitation: @meetup.invitations.find_by(invitee: current_user) } %>
+      <%= render partial: "meetup/invitations/invitee_form", locals: { invitation: @meetup.invitations.find_by(invitee: current_user) } %>
     <% end %>
   </article>
 <% end %>

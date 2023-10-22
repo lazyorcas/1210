@@ -44,7 +44,7 @@
         <% end %>
       </div>
     <% else %>
-      <%= render partial: "ideas/invitations/invitee_form", locals: { invitation: @idea.invitations.find_by(invitee: current_user) } %>
+      <%= render partial: "idea/invitations/invitee_form", locals: { invitation: @idea.invitations.find_by(invitee: current_user) } %>
     <% end %>
   </article>
 <% end %>

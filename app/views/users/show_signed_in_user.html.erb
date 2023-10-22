@@ -1,6 +1,6 @@
 <main class="w-full max-w-[320px] m-auto flex flex-col gap-y-16">
   <header class="w-full flex flex-col">
-    <%= link_to users_invitations_path, class: 'text-xl font-black flex items-center gap-x-2' do %>
+    <%= link_to user_invitations_path, class: 'text-xl font-black flex items-center gap-x-2' do %>
       <%= heroicon 'chevron-left', options: { class: "h-4 w-4" } %>
       1210
     <% end %>
@@ -15,8 +15,8 @@
   <% if @invitation.inviter == current_user && @invitation.persisted? %>
     <p>Your friend request has been sent.</p>
   <% elsif @invitation.inviter == current_user && !@invitation.persisted? %>
-    <%= render partial: "users/invitations/inviter_form", locals: { invitation: @invitation } %>
+    <%= render partial: "user/invitations/inviter_form", locals: { invitation: @invitation } %>
   <% elsif @invitation.invitee == current_user %>
-    <%= render partial: "users/invitations/invitee_form", locals: { invitation: @invitation } %>
+    <%= render partial: "user/invitations/invitee_form", locals: { invitation: @invitation } %>
   <% end %>
 </main>
