@@ -21,24 +21,14 @@ class Idea < ApplicationRecord
   has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"
 
   has_many :pending_votes,
-    -> { where(is_accepted: nil) },
+    -> { where(is_accepted: [false, nil]) },
     class_name: "Idea::Invitation",
     as: :inviter
   has_many :pending_voters, through: :pending_votes, source: :invitee, source_type: "User"
 
-  has_many :downvotes,
-    -> { where(is_accepted: false) },
-    class_name: "Idea::Invitation",
-    as: :inviter
-  has_many :downvoters, through: :downvotes, source: :invitee, source_type: "User"
-
   validates_presence_of :title, :user
 
   after_create :notify_invitees
-
-  def pending_voters_and_downvoters
-    pending_voters + downvoters
-  end
 
   def soft_delete
     deleted!
