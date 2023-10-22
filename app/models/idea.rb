@@ -46,7 +46,7 @@ class Idea < ApplicationRecord
   end
 
   def seen_invitees
-    User.where(id: seen_events.joins(:visit).pluck("ahoy_visits.user_id"))
+    User.where(id: seen_events.includes(:visit).pluck("ahoy_visits.user_id"))
   end
 
   def seen_event_name
