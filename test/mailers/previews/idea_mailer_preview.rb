@@ -7,4 +7,10 @@ class IdeaMailerPreview < ActionMailer::Preview
       .with(idea: Idea.first, invitees: [User.first])
       .new_idea_notification
   end
+
+  def status_changed_to_polling_notification
+    IdeaMailer
+      .with(idea: Idea.first, invitees: [User.first])
+      .status_changed_to_polling_notification
+  end
 end

@@ -11,4 +11,11 @@ class IdeaMailer < ApplicationMailer
       bcc: @idea.invitees.map(&:email),
     )
   end
+
+  def status_changed_to_polling_notification
+    mail(
+      subject: "😎 The idea you are interested in is ready for planning!",
+      bcc: @idea.invitees.map(&:email),
+    )
+  end
 end
