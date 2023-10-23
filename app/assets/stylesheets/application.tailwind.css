@@ -123,18 +123,18 @@
     @apply flex items-center justify-center;
   }
 
-  .radio-btn {
-    @apply rounded-full;
+  .check-box {
+    @apply rounded-lg;
     @apply h-6 w-6;
     @apply flex items-center justify-center;
   }
 
-  .radio-btn--primary {
+  .check-box--primary {
     @apply text-white bg-green-500;
     @apply transition-colors;
   }
 
-  .radio-btn--secondary {
+  .check-box--secondary {
     @apply border-2;
   }
 
