@@ -1,13 +1,16 @@
 <% invitation = current_user.idea_option_invitations.find_by(inviter: option) %>
+<% upvote_percent = option.upvotes.count * 100 / option.invitations.count %>
 <section class="flex gap-x-4 items-center" id="<%= dom_id(option) %>">
   <%= render partial: "idea/option/invitations/invitee_form", locals: { invitation: invitation } %>
   <div class="grow flex flex-col gap-y-1">
-    <h2><%= option.title %></h2>
+    <div class="flex items-end justify-between">
+      <h2 class="grow"><%= option.title %></h2>
+      <p class="text-sm"><%= upvote_percent %>%</p>
+    </div>
     <div class="relative w-full h-4 bg-neutral-100 rounded-xl">
-      <div class="<%= class_names("absolute h-full rounded-xl top-0 left-0", invitation.is_accepted ? "bg-green-500" : "bg-neutral-200" ) %>" style="width:<%= option.upvotes.count * 100 / option.invitations.count %>%"></div>
+      <div class="<%= class_names("absolute h-full rounded-xl top-0 left-0", invitation.is_accepted ? "bg-green-500" : "bg-neutral-200" ) %>" style="width:<%= upvote_percent %>%"></div>
     </div>
     <p class="text-neutral-500 text-xs self-end">
-      (<%= option.upvotes.count %>)
       <%= option.upvoters.order(:name).pluck(:name).join(', ') %>
     </p>
   </div>
