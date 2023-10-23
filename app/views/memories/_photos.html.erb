@@ -1,5 +1,5 @@
 <div class="flex snap-mandatory snap-x overflow-x-scroll rounded-xl sm:grid sm:grid-cols-4 gap-4">
   <% photos.each do |photo| %>
-    <%= image_tag memory_photo_path(memory_id: @memory.id, id: photo.id), class: "snap-center aspect-square object-cover rounded-xl", id: dom_id(photo) %>
+    <%= image_tag photo_path(id: photo.id), class: "snap-center aspect-square object-cover rounded-xl", id: dom_id(photo) %>
   <% end %>
 </div>

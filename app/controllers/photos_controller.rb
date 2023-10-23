@@ -1,24 +1,26 @@
 # frozen_string_literal: true
 
-class Memory::PhotosController < ApplicationController
+class PhotosController < ApplicationController
   before_action :require_user!
   skip_before_action :track_ahoy_visit
 
   def show
-    load_memory
     load_photo
+    authorized!
     build_variant
     send_data(@photo.blob.download, type: @photo.blob.content_type, disposition: "inline")
   end
 
   private
 
-  def load_memory
-    @memory = memory_scope.find(params[:memory_id])
+  def authorized!
+    if @photo.record_type == "Memory"
+      memory_scope.find(@photo.record_id)
+    end
   end
 
   def load_photo
-    @photo = @memory.photos.find(params[:id])
+    @photo = ActiveStorage::Attachment.find(params[:id])
   end
 
   def build_variant

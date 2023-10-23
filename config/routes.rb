@@ -23,9 +23,6 @@ Rails.application.routes.draw do
   resources :past_meetups, only: [:new, :create]
 
   resources :memories, except: [:new, :create, :edit, :destroy]
-  scope module: "memory", path: "/memory/:memory_id", as: "memory" do
-    resources :photos, only: [:show]
-  end
 
   resources :ideas
   namespace :idea do
@@ -39,6 +36,8 @@ Rails.application.routes.draw do
   end
 
   resources :push_subscriptions, only: [:create]
+
+  resources :photos, only: [:show]
 
   # redirects
   get "/:date/meetups", to: redirect("/meetups", status: 301)
