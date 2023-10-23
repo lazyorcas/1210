@@ -35,8 +35,18 @@ class IdeasController < ApplicationController
 
   def update
     load_current_user_idea
-    if @idea.update(idea_params)
-      turbo_stream
+    @idea.attributes = idea_params
+
+    if @idea.status_changed?(from: :looking_for_voters, to: :polling)
+      should_redirect = true
+    end
+
+    if @idea.save
+      if should_redirect
+        redirect_to(idea_path(@idea))
+      else
+        turbo_stream
+      end
     end
   end
 
@@ -85,7 +95,7 @@ class IdeasController < ApplicationController
   end
 
   def idea_scope
-    Idea.voting.where(id: current_user.idea_ids + current_user.invited_idea_ids)
+    Idea.ongoing.where(id: current_user.idea_ids + current_user.invited_idea_ids)
   end
 
   def idea_params

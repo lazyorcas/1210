@@ -1,0 +1,10 @@
+<%= form_with model: invitation do |form| %>
+  <%= form.hidden_field :is_accepted, value: !invitation.is_accepted, required: true %>
+  <%= form.button class: class_names("shrink-0 radio-btn", invitation.is_accepted ? "radio-btn--primary" : "radio-btn--secondary") do %>
+    <% if invitation.is_accepted %>
+      <%= heroicon "check", options: { class: "text-white h-4 w-4" } %>
+    <% else %>
+      &nbsp;
+    <% end %>
+  <% end %>
+<% end %>

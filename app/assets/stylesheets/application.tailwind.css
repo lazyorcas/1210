@@ -123,6 +123,21 @@
     @apply flex items-center justify-center;
   }
 
+  .radio-btn {
+    @apply rounded-full;
+    @apply h-6 w-6;
+    @apply flex items-center justify-center;
+  }
+
+  .radio-btn--primary {
+    @apply text-white bg-green-500;
+    @apply transition-colors;
+  }
+
+  .radio-btn--secondary {
+    @apply border-2;
+  }
+
   .btn--primary {
     @apply bg-neutral-900 text-white;
   }

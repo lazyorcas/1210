@@ -20,4 +20,6 @@ class Memory < ApplicationRecord
       end
     end
   end
+
+  # TODO: use Association callbacks
 end

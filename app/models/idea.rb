@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class Idea < ApplicationRecord
+  include FriendsOnly
   self.ignored_columns = ["is_done", "is_deleted"]
 
-  include FriendsOnly
+  scope :ongoing, -> { where(status: [:looking_for_voters, :polling]) }
 
-  enum status: { voting: 0, deleted: -1, realized: 1 }
+  enum status: { looking_for_voters: 0, deleted: -1, polled: 1, polling: 2 }
 
   belongs_to :user
 
@@ -14,17 +15,19 @@ class Idea < ApplicationRecord
     as: :inviter
   has_many :invitees, through: :invitations, source: :invitee, source_type: "User"
 
-  has_many :upvotes,
+  has_many :accepted_invitations,
     -> { where(is_accepted: true) },
     class_name: "Idea::Invitation",
     as: :inviter
-  has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"
+  has_many :voters, through: :accepted_invitations, source: :invitee, source_type: "User"
 
-  has_many :pending_votes,
+  has_many :pending_invitations,
     -> { where(is_accepted: [false, nil]) },
     class_name: "Idea::Invitation",
     as: :inviter
-  has_many :pending_voters, through: :pending_votes, source: :invitee, source_type: "User"
+  has_many :pending_invitees, through: :pending_invitations, source: :invitee, source_type: "User"
+
+  has_many :options, class_name: "Idea::Option", as: :pollable
 
   validates_presence_of :title, :user
 

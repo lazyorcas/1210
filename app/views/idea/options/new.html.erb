@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "new_idea_option" do %>
+  <%= form_with model: @idea_option, class: "flex gap-x-2" do |form| %>
+    <%= form.text_field :title, placeholder: "location, date, time, preference, …", class: "w-full input", autocomplete: "off", required: true %>
+    <%= form.button class: "shrink-0 icon-btn btn--primary" do %>
+      <%= heroicon "plus", options: { class: "h-6 w-6" } %>
+    <% end %>
+  <% end %>
+<% end %>

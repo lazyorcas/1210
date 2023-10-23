@@ -1,0 +1,20 @@
+<div class="flex flex-col gap-y-4">
+  <section class="flex flex-col gap-y-1">
+    <header class="flex gap-x-2 items-center text-neutral-500">
+      <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
+      <h2 class="text-sm">
+        Interested
+      </h2>
+    </header>
+    <p><%= @idea.voters.empty? ? "None" : @idea.voters.map(&:name).join(', ') %></p>
+  </section>
+  <section class="flex flex-col gap-y-1">
+    <header class="flex gap-x-2 items-center text-neutral-500">
+      <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
+      <h2 class="text-sm">
+        Pending / Not interested
+      </h2>
+    </header>
+    <p><%= @idea.pending_invitees.empty? ? "None" : @idea.pending_invitees.order(:name).map(&:name).join(', ') %></p>
+  </section>
+</div>

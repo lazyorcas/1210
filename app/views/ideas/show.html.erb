@@ -7,43 +7,33 @@
       </div>
       <%= render partial: "shared/modal_close_button" %>
     </header>
-    <div class="flex flex-col gap-y-4">
-      <section class="flex flex-col gap-y-1">
-        <header class="flex gap-x-2 items-center text-neutral-500">
-          <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
-          <h2 class="text-sm">
-            Upvotes
-          </h2>
-        </header>
-        <p><%= @idea.upvoters.empty? ? "None" : @idea.upvoters.map(&:name).join(', ') %></p>
-      </section>
-      <section class="flex flex-col gap-y-1">
-        <header class="flex gap-x-2 items-center text-neutral-500">
-          <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
-          <h2 class="text-sm">
-            Pending / Not interested
-          </h2>
-        </header>
-        <p><%= @idea.pending_voters.empty? ? "None" : @idea.pending_voters.order(:name).map(&:name).join(', ') %></p>
-      </section>
-    </div>
+    <% if @idea.looking_for_voters? %>
+      <%= render partial: "invitees" %>
+      <% if @idea.user == current_user %>
+        <%= render partial: "looking_for_voters_message" %>
+      <% end %>
+    <% end %>
+    <% if @idea.polling? %>
+      <%= turbo_frame_tag "#{dom_id(@idea)}_options", class: "flex flex-col gap-y-4" do %>
+        <%= render @idea.options.sorted_by_upvotes %>
+      <% end %>
+      <%= turbo_frame_tag "new_idea_option", src: new_idea_option_path(idea_id: @idea.id) %>
+    <% end %>
     <% if @idea.user == current_user %>
-      <p class="text-sm text-neutral-500">When there are enough upvotes, you can mark this as done and create a group chat on your favorite messaging app.</p>
       <div class="flex gap-x-4">
-        <%= button_to idea_path(@idea), method: :delete, class: "icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this idea?" } do |form| %>
+        <%= button_to idea_path(@idea), method: :delete, class: "shrink-0 icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this idea?" } do |form| %>
           <%= heroicon "trash", options: { class: "h-6 w-6" } %>
         <% end %>
-        <%= link_to edit_idea_path(@idea), class: "w-1/2 btn btn--secondary", data: { turbo_frame: "modal" } do %>
-          Edit
+        <%= link_to edit_idea_path(@idea), class: "shrink-0 icon-btn btn--secondary", data: { turbo_frame: "modal" } do %>
+          <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
         <% end %>
-        <%= form_with model: @idea, class: "w-1/2", data: { turbo_confirm: "No one (including you) will be able to see or vote on this idea anymore. Are you sure?" } do |form| %>
-          <%= form.hidden_field :status, value: :realized, required: true %>
-          <%= form.button class: "w-full btn btn--primary" do %>
-            Mark as done
-          <% end %>
+        <% if @idea.looking_for_voters? %>
+          <%= render partial: "polling_button" %>
+        <% elsif @idea.polling? %>
+          <%= render partial: "polled_button" %>
         <% end %>
       </div>
-    <% else %>
+    <% elsif @idea.looking_for_voters? %>
       <%= render partial: "idea/invitations/invitee_form", locals: { invitation: @idea.invitations.find_by(invitee: current_user) } %>
     <% end %>
   </article>

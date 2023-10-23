@@ -1,0 +1,6 @@
+<%= form_with model: @idea, class: "grow" do |form| %>
+  <%= form.hidden_field :status, value: :polled, required: true %>
+  <%= form.button class: "w-full btn btn--secondary", disabled: @idea.options.empty?, data: { turbo_confirm: "Make sure you have created a meetup for this idea. You won't be able to see this idea anymore. Are you sure?" } do %>
+    Mark as done
+  <% end %>
+<% end %>

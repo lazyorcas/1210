@@ -31,6 +31,11 @@ class User < ApplicationRecord
     as: :invitee
   has_many :invited_ideas, through: :idea_invitations, source: :inviter, source_type: "Idea"
 
+  has_many :idea_option_invitations,
+    class_name: "Idea::Option::Invitation",
+    as: :invitee
+  has_many :invited_idea_options, through: :idea_option_invitations, source: :inviter, source_type: "Idea::Option"
+
   validates_presence_of :name, :email, :time_zone
 
   validates :email,

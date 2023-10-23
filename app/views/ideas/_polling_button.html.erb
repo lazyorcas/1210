@@ -1,0 +1,6 @@
+<%= form_with model: @idea, class: "grow" do |form| %>
+  <%= form.hidden_field :status, value: :polling, required: true %>
+  <%= form.button class: "w-full btn btn--primary", disabled: @idea.voters.empty? do %>
+    Start polling
+  <% end %>
+<% end %>

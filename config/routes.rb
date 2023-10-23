@@ -30,6 +30,12 @@ Rails.application.routes.draw do
   resources :ideas
   namespace :idea do
     resources :invitations, only: [:update]
+    namespace :option do
+      resources :invitations, only: [:update]
+    end
+  end
+  scope module: "idea", path: "/idea/:idea_id", as: "idea" do
+    resources :options, only: [:new, :create]
   end
 
   resources :push_subscriptions, only: [:create]
