@@ -12,10 +12,10 @@ class Meetup::Invitation < Invitation
   end
 
   def notify_organizer
-    inviter.organizer.push_subscriptions.each do |push_subscription|
+    meetup.organizer.push_subscriptions.each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
-        title: inviter.title,
+        title: meetup.title,
         body: "#{invitee.name} is joining!",
       )
     end

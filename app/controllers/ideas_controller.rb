@@ -37,12 +37,8 @@ class IdeasController < ApplicationController
     load_current_user_idea
     @idea.attributes = idea_params
 
-    if @idea.status_changed?(from: :looking_for_voters, to: :polling)
-      should_redirect = true
-    end
-
     if @idea.save
-      if should_redirect
+      if @idea.saved_change_to_status? && @idea.polling?
         redirect_to(idea_path(@idea))
       else
         turbo_stream
