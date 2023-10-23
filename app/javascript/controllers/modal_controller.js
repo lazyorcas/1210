@@ -13,4 +13,8 @@ export default class extends Controller {
     this.element.remove();
     document.body.classList.remove("overflow-hidden");
   }
+
+  disconnect() {
+    document.body.classList.remove("overflow-hidden");
+  }
 }
