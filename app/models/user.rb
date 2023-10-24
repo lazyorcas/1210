@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  scope :without_push_subscription, -> { left_joins(:push_subscriptions).where(push_subscriptions: { endpoint: nil }) }
+
   belongs_to :inviter, class_name: "User", optional: true
   has_many :visits, class_name: "Ahoy::Visit"
 
