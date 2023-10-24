@@ -1,3 +1,4 @@
+<% is_voter_or_owner = idea.voters.exists?(current_user.id) || idea.user == current_user %>
 <article class="flex flex-col gap-y-0.5" id="<%= dom_id(idea) %>">
   <%= link_to idea_path(idea), class: "card flex gap-x-4", data: { turbo_frame: "modal" } do %>
     <div class="grow">
@@ -10,21 +11,17 @@
       </div>
     </div>
     <div class="shrink-0 flex flex-col items-end">
-      <% if idea.voters.exists?(current_user.id) || idea.user == current_user %>
+      <% if idea.polling? && is_voter_or_owner %>
         <div class="flex items-center gap-x-1">
-          <span class="<%= class_names("rounded-full h-2 w-2", idea.polling? ? "bg-green-500": "bg-amber-500" ) %>"></span>
+          <span class="rounded-full h-2 w-2 bg-green-500"></span>
           <p class="text-sm">
-            <% if idea.polling? %>
-              Planning
-            <% else %>
-              Interested
-            <% end %>
+            Planning
           </p>
         </div>
       <% end %>
       <% if idea.looking_for_voters? %>
         <div class="flex items-center gap-x-1 text-sm">
-          <%= heroicon "heart", options: { class: "h-4 w-4" } %>
+          <%= heroicon "heart", variant: is_voter_or_owner ? :solid : :outline, options: { class: class_names("h-4 w-4", { "text-red-500": is_voter_or_owner }) } %>
           <%= idea.voters.count %>
         </div>
       <% end %>
