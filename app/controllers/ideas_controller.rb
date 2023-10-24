@@ -91,7 +91,14 @@ class IdeasController < ApplicationController
   end
 
   def idea_scope
-    Idea.ongoing.where(id: current_user.idea_ids + current_user.invited_idea_ids)
+    Idea
+      .looking_for_voters
+      .where(id: current_user.idea_ids + current_user.invited_idea_ids)
+      .or(
+        Idea
+        .polling
+        .where(id: current_user.idea_ids + current_user.voting_idea_ids),
+      )
   end
 
   def idea_params

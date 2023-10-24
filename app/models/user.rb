@@ -31,6 +31,12 @@ class User < ApplicationRecord
     as: :invitee
   has_many :invited_ideas, through: :idea_invitations, source: :inviter, source_type: "Idea"
 
+  has_many :accepted_idea_invitations,
+    -> { where(is_accepted: true) },
+    class_name: "Idea::Invitation",
+    as: :invitee
+  has_many :voting_ideas, through: :accepted_idea_invitations, source: :inviter, source_type: "Idea"
+
   has_many :idea_option_invitations,
     class_name: "Idea::Option::Invitation",
     as: :invitee

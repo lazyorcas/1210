@@ -25,7 +25,7 @@ class Idea::OptionsController < ApplicationController
   end
 
   def idea_scope
-    Idea.polling.where(id: current_user.idea_ids + current_user.invited_idea_ids)
+    Idea.polling.where(id: current_user.idea_ids + current_user.voting_idea_ids)
   end
 
   def idea_option_params
