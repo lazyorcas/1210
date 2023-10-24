@@ -19,7 +19,7 @@
           </p>
         </div>
       <% end %>
-      <% if idea.looking_for_voters? %>
+      <% if idea.looking_for_voters? && idea.user != current_user %>
         <div class="flex items-center gap-x-1 text-sm">
           <%= heroicon "heart", variant: is_voter_or_owner ? :solid : :outline, options: { class: class_names("h-4 w-4", { "text-red-500": is_voter_or_owner }) } %>
           <%= idea.voters.count %>
@@ -29,6 +29,11 @@
   <% end %>
   <% if idea.user == current_user && idea.looking_for_voters? %>
     <aside class="px-4 flex self-end items-center gap-x-1 text-xs text-neutral-500">
+      <p class="flex items-center gap-x-0.5">
+        <%= heroicon "heart", options: { class: "h-3.5 w-3.5" } %>
+        <%= idea.voters.count %>
+      </p>
+      /
       <p class="flex items-center gap-x-0.5">
         <%= heroicon "eye", options: { class: "h-3.5 w-3.5" } %>
         <%= idea.seen_invitees.count %>
