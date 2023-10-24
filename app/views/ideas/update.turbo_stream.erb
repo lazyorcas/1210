@@ -1,9 +1,7 @@
-<% if @idea.polled? || @idea.deleted? %>
+<% if @idea.polled? %>
   <%= turbo_stream.remove @idea %>
   <%= turbo_stream.update "modal", "" %>
-<% else %>
+<% elsif !@idea.status_changed? %>
   <%= turbo_stream.replace @idea %>
-  <% unless @idea.status_changed? %>
-    <%= turbo_stream.update "modal", "" %>
-  <% end %>
+  <%= turbo_stream.update "modal", "" %>
 <% end %>
