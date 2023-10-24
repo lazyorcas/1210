@@ -10,19 +10,27 @@
       </div>
     </div>
     <div class="shrink-0 flex flex-col items-end">
-      <% if idea.voters.exists?(current_user.id) %>
+      <% if idea.voters.exists?(current_user.id) || idea.user == current_user %>
         <div class="flex items-center gap-x-1">
           <span class="rounded-full bg-green-500 h-2 w-2"></span>
-          <p class="text-sm">Interested</p>
+          <p class="text-sm">
+            <% if idea.polling? %>
+              Planning
+            <% else %>
+              Interested
+            <% end %>
+          </p>
         </div>
       <% end %>
-      <div class="flex items-center gap-x-1 text-sm">
-        <%= heroicon "hand-thumb-up", options: { class: "h-4 w-4" } %>
-        <%= idea.voters.count %>
-      </div>
+      <% if idea.looking_for_voters? %>
+        <div class="flex items-center gap-x-1 text-sm">
+          <%= heroicon "heart", options: { class: "h-4 w-4" } %>
+          <%= idea.voters.count %>
+        </div>
+      <% end %>
     </div>
   <% end %>
-  <% if idea.user == current_user %>
+  <% if idea.user == current_user && idea.looking_for_voters? %>
     <aside class="px-4 flex self-end items-center gap-x-1 text-xs text-neutral-500">
       <p class="flex items-center gap-x-0.5">
         <%= heroicon "eye", options: { class: "h-3.5 w-3.5" } %>

@@ -8,7 +8,8 @@
 <% else %>
   <%= form_with model: invitation do |form| %>
     <%= form.hidden_field :is_accepted, value: true, required: true %>
-    <%= form.button :submit, class: "w-full btn btn--primary" do %>
+    <%= form.button :submit, class: "w-full btn btn--primary gap-x-2" do %>
+      <%= heroicon "heart", variant: "solid", options: { class: "h-6 w-6" } %>
       I'm interested
     <% end %>
   <% end %>

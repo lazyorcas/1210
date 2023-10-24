@@ -18,6 +18,7 @@
         <%= render @idea.options.sorted_by_upvotes %>
       <% end %>
       <%= turbo_frame_tag "new_idea_option", src: new_idea_option_path(idea_id: @idea.id) %>
+      <%= render partial: "voters" %>
     <% end %>
     <% if @idea.user == current_user %>
       <div class="flex gap-x-4">
