@@ -12,7 +12,7 @@
     <div class="shrink-0 flex flex-col items-end">
       <% if idea.voters.exists?(current_user.id) || idea.user == current_user %>
         <div class="flex items-center gap-x-1">
-          <span class="rounded-full bg-green-500 h-2 w-2"></span>
+          <span class="<%= class_names("rounded-full h-2 w-2", idea.polling? ? "bg-green-500": "bg-amber-500" ) %>"></span>
           <p class="text-sm">
             <% if idea.polling? %>
               Planning
