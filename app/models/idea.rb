@@ -78,7 +78,7 @@ class Idea < ApplicationRecord
       )
     end
 
-    IdeaMailer.with(idea: self).status_changed_to_polling_notification.deliver_later
+    IdeaMailer.with(idea: self).status_changed_to_polling_notification.deliver_later(wait: 5.minutes)
   end
 
   def seen_events
