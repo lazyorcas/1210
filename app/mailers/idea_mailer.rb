@@ -8,16 +8,20 @@ class IdeaMailer < ApplicationMailer
   end
 
   def new_idea_notification
-    mail(
-      subject: "🤩 #{@idea.user.name} suggests a new meetup idea!",
-      bcc: @invitees.map(&:email),
-    )
+    if @invitees.present?
+      mail(
+        subject: "🤩 #{@idea.user.name} suggests a new meetup idea!",
+        bcc: @invitees.map(&:email),
+      )
+    end
   end
 
   def status_changed_to_polling_notification
-    mail(
-      subject: "😎 The idea you are interested in is ready for planning!",
-      bcc: @voters.map(&:email),
-    )
+    if @voters.present?
+      mail(
+        subject: "😎 The idea you are interested in is ready for planning!",
+        bcc: @voters.map(&:email),
+      )
+    end
   end
 end
