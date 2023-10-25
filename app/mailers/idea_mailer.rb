@@ -4,6 +4,7 @@ class IdeaMailer < ApplicationMailer
   before_action do
     @idea = params[:idea]
     @invitees = @idea.invitees.without_push_subscription
+    @voters = @idea.voters.without_push_subscription
   end
 
   def new_idea_notification
@@ -16,7 +17,7 @@ class IdeaMailer < ApplicationMailer
   def status_changed_to_polling_notification
     mail(
       subject: "😎 The idea you are interested in is ready for planning!",
-      bcc: @invitees.map(&:email),
+      bcc: @voters.map(&:email),
     )
   end
 end
