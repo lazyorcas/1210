@@ -5,6 +5,8 @@ task create_memories: :environment do
 
   Meetup
     .where(date: Time.zone.yesterday)
+    .left_joins(:memory)
+    .where(memory: { id: nil })
     .joins(:attendees)
     .group("meetups.id")
     .having("COUNT(users.id) > 1")
