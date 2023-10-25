@@ -29,7 +29,7 @@ class Idea::Option < Pollable::Option
   private
 
   def invite_idea_voters
-    idea.voters.each do |user|
+    ([idea.user] + idea.voters).each do |user|
       Idea::Option::Invitation.create(
         inviter: self,
         invitee: user,
