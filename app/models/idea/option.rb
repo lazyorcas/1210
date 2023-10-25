@@ -3,6 +3,8 @@
 class Idea::Option < Pollable::Option
   default_scope { where(pollable_type: "Idea") }
 
+  attr_accessor :originator
+
   scope :sorted_by_upvotes, -> {
     left_joins(:upvotes)
       .group(:id)
@@ -20,6 +22,7 @@ class Idea::Option < Pollable::Option
     as: :inviter
   has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"
 
+  after_create :create_accepted_invitation_for_originator, if: -> { originator.present? }
   after_create :invite_idea_voters
 
   def idea
@@ -28,8 +31,16 @@ class Idea::Option < Pollable::Option
 
   private
 
+  def create_accepted_invitation_for_originator
+    Idea::Option::Invitation.create(
+      inviter: self,
+      invitee: originator,
+      is_accepted: true,
+    )
+  end
+
   def invite_idea_voters
-    ([idea.user] + idea.voters).each do |user|
+    idea.voters.each do |user|
       Idea::Option::Invitation.create(
         inviter: self,
         invitee: user,

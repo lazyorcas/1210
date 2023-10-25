@@ -12,6 +12,7 @@ class Idea::OptionsController < ApplicationController
 
     @idea_option = Idea::Option.new(idea_option_params)
     @idea_option.pollable = @idea
+    @idea_option.originator = current_user
 
     if @idea_option.save
       turbo_stream
