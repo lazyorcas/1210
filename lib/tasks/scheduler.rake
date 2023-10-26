@@ -27,8 +27,9 @@ task notify_of_new_meetups: :environment do
   puts "Notifying of new meetups..."
 
   Meetup
-    .upcoming
     .where(created_at: 1.hour.ago..Time.zone.now)
+    .left_joins(:memory)
+    .where(memory: { id: nil })
     .each do |meetup|
       puts "Notifying of meetup #{meetup.id}..."
 
