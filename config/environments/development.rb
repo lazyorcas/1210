@@ -51,6 +51,9 @@ Rails.application.configure do
     enable_starttls_auto: true,
   }
 
+  # Disable email devliveries.
+  config.action_mailer.perform_deliveries = false
+
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
