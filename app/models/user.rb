@@ -71,8 +71,7 @@ class User < ApplicationRecord
   end
 
   def last_meetup_with(user)
-    meetup_invitations = Meetup::Invitation
-      .where(invitee: [user, self])
+    each_other_meetup_ids = Meetup::Invitation
       .or(
         Meetup::Invitation.where(
           inviter: user.organized_meetups,
@@ -84,12 +83,10 @@ class User < ApplicationRecord
           invitee: user,
         ),
       )
-
-    return if meetup_invitations.empty?
+      .pluck(:inviter_id)
 
     last_meetup = PastMeetup
-      .joins(:accepted_invitations)
-      .where(accepted_invitations: { id: meetup_invitations })
+      .where(id: each_other_meetup_ids + (user.accepted_meetup_ids & accepted_meetup_ids))
       .order(date: :desc)
       .first
 
