@@ -75,17 +75,21 @@ class User < ApplicationRecord
       Meetup::Invitation.where(
         inviter: user.organized_meetups,
         invitee: self,
+        is_accepted: true,
       )
         .or(
           Meetup::Invitation.where(
             inviter: organized_meetups,
             invitee: user,
+            is_accepted: true,
           ),
         )
         .pluck(:inviter_id)
 
+    meetup_ids = each_other_meetup_ids + (user.accepted_meetup_ids & accepted_meetup_ids)
+
     last_meetup = PastMeetup
-      .where(id: each_other_meetup_ids + (user.accepted_meetup_ids & accepted_meetup_ids))
+      .where(id: meetup_ids)
       .order(date: :desc)
       .first
 
