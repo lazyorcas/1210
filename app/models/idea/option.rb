@@ -24,12 +24,31 @@ class Idea::Option < Pollable::Option
 
   after_create :create_accepted_invitation_for_originator, if: -> { originator.present? }
   after_create :invite_idea_voters
+  after_create :notify_voters_to_vote
 
   def idea
     pollable
   end
 
   private
+
+  def notify_voters_to_vote
+    other_option = idea.options
+      .where(created_at: 5.minutes.ago..Time.zone.now)
+      .where.not(id: id).first
+
+    if other_option.nil?
+      PushSubscription.where(user: voters - [originator]).each do |push_subscription|
+        PushNotificationJob.perform_later(
+          push_subscription: push_subscription,
+          title: "[Idea] #{title}",
+          body: "😎 New option added. Check it out!",
+        )
+      end
+
+      Idea::OptionMailer.with(idea_option: self).new_option_notification.deliver_later
+    end
+  end
 
   def create_accepted_invitation_for_originator
     Idea::Option::Invitation.create(
