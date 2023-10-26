@@ -63,7 +63,7 @@ task notify_of_new_idea_options: :environment do
       puts "Notifying of idea options for idea #{idea.id}..."
 
       Idea::OptionMailer
-        .with(idea: idea, recipients: idea.voters.without_push_subscription)
+        .with(idea: idea, recipients: User.where(id: idea.voter_ids + [idea.user_id]).without_push_subscription)
         .new_option_notification.deliver_later
     end
 end
