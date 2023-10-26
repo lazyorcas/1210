@@ -70,6 +70,26 @@ class User < ApplicationRecord
     id == 1
   end
 
+  def last_meetup_with(user)
+    last_meetup_invitation = Meetup::Invitation
+      .where(invitee: [user, self])
+      .or(
+        Meetup::Invitation.where(
+          inviter: user.organized_meetups,
+          invitee: self,
+        ),
+      ).or(
+        Meetup::Invitation.where(
+          inviter: organized_meetups,
+          invitee: user,
+        ),
+      )
+      .order(:created_at)
+      .last
+
+    last_meetup_invitation&.meetup&.created_at
+  end
+
   private
 
   def create_session
