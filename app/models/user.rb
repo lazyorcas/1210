@@ -87,7 +87,7 @@ class User < ApplicationRecord
       .order(:created_at)
       .last
 
-    last_meetup_invitation&.meetup&.created_at
+    last_meetup_invitation&.meetup&.date
   end
 
   private
