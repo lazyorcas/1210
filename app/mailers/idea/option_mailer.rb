@@ -3,15 +3,13 @@
 class Idea::OptionMailer < ApplicationMailer
   before_action do
     @idea_option = params[:idea_option]
-    @voters = @idea_option.voters.without_push_subscription - [@idea_option.originator]
+    @recipients = params[:recipients]
   end
 
   def new_option_notification
-    if @voters.present?
-      mail(
-        subject: "😎 New voting option is added to an idea.",
-        bcc: @voters.map(&:email),
-      )
-    end
+    mail(
+      subject: "😎 New voting option is added to an idea.",
+      bcc: @recipients.map(&:email),
+    )
   end
 end

@@ -39,8 +39,6 @@ class Meetup < ApplicationRecord
   validates :date,
     format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }
 
-  after_create :notify_invitees, if: :upcoming?
-
   def upcoming?
     date >= Time.zone.today
   end
@@ -97,10 +95,6 @@ class Meetup < ApplicationRecord
   end
 
   private
-
-  def notify_invitees
-    MeetupMailer.with(meetup: self).new_meetup_notification.deliver_later
-  end
 
   def time_zone
     organizer.time_zone

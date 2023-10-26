@@ -14,7 +14,7 @@ class Idea::Option < Pollable::Option
   has_many :invitations,
     class_name: "Idea::Option::Invitation",
     as: :inviter
-  has_many :voters, through: :invitations, source: :invitee, source_type: "User"
+  has_many :invitees, through: :invitations, source: :invitee, source_type: "User"
 
   has_many :upvotes,
     -> { where(is_accepted: true) },
@@ -22,39 +22,24 @@ class Idea::Option < Pollable::Option
     as: :inviter
   has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"
 
-  after_create :create_accepted_invitation_for_originator, if: -> { originator.present? }
-  after_create :invite_voters
-  after_create :notify_voters_to_vote
+  after_create :invite_idea_user_and_voters
 
   def idea
     pollable
   end
 
+  def upvote_percent
+    upvotes.count * 100 / invitations.count
+  end
+
   private
 
-  def notify_voters_to_vote
-    other_option = idea.options
-      .where(created_at: 5.minutes.ago..Time.zone.now)
-      .where.not(id: id).first
-
-    if other_option.nil?
-      Idea::OptionMailer.with(idea_option: self).new_option_notification.deliver_later
-    end
-  end
-
-  def create_accepted_invitation_for_originator
-    Idea::Option::Invitation.create(
-      inviter: self,
-      invitee: originator,
-      is_accepted: true,
-    )
-  end
-
-  def invite_voters
-    (idea.voters + [idea.user]).uniq.each do |user|
+  def invite_idea_user_and_voters
+    ([idea.user] + idea.voters).each do |user|
       Idea::Option::Invitation.create(
         inviter: self,
         invitee: user,
+        is_accepted: user == originator || nil,
       )
     end
   end

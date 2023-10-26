@@ -4,13 +4,13 @@
 class IdeaMailerPreview < ActionMailer::Preview
   def new_idea_notification
     IdeaMailer
-      .with(idea: Idea.last)
+      .with(idea: Idea.last, recipients: [User.first])
       .new_idea_notification
   end
 
-  def status_changed_to_polling_notification
+  def idea_status_changed_to_polling_notification
     IdeaMailer
-      .with(idea: Idea.last)
-      .status_changed_to_polling_notification
+      .with(idea: Idea.last, recipients: [User.first])
+      .idea_status_changed_to_polling_notification
   end
 end

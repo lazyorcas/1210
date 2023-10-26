@@ -31,8 +31,7 @@ class Idea < ApplicationRecord
 
   validates_presence_of :title, :user
 
-  after_create :notify_invitees_to_see_who_is_interested
-  after_update :notify_voters_to_vote, if: -> { saved_change_to_status? && polling? }
+  after_update :notify_voters_of_status_changed_to_polling, if: -> { saved_change_to_status? && polling? }
 
   def soft_delete
     deleted!
@@ -57,14 +56,18 @@ class Idea < ApplicationRecord
     user
   end
 
-  def notify_invitees_to_see_who_is_interested
-    IdeaMailer.with(idea: self).new_idea_notification.deliver_later
-  end
+  def notify_voters_of_status_changed_to_polling
+    PushSubscription.where(user: voters).each do |push_subscription|
+      PushNotificationJob.perform_later(
+        push_subscription: push_subscription,
+        title: "[Idea] #{idea.title}",
+        body: "🎉 You can start planning by adding options and voting on them.",
+      )
+    end
 
-  def notify_voters_to_vote
-    invitations.each(&:notify_invitee_to_vote)
-
-    IdeaMailer.with(idea: self).status_changed_to_polling_notification.deliver_later(wait: 5.minutes)
+    IdeaMailer
+      .with(idea: self, recipients: voters)
+      .idea_status_changed_to_polling_notification.deliver_later(wait: 5.minutes)
   end
 
   def seen_events
