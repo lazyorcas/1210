@@ -4,7 +4,7 @@
 class MeetupMailerPreview < ActionMailer::Preview
   def new_meetup_notification
     MeetupMailer
-      .with(meetup: Meetup.first, invitees: [User.first])
+      .with(meetup: Meetup.last)
       .new_meetup_notification
   end
 end
