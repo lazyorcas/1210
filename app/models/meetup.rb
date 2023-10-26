@@ -99,14 +99,6 @@ class Meetup < ApplicationRecord
   private
 
   def notify_invitees
-    PushSubscription.where(user: invitee_ids).each do |push_subscription|
-      PushNotificationJob.perform_later(
-        push_subscription: push_subscription,
-        title: "#{title} - #{organizer.name}",
-        body: "#{relative_day}, #{local_start_time} - #{local_end_time}",
-      )
-    end
-
     MeetupMailer.with(meetup: self).new_meetup_notification.deliver_later
   end
 
