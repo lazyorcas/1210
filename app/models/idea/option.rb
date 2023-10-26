@@ -23,7 +23,7 @@ class Idea::Option < Pollable::Option
   has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"
 
   after_create :create_accepted_invitation_for_originator, if: -> { originator.present? }
-  after_create :invite_idea_voters
+  after_create :invite_voters
   after_create :notify_voters_to_vote
 
   def idea
@@ -58,8 +58,8 @@ class Idea::Option < Pollable::Option
     )
   end
 
-  def invite_idea_voters
-    idea.voters.each do |user|
+  def invite_voters
+    (idea.voters + [idea.user]).uniq.each do |user|
       Idea::Option::Invitation.create(
         inviter: self,
         invitee: user,
