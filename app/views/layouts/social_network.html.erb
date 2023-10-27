@@ -38,6 +38,9 @@
       <%= render layout: "shared/page_tab", locals: { icon_name: "queue-list", path: ideas_path } do %>
         Ideas
       <% end %>
+      <%= render layout: "shared/page_tab", locals: { icon_name: "users", path: user_invitations_path } do %>
+        Friends
+      <% end %>
     </nav>
   </body>
 </html>
