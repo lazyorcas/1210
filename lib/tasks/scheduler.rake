@@ -27,7 +27,7 @@ task notify_of_new_meetups: :environment do
   puts "Notifying of new meetups..."
 
   Meetup
-    # .where(created_at: 1.hour.ago..Time.zone.now)
+    .where(created_at: 10.minutes.ago..Time.zone.now)
     .left_joins(:memory)
     .where(memory: { id: nil })
     .each do |meetup|
@@ -46,7 +46,7 @@ task notify_of_new_ideas: :environment do
   puts "Notifying of new ideas..."
 
   Idea
-    .where(created_at: 1.hour.ago..Time.zone.now)
+    .where(created_at: 10.minutes.ago..Time.zone.now)
     .each do |idea|
       puts "Notifying of idea #{idea.id}..."
 
@@ -64,7 +64,7 @@ task notify_of_new_idea_options: :environment do
 
   Idea
     .joins(:options)
-    .where(pollable_options: { created_at: 1.hour.ago..Time.zone.now })
+    .where(pollable_options: { created_at: 10.minutes.ago..Time.zone.now })
     .group("ideas.id")
     .each do |idea|
       puts "Notifying of idea options for idea #{idea.id}..."
