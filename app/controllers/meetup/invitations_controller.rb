@@ -8,7 +8,7 @@ class Meetup::InvitationsController < ApplicationController
       id: params[:id],
       invitee: current_user,
     )
-    @invitation.is_accepted = invitation_params[:is_accepted]
+    @invitation.is_accepted = meetup_invitation_params[:is_accepted]
 
     if @invitation.save
       turbo_stream
@@ -17,7 +17,7 @@ class Meetup::InvitationsController < ApplicationController
 
   private
 
-  def invitation_params
+  def meetup_invitation_params
     params.require(:meetup_invitation).permit(:is_accepted)
   end
 end

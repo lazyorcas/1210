@@ -9,14 +9,14 @@ class Idea::Option::InvitationsController < ApplicationController
       invitee: current_user,
     )
 
-    if @invitation.update(invitation_params)
+    if @invitation.update(idea_option_invitation_params)
       turbo_stream
     end
   end
 
   private
 
-  def invitation_params
+  def idea_option_invitation_params
     params.require(:idea_option_invitation).permit(:is_accepted)
   end
 end

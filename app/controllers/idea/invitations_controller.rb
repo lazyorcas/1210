@@ -8,7 +8,7 @@ class Idea::InvitationsController < ApplicationController
       id: params[:id],
       invitee: current_user,
     )
-    @invitation.is_accepted = invitation_params[:is_accepted]
+    @invitation.is_accepted = idea_invitation_params[:is_accepted]
 
     if @invitation.save
       turbo_stream
@@ -17,7 +17,7 @@ class Idea::InvitationsController < ApplicationController
 
   private
 
-  def invitation_params
+  def idea_invitation_params
     params.require(:idea_invitation).permit(:is_accepted)
   end
 end

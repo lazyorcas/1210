@@ -18,7 +18,7 @@ class User::InvitationsController < ApplicationController
       id: params[:id],
       invitee: current_user,
     )
-    @invitation.is_accepted = invitation_params[:is_accepted]
+    @invitation.is_accepted = user_invitation_params[:is_accepted]
 
     if @invitation.save
       redirect_to(user_invitations_path)
@@ -27,7 +27,7 @@ class User::InvitationsController < ApplicationController
 
   private
 
-  def invitation_params
+  def user_invitation_params
     params.require(:user_invitation).permit(:invitee_id, :is_accepted)
   end
 end
