@@ -27,14 +27,17 @@ task notify_of_new_meetups: :environment do
   puts "Notifying of new meetups..."
 
   Meetup
-    .where(created_at: 1.hour.ago..Time.zone.now)
+    # .where(created_at: 1.hour.ago..Time.zone.now)
     .left_joins(:memory)
     .where(memory: { id: nil })
     .each do |meetup|
       puts "Notifying of meetup #{meetup.id}..."
 
       MeetupMailer
-        .with(meetup: meetup, recipients: meetup.invitees.without_push_subscription)
+        .with(
+          meetup: meetup,
+          recipients: meetup.invitees.without_push_subscription.to_a,
+        )
         .new_meetup_notification.deliver_later
     end
 end
@@ -48,7 +51,10 @@ task notify_of_new_ideas: :environment do
       puts "Notifying of idea #{idea.id}..."
 
       IdeaMailer
-        .with(idea: idea, recipients: idea.invitees.without_push_subscription)
+        .with(
+          idea: idea,
+          recipients: idea.invitees.without_push_subscription.to_a,
+        )
         .new_idea_notification.deliver_later
     end
 end
@@ -64,7 +70,10 @@ task notify_of_new_idea_options: :environment do
       puts "Notifying of idea options for idea #{idea.id}..."
 
       Idea::OptionMailer
-        .with(idea: idea, recipients: User.where(id: idea.voter_ids + [idea.user_id]).without_push_subscription)
+        .with(
+          idea: idea,
+          recipients: User.where(id: idea.voter_ids + [idea.user_id]).without_push_subscription.to_a,
+        )
         .new_option_notification.deliver_later
     end
 end
