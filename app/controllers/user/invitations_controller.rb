@@ -8,7 +8,7 @@ class User::InvitationsController < ApplicationController
   def create
     @invitation = User::Invitation.new
     @invitation.inviter = current_user
-    @invitation.invitee = User.find(invitation_params[:invitee_id])
+    @invitation.invitee = User.find(user_invitation_params[:invitee_id])
 
     if @invitation.save
       redirect_to(user_invitations_path)
