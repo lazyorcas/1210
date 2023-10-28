@@ -6,11 +6,16 @@
       <h1 class="shrink-0 text-4xl font-black inline-flex">
         <%= yield :page_title %>
       </h1>
-      <nav class="flex gap-x-2 items-center">
-        <% if content_for?(:toolbar) %>
-          <%= yield :toolbar %>
+      <div class="flex items-center gap-x-4">
+        <% if content_for?(:help_path) %>
+          <%= link_to yield(:help_path) , data: { turbo_frame: "modal" } do %>
+            <%= heroicon "information-circle", options: { class: "h-6 w-6" } %>
+          <% end %>
         <% end %>
-      </nav>
+        <% if content_for?(:cta) %>
+          <%= yield :cta %>
+        <% end %>
+      </div>
     </header>
     <hr />
     <%= yield %>
