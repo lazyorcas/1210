@@ -1,12 +1,11 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
-  <%= turbo_frame_tag "memories-header" do %>
-    <% if @memories.empty? %>
-      <%= render partial: "no_memories" %>
-    <% else %>
-      <%= render partial: "past_meetups/new_button" %>
-    <% end %>
-  <% end %>
   <%= turbo_frame_tag "memories", class: "flex flex-col gap-y-2" do %>
-    <%= render @memories %>
+    <% if @memories.empty? %>
+      <%= turbo_frame_tag "memories-header" do %>
+        <%= render partial: "no_memories" %>
+      <% end %>
+    <% else %>
+      <%= render @memories %>
+    <% end %>
   <% end %>
 </main>

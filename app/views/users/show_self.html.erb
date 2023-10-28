@@ -1,9 +1,7 @@
 <%= render layout: "shared/modal" do %>
   <header class="flex justify-between gap-x-4">
     <h1 class="text-2xl font-bold">
-      <% if params[:add_friend].present? %>
-        Add friend
-      <% elsif current_user.friends.empty? %>
+      <% if current_user.friends.empty? %>
         No friends here yet
       <% else %>
         Invite your friends
@@ -17,20 +15,10 @@
       <button class="btn btn--primary flex items-center gap-x-2 w-full my-8" data-action="clipboard#copy">
         <%= heroicon "clipboard-document", options: { class: "h-6 w-6" } %>
         <span data-clipboard-target="buttonLabel">
-          <% if params[:add_friend].present? %>
-            Copy link for your friend
-          <% else %>
-            Copy invite link
-          <% end %>
+          Copy invite link
         </span>
       </button>
     </div>
-    <p>
-      <% if params[:add_friend].present? %>
-        Your friends will be able to send you a friend request by clicking on the link.
-      <% else %>
-        The accounts created from this link will automatically be added to your friend list.
-      <% end %>
-    </p>
+    <p>The accounts created from this link will automatically be added to your friend list.</p>
   </div>
 <% end %>

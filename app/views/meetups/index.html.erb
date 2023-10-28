@@ -1,12 +1,8 @@
-<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
-  <%= turbo_frame_tag "meetups-header" do %>
-    <% if @date_meetups.empty? %>
-      <%= render partial: "no_meetups" %>
-    <% else %>
-      <%= render partial: "new_button" %>
-    <% end %>
+<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-18 standalone:pb-[120px]">
+  <% if @date_meetups.empty? %>
+    <%= render partial: "no_meetups" %>
   <% end %>
-  <%= turbo_frame_tag "date-meetups", class: "flex flex-col gap-y-8" do %>
+  <div class="flex flex-col gap-y-8">
     <% @date_meetups.each do |date, meetups| %>
       <section class="flex flex-col gap-y-2">
         <h2 class="text-lg font-semibold">
@@ -15,7 +11,7 @@
         <%= render meetups %>
       </section>
     <% end %>
-  <% end %>
+  </div>
 </main>
 <% if current_user.friends.empty? %>
   <%= turbo_frame_tag "modal", src: user_path(current_user) %>

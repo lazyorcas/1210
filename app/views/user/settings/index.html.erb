@@ -1,0 +1,25 @@
+<main class="grow w-full flex flex-col gap-y-8 pt-4 pb-20 standalone:pb-[120px]">
+  <section class="flex flex-col gap-y-4 standalone:hidden">
+    <header>
+      <h2 class="text-lg font-semibold">Download</h2>
+      <p class="text-sm text-neutral-500">
+        You can install 1210 on your phone to use it as an app.
+      </p>
+    </header>
+    <ol class="flex flex-col gap-y-1">
+      <li class="flex items-center gap-x-1">1. Click <%= heroicon "ellipsis-horizontal-circle", options: { class: "h-6 w-6" } %> on your browser toolbar.</li>
+      <li>2. Click <b>"Add to home screen"</b>.</li>
+      <li>3. A popup will appear, click <b>"Add"</b>.</li>
+    </ol>
+  </section>
+  <section class="flex flex-col gap-y-4">
+    <header>
+      <h2 class="text-lg font-semibold">Push Notifications</h2>
+      <p class="text-sm text-neutral-500">Only available on mobile. Your iOS version must be at least 16.4.</p>
+    </header>
+    <%= button_tag class: "btn btn--primary w-fit gap-x-2", data: { controller: "notification-permission",  action: "notification-permission#request" } do %>
+      <%= heroicon "bell-alert", options: { class: "h-6 w-6" } %>
+      Enable push notification
+    <% end %>
+  </section>
+</main>

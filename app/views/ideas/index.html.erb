@@ -1,12 +1,11 @@
-<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
-  <%= turbo_frame_tag "ideas-header" do %>
-    <% if @ideas.empty? %>
-      <%= render partial: "no_ideas" %>
-    <% else %>
-      <%= render partial: "new_button" %>
-    <% end %>
-  <% end %>
+<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-20 standalone:pb-[120px]">
   <%= turbo_frame_tag "ideas", class: "flex flex-col gap-y-2" do %>
-    <%= render @ideas %>
+    <% if @ideas.empty? %>
+      <%= turbo_frame_tag "ideas-header" do %>
+        <%= render partial: "no_ideas" %>
+      <% end %>
+    <% else %>
+      <%= render @ideas %>
+    <% end %>
   <% end %>
 </main>

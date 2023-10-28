@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User::InvitationsController < ApplicationController
+  layout :resolve_layout
+
   before_action :require_user!
 
   def create
@@ -26,6 +28,15 @@ class User::InvitationsController < ApplicationController
   end
 
   private
+
+  def resolve_layout
+    case action_name
+    when "index"
+      "user/invitations"
+    else
+      "application"
+    end
+  end
 
   def user_invitation_params
     params.require(:user_invitation).permit(:invitee_id, :is_accepted)

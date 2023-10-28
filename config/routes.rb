@@ -6,14 +6,13 @@ require "admin_constraint"
 Rails.application.routes.draw do
   root "home#index"
 
-  get "/install", to: "home#install", as: :install
-
   passwordless_for :users
   mount Sidekiq::Web => "/sidekiq", constraints: AdminConstraint.new
 
   resources :users, only: [:new, :create, :show]
   namespace :user do
     resources :invitations, only: [:index, :create, :update], path: "/friends"
+    get "/settings", to: "settings#index"
   end
 
   resources :meetups
