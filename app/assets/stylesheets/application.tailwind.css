@@ -159,15 +159,6 @@
     @apply transition-shadow hover:shadow-md;
   }
 
-  .bottom-nav {
-    @apply fixed bottom-0;
-    @apply w-full max-w-xl self-center;
-    @apply border-t;
-    @apply flex justify-around gap-x-2;
-    @apply min-h-[76px] pt-4 standalone:pb-12 px-6;
-    @apply bg-white;
-  }
-
   .flash {
     @apply py-2 px-3;
     @apply font-medium;

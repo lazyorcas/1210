@@ -1,0 +1,22 @@
+<nav class="fixed bottom-0 w-full max-w-xl self-center border-t flex justify-around gap-x-2 min-h-[76px] pt-4 standalone:pb-12 px-6 bg-white">
+  <%= render layout: "shared/page_tab", locals: { icon_name: "photo", path: memories_path } do %>
+    Memories
+  <% end %>
+  <%= render layout: "shared/page_tab", locals: { icon_name: "heart", path: ideas_path } do %>
+    Ideas
+  <% end %>
+  <%= render layout: "shared/page_tab", locals: { icon_name: "bolt", path: meetups_path } do %>
+    Meetups
+  <% end %>
+  <%= render layout: "shared/page_tab", locals: { icon_name: "users", path: user_invitations_path } do %>
+    Friends
+    <% if current_user.received_invitations.pending.count > 0 %>
+      <div class="text-xs absolute -mr-8 -mt-12 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center font-bold">
+        <%= current_user.received_invitations.pending.count %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= render layout: "shared/page_tab", locals: { icon_name: "cog-8-tooth", path: user_settings_path } do %>
+    Settings
+  <% end %>
+</nav>
