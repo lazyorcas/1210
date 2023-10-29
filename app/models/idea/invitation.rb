@@ -4,6 +4,7 @@ class Idea::Invitation < Invitation
   default_scope { where(inviter_type: "Idea", invitee_type: "User") }
 
   after_create :notify_invitee
+  after_update :notify_organizer, if: -> { is_accepted }
 
   def idea
     inviter
@@ -15,6 +16,16 @@ class Idea::Invitation < Invitation
         push_subscription: push_subscription,
         title: "[Idea] #{idea.title}",
         body: "💭 Let #{idea.user.name} know if you are interested.",
+      )
+    end
+  end
+
+  def notify_organizer
+    idea.user.push_subscriptions.each do |push_subscription|
+      PushNotificationJob.perform_later(
+        push_subscription: push_subscription,
+        title: "[Idea] #{idea.title}",
+        body: "#{invitee.name} is interested!",
       )
     end
   end
