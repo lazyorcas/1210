@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :photos, only: [:show]
 
   get "/help/meetups", to: "help#meetups"
+  get "/help/friends", to: "help#friends"
 
   # redirects
   get "/:date/meetups", to: redirect("/meetups", status: 301)
