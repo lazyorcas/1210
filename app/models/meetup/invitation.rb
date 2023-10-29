@@ -15,7 +15,7 @@ class Meetup::Invitation < Invitation
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "#{meetup.title} - #{meetup.organizer.name}",
-        body: "#{meetup.relative_day}, #{meetup.local_start_time} - #{meetup.local_end_time}",
+        body: "#{meetup.relative_day}, #{meetup.start_time} - #{meetup.end_time}",
       )
     end
   end

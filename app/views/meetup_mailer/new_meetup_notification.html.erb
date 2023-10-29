@@ -1,6 +1,6 @@
 <h1><%= @meetup.title %></h1>
 <p>Date: <%= @meetup.relative_day %></p>
-<p>Time: <%= @meetup.local_start_time  %> - <%= @meetup.local_end_time  %></p>
+<p>Time: <%= @meetup.start_time  %> - <%= @meetup.end_time  %></p>
 <p>
   Click here to join the meetup: <%= link_to meetups_url, meetups_url(utm_source: "email", utm_medium: "new_meetup_notification") %>.
 </p>

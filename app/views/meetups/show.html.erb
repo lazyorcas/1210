@@ -22,10 +22,7 @@
         </header>
         <p>
           <%= @meetup.date.strftime("%B #{@meetup.date.day.ordinalize}") %>,
-          <%= @meetup.local_start_time  %> - <%= @meetup.local_end_time  %>
-          <% if @meetup.local_start_time != @meetup.start_time %>
-            (your time)
-          <% end %>
+          <%= @meetup.start_time  %> - <%= @meetup.end_time  %>
         </p>
       </section>
     </div>
