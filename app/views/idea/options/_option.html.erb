@@ -4,7 +4,7 @@
   <div class="grow flex flex-col gap-y-1">
     <div class="flex items-end justify-between">
       <h2 class="grow"><%= option.title %></h2>
-      <p class="text-sm"><%= option.upvote_percent %>%</p>
+      <p class="shrink-0 text-sm"><%= option.upvote_percent %>%</p>
     </div>
     <div class="relative w-full h-4 bg-neutral-100 rounded-xl">
       <div class="<%= class_names("absolute h-full rounded-xl top-0 left-0", invitation.is_accepted ? "bg-green-500" : "bg-neutral-200" ) %>" style="width:<%= option.upvote_percent %>%"></div>
