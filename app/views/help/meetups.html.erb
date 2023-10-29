@@ -1,0 +1,36 @@
+<%= render layout: "shared/modal" do %>
+  <article class="sm:w-[480px] flex flex-col gap-y-8">
+    <header class="flex justify-between gap-x-4">
+      <div class="flex items-center gap-x-2">
+        <%= heroicon "information-circle", options: { class: "h-6 w-6" } %>
+        <h1 class="text-2xl font-bold">Meetups</h1>
+      </div>
+      <%= render partial: "shared/modal_close_button" %>
+    </header>
+    <p>
+      Post a meetup when you are free to do something, but not sure whom to do it with. 
+    </p>
+    <section class="flex flex-col gap-y-4">
+      <h2 class="text-lg font-semibold">For example:</h2>
+      <ul class="list-disc list-inside">
+        <li>Grabbing 🍔 food / ☕️ coffee</li>
+        <li>🎲 Playing board games</li>
+        <li>🥘 Cooking together</li>
+        <li>🏀 Sports / Exercise</li>
+        <li>📚 Study session / 💻 Coworking</li>
+        <li>🍿 Going to the cinema</li>
+        <li>👋 Hanging out</li>
+        <li>⏰ Anything spontaneous</li>
+      </ul>
+    </section>
+    <section class="flex flex-col gap-y-4">
+      <h2 class="text-lg font-semibold">What if I can't organize it?</h2>
+      <p>
+        You should still post a meetup and say that you are "up to hang out". And in the description, you can write the friend whom you would like to host the meetup.
+      </p>
+      <p>
+        For example, a friend of mine was "up for coworking" but his place was very small, so he wrote down in the description: "Oscar's place?" and invited me for RSVP.
+      </p>
+    </section>
+  </article>
+<% end %>
