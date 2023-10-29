@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   resources :photos, only: [:show]
 
   get "/help/meetups", to: "help#meetups"
+  get "/help/ideas", to: "help#ideas"
+  get "/help/memories", to: "help#memories"
   get "/help/friends", to: "help#friends"
 
   # redirects

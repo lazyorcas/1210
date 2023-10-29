@@ -1,0 +1,38 @@
+<%= render layout: "shared/modal" do %>
+  <article class="sm:w-[480px] flex flex-col gap-y-8">
+    <header class="flex justify-between gap-x-4">
+      <div class="flex items-center gap-x-2">
+        <%= heroicon "information-circle", options: { class: "h-6 w-6" } %>
+        <h1 class="text-2xl font-bold">Ideas</h1>
+      </div>
+      <%= render partial: "shared/modal_close_button" %>
+    </header>
+    <p>Post an idea when you <b>want</b> a meetup to happen, but you are fuzzy on the details e.g. budget, location, date, and time. </p>
+    <section class="flex flex-col gap-y-4">
+      <h2 class="text-lg font-semibold">For example:</h2>
+      <ul class="list-disc list-inside">
+        <li>⛰️ Hiking</li>
+        <li>🎲 Playing board games</li>
+        <li>🍕 Dining out / 🥘 Potluck</li>
+        <li>🌃 Night out / 🎤 Karaoke</li>
+        <li>👋 Catching up with friends</li>
+        <li>😎 Any new interest you picked up on</li>
+        <li>✌️ Anything that you want to try</li>
+      </ul>
+    </section>
+    <section class="flex flex-col gap-y-4">
+      <h2 class="text-lg font-semibold">What happens when I post an idea?</h2>
+      <ul class="list-disc list-inside">
+        <li>Only the friends you invite can see and respond to it.</li>
+        <li>For each of the invitees, a notification will be sent out in the form of push or email notification.</li>
+        <li>You will be able to see how many people have seen and are interested in your idea, so you can decide whether you should go through with it.</li>
+        <li>After having enough people interested, you can start polling for the details. Everyone will be able to add options for others to vote.</li>
+        <li>Once the details are finalized, you can create a meetup and invite.</li>
+      </ul>
+    </section>
+    <section class="flex flex-col gap-y-4">
+      <h2 class="text-lg font-semibold">What if I don't want to organize it?</h2>
+      <p>If you are interested enough to post, you should organize it and not rely on your friends.</p>
+    </section>
+  </article>
+<% end %>
