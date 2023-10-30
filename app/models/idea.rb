@@ -60,7 +60,7 @@ class Idea < ApplicationRecord
     PushSubscription.where(user: voters).each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
-        title: "[Idea] #{idea.title}",
+        title: "[Idea] #{title}",
         body: "🎉 You can start planning by adding options and voting on them.",
       )
     end
