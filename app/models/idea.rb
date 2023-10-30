@@ -66,7 +66,7 @@ class Idea < ApplicationRecord
     end
 
     IdeaMailer
-      .with(idea: self, recipients: voters)
+      .with(idea: self, recipients: voters.to_a)
       .idea_status_changed_to_polling_notification.deliver_later(wait: 5.minutes)
   end
 
