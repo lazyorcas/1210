@@ -34,7 +34,10 @@ task notify_of_new_meetups: :environment do
       puts "Notifying of meetup #{meetup.id}..."
 
       recipients = meetup.invitees.without_push_subscription
-      next if recipients.empty?
+      if recipients.empty?
+        puts "No recipients found!"
+        next
+      end
 
       MeetupMailer
         .with(
@@ -54,7 +57,10 @@ task notify_of_new_ideas: :environment do
       puts "Notifying of idea #{idea.id}..."
 
       recipients = idea.invitees.without_push_subscription
-      next if recipients.empty?
+      if recipients.empty?
+        puts "No recipients found!"
+        next
+      end
 
       IdeaMailer
         .with(
@@ -76,7 +82,10 @@ task notify_of_new_idea_options: :environment do
       puts "Notifying of idea options for idea #{idea.id}..."
 
       recipients = User.where(id: idea.voter_ids + [idea.user_id]).without_push_subscription
-      next if recipients.empty?
+      if recipients.empty?
+        puts "No recipients found!"
+        next
+      end
 
       Idea::OptionMailer
         .with(
