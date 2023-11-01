@@ -118,7 +118,7 @@
   }
 
   .icon-btn {
-    @apply rounded-full;
+    @apply rounded-xl;
     @apply h-11 w-11;
     @apply transition-shadow hover:shadow-md;
     @apply flex items-center justify-center;
@@ -168,7 +168,7 @@
   }
 
   .avatar {
-    @apply rounded-full;
+    @apply rounded-xl;
     @apply aspect-square;
     @apply flex items-center justify-center;
   }
