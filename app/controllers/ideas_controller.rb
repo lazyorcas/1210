@@ -13,12 +13,12 @@ class IdeasController < ApplicationController
   end
 
   def new
-    @idea = Idea.new(user: current_user)
+    @idea = Idea.new(organizer: current_user)
   end
 
   def create
     @idea = Idea.new(idea_params)
-    @idea.user = current_user
+    @idea.organizer = current_user
 
     if @idea.save
       turbo_stream

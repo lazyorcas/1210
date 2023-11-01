@@ -8,7 +8,7 @@ class Idea < ApplicationRecord
 
   enum status: { looking_for_voters: 0, deleted: -1, polled: 1, polling: 2 }
 
-  belongs_to :user
+  belongs_to :organizer, class_name: "User"
 
   has_many :invitations,
     class_name: "Idea::Invitation",
@@ -29,7 +29,7 @@ class Idea < ApplicationRecord
 
   has_many :options, class_name: "Idea::Option", as: :pollable
 
-  validates_presence_of :title, :user
+  validates_presence_of :title, :organizer
 
   after_update :notify_voters_of_status_changed_to_polling, if: -> { saved_change_to_status? && polling? }
 
@@ -53,7 +53,7 @@ class Idea < ApplicationRecord
   private
 
   def main_user
-    user
+    organizer
   end
 
   def notify_voters_of_status_changed_to_polling

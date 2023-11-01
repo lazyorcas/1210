@@ -81,7 +81,7 @@ task notify_of_new_idea_options: :environment do
     .each do |idea|
       puts "Notifying of idea options for idea #{idea.id}..."
 
-      recipients = User.where(id: idea.voter_ids + [idea.user_id]).without_push_subscription
+      recipients = User.where(id: idea.voter_ids + [idea.organizer_id]).without_push_subscription
       if recipients.empty?
         puts "No recipients found!"
         next

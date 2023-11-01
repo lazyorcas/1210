@@ -26,7 +26,7 @@ class User < ApplicationRecord
     as: :invitee
   has_many :accepted_meetups, through: :accepted_meetup_invitations, source: :inviter, source_type: "Meetup"
 
-  has_many :ideas
+  has_many :ideas, foreign_key: "organizer_id"
 
   has_many :idea_invitations,
     class_name: "Idea::Invitation",

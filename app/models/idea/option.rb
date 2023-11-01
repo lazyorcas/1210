@@ -22,7 +22,7 @@ class Idea::Option < Pollable::Option
     as: :inviter
   has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"
 
-  after_create :invite_idea_user_and_voters
+  after_create :invite_idea_organizer_and_voters
 
   def idea
     pollable
@@ -34,8 +34,8 @@ class Idea::Option < Pollable::Option
 
   private
 
-  def invite_idea_user_and_voters
-    ([idea.user] + idea.voters).each do |user|
+  def invite_idea_organizer_and_voters
+    ([idea.organizer] + idea.voters).each do |user|
       Idea::Option::Invitation.create(
         inviter: self,
         invitee: user,

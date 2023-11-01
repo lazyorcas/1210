@@ -8,7 +8,7 @@ class IdeaMailer < ApplicationMailer
 
   def new_idea_notification
     mail(
-      subject: "🤩 #{@idea.user.name} suggests a new meetup idea!",
+      subject: "🤩 #{@idea.organizer.name} suggests a new meetup idea!",
       bcc: @recipients.map(&:email),
     )
   end

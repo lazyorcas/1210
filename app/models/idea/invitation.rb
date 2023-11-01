@@ -15,13 +15,13 @@ class Idea::Invitation < Invitation
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[Idea] #{idea.title}",
-        body: "💭 Let #{idea.user.name} know if you are interested.",
+        body: "💭 Let #{idea.organizer.name} know if you are interested.",
       )
     end
   end
 
   def notify_organizer
-    idea.user.push_subscriptions.each do |push_subscription|
+    idea.organizer.push_subscriptions.each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[Idea] #{idea.title}",

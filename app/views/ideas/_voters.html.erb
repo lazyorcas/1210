@@ -1,3 +1,3 @@
 <section>
-  <p class="text-sm text-neutral-500">Voters: <%= (@idea.voters + [@idea.user]).sort_by(&:name).map(&:name).join(', ') %></p>
+  <p class="text-sm text-neutral-500">Voters: <%= (@idea.voters + [@idea.organizer]).sort_by(&:name).map(&:name).join(', ') %></p>
 </section>
