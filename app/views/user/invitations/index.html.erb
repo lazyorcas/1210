@@ -11,7 +11,7 @@
           </div>
           <div class="flex flex-col items-center">
             <%= user.name %>
-            <p class="text-xs text-neutral-400">
+            <p class="text-sm text-neutral-400">
               <% if last_meetup_with_current_user.present? %>
                 <%= time_ago_in_words last_meetup_with_current_user %> ago
               <% else %>
