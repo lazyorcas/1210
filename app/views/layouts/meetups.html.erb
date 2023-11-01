@@ -1,5 +1,5 @@
 <% content_for :page_title, "Meetups" %>
-<% content_for :cta do %>
+<% content_for :toolbar do %>
   <%= link_to new_meetup_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
     <%= heroicon "plus", options: { class: "h-6 w-6" } %>
   <% end %>
