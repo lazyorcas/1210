@@ -2,7 +2,6 @@
 
 class Meetup < ApplicationRecord
   include FriendsOnly
-  include TimeZoned
 
   default_scope { where(is_deleted: false) }
   scope :deleted, -> { unscoped.where(is_deleted: true) }
@@ -77,10 +76,6 @@ class Meetup < ApplicationRecord
   end
 
   private
-
-  def time_zone
-    organizer.time_zone
-  end
 
   def main_user
     organizer

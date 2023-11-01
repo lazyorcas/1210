@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  before_action :associate_visit_to_current_user, if: :current_user
+  before_action :associate_visit_with_current_user, if: :current_user
   around_action :set_current_user_timezone, if: :current_user
 
   private
@@ -21,11 +21,11 @@ class ApplicationController < ActionController::Base
     redirect_to(root_path)
   end
 
-  def set_current_user_timezone(&block)
-    Time.use_zone(current_user.time_zone, &block)
+  def associate_visit_with_current_user
+    ahoy.authenticate(current_user)
   end
 
-  def associate_visit_to_current_user
-    ahoy.authenticate(current_user)
+  def set_current_user_timezone(&block)
+    Time.use_zone(current_user.time_zone, &block)
   end
 end
