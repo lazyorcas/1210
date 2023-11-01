@@ -1,2 +1,2 @@
-<%= turbo_stream.replace @invitation.inviter, partial: "meetups/meetup", locals: { meetup: @invitation.inviter } %>
+<%= turbo_stream.replace @meetup_invitation.meetup, partial: "meetups/meetup", locals: { meetup: @meetup_invitation.meetup } %>
 <%= turbo_stream.update "modal", "" %>

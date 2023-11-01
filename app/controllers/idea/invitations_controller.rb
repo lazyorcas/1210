@@ -4,18 +4,21 @@ class Idea::InvitationsController < ApplicationController
   before_action :require_user!
 
   def update
-    @invitation = Idea::Invitation.find_by(
-      id: params[:id],
-      invitee: current_user,
-    )
-    @invitation.is_accepted = idea_invitation_params[:is_accepted]
-
-    if @invitation.save
+    load_idea_invitation
+    if @idea_invitation.update(idea_invitation_params)
       turbo_stream
     end
   end
 
   private
+
+  def load_idea_invitation
+    @idea_invitation = idea_invitation_scope.find(params[:id])
+  end
+
+  def idea_invitation_scope
+    Idea::Invitation.where(invitee: current_user)
+  end
 
   def idea_invitation_params
     params.require(:idea_invitation).permit(:is_accepted)

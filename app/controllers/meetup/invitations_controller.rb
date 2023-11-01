@@ -4,18 +4,21 @@ class Meetup::InvitationsController < ApplicationController
   before_action :require_user!
 
   def update
-    @invitation = Meetup::Invitation.find_by(
-      id: params[:id],
-      invitee: current_user,
-    )
-    @invitation.is_accepted = meetup_invitation_params[:is_accepted]
-
-    if @invitation.save
+    load_meetup_invitation
+    if @meetup_invitation.update(meetup_invitation_params)
       turbo_stream
     end
   end
 
   private
+
+  def load_meetup_invitation
+    @meetup_invitation = meetup_invitation_scope.find(params[:id])
+  end
+
+  def meetup_invitation_scope
+    Meetup::Invitation.where(invitee: current_user)
+  end
 
   def meetup_invitation_params
     params.require(:meetup_invitation).permit(:is_accepted)

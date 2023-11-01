@@ -6,23 +6,19 @@ class User::InvitationsController < ApplicationController
   before_action :require_user!
 
   def create
-    @invitation = User::Invitation.new
-    @invitation.inviter = current_user
-    @invitation.invitee = User.find(user_invitation_params[:invitee_id])
+    @user_invitation = User::Invitation.new(
+      inviter: current_user,
+      invitee_id: create_user_invitation_params[:invitee_id],
+    )
 
-    if @invitation.save
+    if @user_invitation.save
       redirect_to(user_invitations_path)
     end
   end
 
   def update
-    @invitation = User::Invitation.find_by(
-      id: params[:id],
-      invitee: current_user,
-    )
-    @invitation.is_accepted = user_invitation_params[:is_accepted]
-
-    if @invitation.save
+    load_user_invitation
+    if @user_invitation.update(update_user_invitation_params)
       redirect_to(user_invitations_path)
     end
   end
@@ -38,7 +34,19 @@ class User::InvitationsController < ApplicationController
     end
   end
 
-  def user_invitation_params
-    params.require(:user_invitation).permit(:invitee_id, :is_accepted)
+  def load_user_invitation
+    @user_invitation = user_invitation_scope.find(params[:id])
+  end
+
+  def user_invitation_scope
+    User::Invitation.where(invitee: current_user)
+  end
+
+  def create_user_invitation_params
+    params.require(:user_invitation).permit(:invitee_id)
+  end
+
+  def update_user_invitation_params
+    params.require(:user_invitation).permit(:is_accepted)
   end
 end

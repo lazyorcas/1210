@@ -21,15 +21,15 @@
           </div>
         </li>
       <% end %>
-      <% current_user.received_invitations.pending.each do |invitation| %>
+      <% current_user.received_invitations.pending.each do |user_invitation| %>
         <li class="flex flex-col items-center gap-y-2 text-center">
-          <%= form_with model: invitation, class: "w-full" do |form| %>
+          <%= form_with model: user_invitation, class: "w-full" do |form| %>
             <%= form.hidden_field :is_accepted, value: true, required: true %>
             <%= form.button :submit, class: "w-full avatar bg-neutral-200 hover:bg-neutral-900 transition-colors group" do %>
               <%= heroicon "check", options: { class: "group-hover:text-white h-8 w-8" } %>
             <% end %>
           <% end %>
-          <%= invitation.inviter.name %>
+          <%= user_invitation.inviter.name %>
         </li>
       <% end %>
     </ul>

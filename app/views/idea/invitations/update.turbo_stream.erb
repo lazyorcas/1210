@@ -1,2 +1,2 @@
-<%= turbo_stream.replace @invitation.inviter, partial: "ideas/idea", locals: { idea: @invitation.inviter } %>
+<%= turbo_stream.replace @idea_invitation.idea, partial: "ideas/idea", locals: { idea: @idea_invitation.idea } %>
 <%= turbo_stream.update "modal", "" %>
