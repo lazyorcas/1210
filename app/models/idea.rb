@@ -2,7 +2,7 @@
 
 class Idea < ApplicationRecord
   include FriendsOnly
-  self.ignored_columns = ["is_done", "is_deleted"]
+  self.ignored_columns = ["user_id"]
 
   scope :ongoing, -> { where(status: [:looking_for_voters, :polling]) }
 
