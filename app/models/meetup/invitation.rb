@@ -3,7 +3,8 @@
 class Meetup::Invitation < Invitation
   default_scope { where(inviter_type: "Meetup", invitee_type: "User") }
 
-  after_create :notify_invitee
+  after_create :accept, if: -> { !meetup.upcoming? }
+  after_create :notify_invitee, if: -> { meetup.upcoming? }
   after_update :notify_organizer, if: -> { is_accepted && meetup.upcoming? }
 
   def meetup
