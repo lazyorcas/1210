@@ -1,10 +1,10 @@
 <%= render layout: "shared/modal" do %>
   <header class="flex justify-between gap-x-4 sm:sticky sm:-top-4 pb-4 sm:pt-4 bg-white">
     <div>
-      <h1 class="text-2xl font-bold">Photos</h1>
-      <% if @memory.photos.present? && browser.device.mobile? %>
-        <p class="text-sm text-neutral-500">Slide to see more photos.</p>
-      <% end %>
+      <h1 class="text-xl font-bold">Photos</h1>
+      <p class="text-sm">
+        <%= ([memory.meetup.organizer] +  memory.meetup.attendees).map(&:name).join(', ') %>
+      </p>
     </div>
     <%= render partial: "shared/modal_close_button" %>
   </header>

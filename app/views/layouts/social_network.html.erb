@@ -2,9 +2,9 @@
 <html>
   <%= render "shared/head" %>
   <body>
-    <header class="shrink-0 h-[68px] py-4 flex items-center gap-x-4 justify-between">
+    <header class="shrink-0 h-[68px] flex items-center gap-x-4 justify-between">
       <div class="flex items-center gap-x-2">
-        <h1 class="shrink-0 text-4xl font-black inline-flex">
+        <h1 class="shrink-0 text-3xl font-black inline-flex">
           <%= yield :page_title %>
         </h1>
         <% if content_for?(:help_path) %>

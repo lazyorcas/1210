@@ -11,8 +11,10 @@
   <div class="p-4 flex gap-x-4 items-end">
     <div class="grow">
       <p class="text-sm text-neutral-500"><%= memory.meetup.date.strftime("%A, %B") %> <%= memory.meetup.date.strftime("%d").to_i.ordinalize %></p>
-      <h2 class="text-xl font-bold"><%= memory.meetup.title %></h2>
-      <p class="text-sm"><%= ([memory.meetup.organizer] +  memory.meetup.attendees).map(&:name).join(', ') %></p>
+      <h2 class="text-lg font-bold"><%= memory.meetup.title %></h2>
+      <% if memory.photos.empty? %>
+        <p class="text-sm"><%= ([memory.meetup.organizer] +  memory.meetup.attendees).map(&:name).join(', ') %></p>
+      <% end %>
     </div>
     <% if memory.photos.empty? %>
       <div class="shrink-0 btn btn--primary gap-x-2">
