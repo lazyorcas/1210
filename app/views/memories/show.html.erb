@@ -3,7 +3,7 @@
     <div>
       <h1 class="text-xl font-bold">Photos</h1>
       <p class="text-sm">
-        <%= ([memory.meetup.organizer] +  memory.meetup.attendees).map(&:name).join(', ') %>
+        <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
       </p>
     </div>
     <%= render partial: "shared/modal_close_button" %>
