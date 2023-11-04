@@ -84,6 +84,11 @@
 }
 
 @layer components {
+  textarea {
+    @apply rounded-lg border;
+    @apply h-14 px-4 py-2;
+  }
+
   .input {
     @apply rounded-lg border;
     @apply h-11 px-4;
