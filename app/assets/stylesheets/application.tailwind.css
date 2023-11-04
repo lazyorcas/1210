@@ -119,8 +119,11 @@
   .icon-btn {
     @apply rounded-full;
     @apply h-11 w-11;
-    @apply transition-shadow hover:shadow-md;
     @apply flex items-center justify-center;
+  }
+
+  .icon-btn--small {
+    @apply h-8 w-8;
   }
 
   .check-box {

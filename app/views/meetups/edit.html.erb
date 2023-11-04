@@ -1,7 +1,3 @@
-<%= render layout: "shared/modal" do %>
-  <header class="flex justify-between gap-x-4">
-    <h1 class="text-xl font-bold">Edit meetup</h1>
-    <%= render partial: "shared/modal_close_button" %>
-  </header>
+<%= render layout: "shared/modal", locals: { title: "Edit meetup" } do %>
   <%= render "form", meetup: @meetup %>
 <% end %>

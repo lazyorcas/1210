@@ -1,14 +1,4 @@
-<%= render layout: "shared/modal" do %>
-  <header class="flex justify-between gap-x-4">
-    <h1 class="text-xl font-bold">
-      <% if current_user.friends.empty? %>
-        No friends here yet
-      <% else %>
-        Invite your friends
-      <% end %>
-    </h1>
-    <%= render partial: "shared/modal_close_button" %>
-  </header>
+<%= render layout: "shared/modal", locals: { title: "Invite your friends" } do %>
   <div class="w-full max-w-[400px]">
     <div data-controller="clipboard">
       <input data-clipboard-target="source" type="text" value="<%= user_url(current_user) %>" readonly hidden>

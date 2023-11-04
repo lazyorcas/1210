@@ -1,11 +1,8 @@
 <%= render layout: "shared/modal" do %>
   <article class="sm:w-[400px] flex flex-col gap-y-8">
-    <header class="flex justify-between gap-x-4">
-      <div>
-        <h1 class="text-xl font-bold"><%= @meetup.title %></h1>
-        <p><%= @meetup.description %></p>
-      </div>
-      <%= render partial: "shared/modal_close_button" %>
+    <header>
+      <h1 class="text-xl font-bold"><%= @meetup.title %></h1>
+      <p><%= @meetup.description %></p>
     </header>
     <div class="flex flex-col gap-y-4">
       <section class="flex flex-col gap-y-1">

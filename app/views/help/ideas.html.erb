@@ -1,12 +1,9 @@
 <%= render layout: "shared/modal" do %>
   <article class="sm:w-[480px] flex flex-col gap-y-8">
-    <header class="flex justify-between gap-x-4">
-      <div class="flex items-center gap-x-2">
-        <%= heroicon "information-circle", options: { class: "h-6 w-6" } %>
-        <h1 class="text-2xl font-bold">Ideas</h1>
-      </div>
-      <%= render partial: "shared/modal_close_button" %>
-    </header>
+    <div class="flex items-center gap-x-2">
+      <%= heroicon "information-circle", options: { class: "h-6 w-6" } %>
+      <h1 class="text-2xl font-bold">Ideas</h1>
+    </div>
     <p>Post an idea when you <b>want</b> a meetup to happen, but you are fuzzy on the details e.g. budget, location, date, and time. </p>
     <section class="flex flex-col gap-y-4">
       <h2 class="text-lg font-semibold">For example:</h2>

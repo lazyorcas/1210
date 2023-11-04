@@ -1,8 +1,4 @@
-<%= render layout: "shared/modal" do %>
-  <header class="flex justify-between gap-x-4">
-    <h1 class="text-xl font-bold">New meetup</h1>
-    <%= render partial: "shared/modal_close_button" %>
-  </header>
+<%= render layout: "shared/modal", locals: { title: "New meetup" } do %>
   <%= turbo_frame_tag "refresh", target: "_top" do %>
     <%= render "form", meetup: @meetup %>
   <% end %>

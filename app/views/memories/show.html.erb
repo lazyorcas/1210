@@ -1,12 +1,9 @@
 <%= render layout: "shared/modal" do %>
   <header class="flex justify-between gap-x-4 sm:sticky sm:-top-4 pb-4 sm:pt-4 bg-white">
-    <div>
-      <h1 class="text-xl font-bold">Photos</h1>
-      <p class="text-sm">
-        <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
-      </p>
-    </div>
-    <%= render partial: "shared/modal_close_button" %>
+    <h1 class="text-xl font-bold">Photos</h1>
+    <p class="text-sm">
+      <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
+    </p>
   </header>
   <div class="flex flex-col divide-y gap-y-4">
     <%= turbo_frame_tag "photos" do %>

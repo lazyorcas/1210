@@ -1,6 +1,14 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="w-full h-[100dvh] fixed inset-0 z-50 flex flex-col items-center justify-end sm:justify-center bg-neutral-900/[0.8]" data-controller="modal">
-    <dialog class="w-full sm:w-fit sm:max-w-[calc(100vw-32px)] max-h-full overflow-y-scroll sm:h-fit sm:max-h-[calc(100vh-32px)] bg-white px-4 py-4 standalone:pb-12 sm:pb-4 rounded-t-xl sm:rounded-xl" open>
+    <dialog class="w-full sm:w-fit sm:max-w-[calc(100vw-32px)] max-h-full overflow-y-scroll sm:h-fit sm:max-h-[calc(100vh-32px)] bg-white standalone:pb-12 sm:pb-4 rounded-t-xl sm:rounded-xl px-4 py-4 flex flex-col" open>
+      <header class="flex items-center justify-between">
+        <% if local_assigns[:title].present? %>
+          <h1 class="text-xl font-bold"><%= title %></h1>
+        <% end %>
+        <%= button_tag type: "button", data: { action: "click->modal#close" }, class: 'ml-auto icon-btn icon-btn--small' do %>
+          <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
+        <% end %>
+      </header>
       <%= yield %>
     </dialog>
   </div>

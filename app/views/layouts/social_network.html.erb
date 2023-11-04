@@ -3,12 +3,12 @@
   <%= render "shared/head" %>
   <body>
     <header class="shrink-0 h-[68px] flex items-center gap-x-4 justify-between">
-      <div class="flex items-center gap-x-2">
+      <div class="flex items-center gap-x-1">
         <h1 class="shrink-0 text-3xl font-black inline-flex">
           <%= yield :page_title %>
         </h1>
         <% if content_for?(:help_path) %>
-          <%= link_to yield(:help_path) , data: { turbo_frame: "modal" } do %>
+          <%= link_to yield(:help_path), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
             <%= heroicon "information-circle", options: { class: "h-6 w-6" } %>
           <% end %>
         <% end %>
