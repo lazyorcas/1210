@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   namespace :meetup do
     resources :invitations, only: [:update]
   end
+  scope module: "meetup", path: "/meetup/:meetup_id", as: "meetup" do
+    resources :comments, only: [:index, :create]
+  end
   resources :past_meetups, only: [:new, :create]
 
   resources :memories, except: [:new, :create, :edit, :destroy]

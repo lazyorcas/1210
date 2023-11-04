@@ -15,24 +15,36 @@
       </div>
     <% end %>
     <% if meetup.organizer != current_user %>
-      <% if meetup.attendees.exists?(current_user.id) %>
-        <div class="self-start shrink-0 flex items-center gap-x-1">
-          <span class="rounded-full bg-green-500 h-2 w-2"></span>
-          <p class="text-sm">Going</p>
+      <div class="flex flex-col justify-between items-end">
+        <div class="flex flex-col items-end">
+          <% if meetup.attendees.exists?(current_user.id) %>
+            <div class="self-start shrink-0 flex items-center gap-x-1">
+              <span class="rounded-full bg-green-500 h-2 w-2"></span>
+              <p class="text-sm">Going</p>
+            </div>
+          <% end %>
+          <%= link_to meetup_comments_path(meetup), class:"flex items-center gap-x-1 text-sm", data: { turbo_frame: "modal" } do %>
+            <%= heroicon "chat-bubble-left-right", options: { class: "h-4 w-4" } %>
+            <%= meetup.comments.count %>
+          <% end %>
         </div>
-      <% else %>
-        <% invitation = current_user.meetup_invitations.find_by(inviter: meetup) %>
-        <%= form_with model: invitation, class: "self-end" do |form| %>
-          <%= form.hidden_field :is_accepted, value: true, required: true %>
-          <%= form.button :submit, class: "w-full btn btn--primary" do %>
-            I'm in
+        <% if !meetup.attendees.exists?(current_user.id) %>
+          <%= form_with model: current_user.meetup_invitations.find_by(inviter: meetup), class: "self-end" do |form| %>
+            <%= form.hidden_field :is_accepted, value: true, required: true %>
+            <%= form.button :submit, class: "w-full btn btn--primary" do %>
+              I'm in
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     <% end %>
   </div>
   <% if meetup.organizer == current_user %>
     <aside class="px-4 flex self-end items-center gap-x-1 text-xs text-neutral-500">
+      <%= link_to meetup_comments_path(meetup), class: "flex items-center gap-x-0.5", data: { turbo_frame: "modal" } do %>
+        <%= heroicon "chat-bubble-left-right", options: { class: "h-3.5 w-3.5" } %>
+        <%= meetup.comments.count %>
+      <% end %>
       <p class="flex items-center gap-x-0.5">
         <%= heroicon "eye", options: { class: "h-3.5 w-3.5" } %>
         <%= meetup.seen_invitees.count %>
