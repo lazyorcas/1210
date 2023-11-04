@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
   namespace :user do
     resources :invitations, only: [:index, :create, :update], path: "/friends"
-    get "/settings", to: "settings#index"
   end
+
+  get "/settings", to: "current_user#settings", as: "current_user_settings"
 
   resources :meetups
   namespace :meetup do
