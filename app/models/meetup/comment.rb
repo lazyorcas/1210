@@ -10,7 +10,7 @@ class Meetup::Comment < Comment
   end
 
   def notify_meetup_invitees
-    meetup.invitees.push_subscriptions.each do |push_subscription|
+    PushSubscription.where(user_id: meetup.invitee_ids).each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[Meetup] #{meetup.title}",
