@@ -5,9 +5,16 @@
         <% if local_assigns[:title].present? %>
           <h1 class="text-xl font-bold"><%= title %></h1>
         <% end %>
-        <%= button_tag type: "button", data: { action: "click->modal#close" }, class: 'ml-auto icon-btn icon-btn--small' do %>
-          <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
-        <% end %>
+        <nav class="shrink-0 ml-auto flex items-center gap-x-2">
+          <% if local_assigns[:comments_path].present? %>
+            <%= link_to comments_path, data: { turbo_frame: "modal" } do %>
+              <%= heroicon "chat-bubble-left-right", options: { class: "h-6 w-6" } %>
+            <% end %>
+          <% end %>
+          <%= button_tag type: "button", data: { action: "click->modal#close" }, class: 'icon-btn icon-btn--small' do %>
+            <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
+          <% end %>
+        </nav>
       </header>
       <%= yield %>
     </dialog>
