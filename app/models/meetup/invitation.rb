@@ -15,7 +15,7 @@ class Meetup::Invitation < Invitation
     invitee.push_subscriptions.each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
-        title: "#{meetup.title} - #{meetup.organizer.name}",
+        title: "[Meetup] #{meetup.title} - #{meetup.organizer.name}",
         body: "#{meetup.relative_day}, #{meetup.start_time} - #{meetup.end_time}",
       )
     end
@@ -25,7 +25,7 @@ class Meetup::Invitation < Invitation
     meetup.organizer.push_subscriptions.each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
-        title: meetup.title,
+        title: "[Meetup] #{meetup.title}",
         body: "#{invitee.name} is joining!",
       )
     end
