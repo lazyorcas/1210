@@ -1,9 +1,5 @@
-<%= render layout: "shared/modal" do %>
+<%= render layout: "shared/modal", locals: { title: "What are memories?" } do %>
   <article class="sm:w-[480px] flex flex-col gap-y-8">
-    <div class="flex items-center gap-x-2">
-      <%= heroicon "information-circle", options: { class: "h-6 w-6" } %>
-      <h1 class="text-2xl font-bold">Memories</h1>
-    </div>
     <p>Create a memory if you don't want to share your meetup photos with the entire internet. Your friends who were at the meetup can also upload and see the photos.</p>
     <section class="flex flex-col gap-y-4">
       <h2 class="text-lg font-semibold">Are memories automatically created from meetups?</h2>
