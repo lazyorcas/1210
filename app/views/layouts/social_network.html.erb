@@ -14,6 +14,9 @@
         <% end %>
       </div>
       <div class="flex items-center gap-x-4">
+        <%= link_to download_path, class: "icon-btn icon-btn--small sm:hidden standalone:hidden", data: { turbo_frame: "modal" } do %>
+          <%= heroicon "arrow-down-tray", options: { class: "h-6 w-6" } %>
+        <% end %>
         <% if content_for?(:toolbar) %>
           <%= yield :toolbar %>
         <% end %>

@@ -46,6 +46,8 @@ Rails.application.routes.draw do
   get "/help/memories", to: "help#memories"
   get "/help/friends", to: "help#friends"
 
+  get "/download", to: "home#download", as: "download"
+
   # redirects
   get "/:date/meetups", to: redirect("/meetups", status: 301)
 end

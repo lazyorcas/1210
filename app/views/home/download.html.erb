@@ -1,0 +1,12 @@
+<%= render layout: "shared/modal", locals: { title: "Download" } do %>
+  <div class="mt-4 flex flex-col gap-y-4">
+    <% if browser.platform.ios? && browser.safari?("< 16.4") %>
+      <p>Your iOS version must be <b>at least 16.4</b>.</p>
+    <% end %>
+    <ol class="flex flex-col gap-y-1">
+      <li class="flex items-center gap-x-1">1. Click <%= heroicon "ellipsis-horizontal-circle", options: { class: "h-6 w-6" } %> on your browser toolbar.</li>
+      <li>2. Click <b>"Add to home screen"</b>.</li>
+      <li>3. A popup will appear, click <b>"Add"</b>.</li>
+    </ol>
+  </div>
+<% end %>
