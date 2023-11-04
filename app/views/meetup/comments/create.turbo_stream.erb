@@ -1,1 +1,1 @@
-<%= turbo_stream.append "#{dom_id(@meetup)}_comments", @meetup_comment %>
+<%= turbo_stream.append "#{dom_id(@meetup)}_comments", partial: "comments/comment", locals: { comment: @meetup_comment } %>
