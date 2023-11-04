@@ -1,5 +1,5 @@
 <%= render layout: "shared/modal", locals: { title: "Photos" } do %>
-  <div class="flex flex-col divide-y gap-y-4">
+  <div class="flex flex-col gap-y-4">
     <p class="text-sm">
       <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
     </p>
@@ -10,7 +10,7 @@
         <%= render partial: "photos", locals: { photos: @memory.photos } %>
       <% end %>
     <% end %>
-    <div class="sm:sticky sm:-bottom-4 pt-4 sm:pb-4 bg-white">
+    <div class="sm:sticky sm:-bottom-4 pt-4 sm:pb-4 bg-white border-t">
       <%= render partial: "form" %>
     </div>
   </div>
