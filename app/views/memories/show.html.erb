@@ -1,8 +1,8 @@
 <%= render layout: "shared/modal", locals: { title: "Photos" } do %>
-  <p class="text-sm">
-    <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
-  </p>
   <div class="flex flex-col divide-y gap-y-4">
+    <p class="text-sm">
+      <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
+    </p>
     <%= turbo_frame_tag "photos" do %>
       <% if @memory.photos.empty? %>
         <%= render partial: "no_photos" %>
