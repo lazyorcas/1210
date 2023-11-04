@@ -1,4 +1,4 @@
-<%= form_with model: meetup_comment, class: "flex gap-x-2", data: { controller: "form", action: "turbo:submit-end->form#clear", turbo_confirm: "You won't be able to edit after. Have you proofread it?" } do |form| %>
+<%= form_with model: comment, class: "flex gap-x-2", data: { controller: "form", action: "turbo:submit-end->form#clear", turbo_confirm: "You won't be able to edit after. Have you proofread it?" } do |form| %>
   <%= form.text_area :body, placeholder: "type something…", class: "w-full", autocomplete: "off", required: true, maxlength: 255 %>
   <%= form.button class: "shrink-0 icon-btn btn--primary" do %>
     <%= heroicon "paper-airplane", options: { class: "-mt-1 -mr-1 -rotate-45 h-6 w-6" } %>
