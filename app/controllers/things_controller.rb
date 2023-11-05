@@ -4,7 +4,12 @@ class ThingsController < ApplicationController
   layout :resolve_layout
 
   before_action :require_user!
-  before_action :require_admin!, except: [:index]
+  before_action :require_admin!, except: [:all, :index]
+
+  def all
+    @things = Thing.all
+    render("index")
+  end
 
   def index
     if current_user.city.nil?
@@ -54,7 +59,7 @@ class ThingsController < ApplicationController
 
   def resolve_layout
     case action_name
-    when "index"
+    when "index", "all"
       "things"
     else
       "application"
