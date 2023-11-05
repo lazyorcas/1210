@@ -72,6 +72,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "active_storage_validations"
 gem "ahoy_matey"
 gem "aws-sdk-s3", require: false
 gem "browser"
