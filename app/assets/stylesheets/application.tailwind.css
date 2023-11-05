@@ -84,7 +84,7 @@
 }
 
 @layer components {
-  textarea {
+  .textarea {
     @apply rounded-lg border;
     @apply h-14 px-4 py-2;
   }
@@ -178,6 +178,13 @@
     @apply rounded-full;
     @apply aspect-square;
     @apply flex items-center justify-center;
+  }
+
+  .chip {
+    @apply rounded-full;
+    @apply px-3 py-1;
+    @apply bg-neutral-200 text-neutral-900;
+    @apply text-sm;
   }
 }
 
