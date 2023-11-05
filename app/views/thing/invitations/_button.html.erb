@@ -1,8 +1,9 @@
+<% friends_interested = thing.interestees & current_user.friends %>
 <%= link_to thing_invitations_path(thing), class: "icon-btn icon-btn--small relative", id: "#{dom_id(thing)}_invitations_button", data: { turbo_frame: "modal" } do %>
   <%= heroicon "bookmark", variant: current_user.interests.exists?(thing.id) ? "solid" : "outline", options: { class: "h-6 w-6" } %>
-  <% if current_user.interests.exists?(thing.id) %>
+  <% if friends_interested.length > 0 %>
     <div class="text-xs absolute -mr-5 -mt-5 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center font-bold">
-      <%= (thing.interestees & (current_user.friends | [current_user])).length %>
+      <%= friends_interested.length %>
     </div>
   <% end %>
 <% end %>

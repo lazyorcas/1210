@@ -1,3 +1,4 @@
+<% friends_interested = @thing.interestees & current_user.friends %>
 <%= render layout: "shared/modal", locals: { title: "Interests" } do %>
   <div class="mt-4 flex flex-col gap-y-4">
     <section class="flex flex-col gap-y-1">
@@ -6,7 +7,7 @@
         <h2 class="text-sm">Friends who find this interesting</h2>
       </header>
       <p>
-        <%= @thing.interestees.count > 0 ? @thing.interestees.map(&:name).join(', ') : "No one yet" %>
+        <%= friends_interested.length > 0 ? friends_interested.map(&:name).join(', ') : "No one yet" %>
       </p>
     </section>
     <%= render "form" %>
