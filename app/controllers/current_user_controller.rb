@@ -5,7 +5,21 @@ class CurrentUserController < ApplicationController
 
   before_action :require_user!
 
+  def edit
+    load_city_options
+  end
+
+  def update
+    if current_user.update(current_user_params)
+      redirect_to(things_path)
+    end
+  end
+
   private
+
+  def load_city_options
+    @city_options = ["Barcelona", "Berlin", "Melbourne", "Munich"]
+  end
 
   def resolve_layout
     case action_name
@@ -14,5 +28,9 @@ class CurrentUserController < ApplicationController
     else
       "application"
     end
+  end
+
+  def current_user_params
+    params.require(:user).permit(:city)
   end
 end

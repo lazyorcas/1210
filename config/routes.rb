@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   scope path: "/me", as: "current_user" do
     get "/settings", to: "current_user#settings", as: "settings"
+    get "/edit", to: "current_user#edit", as: "edit"
+    patch "/", to: "current_user#update", as: "update"
   end
 
   resources :meetups
