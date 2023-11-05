@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     resources :invitations, only: [:index, :create, :update], path: "/friends"
   end
 
-  get "/settings", to: "current_user#settings", as: "current_user_settings"
+  scope path: "/me", as: "current_user" do
+    get "/settings", to: "current_user#settings", as: "settings"
+  end
 
   resources :meetups
   namespace :meetup do
