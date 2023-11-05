@@ -186,6 +186,10 @@
     @apply bg-neutral-200 text-neutral-900;
     @apply text-sm;
   }
+
+  .linkable a {
+    @apply text-blue-600;
+  }
 }
 
 @layer utilities {

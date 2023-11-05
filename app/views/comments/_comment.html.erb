@@ -4,6 +4,6 @@
   </time>
   <div class="flex gap-x-2">
     <h2 class="font-semibold"><%= comment.author.name %>:</h2>
-    <p><%= comment.body %></p>
+    <p class="linkable"><%= auto_link(comment.body, html: { target: '_blank' }) %></p>
   </div>
 </article>
