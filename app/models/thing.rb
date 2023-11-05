@@ -24,7 +24,7 @@ class Thing < ApplicationRecord
     as: :inviter
   has_many :interestees, through: :accepted_invitations, source: :invitee, source_type: "User"
 
-  validates_presence_of :type, :title, :city, :url, :image_url
+  validates_presence_of :type, :title, :url, :image_url
 
   def soft_delete
     update(is_deleted: true)

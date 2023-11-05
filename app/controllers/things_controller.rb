@@ -66,7 +66,7 @@ class ThingsController < ApplicationController
   end
 
   def filter_things_by_city
-    @things.where!(city: current_user.city)
+    @things.where!(city: [nil, current_user.city])
   end
 
   def filter_things_by_interests

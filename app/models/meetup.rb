@@ -15,6 +15,8 @@ class Meetup < ApplicationRecord
     }
 
   belongs_to :organizer, class_name: "User"
+  belongs_to :thing, optional: true
+
   has_many :invitations,
     class_name: "Meetup::Invitation",
     as: :inviter

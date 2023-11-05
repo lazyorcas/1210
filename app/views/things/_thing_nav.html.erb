@@ -4,10 +4,10 @@
   <% end %>
   <div class="flex gap-x-2 divide-x">
     <div class="flex gap-x-2">
-      <%= link_to new_idea_path(title: thing.title), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
+      <%= link_to new_idea_path(thing_id: thing.id), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
         <%= heroicon "heart", options: { class: "h-6 w-6" } %>
       <% end %>
-      <%= link_to new_meetup_path(title: thing.title), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
+      <%= link_to new_meetup_path(thing_id: thing.id), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
         <%= heroicon "bolt", options: { class: "h-6 w-6" } %>
       <% end %>
       <%= render partial: "thing/invitations/button", locals: { thing: thing } %>

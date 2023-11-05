@@ -15,12 +15,15 @@ class MeetupsController < ApplicationController
   end
 
   def new
-    @meetup = Meetup.new(organizer: current_user, title: params[:title])
+    @meetup = Meetup.new
+    @meetup.thing_id = params[:thing_id]
+    @meetup.title = @meetup.thing&.title
+    assign_current_user_to_meetup_organizer
   end
 
   def create
     @meetup = Meetup.new(meetup_params)
-    @meetup.organizer = current_user
+    assign_current_user_to_meetup_organizer
 
     if @meetup.save
       redirect_to(meetups_path)
@@ -76,6 +79,10 @@ class MeetupsController < ApplicationController
 
   def load_meetup
     @meetup = meetup_scope.find(params[:id])
+  end
+
+  def assign_current_user_to_meetup_organizer
+    @meetup.organizer = current_user
   end
 
   def load_meetups

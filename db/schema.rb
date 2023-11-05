@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_05_141703) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_05_204453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -108,7 +108,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_141703) do
     t.text("description")
     t.integer("status", default: 0)
     t.bigint("organizer_id")
+    t.bigint("thing_id")
     t.index(["organizer_id"], name: "index_ideas_on_organizer_id")
+    t.index(["thing_id"], name: "index_ideas_on_thing_id")
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -133,9 +135,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_141703) do
     t.bigint("organizer_id")
     t.datetime("created_at", null: false)
     t.datetime("updated_at", null: false)
+    t.bigint("thing_id")
     t.index(["date"], name: "index_meetups_on_date")
     t.index(["is_deleted"], name: "index_meetups_on_is_deleted")
     t.index(["organizer_id"], name: "index_meetups_on_organizer_id")
+    t.index(["thing_id"], name: "index_meetups_on_thing_id")
   end
 
   create_table "memories", force: :cascade do |t|

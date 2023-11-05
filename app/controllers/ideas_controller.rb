@@ -13,12 +13,15 @@ class IdeasController < ApplicationController
   end
 
   def new
-    @idea = Idea.new(organizer: current_user, title: params[:title])
+    @idea = Idea.new
+    @idea.thing_id = params[:thing_id]
+    @idea.title = @idea.thing&.title
+    assign_current_user_to_idea_organizer
   end
 
   def create
     @idea = Idea.new(idea_params)
-    @idea.organizer = current_user
+    assign_current_user_to_idea_organizer
 
     if @idea.save
       turbo_stream
@@ -82,6 +85,10 @@ class IdeasController < ApplicationController
     @idea = idea_scope.find(params[:id])
   end
 
+  def assign_current_user_to_idea_organizer
+    @idea.organizer = current_user
+  end
+
   def load_ideas
     @ideas = idea_scope
   end
@@ -102,6 +109,6 @@ class IdeasController < ApplicationController
   end
 
   def idea_params
-    params.require(:idea).permit(:title, :description, :status, invitee_ids: [])
+    params.require(:idea).permit(:title, :description, :status, :thing_id, invitee_ids: [])
   end
 end

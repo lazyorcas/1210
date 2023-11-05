@@ -9,6 +9,7 @@ class Idea < ApplicationRecord
   enum status: { looking_for_voters: 0, deleted: -1, polled: 1, polling: 2 }
 
   belongs_to :organizer, class_name: "User"
+  belongs_to :thing, optional: true
 
   has_many :invitations,
     class_name: "Idea::Invitation",

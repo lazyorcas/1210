@@ -1,4 +1,5 @@
 <%= form_with model: meetup, class: "form-flow sm:w-[400px]" do |form| %>
+  <%= form.hidden_field :thing_id %>
   <div class="form-inputs-flow">
     <%= form.text_field :title, list: "titles", class: "line-input text-xl my-2", required: true, placeholder: "Untitled", autocomplete: "off", maxlength: 30 %>
     <datalist id="titles">
