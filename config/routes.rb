@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
   resources :past_meetups, only: [:new, :create]
 
-  resources :memories, except: [:new, :create, :edit, :destroy]
+  resources :memories, only: [:index, :show, :update]
 
   resources :ideas
   namespace :idea do
