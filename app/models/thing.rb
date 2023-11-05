@@ -26,7 +26,15 @@ class Thing < ApplicationRecord
 
   validates_presence_of :type, :title, :url, :image_url
 
+  before_save :set_city_to_nil, if: -> { city.blank? }
+
   def soft_delete
     update(is_deleted: true)
+  end
+
+  private
+
+  def set_city_to_nil
+    self.city = nil
   end
 end
