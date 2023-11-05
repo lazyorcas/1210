@@ -21,6 +21,12 @@ class ApplicationController < ActionController::Base
     redirect_to(root_path)
   end
 
+  def require_admin!
+    unless current_user&.admin?
+      head(:forbidden)
+    end
+  end
+
   def associate_visit_with_current_user
     ahoy.authenticate(current_user)
   end

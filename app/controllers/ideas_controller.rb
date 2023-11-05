@@ -13,7 +13,7 @@ class IdeasController < ApplicationController
   end
 
   def new
-    @idea = Idea.new(organizer: current_user)
+    @idea = Idea.new(organizer: current_user, title: params[:title])
   end
 
   def create

@@ -15,7 +15,7 @@ class MeetupsController < ApplicationController
   end
 
   def new
-    @meetup = Meetup.new(organizer: current_user)
+    @meetup = Meetup.new(organizer: current_user, title: params[:title])
   end
 
   def create

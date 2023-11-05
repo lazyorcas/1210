@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_04_184602) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_05_141703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -176,6 +176,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_184602) do
     t.datetime("created_at", null: false)
     t.datetime("updated_at", null: false)
     t.index(["user_id"], name: "index_push_subscriptions_on_user_id")
+  end
+
+  create_table "things", force: :cascade do |t|
+    t.string("type")
+    t.string("title")
+    t.string("description")
+    t.string("tags")
+    t.string("city")
+    t.string("url")
+    t.string("image_url")
+    t.boolean("is_deleted")
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.index(["city"], name: "index_things_on_city")
+    t.index(["type"], name: "index_things_on_type")
   end
 
   create_table "users", force: :cascade do |t|

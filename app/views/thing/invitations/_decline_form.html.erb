@@ -1,0 +1,7 @@
+<% current_user_thing_invitation = thing.invitations.find_by(invitee_id: current_user.id) %>
+<%= form_with model: current_user_thing_invitation || Thing::Invitation.new(inviter: thing), url: current_user_thing_invitation ? thing_invitation_path(thing, current_user_thing_invitation) : thing_invitations_path(thing), class: "absolute right-2 top-2 icon-btn btn--secondary", data: { turbo_confirm: "This means, you are not interested. You won't see this anymore. Are you sure?" } do |form| %>
+  <%= form.hidden_field :is_accepted, value: false, required: true %>
+  <%= form.button do %>
+    <%= heroicon "eye-slash", options: { class: "h-6 w-6" } %>
+  <% end %>
+<% end %>

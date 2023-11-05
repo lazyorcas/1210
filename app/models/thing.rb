@@ -1,0 +1,32 @@
+# frozen_string_literal: true
+
+class Thing < ApplicationRecord
+  TYPES = [
+    "Cafe",
+    "Exhibition",
+    "Fair",
+    "Film",
+    "Leisure",
+    "Music",
+    "Restaurant",
+    "Workshop",
+  ].freeze
+
+  default_scope { where(is_deleted: nil) }
+
+  has_many :invitations,
+    class_name: "Thing::Invitation",
+    as: :inviter
+
+  has_many :accepted_invitations,
+    -> { where(is_accepted: true) },
+    class_name: "Thing::Invitation",
+    as: :inviter
+  has_many :interestees, through: :accepted_invitations, source: :invitee, source_type: "User"
+
+  validates_presence_of :type, :title, :city, :url, :image_url
+
+  def soft_delete
+    update(is_deleted: true)
+  end
+end

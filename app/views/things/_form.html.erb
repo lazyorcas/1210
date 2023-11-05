@@ -1,0 +1,33 @@
+<%= form_with model: thing, class: "form-flow sm:w-[400px]" do |form| %>
+  <div class="form-inputs-flow">
+    <div class="input-container">
+      <%= form.label :type %>
+      <%= form.select :type, Thing::TYPES, { include_blank: true }, class: "input select", required: true %>
+    </div>
+    <div class="input-container">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "input", required: true, maxlength: 255, autocomplete: "off" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :description %>
+      <%= form.text_field :description, class: "input", maxlength: 255, autocomplete: "off" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :tags %>
+      <%= form.text_field :tags, class: "input", required: true, maxlength: 255, autocomplete: "off" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :city %>
+      <%= form.select :city, City.all, { include_blank: true }, class: "input select", required: true %>
+    </div>
+    <div class="input-container">
+      <%= form.label :url %>
+      <%= form.text_field :url, class: "input", required: true, autocomplete: "off" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :image_url %>
+      <%= form.text_field :image_url, class: "input", required: true, autocomplete: "off" %>
+    </div>
+  </div>
+  <%= form.button "Create", class: "btn btn--primary" %>
+<% end %>

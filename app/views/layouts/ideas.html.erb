@@ -1,5 +1,8 @@
 <% content_for :page_title, "Ideas" %>
 <% content_for :toolbar do %>
+  <%= link_to current_user.city.present? ? things_path : current_user_edit_path, class: "icon-btn btn--secondary", data: { turbo_frame: current_user.city.present? ? nil : "modal" } do %>
+    <%= heroicon "map-pin", options: { class: "h-6 w-6" } %>
+  <% end %>
   <%= link_to new_idea_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
     <%= heroicon "plus", options: { class: "h-6 w-6" } %>
   <% end %>
