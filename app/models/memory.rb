@@ -12,7 +12,7 @@ class Memory < ApplicationRecord
     size: { less_than: 10.megabytes }
 
   def notify_meetup_attendees
-    Pushsubscription.where(user: meetup.attendees).each do |push_subscription|
+    PushSubscription.where(user: meetup.attendees).each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[Memory] #{meetup.title}",
