@@ -11,8 +11,10 @@ class Memory < ApplicationRecord
     content_type: %r{\Aimage/.*\z},
     size: { less_than: 10.megabytes }
 
-  def notify_meetup_attendees
-    PushSubscription.where(user: meetup.attendees).each do |push_subscription|
+  after_create :notify_meetup_organizer_and_attendees
+
+  def notify_meetup_organizer_and_attendees
+    PushSubscription.where(user: [meetup.organizer] + meetup.attendees).each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[Memory] #{meetup.title}",
