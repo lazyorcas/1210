@@ -1,5 +1,5 @@
 <% thing = thing.becomes(Thing) %>
-<article class="snap-center min-w-full flex flex-col gap-y-4" id="<%= dom_id(thing) %>">
+<article class="snap-always snap-center min-w-full flex flex-col gap-y-4" id="<%= dom_id(thing) %>">
   <div class="overflow-y-scroll grow flex flex-col gap-y-4">
     <div class="relative">
       <%= image_tag thing.image_url, class: "aspect-square object-cover rounded-xl w-full" %>
