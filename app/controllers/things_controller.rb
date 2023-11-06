@@ -18,10 +18,7 @@ class ThingsController < ApplicationController
 
     load_things
     filter_things_by_city unless current_user.admin?
-    if params[:interests]
-      filter_things_by_interests
-      @only_current_user_interests = true
-    end
+    filter_things_by_interests if params[:interesting]
     order_things
   end
 
