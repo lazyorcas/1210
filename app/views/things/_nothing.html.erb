@@ -1,10 +1,11 @@
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center px-4">
   <%= image_tag "person-looking-at-map.svg", width: 320, height: 320 %>
   <p class="text-center mb-2">
-    <% if @only_current_user_interests %>
-      You haven't found anything interesting yet.
+    <% if current_page?(interesting_things_path) %>
+      You haven't found anything interesting yet. <br />
+      Keep searching.
     <% else %>
-      Still searching… Come back in 1-2 days.
+      Come back in 1-2 days.
     <% end %>
   </p>
 </div>

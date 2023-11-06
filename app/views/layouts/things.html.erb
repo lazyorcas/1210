@@ -2,14 +2,20 @@
 <html>
   <%= render "shared/head" %>
   <body class="px-0">
-    <header class="px-4 shrink-0 h-[68px] flex items-center gap-x-4 justify-between">
+    <header class="shrink-0 h-[68px] flex items-center gap-x-4 px-4 justify-between">
       <div class="flex items-center gap-x-1">
         <%= link_to ideas_path, class: "icon-btn icon-btn--small" do %>
           <%= heroicon "chevron-left", options: { class: "h-6 w-6" } %>
         <% end %>
         <div>
           <h1 class="text-3xl font-black"><%= current_user.city %></h1>
-          <p class="text-neutral-500 text-sm">Swipe to see more</p>
+          <p class="text-neutral-500 text-sm">
+            <% if current_page?(interesting_things_path) %>
+              Swipe to see more.
+            <% else %>
+              Bookmark or hide to see more.
+            <% end %>
+          </p>
         </div>
       </div>
       <nav class="flex items-center gap-x-2">

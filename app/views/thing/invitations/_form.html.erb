@@ -1,9 +1,0 @@
-<%= form_with model: @thing_invitation, url: @thing_invitation.persisted? ? thing_invitation_path(@thing, @thing_invitation) : thing_invitations_path(@thing), class: "form-flow sm:w-[400px]" do |form| %>
-  <%= form.hidden_field :is_accepted, value: !@thing_invitation.is_accepted || nil, required: true %>
-  <div class="flex flex-col gap-y-2">
-    <% unless @thing_invitation.is_accepted %>
-      <p class="text-sm text-neutral-500">Let your friends know that you are interested.</p>
-    <% end %>
-    <%= form.button @thing_invitation.is_accepted ? "Undo" : "I'm interested", class: class_names("btn", @thing_invitation.is_accepted ? "btn--secondary" : "btn--primary") %>
-  </div>
-<% end %>

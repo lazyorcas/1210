@@ -1,6 +1,2 @@
-<% if @thing_invitation.is_accepted == false %>
-  <%= turbo_stream.remove @thing %>
-<% else %>
-  <%= turbo_stream.replace "#{dom_id(@thing)}_invitations_button", partial: "button", locals: { thing: @thing } %>
-  <%= turbo_stream.update "modal", "" %>
-<% end %>
+<%= turbo_stream.remove @thing %>
+<%= turbo_stream.update "modal", "" %>

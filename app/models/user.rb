@@ -50,12 +50,6 @@ class User < ApplicationRecord
     as: :invitee
   has_many :interests, through: :accepted_thing_invitations, source: :inviter, source_type: "Thing"
 
-  has_many :declined_thing_invitations,
-    -> { where(is_accepted: false) },
-    class_name: "Thing::Invitation",
-    as: :invitee
-  has_many :uninterests, through: :declined_thing_invitations, source: :inviter, source_type: "Thing"
-
   validates_presence_of :name, :email, :time_zone
 
   validates :email,

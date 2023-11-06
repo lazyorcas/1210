@@ -131,6 +131,10 @@
     @apply h-8 w-8;
   }
 
+  .icon-btn--big {
+    @apply h-14 w-14;
+  }
+
   .check-box {
     @apply rounded-lg;
     @apply h-6 w-6;

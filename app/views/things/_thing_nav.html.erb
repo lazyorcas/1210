@@ -1,16 +1,14 @@
-<nav class="shrink-0 mt-auto mb-4 standalone:mb-8 bg-neutral-100 rounded-full py-2 px-3 border flex justify-between">
-  <%= link_to thing.url, class: "icon-btn icon-btn--small", target: "_blank" do %>
-    <%= heroicon "arrow-top-right-on-square", options: { class: "h-6 w-6" } %>
+<nav class="shrink-0 mt-auto mb-4 standalone:mb-8 flex gap-x-2 justify-center">
+  <%= form_with model: Thing::Invitation.new(inviter: thing), url: thing_invitations_path(thing), class: "icon-btn icon-btn--big btn--primary", data: { turbo_confirm: "You won't see this anymore. Are you sure?" } do |form| %>
+    <%= form.hidden_field :is_accepted, value: false, required: true %>
+    <%= form.button do %>
+      <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
+    <% end %>
   <% end %>
-  <div class="flex gap-x-2 divide-x">
-    <div class="flex gap-x-2">
-      <%= link_to new_idea_path(thing_id: thing.id), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
-        <%= heroicon "heart", options: { class: "h-6 w-6" } %>
-      <% end %>
-      <%= link_to new_meetup_path(thing_id: thing.id), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
-        <%= heroicon "bolt", options: { class: "h-6 w-6" } %>
-      <% end %>
-      <%= render partial: "thing/invitations/button", locals: { thing: thing } %>
-    </div>
-  </div>
+  <%= form_with model: Thing::Invitation.new(inviter: thing), url: thing_invitations_path(thing), class: "icon-btn icon-btn--big btn--primary" do |form| %>
+    <%= form.hidden_field :is_accepted, value: true, required: true %>
+    <%= form.button do %>
+      <%= heroicon "check", options: { class: "h-6 w-6" } %>
+    <% end %>
+  <% end %>
 </nav>

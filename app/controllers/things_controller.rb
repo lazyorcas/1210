@@ -18,7 +18,7 @@ class ThingsController < ApplicationController
 
     load_things
     filter_things_by_city unless current_user.admin?
-    filter_things_by_interests if params[:interesting]
+    filter_things_by_interests
     order_things
   end
 
@@ -68,11 +68,18 @@ class ThingsController < ApplicationController
   end
 
   def filter_things_by_city
-    @things.where!(city: [nil, current_user.city])
+    @things = @things.where(city: [nil, current_user.city])
   end
 
   def filter_things_by_interests
-    @things.where!(id: current_user.interests)
+    @things =
+      if params[:interesting].present?
+        @things.where(id: current_user.interests)
+      else
+        @things
+          .left_joins(:invitations)
+          .where(invitations: { id: nil })
+      end
   end
 
   def order_things
@@ -88,7 +95,7 @@ class ThingsController < ApplicationController
   end
 
   def thing_scope
-    Thing.where.not(id: current_user.uninterests)
+    Thing.all
   end
 
   def thing_params
