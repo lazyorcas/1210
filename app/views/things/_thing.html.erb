@@ -17,7 +17,7 @@
         <p><%= thing.description %></p>
       </div>
       <aside class="flex gap-1 flex-wrap">
-        <% thing.tags.split('|').each do |tag| %>
+        <% ([thing.type] + thing.tags.split('|')).each do |tag| %>
           <span class="chip">
             <%= tag %>
           </span>
