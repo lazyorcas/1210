@@ -19,7 +19,11 @@ class ThingsController < ApplicationController
     load_things
     filter_things_by_city unless current_user.admin?
     filter_things_by_interests
-    randomize_things
+    if params[:interesting].present?
+      order_things
+    else
+      randomize_things
+    end
   end
 
   def new
@@ -80,6 +84,10 @@ class ThingsController < ApplicationController
           .left_joins(:invitations)
           .where(invitations: { id: nil })
       end
+  end
+
+  def order_things
+    @things.order!(:title)
   end
 
   def randomize_things
