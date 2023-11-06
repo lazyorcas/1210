@@ -5,23 +5,25 @@
       <%= image_tag thing.image_url, class: "aspect-square object-cover rounded-xl w-full" %>
       <%= render partial: "thing/invitations/decline_form", locals: { thing: thing } %>
     </div>
-    <div class="flex flex-col gap-y-1">
-      <% if current_user.admin? %>
-        <%= link_to edit_thing_path(thing), class: "text-2xl font-bold", data: { turbo_frame: "modal" } do %>
-          <%= thing.title %>
+    <div class="px-2">
+      <div class="flex flex-col gap-y-1">
+        <% if current_user.admin? %>
+          <%= link_to edit_thing_path(thing), class: "text-2xl font-bold", data: { turbo_frame: "modal" } do %>
+            <%= thing.title %>
+          <% end %>
+        <% else %>
+          <h2 class="text-2xl font-bold"><%= thing.title %></h2>
         <% end %>
-      <% else %>
-        <h2 class="text-2xl font-bold"><%= thing.title %></h2>
-      <% end %>
-      <p><%= thing.description %></p>
+        <p><%= thing.description %></p>
+      </div>
+      <aside class="flex gap-1 flex-wrap">
+        <% thing.tags.split('|').each do |tag| %>
+          <span class="chip">
+            <%= tag %>
+          </span>
+        <% end %>
+      </aside>
     </div>
-    <aside class="flex gap-1 flex-wrap">
-      <% thing.tags.split('|').each do |tag| %>
-        <span class="chip">
-          <%= tag %>
-        </span>
-      <% end %>
-    </aside>
   </div>
   <%= render partial: "thing_nav", locals: { thing: thing } %>
 </article>
