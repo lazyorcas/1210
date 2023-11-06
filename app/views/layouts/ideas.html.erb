@@ -1,5 +1,10 @@
 <% content_for :page_title, "Ideas" %>
 <% content_for :toolbar do %>
+  <% if current_user.admin? %>
+    <%= link_to current_page?(all_things_path) ? things_path : all_things_path, class: "icon-btn icon-btn--small" do %>
+      <%= heroicon "sparkles", variant: current_page?(all_things_path) ? "solid" : "outline", options: { class: "h-6 w-6" } %>
+    <% end %>
+  <% end %>
   <%= link_to current_user.city.present? ? things_path : current_user_edit_path, class: "icon-btn icon-btn--small", data: { turbo_frame: current_user.city.present? ? nil : "modal" } do %>
     <%= heroicon "map-pin", options: { class: "h-6 w-6" } %>
     <div class="status status--empty absolute -mr-4 -mt-4"></div>

@@ -13,15 +13,13 @@
         </div>
       </div>
       <nav class="flex items-center gap-x-2">
-        <%= link_to current_page?(interesting_things_path) ? things_path : interesting_things_path, class: "icon-btn icon-btn--small" do %>
-          <%= heroicon "bookmark", variant: current_page?(interesting_things_path) ? "solid" : "outline", options: { class: "h-6 w-6" } %>
-        <% end %>
-        <% if current_user.admin? %>
-          <%= link_to current_page?(all_things_path) ? things_path : all_things_path, class: "icon-btn icon-btn--small" do %>
-            <%= heroicon "sparkles", variant: current_page?(all_things_path) ? "solid" : "outline", options: { class: "h-6 w-6" } %>
-          <% end %>
+        <% if current_page?(all_things_path) %>
           <%= link_to new_thing_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
             <%= heroicon "plus", options: { class: "h-6 w-6" } %>
+          <% end %>
+        <% else %>
+          <%= link_to current_page?(interesting_things_path) ? things_path : interesting_things_path, class: "icon-btn icon-btn--small" do %>
+            <%= heroicon "bookmark", variant: current_page?(interesting_things_path) ? "solid" : "outline", options: { class: "h-6 w-6" } %>
           <% end %>
         <% end %>
       </nav>
