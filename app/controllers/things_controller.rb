@@ -4,7 +4,7 @@ class ThingsController < ApplicationController
   layout :resolve_layout
 
   before_action :require_user!
-  before_action :require_admin!, except: [:all, :index]
+  before_action :require_admin!, except: [:index]
 
   def all
     @things = Thing.all
