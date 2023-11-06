@@ -19,7 +19,7 @@ class ThingsController < ApplicationController
     load_things
     filter_things_by_city unless current_user.admin?
     filter_things_by_interests
-    order_things
+    randomize_things
   end
 
   def new
@@ -82,8 +82,8 @@ class ThingsController < ApplicationController
       end
   end
 
-  def order_things
-    @things.order!(:title)
+  def randomize_things
+    @things.order!("RANDOM()")
   end
 
   def load_thing
