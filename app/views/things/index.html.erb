@@ -1,7 +1,7 @@
 <% if @things.empty? %>
   <%= render partial: "nothing" %>
 <% else %>
-  <main class="w-full grow flex snap-mandatory snap-x overflow-x-scroll gap-x-2 px-4">
+  <main class="w-full grow flex snap-mandatory snap-x overflow-x-scroll gap-x-2 px-4 mt-2">
     <%= render partial: "thing", collection: @things %>
   </main>
 <% end %>
