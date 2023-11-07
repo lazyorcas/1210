@@ -13,7 +13,7 @@
             <% if current_page?(interesting_things_path) %>
               Swipe to see more.
             <% else %>
-              Bookmark or hide to see more.
+              Bookmark or skip to see more.
             <% end %>
           </p>
         </div>
@@ -31,6 +31,10 @@
       </nav>
     </header>
     <%= yield %>
-    <%= turbo_frame_tag "modal" %>
+    <%= turbo_frame_tag "modal" do %>
+      <% if current_user.disinterests.count == 0 %>
+        <%= render partial: "things/guide" %>
+      <% end %>
+    <% end %>
   </body>
 </html>

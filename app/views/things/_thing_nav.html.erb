@@ -1,5 +1,5 @@
 <nav class="shrink-0 mt-auto mb-4 standalone:mb-8 flex gap-x-2 justify-center">
-  <%= form_with model: Thing::Invitation.new(inviter: thing), url: thing_invitations_path(thing), class: "icon-btn icon-btn--big btn--primary", data: { turbo_confirm: "You won't see this anymore. Are you sure?" } do |form| %>
+  <%= form_with model: Thing::Invitation.new(inviter: thing), url: thing_invitations_path(thing), class: "icon-btn icon-btn--big btn--primary" do |form| %>
     <%= form.hidden_field :is_accepted, value: false, required: true %>
     <%= form.button do %>
       <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
