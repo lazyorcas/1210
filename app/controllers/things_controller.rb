@@ -40,6 +40,7 @@ class ThingsController < ApplicationController
     @thing = Thing.new(thing_params)
 
     if @thing.save
+      abstract_thing
       turbo_stream
     end
   end
