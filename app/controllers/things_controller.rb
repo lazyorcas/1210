@@ -80,9 +80,7 @@ class ThingsController < ApplicationController
       if params[:interesting].present?
         @things.where(id: current_user.interests)
       else
-        @things
-          .left_joins(:invitations)
-          .where(invitations: { id: nil })
+        @things.where.not(id: current_user.interests + current_user.disinterests)
       end
   end
 
