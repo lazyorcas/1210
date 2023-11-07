@@ -8,8 +8,12 @@ class IdeasController < ApplicationController
   after_action :track_saw_ideas, only: [:index]
 
   def index
+    ahoy.track("visited_ideas")
+
     load_ideas
     order_ideas
+
+    ahoy.track("saw_no_ideas") if @ideas.empty?
   end
 
   def new

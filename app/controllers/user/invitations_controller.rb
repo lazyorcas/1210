@@ -5,6 +5,10 @@ class User::InvitationsController < ApplicationController
 
   before_action :require_user!
 
+  def index
+    ahoy.track("visited_friends")
+  end
+
   def create
     @user_invitation = User::Invitation.new(
       inviter: current_user,

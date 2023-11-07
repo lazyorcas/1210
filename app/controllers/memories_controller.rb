@@ -6,6 +6,8 @@ class MemoriesController < ApplicationController
   before_action :require_user!
 
   def index
+    ahoy.track("visited_memories")
+
     load_memories
     order_memories
   end
