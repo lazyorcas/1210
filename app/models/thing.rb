@@ -19,7 +19,7 @@ class Thing < ApplicationRecord
     as: :inviter
 
   has_many :accepted_invitations,
-    -> { where(is_accepted: true) },
+    -> { accepted },
     class_name: "Thing::Invitation",
     as: :inviter
   has_many :interestees, through: :accepted_invitations, source: :invitee, source_type: "User"

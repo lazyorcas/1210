@@ -17,7 +17,7 @@ class Idea::Option < Pollable::Option
   has_many :invitees, through: :invitations, source: :invitee, source_type: "User"
 
   has_many :upvotes,
-    -> { where(is_accepted: true) },
+    -> { accepted },
     class_name: "Idea::Option::Invitation",
     as: :inviter
   has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"

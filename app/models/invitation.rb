@@ -9,7 +9,7 @@ class Invitation < ApplicationRecord
   scope :acceptable, -> { where(is_accepted: [nil, false]) }
   scope :pending, -> { where(is_accepted: nil) }
   scope :accepted, -> { where(is_accepted: true) }
-  scope :denied, -> { where(is_accepted: false) }
+  scope :declined, -> { where(is_accepted: false) }
 
   def accept
     update(is_accepted: true)

@@ -17,13 +17,13 @@ class Idea < ApplicationRecord
   has_many :invitees, through: :invitations, source: :invitee, source_type: "User"
 
   has_many :accepted_invitations,
-    -> { where(is_accepted: true) },
+    -> { accepted },
     class_name: "Idea::Invitation",
     as: :inviter
   has_many :voters, through: :accepted_invitations, source: :invitee, source_type: "User"
 
   has_many :pending_invitations,
-    -> { where(is_accepted: [false, nil]) },
+    -> { acceptable },
     class_name: "Idea::Invitation",
     as: :inviter
   has_many :pending_invitees, through: :pending_invitations, source: :invitee, source_type: "User"

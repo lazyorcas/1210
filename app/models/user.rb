@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :invited_meetups, through: :meetup_invitations, source: :inviter, source_type: "Meetup"
 
   has_many :accepted_meetup_invitations,
-    -> { where(is_accepted: true) },
+    -> { accepted },
     class_name: "Meetup::Invitation",
     as: :invitee
   has_many :accepted_meetups, through: :accepted_meetup_invitations, source: :inviter, source_type: "Meetup"
@@ -34,7 +34,7 @@ class User < ApplicationRecord
   has_many :invited_ideas, through: :idea_invitations, source: :inviter, source_type: "Idea"
 
   has_many :accepted_idea_invitations,
-    -> { where(is_accepted: true) },
+    -> { accepted },
     class_name: "Idea::Invitation",
     as: :invitee
   has_many :voting_ideas, through: :accepted_idea_invitations, source: :inviter, source_type: "Idea"
@@ -45,13 +45,13 @@ class User < ApplicationRecord
   has_many :invited_idea_options, through: :idea_option_invitations, source: :inviter, source_type: "Idea::Option"
 
   has_many :accepted_thing_invitations,
-    -> { where(is_accepted: true) },
+    -> { accepted },
     class_name: "Thing::Invitation",
     as: :invitee
   has_many :interests, through: :accepted_thing_invitations, source: :inviter, source_type: "Thing"
 
   has_many :declined_thing_invitations,
-    -> { where(is_accepted: false) },
+    -> { declined },
     class_name: "Thing::Invitation",
     as: :invitee
   has_many :disinterests, through: :declined_thing_invitations, source: :inviter, source_type: "Thing"
