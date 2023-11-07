@@ -12,8 +12,6 @@ class ThingsController < ApplicationController
   end
 
   def index
-    ahoy.track("visited_things")
-
     if current_user.city.nil?
       redirect_to(current_user_edit_path) and return
     end
@@ -25,8 +23,10 @@ class ThingsController < ApplicationController
 
     if params[:interesting].present?
       order_things
+      ahoy.track("visited_interesting_things")
     else
       randomize_things
+      ahoy.track("visited_things")
     end
 
     ahoy.track("saw_no_things") if @things.empty?
