@@ -40,7 +40,7 @@ class ThingsController < ApplicationController
     @thing = Thing.new(thing_params)
 
     if @thing.save
-      redirect_to(things_path)
+      turbo_stream
     end
   end
 
@@ -53,13 +53,13 @@ class ThingsController < ApplicationController
     load_thing
     abstract_thing
     if @thing.update(thing_params)
-      redirect_to(things_path)
+      turbo_stream
     end
   end
 
   def destroy
     @thing.soft_delete
-    redirect_to(things_path)
+    turbo_stream
   end
 
   private
