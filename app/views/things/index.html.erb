@@ -1,7 +1,7 @@
 <% if @things.empty? %>
   <%= render partial: "nothing" %>
 <% else %>
-  <main class="<%= class_names("w-full grow flex snap-mandatory snap-x mt-2 px-4", current_page?(interesting_things_path) ? "overflow-x-scroll gap-x-2" : "overflow-x-hidden gap-x-4") %>">
+  <main class="<%= class_names("w-full grow flex snap-mandatory snap-x mt-2 px-4", current_page?(interesting_things_path) || current_page?(all_things_path) ? "overflow-x-scroll gap-x-2" : "overflow-x-hidden gap-x-4") %>">
     <%= render partial: "thing", collection: @things %>
   </main>
 <% end %>
