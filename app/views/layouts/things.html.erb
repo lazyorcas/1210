@@ -32,7 +32,7 @@
     </header>
     <%= yield %>
     <%= turbo_frame_tag "modal" do %>
-      <% if current_user.disinterests.count == 0 %>
+      <% if !current_page?(interesting_things_path) && current_user.disinterests.count == 0 %>
         <%= render partial: "things/guide" %>
       <% end %>
     <% end %>
