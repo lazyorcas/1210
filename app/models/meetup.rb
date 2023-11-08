@@ -42,6 +42,8 @@ class Meetup < ApplicationRecord
   validates :date,
     format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }
 
+  after_commit :notify_of_new_meetup, on: :create
+
   def upcoming?
     date >= Time.zone.today
   end
@@ -77,6 +79,17 @@ class Meetup < ApplicationRecord
 
   def seen_event_properties
     { meetup_id: id }
+  end
+
+  def notify_of_new_meetup
+    recipients = invitees.without_push_subscription
+
+    if recipients.present?
+      MeetupMailer
+        .with(meetup: self, recipients: recipients.map(&:email))
+        .new_meetup_notification
+        .deliver_later
+    end
   end
 
   private

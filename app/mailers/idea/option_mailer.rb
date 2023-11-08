@@ -9,7 +9,7 @@ class Idea::OptionMailer < ApplicationMailer
   def new_option_notification
     mail(
       subject: "😎 New voting option is added to an idea.",
-      bcc: @recipients.map(&:email),
+      bcc: @recipients,
     )
   end
 end

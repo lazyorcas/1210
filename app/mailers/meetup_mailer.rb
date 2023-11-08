@@ -9,7 +9,7 @@ class MeetupMailer < ApplicationMailer
   def new_meetup_notification
     mail(
       subject: "🥳 #{@meetup.organizer.name} has invited you to a new meetup!",
-      bcc: @recipients.map(&:email),
+      bcc: @recipients,
     )
   end
 end

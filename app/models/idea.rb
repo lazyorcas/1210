@@ -31,6 +31,7 @@ class Idea < ApplicationRecord
 
   validates_presence_of :title, :organizer
 
+  after_commit :notify_of_new_idea, on: :create
   after_update :notify_voters_of_status_changed_to_polling, if: -> { saved_change_to_status? && polling? }
 
   def soft_delete
@@ -50,10 +51,15 @@ class Idea < ApplicationRecord
     { idea_id: id }
   end
 
-  private
+  def notify_of_new_idea
+    recipients = invitees.without_push_subscription
 
-  def main_user
-    organizer
+    if recipients.present?
+      IdeaMailer
+        .with(idea: self, recipients: recipients.map(&:email))
+        .new_idea_notification
+        .deliver_later
+    end
   end
 
   def notify_voters_of_status_changed_to_polling
@@ -65,9 +71,19 @@ class Idea < ApplicationRecord
       )
     end
 
-    IdeaMailer
-      .with(idea: self, recipients: voters.without_push_subscription.to_a)
-      .idea_status_changed_to_polling_notification.deliver_later(wait: 5.minutes)
+    recipients = voters.without_push_subscription
+    if recipients.present?
+      IdeaMailer
+        .with(idea: self, recipients: recipients.map(&:email))
+        .idea_status_changed_to_polling_notification
+        .deliver_later
+    end
+  end
+
+  private
+
+  def main_user
+    organizer
   end
 
   def seen_events

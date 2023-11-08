@@ -22,6 +22,7 @@ class Idea::Option < Pollable::Option
     as: :inviter
   has_many :upvoters, through: :upvotes, source: :invitee, source_type: "User"
 
+  after_commit :notify_of_new_option, on: :create
   after_create :invite_idea_organizer_and_voters
 
   def idea
@@ -30,6 +31,17 @@ class Idea::Option < Pollable::Option
 
   def upvote_percent
     upvotes.count * 100 / invitations.count
+  end
+
+  def notify_of_new_option
+    recipients = User.where(id: idea.voters + [idea.organizer] - [originator]).without_push_subscription
+
+    if recipients.present?
+      Idea::OptionMailer
+        .with(idea_option: self, recipients: recipients.map(&:email))
+        .new_option_notification
+        .deliver_later
+    end
   end
 
   private
