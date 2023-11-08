@@ -4,7 +4,7 @@ class Idea::Invitation < Invitation
   default_scope { where(inviter_type: "Idea", invitee_type: "User") }
 
   after_create :notify_invitee
-  after_update :notify_organizer, if: -> { is_accepted }
+  after_update :notify_organizer, if: :is_accepted
 
   def idea
     inviter
