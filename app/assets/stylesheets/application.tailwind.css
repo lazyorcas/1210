@@ -184,7 +184,7 @@
     @apply flex items-center justify-center;
   }
 
-  .chip {
+  .tag {
     @apply rounded-full;
     @apply px-3 py-1;
     @apply bg-neutral-200 text-neutral-900;
