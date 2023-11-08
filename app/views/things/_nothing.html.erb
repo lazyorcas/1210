@@ -1,6 +1,6 @@
 <div class="flex flex-col items-center px-4">
   <%= image_tag "person-looking-at-map.svg", width: 320, height: 320 %>
-  <p class="text-center mb-2">
+  <p class="text-center">
     <% if current_page?(interesting_things_path) %>
       You haven't found anything interesting yet. <br />
       Keep searching.
@@ -8,4 +8,9 @@
       Come back in 1-2 days.
     <% end %>
   </p>
+  <% if !current_page?(interesting_things_path) && @things.empty? %>
+    <%= link_to interesting_things_path, class: "mt-2 btn btn--primary" do %>
+      See bookmarks
+    <% end %>
+  <% end %>
 </div>
