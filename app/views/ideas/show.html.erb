@@ -18,7 +18,7 @@
       <%= render partial: "voters" %>
     <% end %>
     <% if @idea.organizer == current_user %>
-      <div class="flex gap-x-4">
+      <div class="flex gap-x-2">
         <% if @idea.looking_for_voters? %>
           <%= button_to idea_path(@idea), method: :delete, class: "shrink-0 icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this idea?" } do |form| %>
             <%= heroicon "trash", options: { class: "h-6 w-6" } %>
