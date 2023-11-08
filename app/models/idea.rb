@@ -29,6 +29,8 @@ class Idea < ApplicationRecord
 
   has_many :options, class_name: "Idea::Option", as: :pollable
 
+  has_many :comments, class_name: "Idea::Comment", as: :commentable
+
   validates_presence_of :title, :organizer
 
   after_commit :notify_of_new_idea, on: :create

@@ -31,7 +31,7 @@ class Meetup::CommentsController < ApplicationController
   end
 
   def order_meetup_comments
-    @meetup_comments = @meetup_comments.order!(:created_at)
+    @meetup_comments.order!(:created_at)
   end
 
   def meetup_scope

@@ -1,7 +1,7 @@
 <% is_voter_or_owner = idea.voters.exists?(current_user.id) || idea.organizer == current_user %>
 <article class="flex flex-col gap-y-0.5" id="<%= dom_id(idea) %>">
-  <%= link_to idea_path(idea), class: "card flex gap-x-4", data: { turbo_frame: "modal" } do %>
-    <div class="grow">
+  <div class="card flex gap-x-4">
+    <%= link_to idea_path(idea), class: "grow", data: { turbo_frame: "modal" } do %>
       <p class="text-sm"><%= idea.organizer.name %></p>
       <div>
         <h2 class="font-semibold"><%= idea.title %></h2>
@@ -9,7 +9,7 @@
           <p class="text-sm"><%= idea.description %></p>
         <% end %>
       </div>
-    </div>
+    <% end %>
     <div class="shrink-0 flex flex-col items-end">
       <% if idea.polling? && is_voter_or_owner %>
         <div class="flex items-center gap-x-1">
@@ -18,6 +18,10 @@
             Planning
           </p>
         </div>
+        <%= link_to idea_comments_path(idea), class: "flex items-center gap-x-1 text-sm", data: { turbo_frame: "modal" } do %>
+          <%= heroicon "chat-bubble-left-right", options: { class: "h-4 w-4" } %>
+          <%= idea.comments.count %>
+        <% end %>
       <% end %>
       <% if idea.looking_for_voters? && idea.organizer != current_user %>
         <div class="flex items-center gap-x-1 text-sm">
@@ -26,7 +30,7 @@
         </div>
       <% end %>
     </div>
-  <% end %>
+  </div>
   <% if idea.organizer == current_user && idea.looking_for_voters? %>
     <aside class="px-4 flex self-end items-center gap-x-1 text-xs text-neutral-500">
       <p class="flex items-center gap-x-0.5">

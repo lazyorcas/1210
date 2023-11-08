@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   end
   scope module: "idea", path: "/idea/:idea_id", as: "idea" do
     resources :options, only: [:new, :create]
+    resources :comments, only: [:index, :create]
   end
 
   resources :push_subscriptions, only: [:create]
