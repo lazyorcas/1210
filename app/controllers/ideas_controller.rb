@@ -98,7 +98,7 @@ class IdeasController < ApplicationController
   end
 
   def order_ideas
-    @ideas.order!(created_at: :desc)
+    @ideas.order!(updated_at: :desc)
   end
 
   def idea_scope
