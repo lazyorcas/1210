@@ -42,7 +42,7 @@ class Meetup < ApplicationRecord
   validates :date,
     format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }
 
-  after_commit :notify_of_new_meetup, on: :create
+  after_commit :notify_of_new_meetup, on: :create, if: :upcoming?
 
   def upcoming?
     date >= Time.zone.today
