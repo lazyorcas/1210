@@ -1,11 +1,12 @@
-<nav class="shrink-0 mt-auto mb-4 standalone:mb-8 flex gap-x-2 justify-between pr-2">
+<nav class="shrink-0 mt-auto mb-4 standalone:mb-8 flex items-center gap-x-2 justify-between pr-2 h-14">
   <%= render partial: "thing/invitations/index_link", locals: { thing: thing } %>
-  <div class="flex gap-x-2">
-    <%= link_to new_idea_path(thing_id: thing.id), class: "icon-btn icon-btn--big btn--primary", data: { turbo_frame: "modal" } do %>
-      <%= heroicon "heart", options: { class: "h-6 w-6" } %>
+  <div class="grow flex gap-x-2">
+    <%= link_to new_idea_path(thing_id: thing.id), class: "flex-1 btn btn--primary flex gap-x-2", data: { turbo_frame: "modal" } do %>
+      New idea
     <% end %>
-    <%= link_to new_meetup_path(thing_id: thing.id), class: "icon-btn icon-btn--big btn--primary", data: { turbo_frame: "modal" } do %>
-      <%= heroicon "bolt", options: { class: "h-6 w-6" } %>
+    <%= link_to new_meetup_path(thing_id: thing.id), class: "flex-1 btn btn--primary flex gap-x-2", data: { turbo_frame: "modal" } do %>
+      <%= heroicon "bolt", variant: "solid", options: { class: "h-6 w-6" } %>
+      Meetup
     <% end %>
   </div>
 </nav>
