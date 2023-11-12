@@ -7,9 +7,8 @@ class Idea < ApplicationRecord
   scope :inactive,
     -> {
       joins(:invitations)
-        .where("invitations.updated_at >= ?", 1.week.ago)
         .group("ideas.id")
-        .having("COUNT(invitations.id) = 0")
+        .having("MAX(invitations.updated_at) < ?", 1.week.ago)
     }
 
   enum status: { looking_for_voters: 0, deleted: -1, polled: 1, polling: 2 }
