@@ -8,9 +8,15 @@ class IdeasController < ApplicationController
   after_action :track_saw_ideas, only: [:index]
 
   def index
-    ahoy.track("visited_ideas")
+    if params[:inactive]
+      ahoy.track("visited_inactive_ideas")
+    else
+      ahoy.track("visited_ideas")
+    end
 
     load_ideas
+    @should_filter = @ideas.count >= 5
+    filter_ideas if @should_filter
     order_ideas
 
     ahoy.track("saw_no_ideas") if @ideas.empty?
@@ -95,14 +101,13 @@ class IdeasController < ApplicationController
 
   def load_ideas
     @ideas = idea_scope
-    @should_filter = @ideas.count >= 5
+  end
 
-    if @should_filter
-      if params[:inactive]
-        filter_by_inactive_ideas
-      else
-        filter_by_active_ideas
-      end
+  def filter_ideas
+    if params[:inactive]
+      filter_by_inactive_ideas
+    else
+      filter_by_active_ideas
     end
   end
 
