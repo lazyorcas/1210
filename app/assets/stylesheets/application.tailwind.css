@@ -187,8 +187,16 @@
   .tag {
     @apply rounded-full;
     @apply px-3 py-1;
-    @apply bg-neutral-200 text-neutral-900;
     @apply text-sm;
+  }
+
+  .tag--active {
+    @apply bg-neutral-900 text-white;
+    @apply font-semibold;
+  }
+
+  .tag--inactive {
+    @apply bg-neutral-200 text-neutral-900;
   }
 
   .linkable a {

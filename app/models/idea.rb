@@ -4,6 +4,13 @@ class Idea < ApplicationRecord
   include FriendsOnly
 
   scope :ongoing, -> { where(status: [:looking_for_voters, :polling]) }
+  scope :inactive,
+    -> {
+      joins(:invitations)
+        .where("invitations.updated_at < ?", 1.week.ago)
+        .group("ideas.id")
+        .having("COUNT(invitations.id) = 0")
+    }
 
   enum status: { looking_for_voters: 0, deleted: -1, polled: 1, polling: 2 }
 

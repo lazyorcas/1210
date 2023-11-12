@@ -1,7 +1,13 @@
 <%= render layout: "shared/modal", locals: { comments_path: idea_comments_path(@idea) } do %>
   <article class="sm:w-[400px] flex flex-col gap-y-8">
     <header>
-      <h1 class="text-xl font-bold"><%= @idea.title %></h1>
+      <h1 class="text-xl font-bold">
+        <% if @idea.thing.present? %>
+          <%= link_to @idea.title, @idea.thing.becomes(Thing), data: { turbo_frame: "modal" } %>
+        <% else %>
+          <%= @idea.title %>
+        <% end %>
+      </h1>
       <p>Suggested by <%= @idea.organizer.name %></p>
     </header>
     <% if @idea.looking_for_voters? %>

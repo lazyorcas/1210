@@ -94,7 +94,11 @@ class IdeasController < ApplicationController
   end
 
   def load_ideas
-    @ideas = idea_scope
+    @ideas = if params[:inactive]
+      idea_scope.inactive
+    else
+      idea_scope.polling.or(idea_scope.where.not(id: idea_scope.inactive))
+    end
   end
 
   def order_ideas

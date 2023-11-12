@@ -1,8 +1,20 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
+  <nav class="flex gap-x-2">
+    <%= link_to search_param_toggled_current_path(:inactive), class: class_names("tag flex items-center gap-x-1", params[:inactive] ? "tag--active" : "tag--inactive") do %>
+      <% if params[:inactive] %>
+        <%= heroicon "check", options: { class: "h-4 w-4" } %>
+      <% end %>
+      Inactive
+    <% end %>
+  </nav>
   <%= turbo_frame_tag "ideas", class: "flex flex-col gap-y-2" do %>
     <% if @ideas.empty? %>
       <%= turbo_frame_tag "ideas-header" do %>
-        <%= render partial: "no_ideas" %>
+        <% if params[:inactive] %>
+          <%= render partial: "shared/nothing_here" %>
+        <% else %>
+          <%= render partial: "no_ideas" %>
+        <% end %>
       <% end %>
     <% else %>
       <%= render @ideas %>
