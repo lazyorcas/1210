@@ -97,7 +97,7 @@ class IdeasController < ApplicationController
     @ideas = if params[:inactive]
       idea_scope.inactive
     else
-      idea_scope.polling.or(idea_scope.where.not(id: idea_scope.inactive))
+      idea_scope.where.not(id: idea_scope.inactive)
     end
   end
 
