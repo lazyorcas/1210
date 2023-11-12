@@ -4,7 +4,7 @@
     <%= link_to user_invitations_path(last_met: "last_week"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "last_week" ? "tag--active" : "tag--inactive") do %>
       Last week
     <% end %>
-    <%= link_to user_invitations_path(last_met: "more_than_a_week"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "more_than_a_week" ? "tag--active" : "tag--inactive") do %>
+    <%= link_to user_invitations_path(last_met: "more_than_a_week_ago"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "more_than_a_week_ago" ? "tag--active" : "tag--inactive") do %>
       ≥ 1 week
     <% end %>
     <%= link_to user_invitations_path(last_met: "never"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "never" ? "tag--active" : "tag--inactive") do %>
