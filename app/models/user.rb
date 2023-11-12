@@ -84,10 +84,6 @@ class User < ApplicationRecord
     User.where(id: friend_ids)
   end
 
-  def admin?
-    id == 1
-  end
-
   def last_meetup_with(user)
     each_other_meetup_ids =
       Meetup::Invitation.where(
