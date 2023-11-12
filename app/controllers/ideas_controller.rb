@@ -94,11 +94,27 @@ class IdeasController < ApplicationController
   end
 
   def load_ideas
-    @ideas = if params[:inactive]
-      idea_scope.inactive
+    @ideas = idea_scope
+
+    if params[:inactive]
+      filter_by_inactive_ideas
     else
-      idea_scope.where.not(id: idea_scope.inactive)
+      filter_by_active_ideas
     end
+
+    filter_by_my_ideas if params[:mine]
+  end
+
+  def filter_by_active_ideas
+    @ideas = @ideas.where.not(id: @ideas.inactive)
+  end
+
+  def filter_by_inactive_ideas
+    @ideas = @ideas.inactive
+  end
+
+  def filter_by_my_ideas
+    @ideas = @ideas.where(organizer: current_user)
   end
 
   def order_ideas
