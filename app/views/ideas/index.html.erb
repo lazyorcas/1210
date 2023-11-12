@@ -1,12 +1,14 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
-  <nav class="flex gap-x-1">
-    <%= link_to ideas_path, class: class_names("tag flex items-center gap-x-1", params[:inactive] ? "tag--inactive" : "tag--active") do %>
-      Active
-    <% end %>
-    <%= link_to ideas_path(inactive: "true"), class: class_names("tag flex items-center gap-x-1", params[:inactive] ? "tag--active" : "tag--inactive") do %>
-      Inactive
-    <% end %>
-  </nav>
+  <% if @should_filter %>
+    <nav class="flex gap-x-1">
+      <%= link_to ideas_path, class: class_names("tag flex items-center gap-x-1", params[:inactive] ? "tag--inactive" : "tag--active") do %>
+        Active
+      <% end %>
+      <%= link_to ideas_path(inactive: "true"), class: class_names("tag flex items-center gap-x-1", params[:inactive] ? "tag--active" : "tag--inactive") do %>
+        Inactive
+      <% end %>
+    </nav>
+  <% end %>
   <%= turbo_frame_tag "ideas", class: "flex flex-col gap-y-2" do %>
     <% if @ideas.empty? %>
       <%= turbo_frame_tag "ideas-header" do %>
