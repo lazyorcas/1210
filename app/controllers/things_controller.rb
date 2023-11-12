@@ -45,6 +45,11 @@ class ThingsController < ApplicationController
     end
   end
 
+  def show
+    load_thing
+    abstract_thing
+  end
+
   def edit
     load_thing
     abstract_thing
