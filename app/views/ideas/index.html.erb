@@ -1,5 +1,5 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
-  <nav class="flex gap-x-2">
+  <nav class="flex gap-x-1">
     <%= link_to search_param_toggled_current_path(:mine, :inactive), class: class_names("tag flex items-center gap-x-1", params[:mine] ? "tag--active" : "tag--inactive") do %>
       <% if params[:mine] %>
         <%= heroicon "check", options: { class: "h-4 w-4" } %>
