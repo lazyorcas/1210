@@ -18,16 +18,16 @@
             Planning
           </p>
         </div>
-        <%= link_to idea_comments_path(idea), class: "flex items-center gap-x-1 text-sm", data: { turbo_frame: "modal" } do %>
-          <%= heroicon "chat-bubble-left-right", options: { class: "h-4 w-4" } %>
-          <%= idea.comments.count %>
-        <% end %>
       <% end %>
       <% if idea.looking_for_voters? && idea.organizer != current_user %>
         <div class="flex items-center gap-x-1 text-sm">
           <%= heroicon "heart", variant: is_voter_or_owner ? :solid : :outline, options: { class: class_names("h-4 w-4", { "text-red-500": is_voter_or_owner }) } %>
           <%= idea.voters.count %>
         </div>
+      <% end %>
+      <%= link_to idea_comments_path(idea), class: "flex items-center gap-x-1 text-sm", data: { turbo_frame: "modal" } do %>
+        <%= heroicon "chat-bubble-left-right", options: { class: "h-4 w-4" } %>
+        <%= idea.comments.count %>
       <% end %>
     </div>
   </div>
