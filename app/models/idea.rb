@@ -7,7 +7,7 @@ class Idea < ApplicationRecord
   scope :inactive,
     -> {
       joins(:invitations)
-        .where("invitations.updated_at < ?", 1.week.ago)
+        .where("invitations.updated_at >= ?", 1.week.ago)
         .group("ideas.id")
         .having("COUNT(invitations.id) = 0")
     }
