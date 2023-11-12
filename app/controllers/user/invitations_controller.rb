@@ -7,6 +7,7 @@ class User::InvitationsController < ApplicationController
 
   def index
     ahoy.track("visited_friends")
+    load_friends
   end
 
   def create
@@ -36,6 +37,10 @@ class User::InvitationsController < ApplicationController
     else
       "application"
     end
+  end
+
+  def load_friends
+    @friends = current_user.friends(params[:last_met])
   end
 
   def load_user_invitation

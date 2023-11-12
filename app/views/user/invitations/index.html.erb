@@ -1,9 +1,25 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
-  <% if current_user.friends.empty? %>
-    <p>You have no friends on here yet.</p>
+  <nav class="flex gap-x-1 items-center">
+    <p class="text-sm">Last met:</p>
+    <%= link_to user_invitations_path(last_met: "last_week"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "last_week" ? "tag--active" : "tag--inactive") do %>
+      Last week
+    <% end %>
+    <%= link_to user_invitations_path(last_met: "more_than_a_week"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "more_than_a_week" ? "tag--active" : "tag--inactive") do %>
+      ≥ 1 week
+    <% end %>
+    <%= link_to user_invitations_path(last_met: "never"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "never" ? "tag--active" : "tag--inactive") do %>
+      Never
+    <% end %>
+  </nav>
+  <% if @friends.empty? %>
+    <% if params[:last_met].present? %>
+      <%= render partial: "shared/nothing_here" %>
+    <% else %>
+      <p>You have no friends on here yet.</p>
+    <% end %>
   <% else %>
     <ul class="grid grid-cols-3 sm:grid-cols-5 gap-4">
-      <% current_user.friends.order(:name).each do |user| %>
+      <% @friends.each do |user| %>
         <% last_meetup_with_current_user = user.last_meetup_with(current_user) %>
         <li class="flex flex-col items-center gap-y-2 text-center">
           <div class="w-full avatar bg-neutral-900 text-white text-2xl font-bold">

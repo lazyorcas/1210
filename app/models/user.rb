@@ -80,8 +80,25 @@ class User < ApplicationRecord
       received_invitations.accepted.pluck(:inviter_id)
   end
 
-  def friends
-    User.where(id: friend_ids)
+  def friends(last_met = nil)
+    friends = User.where(id: friend_ids)
+
+    case last_met
+    when "last_week"
+      friends = friends.select do |friend|
+        1.week.ago <= last_meetup_with(friend)
+      end
+    when "more_than_a_week_ago"
+      friends = friends.select do |friend|
+        last_meetup_with(friend) < 1.week.ago
+      end
+    when "never"
+      friends = friends.select do |friend|
+        last_meetup_with(friend).nil?
+      end
+    end
+
+    friends
   end
 
   def last_meetup_with(user)
