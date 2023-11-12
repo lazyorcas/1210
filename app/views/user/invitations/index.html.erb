@@ -1,5 +1,5 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
-  <nav class="flex gap-x-1 items-center">
+  <nav class="flex flex-wrap items-center gap-1">
     <p class="text-sm">Last met:</p>
     <%= link_to user_invitations_path(last_met: "last_week"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "last_week" ? "tag--active" : "tag--inactive") do %>
       Last week
