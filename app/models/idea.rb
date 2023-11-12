@@ -8,7 +8,7 @@ class Idea < ApplicationRecord
     -> {
       joins(:invitations)
         .group("ideas.id")
-        .having("MAX(invitations.updated_at) < ?", 1.week.ago)
+        .having("MAX(invitations.updated_at) < ?", 3.days.ago)
     }
 
   enum status: { looking_for_voters: 0, deleted: -1, polled: 1, polling: 2 }

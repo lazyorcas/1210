@@ -1,15 +1,9 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
   <nav class="flex gap-x-1">
-    <%= link_to search_param_toggled_current_path(:mine, :inactive), class: class_names("tag flex items-center gap-x-1", params[:mine] ? "tag--active" : "tag--inactive") do %>
-      <% if params[:mine] %>
-        <%= heroicon "check", options: { class: "h-4 w-4" } %>
-      <% end %>
-      My ideas
+    <%= link_to ideas_path, class: class_names("tag flex items-center gap-x-1", params[:inactive] ? "tag--inactive" : "tag--active") do %>
+      Active
     <% end %>
-    <%= link_to search_param_toggled_current_path(:inactive, :mine), class: class_names("tag flex items-center gap-x-1", params[:inactive] ? "tag--active" : "tag--inactive") do %>
-      <% if params[:inactive] %>
-        <%= heroicon "check", options: { class: "h-4 w-4" } %>
-      <% end %>
+    <%= link_to ideas_path(inactive: "true"), class: class_names("tag flex items-center gap-x-1", params[:inactive] ? "tag--active" : "tag--inactive") do %>
       Inactive
     <% end %>
   </nav>

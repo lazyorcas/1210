@@ -101,8 +101,6 @@ class IdeasController < ApplicationController
     else
       filter_by_active_ideas
     end
-
-    filter_by_my_ideas if params[:mine]
   end
 
   def filter_by_active_ideas
@@ -111,10 +109,6 @@ class IdeasController < ApplicationController
 
   def filter_by_inactive_ideas
     @ideas = @ideas.inactive
-  end
-
-  def filter_by_my_ideas
-    @ideas = @ideas.where(organizer: current_user)
   end
 
   def order_ideas

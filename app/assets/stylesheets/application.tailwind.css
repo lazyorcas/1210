@@ -190,13 +190,17 @@
     @apply text-sm;
   }
 
+  .tag--default {
+    @apply bg-neutral-200 text-neutral-900;
+  }
+
   .tag--active {
     @apply bg-neutral-900 text-white;
     @apply font-semibold;
   }
 
   .tag--inactive {
-    @apply bg-neutral-200 text-neutral-900;
+    @apply bg-neutral-100 text-neutral-400 border;
   }
 
   .linkable a {
