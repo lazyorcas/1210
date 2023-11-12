@@ -24,6 +24,7 @@ class Idea::Option < Pollable::Option
 
   after_commit :notify_of_new_option, on: :create
   after_create :invite_idea_organizer_and_voters
+  after_create :update_idea_last_activity_at
 
   def idea
     pollable
@@ -45,6 +46,10 @@ class Idea::Option < Pollable::Option
   end
 
   private
+
+  def update_idea_last_activity_at
+    idea.update_last_activity_at_to_now
+  end
 
   def invite_idea_organizer_and_voters
     ([idea.organizer] + idea.voters).each do |user|

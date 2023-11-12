@@ -5,6 +5,7 @@ class Idea::Invitation < Invitation
 
   after_create :notify_invitee
   after_update :notify_organizer, if: :is_accepted
+  after_commit :update_idea_last_activity_at, on: [:create, :update]
 
   def idea
     inviter
@@ -28,5 +29,11 @@ class Idea::Invitation < Invitation
         body: "#{invitee.name} is interested!",
       )
     end
+  end
+
+  private
+
+  def update_idea_last_activity_at
+    idea.update_last_activity_at_to_now
   end
 end

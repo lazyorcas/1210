@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_140140) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_12_143515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_140140) do
     t.integer("status", default: 0)
     t.bigint("organizer_id")
     t.bigint("thing_id")
+    t.datetime("last_activity_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" })
     t.index(["organizer_id"], name: "index_ideas_on_organizer_id")
     t.index(["thing_id"], name: "index_ideas_on_thing_id")
   end

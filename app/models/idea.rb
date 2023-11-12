@@ -88,6 +88,10 @@ class Idea < ApplicationRecord
     end
   end
 
+  def update_last_activity_at_to_now
+    update_columns(last_activity_at: Time.zone.now)
+  end
+
   private
 
   def main_user
