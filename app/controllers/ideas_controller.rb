@@ -96,10 +96,12 @@ class IdeasController < ApplicationController
   def load_ideas
     @ideas = idea_scope
 
-    if params[:inactive]
-      filter_by_inactive_ideas
-    else
-      filter_by_active_ideas
+    if @ideas.count > 5
+      if params[:inactive]
+        filter_by_inactive_ideas
+      else
+        filter_by_active_ideas
+      end
     end
   end
 
