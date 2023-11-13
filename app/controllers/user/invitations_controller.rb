@@ -43,6 +43,10 @@ class User::InvitationsController < ApplicationController
     @friends = current_user.friends(params[:last_met])
   end
 
+  def sort_friends
+    @friends = @friends.sort_by(&:name)
+  end
+
   def load_user_invitation
     @user_invitation = user_invitation_scope.find(params[:id])
   end
