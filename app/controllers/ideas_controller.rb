@@ -120,7 +120,7 @@ class IdeasController < ApplicationController
   end
 
   def order_ideas
-    @ideas.order!(updated_at: :desc)
+    @ideas.order!(last_activity_at: :desc)
   end
 
   def idea_scope
