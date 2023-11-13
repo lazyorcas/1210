@@ -8,6 +8,7 @@ class User::InvitationsController < ApplicationController
   def index
     ahoy.track("visited_friends")
     load_friends
+    sort_friends
   end
 
   def create
