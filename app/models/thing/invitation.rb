@@ -10,7 +10,7 @@ class Thing::Invitation < Invitation
   end
 
   def notify_thing_interestees_who_are_friends
-    PushSubscription.where(user: thing.interestees & invitee.friends).each do |push_subscription|
+    PushSubscription.where(user: thing.interestees & invitee.friends_in_the_same_city).each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[#{thing.type}] #{thing.title}",

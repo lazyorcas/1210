@@ -1,4 +1,4 @@
-<% friends_interested = thing.interestees & current_user.friends %>
+<% friends_interested = thing.interestees & current_user.friends_in_the_same_city %>
 <%= link_to thing_invitations_path(thing), class: class_names("shrink-0 icon-btn icon-btn--big relative"), id: "#{dom_id(thing)}_invitations_button", data: { turbo_frame: "modal" } do %>
   <%= heroicon "bookmark", variant: current_user.interests.exists?(thing.id) ? "solid" : "outline", options: { class: "h-6 w-6" } %>
   <% if friends_interested.length > 0 %>

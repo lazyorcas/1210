@@ -103,6 +103,10 @@ class User < ApplicationRecord
     friends
   end
 
+  def friends_in_the_same_city
+    User.where(id: friend_ids, city: city)
+  end
+
   def last_meetup_with(user)
     each_other_meetup_ids =
       Meetup::Invitation.where(
