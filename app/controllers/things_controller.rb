@@ -19,7 +19,7 @@ class ThingsController < ApplicationController
     load_things
     filter_things_by_city
     filter_things_by_interests
-    load_uninteresting_things if @things.empty?
+    load_old_uninteresting_things if @things.empty?
 
     if params[:interesting].present?
       order_things
@@ -78,7 +78,7 @@ class ThingsController < ApplicationController
     @things = thing_scope
   end
 
-  def load_uninteresting_things
+  def load_old_uninteresting_things
     @things = current_user.old_disinterests
   end
 
