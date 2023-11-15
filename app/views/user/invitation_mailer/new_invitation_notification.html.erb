@@ -1,0 +1,4 @@
+<h1><%= @invitation.inviter.name %> sent you a friend request</h1>
+<p>
+  You can respond here <%= link_to user_invitation_url(@invitation), @invitation %>.
+</p>
