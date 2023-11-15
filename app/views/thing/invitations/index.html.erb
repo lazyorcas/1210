@@ -1,6 +1,6 @@
 <% friends_interested = @thing.interestees & current_user.friends_in_the_same_city %>
 <%= render layout: "shared/modal", locals: { title: "Interests" } do %>
-  <div class="flex flex-col gap-y-4">
+  <div class="mt-4 flex flex-col gap-y-4">
     <section class="flex flex-col gap-y-1">
       <header class="flex gap-x-2 items-center text-neutral-500">
         <%= heroicon "bookmark", options: { class: "h-4 w-4" } %>
