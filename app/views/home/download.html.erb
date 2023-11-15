@@ -1,5 +1,5 @@
 <%= render layout: "shared/modal", locals: { title: "Download mobile app" } do %>
-  <div class="mt-4 flex flex-col gap-y-4 sm:w-[400px]">
+  <div class="flex flex-col gap-y-4 sm:w-[400px]">
     <% if browser.platform.ios? && browser.safari?("< 16.4") %>
       <p>Your iOS version must be <b>at least 16.4</b>.</p>
     <% end %>
