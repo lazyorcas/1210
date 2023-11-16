@@ -1,4 +1,13 @@
 <main class="grow w-full flex flex-col gap-y-8 pt-4 pb-[84px] standalone:pb-[120px]">
+  <% content_for :toolbar do %>
+    <%= link_to current_user_edit_avatar_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag photo_path(id: current_user.avatar.id), class: "avatar object-cover" %>
+      <% else %>
+        <%= heroicon "camera", options: { class: "h-6 w-6" } %>
+      <% end %>
+    <% end %>
+  <% end %>
   <section class="flex flex-col gap-y-4">
     <header>
       <h2 class="text-lg font-semibold">Push Notifications</h2>

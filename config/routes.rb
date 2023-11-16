@@ -16,8 +16,9 @@ Rails.application.routes.draw do
 
   scope path: "/me", as: "current_user" do
     get "/friends", to: "current_user#friends", as: "friends"
-    get "/settings", to: "current_user#settings", as: "settings"
-    get "/edit", to: "current_user#edit", as: "edit"
+    get "/profile", to: "current_user#profile", as: "profile"
+    get "/edit_city", to: "current_user#edit_city", as: "edit_city"
+    get "/edit_avatar", to: "current_user#edit_avatar", as: "edit_avatar"
     patch "/", to: "current_user#update", as: "update"
   end
 

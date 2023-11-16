@@ -13,7 +13,11 @@ class CurrentUserController < ApplicationController
 
   def update
     if current_user.update(current_user_params)
-      redirect_to(things_path)
+      if params[:city].present?
+        redirect_to(things_path)
+      else
+        redirect_to(current_user_profile_path)
+      end
     end
   end
 
@@ -29,8 +33,8 @@ class CurrentUserController < ApplicationController
 
   def resolve_layout
     case action_name
-    when "settings"
-      "current_user/settings"
+    when "profile"
+      "current_user/profile"
     when "friends"
       "current_user/friends"
     else
@@ -39,6 +43,6 @@ class CurrentUserController < ApplicationController
   end
 
   def current_user_params
-    params.require(:user).permit(:city)
+    params.require(:user).permit(:avatar, :city)
   end
 end

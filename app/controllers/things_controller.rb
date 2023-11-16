@@ -13,7 +13,7 @@ class ThingsController < ApplicationController
 
   def index
     if current_user.city.nil?
-      redirect_to(current_user_edit_path) and return
+      redirect_to(current_user_edit_city_path) and return
     end
 
     load_things

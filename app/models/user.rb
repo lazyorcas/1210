@@ -3,6 +3,10 @@
 class User < ApplicationRecord
   scope :without_push_subscription, -> { left_joins(:push_subscriptions).where(push_subscriptions: { endpoint: nil }) }
 
+  has_one_attached :avatar do |attachable|
+    attachable.variant(:webp, resize_to_limit: [2000, 2000], convert: :webp)
+  end
+
   belongs_to :inviter, class_name: "User", optional: true
   has_many :visits, class_name: "Ahoy::Visit"
 
@@ -67,6 +71,10 @@ class User < ApplicationRecord
   validates :email,
     uniqueness: { case_sensitive: false },
     format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  validates :avatar,
+    content_type: %r{\Aimage/.*\z},
+    size: { less_than: 10.megabytes }
 
   passwordless_with :email
 
