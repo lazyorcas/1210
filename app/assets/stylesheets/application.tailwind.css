@@ -229,6 +229,10 @@
     @apply bg-green-400 text-green-700;
   }
 
+  .text-status--warning {
+    @apply bg-yellow-400 text-yellow-700;
+  }
+
   .text-status--error {
     @apply bg-red-400 text-red-700;
   }
