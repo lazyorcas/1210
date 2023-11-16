@@ -3,6 +3,9 @@
 class User < ApplicationRecord
   scope :without_push_subscription, -> { left_joins(:push_subscriptions).where(push_subscriptions: { endpoint: nil }) }
 
+  scope :have_new_things,
+    -> { left_joins(:things).where("things.id IS NULL AND (things.city IS NULL OR things.city = users.city)") }
+
   belongs_to :inviter, class_name: "User", optional: true
   has_many :visits, class_name: "Ahoy::Visit"
 
@@ -43,6 +46,11 @@ class User < ApplicationRecord
     class_name: "Idea::Option::Invitation",
     as: :invitee
   has_many :invited_idea_options, through: :idea_option_invitations, source: :inviter, source_type: "Idea::Option"
+
+  has_many :thing_invitations,
+    class_name: "Thing::Invitation",
+    as: :invitee
+  has_many :things, through: :thing_invitations, source: :inviter, source_type: "Thing"
 
   has_many :accepted_thing_invitations,
     -> { accepted },
