@@ -86,12 +86,12 @@ class User < ApplicationRecord
     case last_met
     when "last_two_weeks"
       friends = friends.select do |friend|
-        last_meetup = PastMeetup.between_users(current_user, friend).order(date: :desc).first
+        last_meetup = PastMeetup.between_users(self, friend).order(date: :desc).first
         last_meetup && 2.weeks.ago <= last_meetup.date
       end
     when "more_than_two_weeks_ago"
       friends = friends.select do |friend|
-        last_meetup = PastMeetup.between_users(current_user, friend).order(date: :desc).first
+        last_meetup = PastMeetup.between_users(self, friend).order(date: :desc).first
         last_meetup && last_meetup.date < 2.weeks.ago
       end
     end
