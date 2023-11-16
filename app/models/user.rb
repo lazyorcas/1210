@@ -4,7 +4,12 @@ class User < ApplicationRecord
   scope :without_push_subscription, -> { left_joins(:push_subscriptions).where(push_subscriptions: { endpoint: nil }) }
 
   scope :have_new_things,
-    -> { left_joins(:things).where("things.id IS NULL AND (things.city IS NULL OR things.city = users.city)") }
+    -> {
+      left_joins(:things)
+        .where(things: { id: nil })
+        .where.not(things: { is_deleted: nil })
+        .where("things.city IS NULL OR things.city = users.city")
+    }
 
   belongs_to :inviter, class_name: "User", optional: true
   has_many :visits, class_name: "Ahoy::Visit"
