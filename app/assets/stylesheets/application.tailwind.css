@@ -218,6 +218,20 @@
   .status--textful {
     @apply text-xs w-5 h-5 flex items-center justify-center font-bold;
   }
+
+  .text-status {
+    @apply rounded-full;
+    @apply text-xs font-semibold;
+    @apply px-3 py-0.5;
+  }
+
+  .text-status--success {
+    @apply bg-green-400 text-green-700;
+  }
+
+  .text-status--error {
+    @apply bg-red-400 text-red-700;
+  }
 }
 
 @layer utilities {

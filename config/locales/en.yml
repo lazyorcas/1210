@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  datetime:
+    distance_in_words:
+      x_days:
+        one: "1d"
+        other: "%{count}d"
+      x_weeks:
+        one: "1w"
+        other: "%{count}w"

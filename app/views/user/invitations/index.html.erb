@@ -1,11 +1,11 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
   <nav class="flex flex-wrap items-center gap-1">
     <p class="text-sm">Last met:</p>
-    <%= link_to user_invitations_path(last_met: "last_week"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "last_week" ? "tag--active" : "tag--inactive") do %>
-      Last week
+    <%= link_to user_invitations_path(last_met: "last_two_weeks"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "last_two_weeks" ? "tag--active" : "tag--inactive") do %>
+      ≤ 2 weeks
     <% end %>
-    <%= link_to user_invitations_path(last_met: "more_than_a_week_ago"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "more_than_a_week_ago" ? "tag--active" : "tag--inactive") do %>
-      ≥ 1 week
+    <%= link_to user_invitations_path(last_met: "more_than_two_weeks_ago"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "more_than_two_weeks_ago" ? "tag--active" : "tag--inactive") do %>
+      &gt; 2 weeks
     <% end %>
     <%= link_to user_invitations_path(last_met: "never"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "never" ? "tag--active" : "tag--inactive") do %>
       Never
@@ -22,19 +22,17 @@
       <% @friends.each do |user| %>
         <% last_meetup_with_current_user = user.last_meetup_with(current_user) %>
         <li class="flex flex-col items-center gap-y-2 text-center">
-          <div class="w-full avatar bg-neutral-900 text-white text-2xl font-bold">
-            <%= user.name.first %>
-          </div>
-          <div class="flex flex-col items-center">
-            <%= user.name %>
-            <p class="text-sm text-neutral-400">
+          <div class="relative w-full avatar bg-neutral-900">
+            <div class="text-white text-2xl font-bold"><%= user.name.first %></div>
+            <p class="<%= class_names("absolute right-1 bottom-1 text-status", params[:last_met] == "last_two_weeks" ? "text-status--success" : "text-status--error") %>">
               <% if last_meetup_with_current_user.present? %>
-                <%= time_ago_in_words last_meetup_with_current_user %> ago
+                <%= time_ago_in_words(last_meetup_with_current_user, scope: 'datetime.distance_in_words') %>
               <% else %>
                 never
               <% end %>
             </p>
           </div>
+          <p><%= user.name %></p>
         </li>
       <% end %>
       <% current_user.received_invitations.pending.each do |user_invitation| %>

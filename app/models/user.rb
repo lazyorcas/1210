@@ -84,15 +84,15 @@ class User < ApplicationRecord
     friends = User.where(id: friend_ids)
 
     case last_met
-    when "last_week"
+    when "last_two_weeks"
       friends = friends.select do |friend|
         last_meetup_date = last_meetup_with(friend)
-        last_meetup_date && 1.week.ago <= last_meetup_date
+        last_meetup_date && 2.weeks.ago <= last_meetup_date
       end
-    when "more_than_a_week_ago"
+    when "more_than_two_weeks_ago"
       friends = friends.select do |friend|
         last_meetup_date = last_meetup_with(friend)
-        last_meetup_date && last_meetup_with(friend) < 1.week.ago
+        last_meetup_date && last_meetup_with(friend) < 2.weeks.ago
       end
     when "never"
       friends = friends.select do |friend|
