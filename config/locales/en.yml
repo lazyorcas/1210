@@ -40,5 +40,8 @@ en:
           one: "1w"
           other: "%{count}w"
         x_months:
-          one: "1m"
+          one: "1M"
           other: "%{count}M"
+        x_years:
+          one: "1y"
+          other: "%{count}y"
