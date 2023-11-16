@@ -6,8 +6,7 @@ class User < ApplicationRecord
   scope :have_new_things,
     -> {
       left_joins(:things)
-        .where(things: { id: nil })
-        .where.not(things: { is_deleted: nil })
+        .where(things: { id: nil, is_deleted: nil })
         .where("things.city IS NULL OR things.city = users.city")
     }
 
