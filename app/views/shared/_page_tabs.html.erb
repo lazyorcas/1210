@@ -8,7 +8,7 @@
   <%= render layout: "shared/page_tab", locals: { icon_name: "bolt", path: meetups_path } do %>
     Meetups
   <% end %>
-  <%= render layout: "shared/page_tab", locals: { icon_name: "users", path: user_invitations_path(last_met: "more_than_two_weeks_ago") } do %>
+  <%= render layout: "shared/page_tab", locals: { icon_name: "users", path: current_user_friends_path } do %>
     Friends
     <% if current_user.received_invitations.pending.count > 0 %>
       <div class="status status--textful absolute -mr-8 -mt-12">

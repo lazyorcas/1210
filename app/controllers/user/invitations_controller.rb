@@ -1,15 +1,7 @@
 # frozen_string_literal: true
 
 class User::InvitationsController < ApplicationController
-  layout :resolve_layout
-
   before_action :require_user!
-
-  def index
-    ahoy.track("visited_friends")
-    load_friends
-    sort_friends
-  end
 
   def create
     @user_invitation = User::Invitation.new(
@@ -18,35 +10,18 @@ class User::InvitationsController < ApplicationController
     )
 
     if @user_invitation.save
-      redirect_to(user_invitations_path)
+      redirect_to(current_user_friends_path)
     end
   end
 
   def update
     load_user_invitation
     if @user_invitation.update(update_user_invitation_params)
-      redirect_to(user_invitations_path)
+      redirect_to(current_user_friends_path)
     end
   end
 
   private
-
-  def resolve_layout
-    case action_name
-    when "index"
-      "user/invitations"
-    else
-      "application"
-    end
-  end
-
-  def load_friends
-    @friends = current_user.friends(params[:last_met])
-  end
-
-  def sort_friends
-    @friends = @friends.sort_by(&:name)
-  end
 
   def load_user_invitation
     @user_invitation = user_invitation_scope.find(params[:id])

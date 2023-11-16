@@ -94,10 +94,6 @@ class User < ApplicationRecord
         last_meetup_date = last_meetup_with(friend)
         last_meetup_date && last_meetup_with(friend) < 2.weeks.ago
       end
-    when "never"
-      friends = friends.select do |friend|
-        last_meetup_with(friend).nil?
-      end
     end
 
     friends

@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       if current_user == @user
         render("show_self")
       elsif current_user.friends.find_by(id: @user.id)
-        redirect_to(user_invitations_path)
+        redirect_to(current_user_friends_path)
       else
         @user_invitation = User::Invitation.bidirectional_find_by(
           inviter: current_user,

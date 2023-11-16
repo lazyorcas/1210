@@ -11,10 +11,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
   namespace :user do
-    resources :invitations, only: [:index, :create, :update], path: "/friends"
+    resources :invitations, only: [:create, :update]
   end
 
   scope path: "/me", as: "current_user" do
+    get "/friends", to: "current_user#friends", as: "friends"
     get "/settings", to: "current_user#settings", as: "settings"
     get "/edit", to: "current_user#edit", as: "edit"
     patch "/", to: "current_user#update", as: "update"
