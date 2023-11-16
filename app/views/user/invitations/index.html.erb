@@ -24,11 +24,10 @@
         <li class="flex flex-col items-center gap-y-2 text-center">
           <div class="relative w-full avatar bg-neutral-900">
             <div class="text-white text-2xl font-bold"><%= user.name.first %></div>
-            <% if params[:last_met].present? %>
+            <% if params[:last_met].present? || params[:last_met] != "never" %>
               <p class="<%= class_names("absolute right-1 bottom-1 text-status", {
               "text-status--success": params[:last_met] == "last_two_weeks",
               "text-status--warning": params[:last_met] == "more_than_two_weeks_ago",
-              "text-status--error": params[:last_met] == "never",
             }) %>">
                 <% if last_meetup_with_current_user.present? %>
                   <%= time_ago_in_words(last_meetup_with_current_user, scope: 'datetime.distance_in_words.abbrv') %>
