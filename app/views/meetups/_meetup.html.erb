@@ -15,7 +15,7 @@
       </div>
     <% end %>
     <% if meetup.organizer != current_user %>
-      <div class="flex flex-col justify-between items-end">
+      <div class="flex flex-col justify-between items-end shrink-0">
         <div class="flex flex-col items-end">
           <% if meetup.attendees.exists?(current_user.id) %>
             <div class="self-start shrink-0 flex items-center gap-x-1">
