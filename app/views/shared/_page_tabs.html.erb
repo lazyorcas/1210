@@ -4,9 +4,6 @@
   <% end %>
   <%= render layout: "shared/page_tab", locals: { icon_name: "heart", path: ideas_path } do %>
     Ideas
-    <% if User.have_new_things.exists?(current_user.id) && !current_page?(ideas_path) %>
-      <div class="status status--empty absolute -mr-5 -mt-9"></div>
-    <% end %>
   <% end %>
   <%= render layout: "shared/page_tab", locals: { icon_name: "bolt", path: meetups_path } do %>
     Meetups
