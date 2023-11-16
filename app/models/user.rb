@@ -86,13 +86,13 @@ class User < ApplicationRecord
     case last_met
     when "last_two_weeks"
       friends = friends.select do |friend|
-        last_meetup_date = last_meetup_with(friend)
-        last_meetup_date && 2.weeks.ago <= last_meetup_date
+        last_meetup = PastMeetup.between_users(current_user, friend).order(date: :desc).first
+        last_meetup && 2.weeks.ago <= last_meetup.date
       end
     when "more_than_two_weeks_ago"
       friends = friends.select do |friend|
-        last_meetup_date = last_meetup_with(friend)
-        last_meetup_date && last_meetup_with(friend) < 2.weeks.ago
+        last_meetup = PastMeetup.between_users(current_user, friend).order(date: :desc).first
+        last_meetup && last_meetup.date < 2.weeks.ago
       end
     end
 
@@ -101,32 +101,6 @@ class User < ApplicationRecord
 
   def friends_in_the_same_city
     User.where(id: friend_ids, city: city)
-  end
-
-  def last_meetup_with(user)
-    each_other_meetup_ids =
-      Meetup::Invitation.where(
-        inviter: user.organized_meetups,
-        invitee: self,
-        is_accepted: true,
-      )
-        .or(
-          Meetup::Invitation.where(
-            inviter: organized_meetups,
-            invitee: user,
-            is_accepted: true,
-          ),
-        )
-        .pluck(:inviter_id)
-
-    meetup_ids = each_other_meetup_ids + (user.accepted_meetup_ids & accepted_meetup_ids)
-
-    last_meetup = PastMeetup
-      .where(id: meetup_ids)
-      .order(date: :desc)
-      .first
-
-    last_meetup&.date
   end
 
   private
