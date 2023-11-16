@@ -179,7 +179,6 @@
   }
 
   .avatar {
-    @apply rounded-xl;
     @apply aspect-square;
     @apply flex items-center justify-center;
   }

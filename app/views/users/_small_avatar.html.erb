@@ -1,0 +1,5 @@
+<% if user.avatar.attached? %>
+  <%= image_tag photo_path(id: user.avatar.id), class: "avatar rounded-md object-cover" %>
+<% else %>
+  <div class="text-white text-sm font-bold"><%= user.name.first %></div>
+<% end %>

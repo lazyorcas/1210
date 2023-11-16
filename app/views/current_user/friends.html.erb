@@ -22,9 +22,9 @@
     <% @friends.each do |user| %>
       <% last_meetup = PastMeetup.between_users(current_user, user).order(date: :desc).first %>
       <li class="flex flex-col items-center gap-y-1 text-center">
-        <div class="relative w-full avatar bg-neutral-900">
+        <div class="relative w-full avatar rounded-xl bg-neutral-900">
           <% if user.avatar.attached? %>
-            <%= image_tag photo_path(id: user.avatar.id), class: "avatar object-cover" %>
+            <%= image_tag photo_path(id: user.avatar.id), class: "avatar rounded-xl object-cover" %>
           <% else %>
             <div class="text-white text-2xl font-bold"><%= user.name.first %></div>
           <% end %>

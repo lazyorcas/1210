@@ -2,7 +2,7 @@
   <%= turbo_frame_tag "refresh", target: "_top" do %>
     <%= form_with model: current_user, url: current_user_update_path, class: "flex flex-col gap-y-4 mt-4", data: { controller: "uploader" } do |form| %>
       <% if current_user.avatar.attached? %>
-        <%= image_tag photo_path(id: current_user.avatar.id), class: "self-center sm:w-[256px] avatar object-cover" %>
+        <%= image_tag photo_path(id: current_user.avatar.id), class: "self-center sm:w-[256px] avatar rounded-xl object-cover" %>
       <% end %>
       <%= form.file_field :avatar, required: true, accept: 'image/*', capture: true %>
       <%= form.button class: "w-full btn btn--primary gap-x-2", data: { uploader_target: "uploadBtn" } do %>

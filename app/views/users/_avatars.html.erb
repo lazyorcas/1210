@@ -1,0 +1,7 @@
+<ul class="flex items-center flex-wrap gap-1">
+  <% users.map do |user| %>
+    <li class="w-8 avatar rounded-md bg-neutral-900">
+      <%= render partial: "users/small_avatar", locals: { user: user } %>
+    </li>
+  <% end %>
+</ul>
