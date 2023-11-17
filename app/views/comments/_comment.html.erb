@@ -1,9 +1,14 @@
-<article id="<%= dom_id(comment) %>">
-  <time class="text-sm text-neutral-400" datetime="<%= comment.created_at %>">
-    <%= time_ago_in_words comment.created_at %> ago
-  </time>
-  <div class="flex gap-x-2">
-    <h2 class="font-semibold"><%= comment.author.name %>:</h2>
-    <p class="linkable"><%= auto_link(comment.body, html: { target: '_blank' }) %></p>
+<article class="flex gap-x-2" id="<%= dom_id(comment) %>">
+  <div class="shrink-0 mt-1">
+    <%= render partial: "users/avatar", locals: { user: comment.author, size: "small" } %>
+  </div>
+  <div class="grow">
+    <div class="flex gap-x-2 items-center justify-between">
+      <h2 class="font-semibold"><%= comment.author.name %></h2>
+      <time class="text-xs text-neutral-400" datetime="<%= comment.created_at %>">
+        <%= time_ago_in_words comment.created_at %> ago
+      </time>
+    </div>
+    <p class="text-sm linkable"><%= auto_link(comment.body, html: { target: '_blank' }) %></p>
   </div>
 </article>

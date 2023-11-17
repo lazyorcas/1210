@@ -178,8 +178,7 @@
   }
 
   .avatar {
-    @apply aspect-square;
-    @apply flex items-center justify-center;
+    @apply aspect-square object-cover;
   }
 
   .thumbnail {

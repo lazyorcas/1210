@@ -23,11 +23,7 @@
       <% last_meetup = PastMeetup.between_users(current_user, user).order(date: :desc).first %>
       <li class="flex flex-col items-center gap-y-1 text-center">
         <div class="relative w-full">
-          <% if user.avatar.attached? %>
-            <%= image_tag photo_path(id: user.avatar.id), class: "avatar rounded-xl object-cover" %>
-          <% else %>
-            <div class="avatar rounded-xl bg-neutral-900 text-white text-2xl font-bold"><%= user.name.first %></div>
-          <% end %>
+          <%= render partial: "users/avatar", locals: { user: user, size: "fill" } %>
           <div class="absolute -right-0.5 -bottom-0.5 p-0.5 bg-white rounded-xl">
             <p class="<%= class_names("text-status", {
               "text-status--success": last_meetup && 2.weeks.ago <= last_meetup.date,
