@@ -233,7 +233,7 @@
   }
 
   .text-status--error {
-    @apply bg-red-300 text-red-700;
+    @apply bg-red-400 text-red-700;
   }
 }
 
