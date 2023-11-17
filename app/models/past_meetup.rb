@@ -5,25 +5,9 @@ class PastMeetup < Meetup
 
   scope :between_users, ->(user_a, user_b) {
     joins(:accepted_invitations)
-      .where('
-      EXISTS (
-        SELECT 1
-        WHERE
-          (meetups.organizer_id = :user_a AND invitations.invitee_id = :user_b)
-          OR
-          (meetups.organizer_id = :user_b AND invitations.invitee_id = :user_a)
-      ) OR (
-        EXISTS (
-          SELECT 1
-          WHERE invitations.invitee_id = :user_a
-        )
-        AND EXISTS (
-          SELECT 1
-          WHERE invitations.invitee_id = :user_b
-        )
-      )',
-        user_a: user_a,
-        user_b: user_b)
+      .where({ invitations: { invitee_id: [user_a, user_b] } })
+      .group("meetups.id")
+      .having("COUNT(invitations.id) = 2 OR meetups.organizer_id IN (?)", [user_a, user_b])
   }
 
   after_create :create_memory
