@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
   def show
     load_photo
     authorize!
-    build_variant
+    build_variant if @photo.blob.content_type != "image/webp"
     send_data(@photo.blob.download, type: @photo.blob.content_type, disposition: "inline")
   end
 
