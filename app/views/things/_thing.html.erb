@@ -2,7 +2,7 @@
 <article class="snap-always snap-center min-w-full flex flex-col gap-y-4" id="<%= dom_id(thing) %>">
   <div class="overflow-y-scroll grow flex flex-col gap-y-4">
     <div class="relative">
-      <%= image_tag thing.image_url, class: "aspect-square object-cover rounded-xl w-full" %>
+      <%= image_tag thing.image_url, class: "thumbnail rounded-xl w-full" %>
       <%= link_to thing.url, class: "absolute right-2 top-2 icon-btn btn--secondary", target: "_blank" do %>
         <% if thing.url.include?("maps.app.goo.gl") %>
           <%= heroicon "map", options: { class: "h-6 w-6" } %>
@@ -15,13 +15,7 @@
     </div>
     <div class="flex flex-col gap-y-4 px-2">
       <div class="flex flex-col gap-y-1">
-        <% if current_user.admin? %>
-          <%= link_to edit_thing_path(thing), class: "text-2xl font-bold", data: { turbo_frame: "modal" } do %>
-            <%= thing.title %>
-          <% end %>
-        <% else %>
-          <h2 class="text-2xl font-bold"><%= thing.title %></h2>
-        <% end %>
+        <h2 class="text-2xl font-bold"><%= thing.title %></h2>
         <p><%= thing.description %></p>
       </div>
       <aside class="flex gap-1 flex-wrap">

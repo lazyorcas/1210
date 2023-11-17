@@ -1,6 +1,6 @@
 <%= render layout: "shared/modal", locals: { title: "Messages" } do %>
   <div class="mt-4 flex flex-col gap-y-8">
-    <%= turbo_frame_tag "#{dom_id(@meetup)}_comments", class: "sm:w-[400px] flex flex-col gap-y-2" do %>
+    <%= turbo_frame_tag "#{dom_id(@meetup)}_comments", class: "flex flex-col gap-y-2" do %>
       <%= render partial: "comments/comment", collection: @meetup_comments %>
     <% end %>
     <%= render partial: "comments/form", locals: { comment: Meetup::Comment.new } %>

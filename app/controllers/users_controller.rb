@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :require_mobile!
+
   def create
     @user = User.new(user_params)
 
@@ -25,9 +27,7 @@ class UsersController < ApplicationController
     if current_user.present?
       if current_user == @user
         render("show_self")
-      elsif current_user.friends.find_by(id: @user.id)
-        redirect_to(current_user_friends_path)
-      else
+      elsif current_user.friends.find_by(id: @user.id).nil?
         @user_invitation = User::Invitation.bidirectional_find_by(
           inviter: current_user,
           invitee: @user,

@@ -1,5 +1,5 @@
 <%= render layout: "shared/modal", locals: { comments_path: meetup_comments_path(@meetup) } do %>
-  <article class="sm:w-[400px] flex flex-col gap-y-8">
+  <article class="flex flex-col gap-y-8">
     <header>
       <h1 class="text-xl font-bold"><%= @meetup.title %></h1>
       <p><%= @meetup.description %></p>

@@ -23,4 +23,10 @@ class ApplicationController < ActionController::Base
       head(:forbidden)
     end
   end
+
+  def require_mobile!
+    unless browser.device.mobile?
+      redirect_to(download_path)
+    end
+  end
 end

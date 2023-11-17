@@ -1,6 +1,6 @@
 <%= render layout: "shared/modal", locals: { title: "What's your city?" } do %>
   <%= turbo_frame_tag "refresh", target: "_top" do %>
-    <%= form_with model: current_user, url: current_user_update_path, class: "form-flow sm:w-[400px]" do |form| %>
+    <%= form_with model: current_user, url: current_user_update_path, class: "form-flow" do |form| %>
       <%= form.text_field :city, list: "cities", class: "line-input text-xl my-2", required: true, placeholder: "e.g. Munich", autocomplete: "off", maxlength: 30 %>
       <datalist id="cities">
         <% City.all.each do |city| %>

@@ -1,24 +1,11 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  layout :resolve_layout
+  layout "home"
 
   def index
-    if current_user.nil?
-      return
-    end
-
-    redirect_to(meetups_path)
-  end
-
-  private
-
-  def resolve_layout
-    case action_name
-    when "index"
-      "landing"
-    else
-      false
+    if current_user.present?
+      redirect_to(meetups_path) and return
     end
   end
 end

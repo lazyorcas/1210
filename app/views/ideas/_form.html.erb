@@ -1,4 +1,4 @@
-<%= form_with model: idea, class: "form-flow sm:w-[400px]" do |form| %>
+<%= form_with model: idea, class: "form-flow" do |form| %>
   <%= form.hidden_field :thing_id %>
   <div class="form-inputs-flow">
     <%= form.text_field :title, class: "line-input text-xl my-2", required: true, placeholder: "Untitled", autocomplete: "off" %>

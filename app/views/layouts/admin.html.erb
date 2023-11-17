@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <%= render "shared/head" %>
+  <body class="px-4">
+    <header class="shrink-0 h-[68px] flex items-center gap-x-4 justify-between">
+      <h1 class="text-3xl font-black">
+        Admin/<%= yield :page_title %>
+      </h1>
+      <% if content_for?(:toolbar) %>
+        <div class="flex items-center gap-x-2">
+          <%= yield :toolbar %>
+        </div>
+      <% end %>
+    </header>
+    <%= yield %>
+  </body>
+  <%= turbo_frame_tag "modal" %>
+</html>

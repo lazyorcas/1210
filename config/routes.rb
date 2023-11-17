@@ -5,6 +5,7 @@ require "admin_constraint"
 
 Rails.application.routes.draw do
   root "home#index"
+  get "/download", to: "home#download", as: "download"
 
   passwordless_for :users
   mount Sidekiq::Web => "/sidekiq", constraints: AdminConstraint.new
@@ -33,8 +34,7 @@ Rails.application.routes.draw do
 
   resources :memories, only: [:index, :show, :update]
 
-  get "things/all", to: "things#all", as: "all_things"
-  resources :things, except: [:show]
+  resources :things, only: [:index]
   scope module: "thing", path: "/thing/:thing_id", as: "thing" do
     resources :invitations, only: [:index, :create, :update]
   end
@@ -55,13 +55,14 @@ Rails.application.routes.draw do
 
   resources :photos, only: [:show]
 
-  get "/help/meetups", to: "help#meetups"
-  get "/help/ideas", to: "help#ideas"
-  get "/help/memories", to: "help#memories"
-  get "/help/friends", to: "help#friends"
+  scope path: "/help", as: "help" do
+    get "/meetups", to: "help#meetups"
+    get "/ideas", to: "help#ideas"
+    get "/memories", to: "help#memories"
+    get "/friends", to: "help#friends"
+  end
 
-  get "/download", to: "home#download", as: "download"
-
-  # redirects
-  get "/:date/meetups", to: redirect("/meetups", status: 301)
+  namespace :admin do
+    resources :things
+  end
 end

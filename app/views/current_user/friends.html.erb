@@ -18,7 +18,7 @@
       <p>You have no friends on here yet.</p>
     <% end %>
   <% end %>
-  <ul class="grid grid-cols-3 sm:grid-cols-5 gap-4">
+  <ul class="grid grid-cols-3 gap-4">
     <% @friends.each do |user| %>
       <% last_meetup = PastMeetup.between_users(current_user, user).order(date: :desc).first %>
       <li class="flex flex-col items-center gap-y-1 text-center">
