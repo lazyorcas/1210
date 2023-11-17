@@ -57,3 +57,8 @@ en:
         x_years:
           one: "%{count}y"
           other: "%{count}y"
+  passwordless:
+    mailer:
+      sign_in:
+        body: |-
+          Use this token to complete your sign in: %{token}
