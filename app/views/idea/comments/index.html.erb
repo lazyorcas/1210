@@ -1,6 +1,6 @@
 <%= render layout: "shared/modal", locals: { title: "Discussion" } do %>
   <div class="mt-4 flex flex-col gap-y-8">
-    <%= turbo_frame_tag "#{dom_id(@idea)}_comments", class: "flex flex-col gap-y-2" do %>
+    <%= turbo_frame_tag "#{dom_id(@idea)}_comments", class: "flex flex-col gap-y-4" do %>
       <%= render partial: "comments/comment", collection: @idea_comments %>
     <% end %>
     <%= render partial: "comments/form", locals: { comment: Idea::Comment.new } %>
