@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PushSubscriptionsController < ApplicationController
+class PushSubscriptionsController < SocialNetworkController
   protect_from_forgery except: :create
 
   def create

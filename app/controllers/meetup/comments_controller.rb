@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Meetup::CommentsController < ApplicationController
-  before_action :require_user!
-
+class Meetup::CommentsController < SocialNetworkController
   def index
     load_meetup
     load_meetup_comments

@@ -18,7 +18,7 @@ class HomeController < ApplicationController
     when "index"
       "landing"
     else
-      "application"
+      false
     end
   end
 end

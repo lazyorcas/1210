@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class PhotosController < ApplicationController
-  before_action :require_user!
+class PhotosController < SocialNetworkController
   skip_before_action :track_ahoy_visit
 
   def show

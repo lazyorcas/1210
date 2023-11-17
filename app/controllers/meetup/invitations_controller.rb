@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Meetup::InvitationsController < ApplicationController
-  before_action :require_user!
-
+class Meetup::InvitationsController < SocialNetworkController
   def update
     load_meetup_invitation
     if @meetup_invitation.update(meetup_invitation_params)

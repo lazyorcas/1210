@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class User::InvitationsController < ApplicationController
-  before_action :require_user!
-
+class User::InvitationsController < SocialNetworkController
   def create
     @user_invitation = User::Invitation.new(
       inviter: current_user,

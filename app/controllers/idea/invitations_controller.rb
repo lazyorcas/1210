@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Idea::InvitationsController < ApplicationController
-  before_action :require_user!
-
+class Idea::InvitationsController < SocialNetworkController
   def update
     load_idea_invitation
     if @idea_invitation.update(idea_invitation_params)

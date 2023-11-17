@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Idea::CommentsController < ApplicationController
-  before_action :require_user!
-
+class Idea::CommentsController < SocialNetworkController
   def index
     load_idea
     load_idea_comments

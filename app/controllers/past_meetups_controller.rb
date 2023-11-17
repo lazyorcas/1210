@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class PastMeetupsController < ApplicationController
-  before_action :require_user!
-
+class PastMeetupsController < SocialNetworkController
   def new
     @past_meetup = PastMeetup.new(organizer: current_user)
   end

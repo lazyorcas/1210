@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-class MemoriesController < ApplicationController
+class MemoriesController < SocialNetworkController
   layout :resolve_layout
-
-  before_action :require_user!
 
   def index
     ahoy.track("visited_memories")
@@ -30,7 +28,7 @@ class MemoriesController < ApplicationController
     when "index"
       "memories"
     else
-      "application"
+      false
     end
   end
 

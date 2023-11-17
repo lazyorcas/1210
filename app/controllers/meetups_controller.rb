@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-class MeetupsController < ApplicationController
+class MeetupsController < SocialNetworkController
   layout :resolve_layout
-
-  before_action :require_user!
 
   after_action :track_saw_meetups, only: [:index]
 
@@ -59,7 +57,7 @@ class MeetupsController < ApplicationController
     when "index"
       "meetups"
     else
-      "application"
+      false
     end
   end
 

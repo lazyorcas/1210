@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-class CurrentUserController < ApplicationController
+class CurrentUserController < SocialNetworkController
   layout :resolve_layout
-
-  before_action :require_user!
 
   def friends
     ahoy.track("visited_friends")
@@ -38,7 +36,7 @@ class CurrentUserController < ApplicationController
     when "friends"
       "current_user/friends"
     else
-      "application"
+      false
     end
   end
 

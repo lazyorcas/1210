@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Idea::OptionsController < ApplicationController
-  before_action :require_user!
-
+class Idea::OptionsController < SocialNetworkController
   def new
     @idea_option = Idea::Option.new
   end

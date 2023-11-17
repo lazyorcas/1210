@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Thing::InvitationsController < ApplicationController
-  before_action :require_user!
-
+class Thing::InvitationsController < SocialNetworkController
   def index
     load_thing
     abstract_thing

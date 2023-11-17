@@ -5,9 +5,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  before_action :associate_visit_with_current_user, if: :current_user
-  around_action :set_current_user_timezone, if: :current_user
-
   private
 
   def current_user
@@ -25,13 +22,5 @@ class ApplicationController < ActionController::Base
     unless current_user&.admin?
       head(:forbidden)
     end
-  end
-
-  def associate_visit_with_current_user
-    ahoy.authenticate(current_user)
-  end
-
-  def set_current_user_timezone(&block)
-    Time.use_zone(current_user.time_zone, &block)
   end
 end

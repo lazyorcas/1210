@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-class ThingsController < ApplicationController
+class ThingsController < SocialNetworkController
   layout :resolve_layout
 
-  before_action :require_user!
   before_action :require_admin!, except: [:index]
 
   def all
@@ -70,7 +69,7 @@ class ThingsController < ApplicationController
     when "index", "all"
       "things"
     else
-      "application"
+      false
     end
   end
 

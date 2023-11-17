@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-class IdeasController < ApplicationController
+class IdeasController < SocialNetworkController
   layout :resolve_layout
-
-  before_action :require_user!
 
   after_action :track_saw_ideas, only: [:index]
 
@@ -73,7 +71,7 @@ class IdeasController < ApplicationController
     when "index"
       "ideas"
     else
-      "application"
+      false
     end
   end
 
