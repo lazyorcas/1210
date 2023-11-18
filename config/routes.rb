@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     get "/meetups", to: "help#meetups"
     get "/ideas", to: "help#ideas"
     get "/memories", to: "help#memories"
+    get "/things", to: "help#things"
   end
 
   namespace :admin do

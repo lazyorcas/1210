@@ -21,7 +21,7 @@
     </header>
     <hr />
     <%= yield %>
-    <%= turbo_frame_tag "modal", src: @default_modal_src %>
+    <%= turbo_frame_tag "modal", src: @default_modal_src, target: "_top" %>
     <%= render partial: "shared/page_tabs" %>
   </body>
 </html>

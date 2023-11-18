@@ -1,5 +1,3 @@
 <%= render layout: "shared/modal", locals: { title: "New meetup" } do %>
-  <%= turbo_frame_tag "refresh", target: "_top" do %>
-    <%= render "form", meetup: @meetup %>
-  <% end %>
+  <%= render "form", meetup: @meetup %>
 <% end %>

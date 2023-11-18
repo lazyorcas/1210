@@ -1,13 +1,11 @@
 <%= render layout: "shared/modal", locals: { title: "What's your city?" } do %>
-  <%= turbo_frame_tag "refresh", target: "_top" do %>
-    <%= form_with model: current_user, url: current_user_update_path, class: "form-flow" do |form| %>
-      <%= form.text_field :city, list: "cities", class: "line-input text-xl my-2", required: true, placeholder: "e.g. Munich", autocomplete: "off", maxlength: 30 %>
-      <datalist id="cities">
-        <% City.all.each do |city| %>
-          <option value="<%= city %>"></option>
-        <% end %>
-      </datalist>
-      <%= form.button "Save", class: "btn btn--primary" %>
-    <% end %>
+  <%= form_with model: current_user, url: current_user_update_path, class: "form-flow" do |form| %>
+    <%= form.text_field :city, list: "cities", class: "line-input text-xl my-2", required: true, placeholder: "e.g. Munich", autocomplete: "off", maxlength: 30 %>
+    <datalist id="cities">
+      <% City.all.each do |city| %>
+        <option value="<%= city %>"></option>
+      <% end %>
+    </datalist>
+    <%= form.button "Save", class: "btn btn--primary" %>
   <% end %>
 <% end %>
