@@ -185,22 +185,22 @@
     @apply aspect-square object-cover;
   }
 
-  .tag {
+  .chip {
     @apply rounded-full;
     @apply px-3 py-1;
     @apply text-sm;
   }
 
-  .tag--default {
+  .chip--default {
     @apply bg-neutral-200 text-neutral-900;
   }
 
-  .tag--active {
+  .chip--active {
     @apply bg-neutral-900 text-white;
     @apply font-semibold;
   }
 
-  .tag--inactive {
+  .chip--inactive {
     @apply bg-neutral-100 text-neutral-400 border;
   }
 

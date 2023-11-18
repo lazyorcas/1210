@@ -1,13 +1,13 @@
 <main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
   <nav class="flex flex-wrap items-center gap-1">
     <p class="text-sm">Last met:</p>
-    <%= link_to current_user_friends_path, class: class_names("tag flex items-center gap-x-1", params[:last_met].nil? ? "tag--active" : "tag--inactive") do %>
+    <%= link_to current_user_friends_path, class: class_names("chip flex items-center gap-x-1", params[:last_met].nil? ? "chip--active" : "chip--inactive") do %>
       Any
     <% end %>
-    <%= link_to current_user_friends_path(last_met: "last_two_weeks"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "last_two_weeks" ? "tag--active" : "tag--inactive") do %>
+    <%= link_to current_user_friends_path(last_met: "last_two_weeks"), class: class_names("chip flex items-center gap-x-1", params[:last_met] == "last_two_weeks" ? "chip--active" : "chip--inactive") do %>
       &le; 2 weeks
     <% end %>
-    <%= link_to current_user_friends_path(last_met: "more_than_two_weeks_ago"), class: class_names("tag flex items-center gap-x-1", params[:last_met] == "more_than_two_weeks_ago" ? "tag--active" : "tag--inactive") do %>
+    <%= link_to current_user_friends_path(last_met: "more_than_two_weeks_ago"), class: class_names("chip flex items-center gap-x-1", params[:last_met] == "more_than_two_weeks_ago" ? "chip--active" : "chip--inactive") do %>
       &gt; 2 weeks
     <% end %>
   </nav>

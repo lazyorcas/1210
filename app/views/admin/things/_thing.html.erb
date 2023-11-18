@@ -14,7 +14,7 @@
     </div>
     <aside class="flex gap-1 flex-wrap">
       <% ([thing.type] + thing.tags.split('|')).each do |tag| %>
-        <span class="tag tag--default">
+        <span class="chip chip--default">
           <%= tag %>
         </span>
       <% end %>
