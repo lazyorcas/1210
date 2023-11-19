@@ -6,7 +6,7 @@
       <section class="snap-always snap-center min-w-full flex flex-col gap-y-8">
         <header class="flex flex-col gap-y-2">
           <h2 class="font-semibold">
-            <%= relative_to_today(availability_group.date) %>'s <%= availability_group.time_of_day %>
+            <%= relative_to_today(availability_group.date) %> <%= availability_group.time_of_day %>
           </h2>
           <%= render partial: "users/avatars", locals: { users: users, show_name: true } %>
         </header>

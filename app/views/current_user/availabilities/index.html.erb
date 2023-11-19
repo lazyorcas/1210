@@ -1,5 +1,5 @@
-<%= render layout: "shared/modal", locals: { title: "Your availabilities" } do %>
-  <p class="mb-4 text-sm text-neutral-500">For the next week. Visible to everyone.</p>
+<%= render layout: "shared/modal", locals: { title: "When might you be free?" } do %>
+  <p class="mb-4 text-sm text-neutral-500">For the next week. Visible to all friends.</p>
   <div class="flex flex-col gap-y-8">
     <% @date_availabilities_pairs.each do |date, time_of_day_availabilities_pairs| %>
       <section class="flex flex-col gap-y-2">
