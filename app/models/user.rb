@@ -66,6 +66,8 @@ class User < ApplicationRecord
     as: :invitee
   has_many :old_disinterests, through: :old_declined_thing_invitations, source: :inviter, source_type: "Thing"
 
+  has_many :availabilities
+
   validates_presence_of :name, :email, :time_zone
 
   validates :email,

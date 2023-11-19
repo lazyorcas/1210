@@ -1,0 +1,17 @@
+<li id="<%= availability_dom_id(availability) %>">
+  <% if availability.persisted? %>
+    <%= form_with model: availability, url: current_user_availability_path(availability), method: :delete do |form| %>
+      <%= form.button class: "w-full tag tag--success" do %>
+        <%= availability.time_of_day.capitalize %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_with model: availability, url: current_user_availabilities_path do |form| %>
+      <%= form.hidden_field :date, required: true %>
+      <%= form.hidden_field :time_of_day, required: true %>
+      <%= form.button class: "w-full tag tag--inactive" do %>
+        <%= availability.time_of_day.capitalize %>
+      <% end %>
+    <% end %>
+  <% end %>
+</li>

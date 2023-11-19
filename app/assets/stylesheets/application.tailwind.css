@@ -205,6 +205,27 @@
     @apply bg-neutral-100 text-neutral-400 border;
   }
 
+  .tag {
+    @apply h-[30px];
+    @apply rounded;
+    @apply px-3 py-1;
+    @apply text-sm;
+  }
+
+  .tag--inactive {
+    @apply bg-neutral-100 text-neutral-400 border;
+  }
+
+  .tag--active {
+    @apply bg-neutral-900 text-white;
+    @apply font-semibold;
+  }
+
+  .tag--success {
+    @apply bg-green-400 text-green-800;
+    @apply font-semibold;
+  }
+
   .linkable a {
     @apply text-blue-600;
   }

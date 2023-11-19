@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     patch "/", to: "current_user#update", as: "update"
   end
 
+  scope module: "current_user", path: "/me", as: "current_user" do
+    resources :availabilities, only: [:index, :create, :destroy]
+  end
+
   resources :meetups
   namespace :meetup do
     resources :invitations, only: [:update]

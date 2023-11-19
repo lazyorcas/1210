@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_143515) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_17_212758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_143515) do
     t.datetime("started_at")
     t.index(["user_id"], name: "index_ahoy_visits_on_user_id")
     t.index(["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true)
+  end
+
+  create_table "availabilities", force: :cascade do |t|
+    t.bigint("user_id")
+    t.date("date")
+    t.integer("time_of_day")
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.index(["date"], name: "index_availabilities_on_date")
+    t.index(["user_id"], name: "index_availabilities_on_user_id")
   end
 
   create_table "comments", force: :cascade do |t|
