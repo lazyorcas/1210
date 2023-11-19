@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Meetup::Invitation < Invitation
+  include Dateful
+
   default_scope { where(inviter_type: "Meetup", invitee_type: "User") }
 
   after_create :accept, if: -> { !meetup.upcoming? }
@@ -16,7 +18,7 @@ class Meetup::Invitation < Invitation
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[Meetup] #{meetup.title} - #{meetup.organizer.name}",
-        body: "#{meetup.relative_day}, #{meetup.start_time} - #{meetup.end_time}",
+        body: "#{relative_to_today(meetup.date)}, #{meetup.start_time} - #{meetup.end_time}",
       )
     end
   end

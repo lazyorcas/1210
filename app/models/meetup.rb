@@ -54,18 +54,6 @@ class Meetup < ApplicationRecord
     Memory.create(meetup: self)
   end
 
-  def relative_day
-    if date == Time.zone.today
-      "Today"
-    elsif date == Time.zone.tomorrow
-      "Tomorrow"
-    elsif date >= Time.zone.today && date <= 1.week.from_now
-      date.strftime("%A")
-    else
-      "#{date.strftime("%B")} #{date.day.ordinalize}"
-    end
-  end
-
   def seen_invitees
     User.where(id: seen_events.includes(:visit).pluck("ahoy_visits.user_id"))
   end

@@ -1,5 +1,5 @@
 <h1><%= @meetup.title %></h1>
-<p>Date: <%= @meetup.relative_day %></p>
+<p>Date: <%= relative_to_today(@meetup.date) %></p>
 <p>Time: <%= @meetup.start_time  %> - <%= @meetup.end_time  %></p>
 <p>
   Click here to join the meetup: <%= link_to meetups_url, meetups_url(utm_source: "email", utm_medium: "new_meetup_notification") %>.

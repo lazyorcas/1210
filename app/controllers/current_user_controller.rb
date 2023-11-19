@@ -21,14 +21,6 @@ class CurrentUserController < SocialNetworkController
 
   private
 
-  def load_friends
-    @friends = current_user.friends(params[:last_met])
-  end
-
-  def sort_friends
-    @friends = @friends.sort_by(&:name)
-  end
-
   def resolve_layout
     case action_name
     when "profile"
@@ -38,6 +30,14 @@ class CurrentUserController < SocialNetworkController
     else
       false
     end
+  end
+
+  def load_friends
+    @friends = current_user.friends(params[:last_met])
+  end
+
+  def sort_friends
+    @friends = @friends.sort_by(&:name)
   end
 
   def current_user_params

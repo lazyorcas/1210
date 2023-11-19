@@ -6,7 +6,7 @@
     <% @date_meetups.each do |date, meetups| %>
       <section class="flex flex-col gap-y-2">
         <h2 class="text-lg font-semibold">
-          <%= meetups.first.relative_day %>
+          <%= relative_to_today(meetups.first.date) %>
         </h2>
         <%= render meetups %>
       </section>
