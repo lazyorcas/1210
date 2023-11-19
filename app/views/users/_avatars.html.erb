@@ -1,7 +1,7 @@
-<ul class="flex items-center flex-wrap gap-1">
+<ul class="<%= class_names("flex items-center flex-wrap gap-y-1", local_assigns[:show_name] ? "gap-x-2" : "gap-x-1") %>">
   <% users.map do |user| %>
     <li>
-      <%= render partial: "users/avatar", locals: { user: user, size: "tiny" } %>
+      <%= render partial: "users/avatar", locals: { user: user, size: "tiny", show_name: local_assigns[:show_name] } %>
     </li>
   <% end %>
 </ul>

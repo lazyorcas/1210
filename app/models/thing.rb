@@ -2,6 +2,7 @@
 
 class Thing < ApplicationRecord
   TYPES = [
+    "Bar",
     "Cafe",
     "Exhibition",
     "Fair",
@@ -13,6 +14,19 @@ class Thing < ApplicationRecord
   ].freeze
 
   default_scope { where(is_deleted: nil) }
+
+  scope :time_of_day, ->(time_of_day) {
+    case time_of_day
+    when "breakfast"
+      where(type: ["Cafe", "Restaurant"])
+    when "lunch", "dinner"
+      where(type: "Restaurant")
+    when "morning", "afternoon"
+      where.not(type: ["Music", "Restaurant", "Bar"])
+    when "evening"
+      where.not(type: ["Cafe", "Restaurant", "Fair", "Exhibition"])
+    end
+  }
 
   has_many :invitations,
     class_name: "Thing::Invitation",

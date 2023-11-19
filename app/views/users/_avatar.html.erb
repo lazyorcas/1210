@@ -1,17 +1,20 @@
-<% if user.avatar.attached? %>
-  <%= image_tag photo_path(id: user.avatar.id), class: class_names("avatar", {
+<div class="<%= class_names({ "flex items-center gap-x-1": local_assigns[:show_name] }) %>">
+  <% if user.avatar.attached? %>
+    <%= image_tag photo_path(id: user.avatar.id), class: class_names("avatar", {
     "rounded w-6 h-6": size == "tiny",
     "rounded w-8 h-8": size == "small",
     "rounded w-11 h-11": size == "medium",
-    "rounded-xl": size == "fill",
   }) %>
-<% else %>
-  <div class="<%= class_names("avatar bg-neutral-900 text-white font-bold flex items-center justify-center", {
+  <% else %>
+    <div class="<%= class_names("avatar bg-neutral-900 text-white font-bold flex items-center justify-center", {
     "rounded w-6 h-6 text-xs": size == "tiny",
     "rounded h-8 h-8 text-sm": size == "small",
     "rounded w-11 h-11": size == "medium",
-    "rounded-xl text-2xl": size == "fill",
   }) %>">
-    <%= user.name.first %>
-  </div>
-<% end %>
+      <%= user.name.first %>
+    </div>
+  <% end %>
+  <% if local_assigns[:show_name].present? %>
+    <p class="text-sm"><%= user.name %></p>
+  <% end %>
+</div>

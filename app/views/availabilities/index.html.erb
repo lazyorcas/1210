@@ -1,0 +1,19 @@
+<% if @availability_group_users_pairs.empty? %>
+  <%= render partial: "no_availabilities" %>
+<% else %>
+  <main class="w-full grow flex snap-mandatory snap-x px-4 overflow-x-scroll gap-x-2">
+    <% @availability_group_users_pairs.each do |availability_group, users| %>
+      <section class="snap-always snap-center min-w-full flex flex-col gap-y-8">
+        <header class="flex flex-col gap-y-2">
+          <h2 class="font-semibold">
+            <%= relative_to_today(availability_group.date) %>'s <%= availability_group.time_of_day %>
+          </h2>
+          <%= render partial: "users/avatars", locals: { users: users, show_name: true } %>
+        </header>
+        <% if current_user.city.present? %>
+          <%= turbo_frame_tag "availability_group_#{availability_group.date}_#{availability_group.time_of_day}_things", src: availability_group_things_path(date: availability_group.date, time_of_day: availability_group.time_of_day) %>
+        <% end %>
+      </section>
+    <% end %>
+  </main>
+<% end %>
