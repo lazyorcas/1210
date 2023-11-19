@@ -1,11 +1,11 @@
-<%= render layout: "shared/modal", locals: { title: "When might you have time?" } do %>
+<%= render layout: "shared/modal", locals: { title: "Your availabilities" } do %>
   <p class="mb-4 text-sm text-neutral-500">For the next week.</p>
   <div class="flex flex-col gap-y-8">
-    <% @availabilities_by_date.each do |date, availabilities_by_time_of_day| %>
+    <% @date_availabilities_pairs.each do |date, time_of_day_availabilities_pairs| %>
       <section class="flex flex-col gap-y-2">
         <h2 class="font-semibold"><%= relative_to_today(date) %></h2>
         <ul class="grid grid-cols-2 gap-2">
-          <% availabilities_by_time_of_day.each do |time_of_day, availability| %>
+          <% time_of_day_availabilities_pairs.each do |time_of_day, availability| %>
             <%= render availability %>
           <% end %>
         </ul>

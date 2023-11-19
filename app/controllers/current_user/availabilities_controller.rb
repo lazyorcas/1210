@@ -7,7 +7,7 @@ class CurrentUser::AvailabilitiesController < SocialNetworkController
     ahoy.track("visited_current_user_availabilities")
     set_availabilities_date_range
     load_availabilities
-    build_availabilities_by_date
+    build_date_availabilities_pairs
   end
 
   def create
@@ -37,8 +37,8 @@ class CurrentUser::AvailabilitiesController < SocialNetworkController
     @availabilities = availability_scope.where(date: @date_range)
   end
 
-  def build_availabilities_by_date
-    @availabilities_by_date = @date_range.map do |date|
+  def build_date_availabilities_pairs
+    @date_availabilities_pairs = @date_range.map do |date|
       [
         date,
         Availability.time_of_days.keys.map do |time_of_day|
