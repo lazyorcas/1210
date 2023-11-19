@@ -26,7 +26,7 @@
           <% if user.avatar.attached? %>
             <%= image_tag photo_path(id: user.avatar.id), class: "avatar rounded-xl" %>
           <% else %>
-            <div class="avatar rounded-xl bg-neutral-900 text-white text-2xl font-bold"><%= user.name.first %></div>
+            <div class="avatar rounded-xl bg-neutral-900 text-white text-2xl font-bold flex items-center justify-center"><%= user.name.first %></div>
           <% end %>
           <div class="absolute -right-0.5 -bottom-0.5 p-0.5 bg-white rounded-xl">
             <p class="<%= class_names("text-status", {
