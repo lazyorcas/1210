@@ -6,7 +6,7 @@
       <%= link_to current_user_friends_path, class: "icon-btn icon-btn--small" do %>
         <%= heroicon "chevron-left", options: { class: "h-6 w-6" } %>
       <% end %>
-      <h1 class="text-3xl font-black">Who's available?</h1>
+      <h1 class="text-3xl font-black">Who's up?</h1>
     </header>
     <%= yield %>
     <%= turbo_frame_tag "modal", target: "_top" %>
