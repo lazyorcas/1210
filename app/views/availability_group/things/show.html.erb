@@ -12,18 +12,20 @@
         <% end %>
       <% end %>
     </div>
-    <div class="flex flex-col gap-y-4">
-      <div class="flex flex-col gap-y-1">
-        <h2 class="text-2xl font-bold"><%= @thing.title %></h2>
-        <p><%= @thing.description %></p>
+    <div class="flex flex-col gap-y-8">
+      <div class="flex flex-col gap-y-4">
+        <div class="flex flex-col gap-y-1">
+          <h2 class="text-2xl font-bold"><%= @thing.title %></h2>
+          <p><%= @thing.description %></p>
+        </div>
+        <aside class="flex gap-1 flex-wrap">
+          <% ([@thing.type] + @thing.tags.split('|')).each do |tag| %>
+            <span class="chip chip--default">
+              <%= tag %>
+            </span>
+          <% end %>
+        </aside>
       </div>
-      <aside class="flex gap-1 flex-wrap">
-        <% ([@thing.type] + @thing.tags.split('|')).each do |tag| %>
-          <span class="chip chip--default">
-            <%= tag %>
-          </span>
-        <% end %>
-      </aside>
       <%= link_to new_meetup_path(thing_id: @thing.id, date: params[:date]), class: "btn btn--primary flex gap-x-2", data: { turbo_frame: "modal" } do %>
         <%= heroicon "bolt", variant: "solid", options: { class: "h-6 w-6" } %>
         New meetup
