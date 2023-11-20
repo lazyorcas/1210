@@ -15,6 +15,7 @@ class MeetupsController < SocialNetworkController
   def new
     @meetup = Meetup.new
     @meetup.thing_id = params[:thing_id]
+    @meetup.date = params[:date]
     @meetup.title = @meetup.thing&.title
     assign_current_user_to_meetup_organizer
   end

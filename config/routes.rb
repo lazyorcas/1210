@@ -24,11 +24,8 @@ Rails.application.routes.draw do
   end
 
   resources :availabilities, only: [:index]
-  scope module: "availability_group", path: "/availability_group", as: "availability_group" do
-    resources :things, only: [:show]
-  end
   scope module: "availability_group", path: "/availability_group/:date/:time_of_day", as: "availability_group" do
-    resources :things, only: [:index]
+    resources :things, only: [:index, :show]
   end
 
   scope module: "current_user", path: "/me", as: "current_user" do
