@@ -14,9 +14,14 @@
       <div class="status status--textful absolute -mr-8 -mt-12">
         <%= current_user.received_invitations.pending.count %>
       </div>
+    <% elsif current_user.availabilities.count > 0 %>
+      <div class="status status--empty absolute -mr-8 -mt-12"></div>
     <% end %>
   <% end %>
   <%= render layout: "shared/page_tab", locals: { icon_name: "user-circle", path: current_user_profile_path } do %>
     Profile
+    <% if current_user.availabilities.count == 0 %>
+      <div class="status status--empty absolute -mr-8 -mt-12"></div>
+    <% end %>
   <% end %>
 </nav>
