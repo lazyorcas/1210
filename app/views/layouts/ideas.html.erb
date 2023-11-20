@@ -1,6 +1,6 @@
 <% content_for :page_title, "Ideas" %>
 <% content_for :toolbar do %>
-  <%= link_to current_user.city.present? ? things_path : current_user_edit_city_path, class: "icon-btn icon-btn--small", data: { turbo_frame: current_user.city.present? ? nil : "modal" } do %>
+  <%= link_to things_path, class: "icon-btn icon-btn--small" do %>
     <%= heroicon "map-pin", options: { class: "h-6 w-6" } %>
     <% if Thing.pending(current_user).count > 0 %>
       <div class="status status--empty absolute -mr-6 -mt-6"></div>

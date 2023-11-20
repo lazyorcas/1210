@@ -11,8 +11,12 @@ class CurrentUserController < SocialNetworkController
 
   def update
     if current_user.update(current_user_params)
-      if params[:city].present?
-        redirect_to(things_path)
+      if current_user_params[:city].present?
+        if Thing.pending(current_user).count > 0
+          redirect_to(things_path)
+        else
+          redirect_to(root_path)
+        end
       else
         redirect_to(current_user_profile_path)
       end

@@ -12,6 +12,8 @@ class SocialNetworkController < ApplicationController
   def load_default_modal_src
     if current_user.friends.count == 0
       @default_modal_src = user_path(current_user)
+    elsif current_user.city.nil?
+      @default_modal_src = current_user_edit_city_path
     end
   end
 
