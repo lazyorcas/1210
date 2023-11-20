@@ -3,7 +3,7 @@
   <%= link_to availabilities_path, class: "icon-btn icon-btn--small" do %>
     <%= heroicon "calendar-days", options: { class: "h-6 w-6" } %>
     <% if current_user.availabilities.count > 0 %>
-      <div class="status status--empty self-start shrink-0"></div>
+      <div class="status status--empty absolute -mr-6 -mt-6"></div>
     <% end %>
   <% end %>
   <%= link_to user_path(current_user), class: class_names("icon-btn", current_user.friends.count > 10 ? "btn--secondary" : "btn--primary"), data: { turbo_frame: "modal" } do %>

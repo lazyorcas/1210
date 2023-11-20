@@ -3,7 +3,7 @@
     <%= link_to current_user_availabilities_path, class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
       <%= heroicon "calendar-days", options: { class: "h-6 w-6" } %>
       <% if current_user.availabilities.count == 0 %>
-        <div class="status status--empty self-start shrink-0"></div>
+        <div class="status status--empty absolute -mr-6 -mt-6"></div>
       <% end %>
     <% end %>
     <%= link_to current_user_edit_avatar_path, data: { turbo_frame: "modal" } do %>
