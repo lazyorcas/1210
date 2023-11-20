@@ -10,15 +10,7 @@
           </h2>
           <%= render partial: "users/avatars", locals: { users: users, show_name: true } %>
         </header>
-        <div class="grow flex flex-col gap-y-2">
-          <% if current_user.city.present? %>
-            <%= turbo_frame_tag "availability_group_#{availability_group.date}_#{availability_group.time_of_day}_things", src: availability_group_things_path(date: availability_group.date, time_of_day: availability_group.time_of_day), class: "grow overflow-y-scroll" %>
-          <% end %>
-          <%= link_to things_path, class: "shrink-0 btn btn--secondary gap-x-2" do %>
-            <%= heroicon "map-pin", options: { class: "h-6 w-6" } %>
-            Explore things to do
-          <% end %>
-        </div>
+        <%= turbo_frame_tag "availability_group_#{availability_group.date}_#{availability_group.time_of_day}_things", src: availability_group_things_path(date: availability_group.date, time_of_day: availability_group.time_of_day), class: "grow overflow-y-scroll" %>
       </section>
     <% end %>
   </main>
