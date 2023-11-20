@@ -11,7 +11,7 @@
         <%= render partial: "users/avatar", locals: { user: current_user, size: "medium" } %>
       <% else %>
         <div class="icon-btn btn--primary">
-          <%= heroicon "camera", options: { class: "h-6 w-6" } %>
+          <%= heroicon "camera", variant: "solid", options: { class: "h-6 w-6" } %>
         </div>
       <% end %>
     <% end %>
@@ -22,7 +22,7 @@
       <p class="text-sm text-neutral-500">Stay in the loop with your friends.</p>
     </header>
     <%= button_tag class: "btn btn--primary w-fit gap-x-2", data: { controller: "notification-permission",  action: "notification-permission#request" }, disabled: !browser.device.mobile? do %>
-      <%= heroicon "bell-alert", options: { class: "h-6 w-6" } %>
+      <%= heroicon "bell-alert", variant: "solid", options: { class: "h-6 w-6" } %>
       Enable push notification
     <% end %>
   </section>

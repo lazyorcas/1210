@@ -5,7 +5,7 @@
     <% end %>
     <%= form.file_field :avatar, required: true, accept: 'image/*' %>
     <%= form.button class: "w-full btn btn--primary gap-x-2", data: { uploader_target: "uploadBtn" } do %>
-      <%= heroicon "cloud-arrow-up", options: { class: "h-6 w-6" } %>
+      <%= heroicon "cloud-arrow-up", variant: "solid", options: { class: "h-6 w-6" } %>
       Upload
     <% end %>
   <% end %>

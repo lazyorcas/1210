@@ -7,7 +7,7 @@
     <% end %>
   <% end %>
   <%= link_to user_path(current_user), class: class_names("icon-btn", current_user.friends.count > 10 ? "btn--secondary" : "btn--primary"), data: { turbo_frame: "modal" } do %>
-    <%= heroicon "user-plus", options: { class: "h-6 w-6" } %>
+    <%= heroicon "user-plus", variant: "solid", options: { class: "h-6 w-6" } %>
   <% end %>
 <% end %>
 <%= render template: "layouts/social_network" %>
