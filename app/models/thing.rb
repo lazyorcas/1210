@@ -28,6 +28,10 @@ class Thing < ApplicationRecord
     end
   }
 
+  scope :pending, ->(user) {
+    where(city: [user.city, nil]).where.not(id: user.things_discovered)
+  }
+
   has_many :invitations,
     class_name: "Thing::Invitation",
     as: :inviter

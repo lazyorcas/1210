@@ -1,9 +1,9 @@
 <main class="grow w-full flex flex-col gap-y-8 pt-4 pb-[84px] standalone:pb-[120px]">
   <% content_for :toolbar do %>
-    <%= link_to current_user_availabilities_path, class: "icon-btn icon-bnt--small", data: { turbo_frame: "modal" } do %>
+    <%= link_to current_user_availabilities_path, class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
       <%= heroicon "calendar-days", options: { class: "h-6 w-6" } %>
       <% if current_user.availabilities.count == 0 %>
-        <div class="status status--empty absolute -mr-8 -mt-8"></div>
+        <div class="status status--empty self-start shrink-0"></div>
       <% end %>
     <% end %>
     <%= link_to current_user_edit_avatar_path, data: { turbo_frame: "modal" } do %>
