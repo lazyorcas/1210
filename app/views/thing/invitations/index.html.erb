@@ -1,15 +1,17 @@
 <% friends_interested = @thing.interestees & current_user.friends_in_the_same_city %>
-<%= render layout: "shared/modal", locals: { title: "Interests" } do %>
-  <div class="mt-4 flex flex-col gap-y-4">
-    <section class="flex flex-col gap-y-1">
-      <header class="flex gap-x-2 items-center text-neutral-500">
-        <%= heroicon "bookmark", options: { class: "h-4 w-4" } %>
-        <h2 class="text-sm">Friends who find this interesting</h2>
-      </header>
-      <p>
-        <%= friends_interested.length > 0 ? friends_interested.map(&:name).join(', ') : "No one yet" %>
-      </p>
-    </section>
-    <%= render "decline_form" %>
-  </div>
+<%= render ModalComponent.new(title: "Interests") do |component| %>
+  <% component.with_body do %>
+    <div class="px-4 modal-pb flex flex-col gap-y-4">
+      <section class="flex flex-col gap-y-1">
+        <header class="flex gap-x-2 items-center text-neutral-500">
+          <%= heroicon "bookmark", options: { class: "h-4 w-4" } %>
+          <h2 class="text-sm">Friends who find this interesting</h2>
+        </header>
+        <p>
+          <%= friends_interested.length > 0 ? friends_interested.map(&:name).join(', ') : "No one yet" %>
+        </p>
+      </section>
+      <%= render "decline_form" %>
+    </div>
+  <% end %>
 <% end %>

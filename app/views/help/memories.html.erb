@@ -1,14 +1,16 @@
-<%= render layout: "shared/modal", locals: { title: "What are memories?" } do %>
-  <article class="flex flex-col gap-y-8">
-    <p>Create a memory if you don't want to share your meetup photos with the entire internet. Your friends who were at the meetup can also upload and see the photos.</p>
-    <section class="flex flex-col gap-y-4">
-      <h2 class="text-lg font-semibold">Are memories automatically created from meetups?</h2>
-      <p>Yes! If a meetup has more than 2 people (including you), it will be automatically turned into a memory the next day.</p>
-    </section>
-    <section class="flex flex-col gap-y-4">
-      <h2 class="text-lg font-semibold">Are the photos encrypted and securely stored?</h2>
-      <p>Your photos are encrypted. Only those who are part of the memory can see the photos. If someone else outside happens to get the links to the photos, they won't be able to see anything.</p>
-      <p>Of course, you should never upload any sensitive photo.</p>
-    </section>
-  </article>
+<%= render ModalComponent.new(title: "What are memories?") do |component| %>
+  <% component.with_body do %>
+    <article class="px-4 modal-pb flex flex-col gap-y-8">
+      <p>Create a memory if you don't want to share your meetup photos with the entire internet. Your friends who were at the meetup can also upload and see the photos.</p>
+      <section class="flex flex-col gap-y-4">
+        <h2 class="text-lg font-semibold">Are memories automatically created from meetups?</h2>
+        <p>Yes! If a meetup has more than 2 people (including you), it will be automatically turned into a memory the next day.</p>
+      </section>
+      <section class="flex flex-col gap-y-4">
+        <h2 class="text-lg font-semibold">Are the photos encrypted and securely stored?</h2>
+        <p>Your photos are encrypted. Only those who are part of the memory can see the photos. If someone else outside happens to get the links to the photos, they won't be able to see anything.</p>
+        <p>Of course, you should never upload any sensitive photo.</p>
+      </section>
+    </article>
+  <% end %>
 <% end %>

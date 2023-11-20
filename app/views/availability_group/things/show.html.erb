@@ -1,35 +1,39 @@
-<%= render layout: "shared/modal" do %>
-  <div class="flex flex-col gap-y-4 mt-2">
-    <div class="relative">
-      <%= image_tag @thing.image_url, class: "thumbnail rounded-xl w-full" %>
-      <%= link_to @thing.url, class: "absolute right-2 top-2 icon-btn btn--secondary", target: "_blank" do %>
-        <% if @thing.url.include?("maps.app.goo.gl") %>
-          <%= heroicon "map", options: { class: "h-6 w-6" } %>
-        <% elsif @thing.url.include?("youtube") %>
-          <%= heroicon "video-camera", options: { class: "h-6 w-6" } %>
-        <% else %>
-          <%= heroicon "arrow-top-right-on-square", options: { class: "h-6 w-6" } %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="flex flex-col gap-y-8">
-      <div class="flex flex-col gap-y-4">
-        <div class="flex flex-col gap-y-1">
-          <h2 class="text-2xl font-bold"><%= @thing.title %></h2>
-          <p><%= @thing.description %></p>
-        </div>
-        <aside class="flex gap-1 flex-wrap">
-          <% ([@thing.type] + @thing.tags.split('|')).each do |tag| %>
-            <span class="chip chip--default">
-              <%= tag %>
-            </span>
+<%= render ModalComponent.new(title: @thing.type) do |component| %>
+  <% component.with_body do %>
+    <div class="px-4 flex flex-col gap-y-4">
+      <div class="relative">
+        <%= image_tag @thing.image_url, class: "thumbnail rounded-xl w-full" %>
+        <%= link_to @thing.url, class: "absolute right-2 top-2 icon-btn btn--secondary", target: "_blank" do %>
+          <% if @thing.url.include?("maps.app.goo.gl") %>
+            <%= heroicon "map", options: { class: "h-6 w-6" } %>
+          <% elsif @thing.url.include?("youtube") %>
+            <%= heroicon "video-camera", options: { class: "h-6 w-6" } %>
+          <% else %>
+            <%= heroicon "arrow-top-right-on-square", options: { class: "h-6 w-6" } %>
           <% end %>
-        </aside>
+        <% end %>
       </div>
-      <%= link_to new_meetup_path(thing_id: @thing.id, date: params[:date]), class: "btn btn--primary flex gap-x-2", data: { turbo_frame: "modal" } do %>
-        <%= heroicon "bolt", variant: "solid", options: { class: "h-6 w-6" } %>
-        New meetup
-      <% end %>
+      <div class="flex flex-col gap-y-8">
+        <div class="flex flex-col gap-y-4">
+          <div class="flex flex-col gap-y-1">
+            <h2 class="text-2xl font-bold"><%= @thing.title %></h2>
+            <p><%= @thing.description %></p>
+          </div>
+          <aside class="flex gap-1 flex-wrap">
+            <% @thing.tags.split('|').each do |tag| %>
+              <span class="chip chip--default">
+                <%= tag %>
+              </span>
+            <% end %>
+          </aside>
+        </div>
+      </div>
     </div>
-  </div>
+  <% end %>
+  <% component.with_footer do %>
+    <%= link_to new_meetup_path(thing_id: @thing.id, date: params[:date]), class: "btn btn--primary flex gap-x-2", data: { turbo_frame: "modal" } do %>
+      <%= heroicon "bolt", variant: "solid", options: { class: "h-6 w-6" } %>
+      New meetup
+    <% end %>
+  <% end %>
 <% end %>

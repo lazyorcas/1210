@@ -1,3 +1,7 @@
-<%= render layout: "shared/modal", locals: { title: "Add memory" } do %>
-  <%= render "form", past_meetup: @past_meetup %>
+<%= render ModalComponent.new(title: "Add memory") do |component| %>
+  <% component.with_body do %>
+    <div class="px-4 modal-pb">
+      <%= render "form", past_meetup: @past_meetup %>
+    </div>
+  <% end %>
 <% end %>

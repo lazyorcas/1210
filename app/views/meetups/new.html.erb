@@ -1,3 +1,7 @@
-<%= render layout: "shared/modal", locals: { title: "New meetup" } do %>
-  <%= render "form", meetup: @meetup %>
+<%= render ModalComponent.new(title: "New meetup") do |component| %>
+  <% component.with_body do %>
+    <div class="px-4 modal-pb">
+      <%= render "form", meetup: @meetup %>
+    </div>
+  <% end %>
 <% end %>

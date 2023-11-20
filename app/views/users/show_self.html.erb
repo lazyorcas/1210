@@ -1,14 +1,16 @@
-<%= render layout: "shared/modal", locals: { title: "Invite your friends" } do %>
-  <div class="w-full max-w-[400px]">
-    <div data-controller="clipboard">
-      <input data-clipboard-target="source" type="text" value="<%= user_url(current_user) %>" readonly hidden>
-      <button class="btn btn--primary flex items-center gap-x-2 w-full my-8" data-action="clipboard#copy">
-        <%= heroicon "clipboard-document", variant: "solid", options: { class: "h-6 w-6" } %>
-        <span data-clipboard-target="buttonLabel">
-          Copy invite link
-        </span>
-      </button>
+<%= render ModalComponent.new(title: "Invite your friends") do |component| %>
+  <% component.with_body do %>
+    <div class="px-4 modal-pb">
+      <div data-controller="clipboard">
+        <input data-clipboard-target="source" type="text" value="<%= user_url(current_user) %>" readonly hidden>
+        <button class="btn btn--primary flex items-center gap-x-2 w-full mb-4" data-action="clipboard#copy">
+          <%= heroicon "clipboard-document", variant: "solid", options: { class: "h-6 w-6" } %>
+          <span data-clipboard-target="buttonLabel">
+            Copy invite link
+          </span>
+        </button>
+      </div>
+      <p>The accounts created from this link will automatically be added to your friend list.</p>
     </div>
-    <p>The accounts created from this link will automatically be added to your friend list.</p>
-  </div>
+  <% end %>
 <% end %>

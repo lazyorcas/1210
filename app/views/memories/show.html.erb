@@ -1,17 +1,19 @@
-<%= render layout: "shared/modal", locals: { title: "Photos" } do %>
-  <div class="flex flex-col gap-y-4">
-    <p class="text-sm">
-      <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
-    </p>
-    <%= turbo_frame_tag "photos" do %>
-      <% if @memory.photos.empty? %>
-        <%= render partial: "no_photos" %>
-      <% else %>
-        <%= render partial: "photos", locals: { photos: @memory.photos } %>
+<%= render ModalComponent.new(title: "Photos") do |component| %>
+  <% component.with_body do %>
+    <div class="px-4 modal-pb flex flex-col gap-y-4">
+      <p class="text-sm">
+        <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
+      </p>
+      <%= turbo_frame_tag "photos" do %>
+        <% if @memory.photos.empty? %>
+          <%= render partial: "no_photos" %>
+        <% else %>
+          <%= render partial: "photos", locals: { photos: @memory.photos } %>
+        <% end %>
       <% end %>
-    <% end %>
-    <div class="pt-4 bg-white border-t">
-      <%= render partial: "form" %>
+      <div class="pt-4 bg-white border-t">
+        <%= render partial: "form" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

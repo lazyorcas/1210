@@ -1,44 +1,51 @@
-<%= render layout: "shared/modal", locals: { comments_path: idea_comments_path(@idea) } do %>
-  <article class="flex flex-col gap-y-8">
-    <header>
-      <h1 class="text-xl font-bold">
-        <% if @idea.thing.present? %>
-          <%= link_to @idea.title, @idea.thing.becomes(Thing), data: { turbo_frame: "modal" } %>
-        <% else %>
-          <%= @idea.title %>
+<%= render ModalComponent.new do |component| %>
+  <% component.with_toolbar do %>
+    <%= link_to idea_comments_path(@idea), data: { turbo_frame: "modal" } do %>
+      <%= heroicon "chat-bubble-left-right", options: { class: "h-6 w-6" } %>
+    <% end %>
+  <% end %>
+  <% component.with_body do %>
+    <article class="px-4 modal-pb flex flex-col gap-y-8">
+      <header>
+        <h1 class="text-xl font-bold">
+          <% if @idea.thing.present? %>
+            <%= link_to @idea.title, @idea.thing.becomes(Thing), data: { turbo_frame: "modal" } %>
+          <% else %>
+            <%= @idea.title %>
+          <% end %>
+        </h1>
+        <p>Suggested by <%= @idea.organizer.name %></p>
+      </header>
+      <% if @idea.looking_for_voters? %>
+        <%= render partial: "invitees" %>
+        <% if @idea.organizer == current_user %>
+          <%= render partial: "looking_for_voters_message" %>
         <% end %>
-      </h1>
-      <p>Suggested by <%= @idea.organizer.name %></p>
-    </header>
-    <% if @idea.looking_for_voters? %>
-      <%= render partial: "invitees" %>
+      <% end %>
+      <% if @idea.polling? %>
+        <%= turbo_frame_tag "#{dom_id(@idea)}_options", class: "flex flex-col gap-y-4" do %>
+          <%= render @idea.options.sorted_by_upvotes %>
+        <% end %>
+        <%= turbo_frame_tag "new_idea_option", src: new_idea_option_path(idea_id: @idea.id) %>
+        <%= render partial: "voters" %>
+      <% end %>
       <% if @idea.organizer == current_user %>
-        <%= render partial: "looking_for_voters_message" %>
-      <% end %>
-    <% end %>
-    <% if @idea.polling? %>
-      <%= turbo_frame_tag "#{dom_id(@idea)}_options", class: "flex flex-col gap-y-4" do %>
-        <%= render @idea.options.sorted_by_upvotes %>
-      <% end %>
-      <%= turbo_frame_tag "new_idea_option", src: new_idea_option_path(idea_id: @idea.id) %>
-      <%= render partial: "voters" %>
-    <% end %>
-    <% if @idea.organizer == current_user %>
-      <div class="flex gap-x-2">
-        <% if @idea.looking_for_voters? %>
-          <%= button_to idea_path(@idea), method: :delete, class: "shrink-0 icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this idea?" } do |form| %>
-            <%= heroicon "trash", options: { class: "h-6 w-6" } %>
+        <div class="flex gap-x-2">
+          <% if @idea.looking_for_voters? %>
+            <%= button_to idea_path(@idea), method: :delete, class: "shrink-0 icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this idea?" } do |form| %>
+              <%= heroicon "trash", options: { class: "h-6 w-6" } %>
+            <% end %>
+            <%= link_to edit_idea_path(@idea), class: "shrink-0 icon-btn btn--secondary", data: { turbo_frame: "modal" } do %>
+              <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
+            <% end %>
+            <%= render partial: "polling_button" %>
+          <% elsif @idea.polling? %>
+            <%= render partial: "polled_button" %>
           <% end %>
-          <%= link_to edit_idea_path(@idea), class: "shrink-0 icon-btn btn--secondary", data: { turbo_frame: "modal" } do %>
-            <%= heroicon "pencil-square", options: { class: "h-6 w-6" } %>
-          <% end %>
-          <%= render partial: "polling_button" %>
-        <% elsif @idea.polling? %>
-          <%= render partial: "polled_button" %>
-        <% end %>
-      </div>
-    <% elsif @idea.looking_for_voters? %>
-      <%= render partial: "idea/invitations/invitee_form", locals: { invitation: @idea.invitations.find_by(invitee: current_user) } %>
-    <% end %>
-  </article>
+        </div>
+      <% elsif @idea.looking_for_voters? %>
+        <%= render partial: "idea/invitations/invitee_form", locals: { invitation: @idea.invitations.find_by(invitee: current_user) } %>
+      <% end %>
+    </article>
+  <% end %>
 <% end %>

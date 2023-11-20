@@ -1,0 +1,26 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="w-full h-[100dvh] fixed inset-x-0 bottom-0 z-50 flex flex-col items-center justify-end" data-controller="modal">
+    <div class="absolute bg-neutral-900/[0.8] w-full h-full" <%= @close_disabled ? nil : "data-action=click->modal#close" %>></div>
+    <dialog class="w-full max-h-[90%] overflow-y-scroll bg-white rounded-t-xl flex flex-col" open>
+      <header class="sticky inset-x-0 top-0 px-4 py-4 flex items-center justify-between bg-white z-10">
+        <% if @title.present? %>
+          <h1 class="text-xl font-bold"><%= @title %></h1>
+        <% end %>
+        <nav class="shrink-0 ml-auto flex items-center gap-x-2">
+          <%= toolbar %>
+          <% if @close_disabled != true %>
+            <%= button_tag type: "button", data: { action: "click->modal#close" }, class: 'icon-btn icon-btn--small' do %>
+              <%= heroicon "x-mark", options: { class: "h-6 w-6" } %>
+            <% end %>
+          <% end %>
+        </nav>
+      </header>
+      <%= body %>
+      <% if footer %>
+        <div class="sticky inset-x-0 bottom-0 pt-4 px-4 modal-pb bg-white z-10">
+          <%= footer %>
+        </div>
+      <% end %>
+    </dialog>
+  </div>
+<% end %>

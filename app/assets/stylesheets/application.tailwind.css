@@ -273,4 +273,8 @@
   .form-inputs-flow {
     @apply flex flex-col gap-y-4;
   }
+
+  .modal-pb {
+    @apply pb-4 standalone:pb-12;
+  }
 }

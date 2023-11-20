@@ -1,12 +1,14 @@
-<%= render layout: "shared/modal", locals: { title: "Avatar" } do %>
-  <%= form_with model: current_user, url: current_user_update_path, class: "flex flex-col gap-y-4 mt-4", data: { controller: "uploader" } do |form| %>
-    <% if current_user.avatar.attached? %>
-      <%= image_tag photo_path(id: current_user.avatar.id), class: "self-center avatar rounded-xl" %>
-    <% end %>
-    <%= form.file_field :avatar, required: true, accept: 'image/*' %>
-    <%= form.button class: "w-full btn btn--primary gap-x-2", data: { uploader_target: "uploadBtn" } do %>
-      <%= heroicon "cloud-arrow-up", variant: "solid", options: { class: "h-6 w-6" } %>
-      Upload
+<%= render ModalComponent.new(title: "Avatar") do |component| %>
+  <% component.with_body do %>
+    <%= form_with model: current_user, url: current_user_update_path, class: "px-4 modal-pb flex flex-col gap-y-4", data: { controller: "uploader" } do |form| %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag photo_path(id: current_user.avatar.id), class: "self-center avatar rounded-xl" %>
+      <% end %>
+      <%= form.file_field :avatar, required: true, accept: 'image/*' %>
+      <%= form.button class: "w-full btn btn--primary gap-x-2", data: { uploader_target: "uploadBtn" } do %>
+        <%= heroicon "cloud-arrow-up", variant: "solid", options: { class: "h-6 w-6" } %>
+        Upload
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
