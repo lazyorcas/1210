@@ -10,7 +10,7 @@
           </h2>
           <%= render partial: "users/avatars", locals: { users: users, show_name: true } %>
         </header>
-        <%= turbo_frame_tag "availability_group_#{availability_group.date}_#{availability_group.time_of_day}_things", src: availability_group_things_path(date: availability_group.date, time_of_day: availability_group.time_of_day), class: "grow overflow-y-scroll pb-4 standalone:pb-[52px]" %>
+        <%= turbo_frame_tag "availability_group_#{availability_group.date}_#{availability_group.time_of_day}_things", src: availability_group_things_path(date: availability_group.date, time_of_day: availability_group.time_of_day), class: "grow overflow-y-scroll pb-4 standalone:pb-[52px]", target: "_top" %>
       </section>
     <% end %>
   </main>
