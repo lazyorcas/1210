@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "availability_group_#{params[:date]}_#{params[:time_of_day]}_things" do %>
+<%= turbo_frame_tag "availability_group_#{params[:date]}_#{params[:time_of_day]}_things", target: "_top" do %>
   <% if @thing_users_pairs.present? %>
     <div class="flex flex-col gap-y-2">
       <h3 class="font-semibold">Common Interests</h3>
@@ -8,7 +8,7 @@
         <% end %>
       </div>
     </div>
-  <% else %>
+  <% elsif Thing.pending(current_user).count > 0 %>
     <%= link_to things_path, class: "shrink-0 btn btn--primary gap-x-2" do %>
       <%= heroicon "map-pin", variant: "solid", options: { class: "h-6 w-6" } %>
       Explore things to do
