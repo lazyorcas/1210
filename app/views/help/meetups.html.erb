@@ -1,16 +1,16 @@
 <%= render ModalComponent.new(title: "What are meetups?") do |component| %>
   <% component.with_body do %>
     <article class="px-4 modal-pb flex flex-col gap-y-8">
-      <section>
+      <section class="text-sm">
         <p>Post a meetup:</p>
         <ul class="list-disc list-inside">
           <li>when you are free to do something, but not sure whom to do it with, or</li>
           <li>when its details are finalized after voting on the meetup idea.</li>
         </ul>
       </section>
-      <section class="flex flex-col gap-y-4">
-        <h2 class="text-lg font-semibold">For example:</h2>
-        <ul class="list-disc list-inside">
+      <section class="flex flex-col gap-y-2">
+        <h2 class="font-semibold">For example:</h2>
+        <ul class="text-sm list-disc list-inside">
           <li>Grabbing 🍔 food / ☕️ coffee</li>
           <li>🎲 Playing board games</li>
           <li>🥘 Cooking together</li>
@@ -21,18 +21,18 @@
           <li>⏰ Anything spontaneous</li>
         </ul>
       </section>
-      <section class="flex flex-col gap-y-4">
-        <h2 class="text-lg font-semibold">What if I can't host it?</h2>
-        <p>
+      <section class="flex flex-col gap-y-2">
+        <h2 class="font-semibold">What if I can't host it?</h2>
+        <p class="text-sm">
           You should still post a meetup and say that you are "up to hang out". And in the description, you can write the friend whom you would like to host the meetup.
         </p>
-        <p>
+        <p class="text-sm">
           For example, a friend of mine was "up for coworking" but his place was very small, so he wrote down in the description: "Oscar's place?" and invited me to RSVP.
         </p>
       </section>
-      <section class="flex flex-col gap-y-4">
-        <h2 class="text-lg font-semibold">What happens when I post a meetup?</h2>
-        <ul class="list-disc list-inside">
+      <section class="flex flex-col gap-y-2">
+        <h2 class="font-semibold">What happens when I post a meetup?</h2>
+        <ul class="text-sm list-disc list-inside">
           <li>Only the friends you invite can see and respond to it.</li>
           <li>For each of the invitees, a notification will be sent out in the form of push or email notification.</li>
           <li>When someone joins, you will get a push notification (if enabled).</li>
@@ -40,10 +40,10 @@
           <li>If it actually happens and has more than 2 people (including you), it will be automatically turned into a memory the next day; you can then upload photos.</li>
         </ul>
       </section>
-      <section class="flex flex-col gap-y-4">
-        <h2 class="text-lg font-semibold">What is the difference between ideas and meetups?</h2>
-        <p>An idea is a good starting point to make a meetup happen; this type of meetup is planned. People can pitch in their preferences and vote on the details of the meetup.</p>
-        <p>A meetup is either planned or spontaneous. A planned meetup most likely will happen because it's been discussed. A spontaneous meetup is made last minutes, so there's a higher chance of people not seeing / joining.</p>
+      <section class="flex flex-col gap-y-2">
+        <h2 class="font-semibold">What is the difference between ideas and meetups?</h2>
+        <p class="text-sm">An idea is a good starting point to make a meetup happen; this type of meetup is planned. People can pitch in their preferences and vote on the details of the meetup.</p>
+        <p class="text-sm">A meetup is either planned or spontaneous. A planned meetup most likely will happen because it's been discussed. A spontaneous meetup is made last minutes, so there's a higher chance of people not seeing / joining.</p>
       </section>
     </article>
   <% end %>

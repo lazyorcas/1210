@@ -18,7 +18,7 @@
   <% end %>
   <section class="flex flex-col gap-y-4">
     <header>
-      <h2 class="text-lg font-semibold">Push Notifications</h2>
+      <h2 class="font-semibold">Push Notifications</h2>
       <p class="text-sm text-neutral-500">Stay in the loop with your friends.</p>
     </header>
     <%= button_tag class: "btn btn--primary w-fit gap-x-2", data: { controller: "notification-permission",  action: "notification-permission#request" }, disabled: !browser.device.mobile? do %>

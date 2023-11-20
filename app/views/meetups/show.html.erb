@@ -7,8 +7,8 @@
   <% component.with_body do %>
     <article class="px-4 modal-pb flex flex-col gap-y-8">
       <header>
-        <h1 class="text-xl font-bold"><%= @meetup.title %></h1>
-        <p class="linkable"><%= auto_link(@meetup.description, html: { target: '_blank' }) %></p>
+        <h1 class="text-lg font-bold"><%= @meetup.title %></h1>
+        <p class="text-sm linkable"><%= auto_link(@meetup.description, html: { target: '_blank' }) %></p>
       </header>
       <div class="flex flex-col gap-y-4">
         <section class="flex flex-col gap-y-1">
@@ -16,14 +16,16 @@
             <%= heroicon "users", options: { class: "h-4 w-4" } %>
             <h2 class="text-sm">Who's going?</h2>
           </header>
-          <p><%= (@meetup.attendees + [@meetup.organizer]).map(&:name).join(', ') %></p>
+          <p class="text-sm">
+            <%= render partial: "users/avatars", locals: { users: (@meetup.attendees + [@meetup.organizer]), show_name: true } %>
+          </p>
         </section>
         <section class="flex flex-col gap-y-1">
           <header class="flex gap-x-2 items-center text-neutral-500">
             <%= heroicon "clock", options: { class: "h-4 w-4" } %>
             <h2 class="text-sm">Date & Time</h2>
           </header>
-          <p>
+          <p class="text-sm">
             <%= @meetup.date.strftime("%B #{@meetup.date.day.ordinalize}") %>,
             <%= @meetup.start_time  %> - <%= @meetup.end_time  %>
           </p>

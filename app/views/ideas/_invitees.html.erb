@@ -2,19 +2,23 @@
   <section class="flex flex-col gap-y-1">
     <header class="flex gap-x-2 items-center text-neutral-500">
       <%= heroicon "heart", options: { class: "h-4 w-4" } %>
-      <h2 class="text-sm">
-        Interested
-      </h2>
+      <h2 class="text-sm">Interested</h2>
     </header>
-    <p><%= @idea.voters.empty? ? "None" : @idea.voters.map(&:name).join(', ') %></p>
+    <% if @idea.voters.empty? %>
+      <p>None</p>
+    <% else %>
+      <%= render partial: "users/avatars", locals: { users: @idea.voters, show_name: true } %>
+    <% end %>
   </section>
   <section class="flex flex-col gap-y-1">
     <header class="flex gap-x-2 items-center text-neutral-500">
       <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
-      <h2 class="text-sm">
-        Pending / Not interested
-      </h2>
+      <h2 class="text-sm">Pending / Not interested</h2>
     </header>
-    <p><%= @idea.pending_invitees.empty? ? "None" : @idea.pending_invitees.order(:name).map(&:name).join(', ') %></p>
+    <% if @idea.pending_invitees.empty? %>
+      <p>None</p>
+    <% else %>
+      <%= render partial: "users/avatars", locals: { users: @idea.pending_invitees, show_name: true } %>
+    <% end %>
   </section>
 </div>

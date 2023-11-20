@@ -14,10 +14,10 @@
       <% end %>
     </div>
     <div class="flex flex-col gap-y-4 px-2">
-      <div class="flex flex-col gap-y-1">
-        <h2 class="text-2xl font-bold"><%= thing.title %></h2>
-        <p><%= thing.description %></p>
-      </div>
+      <header>
+        <h2 class="text-xl font-bold"><%= thing.title %></h2>
+        <p class="text-sm"><%= thing.description %></p>
+      </header>
       <aside class="flex gap-1 flex-wrap">
         <% ([thing.type] + thing.tags.split('|')).each do |tag| %>
           <span class="chip chip--default">

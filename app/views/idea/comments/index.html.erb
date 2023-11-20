@@ -1,11 +1,9 @@
 <%= render ModalComponent.new(title: "Discussion") do |component| %>
   <% component.with_body do %>
-    <div class="px-4 flex flex-col gap-y-8">
-      <%= turbo_frame_tag "#{dom_id(@idea)}_comments", class: "flex flex-col gap-y-4" do %>
-        <%= render partial: "comments/comment", collection: @idea_comments %>
-      <% end %>
-    </div>
-  <% end %>
+    <%= turbo_frame_tag "#{dom_id(@idea)}_comments", class: "px-4 flex flex-col gap-y-4" do %>
+      <%= render partial: "comments/comment", collection: @idea_comments %>
+    <% end %>
+  </div>
   <% component.with_footer do %>
     <%= render partial: "comments/form", locals: { comment: Idea::Comment.new } %>
   <% end %>

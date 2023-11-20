@@ -6,15 +6,15 @@
   <% end %>
   <% component.with_body do %>
     <article class="px-4 modal-pb flex flex-col gap-y-8">
-      <header>
-        <h1 class="text-xl font-bold">
+      <header class="flex flex-col gap-y-1">
+        <h1 class="font-bold">
           <% if @idea.thing.present? %>
             <%= link_to @idea.title, @idea.thing.becomes(Thing), data: { turbo_frame: "modal" } %>
           <% else %>
             <%= @idea.title %>
           <% end %>
         </h1>
-        <p>Suggested by <%= @idea.organizer.name %></p>
+        <%= render partial: "users/avatars", locals: { users: (@idea.voters + [@idea.organizer]), show_name: true } %>
       </header>
       <% if @idea.looking_for_voters? %>
         <%= render partial: "invitees" %>
@@ -27,7 +27,6 @@
           <%= render @idea.options.sorted_by_upvotes %>
         <% end %>
         <%= turbo_frame_tag "new_idea_option", src: new_idea_option_path(idea_id: @idea.id) %>
-        <%= render partial: "voters" %>
       <% end %>
       <% if @idea.organizer == current_user %>
         <div class="flex gap-x-2">
