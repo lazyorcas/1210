@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "availability_group_#{params[:date]}_#{params[:time_of_day]}_things" do %>
   <div class="flex flex-col gap-y-2">
-    <h3 class="font-semibold">Recommendations</h3>
+    <h3 class="font-semibold">Common Interests</h3>
     <div class="flex flex-col gap-y-4">
       <% @thing_users_pairs.each do |thing, users| %>
         <%= render partial: "thing", locals: { thing: thing, users: users } %>
