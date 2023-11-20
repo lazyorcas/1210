@@ -1,7 +1,7 @@
 <% if @availability_group_users_pairs.empty? %>
   <%= render partial: "no_availabilities" %>
 <% else %>
-  <main class="w-full grow flex snap-mandatory snap-x px-4 overflow-x-scroll gap-x-2 pb-4 standalone:pb-13">
+  <main class="w-full grow flex snap-mandatory snap-x px-4 overflow-x-scroll gap-x-2 pb-4 standalone:pb-[52px]">
     <% @availability_group_users_pairs.each do |availability_group, users| %>
       <section class="snap-always snap-center min-w-full flex flex-col gap-y-8">
         <header class="shrink-0 flex flex-col gap-y-2">
