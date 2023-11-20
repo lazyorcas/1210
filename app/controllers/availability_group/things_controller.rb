@@ -3,6 +3,7 @@
 class AvailabilityGroup::ThingsController < SocialNetworkController
   def index
     load_things
+    load_users_in_availability_group
     build_thing_users_pairs
     reject_empty_thing_users_pairs
     sort_thing_users_pairs
@@ -21,11 +22,23 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
     @things = thing_scope.time_of_day(params[:time_of_day])
   end
 
+  def load_users_in_availability_group
+    @users = current_user
+      .friends
+      .joins(:availabilities)
+      .where(
+        availabilities: {
+          date: params[:date],
+          time_of_day: params[:time_of_day],
+        },
+      )
+  end
+
   def build_thing_users_pairs
     @thing_users_pairs = @things.map do |thing|
       [
         thing,
-        current_user.friends.filter do |user|
+        @users.filter do |user|
           user.interests.include?(thing)
         end,
       ]
