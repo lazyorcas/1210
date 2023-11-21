@@ -1,46 +1,37 @@
 <article class="flex flex-col gap-y-0.5" id="<%= dom_id(meetup) %>">
-  <div class="card flex gap-x-4">
-    <%= link_to meetup_path(meetup), class: "grow flex flex-col gap-y-2", data: { turbo_frame: "modal" } do %>
-      <h3 class="text-lg font-bold"><%= meetup.title %></h3>
-      <p class="text-sm"><%= meetup.start_time  %> - <%= meetup.end_time  %>
-        <% if meetup.description.present? %>
-          <br />
-          <%= meetup.description %>
-        <% end %>
-      </p>
-      <%= render partial: "users/avatars", locals: { users: [meetup.organizer] + meetup.attendees } %>
-    <% end %>
-    <% if meetup.organizer != current_user %>
-      <div class="flex flex-col justify-between items-end shrink-0">
-        <div class="flex flex-col items-end">
-          <% if meetup.attendees.exists?(current_user.id) %>
-            <div class="self-start shrink-0 flex items-center gap-x-1">
-              <span class="rounded-full bg-green-500 h-2 w-2"></span>
-              <p class="text-sm">Going</p>
-            </div>
-          <% end %>
-          <%= link_to meetup_comments_path(meetup), class:"flex items-center gap-x-1 text-sm", data: { turbo_frame: "modal" } do %>
-            <%= heroicon "chat-bubble-left-right", options: { class: "h-4 w-4" } %>
-            <%= meetup.comments.count %>
-          <% end %>
-        </div>
-        <% if !meetup.attendees.exists?(current_user.id) %>
-          <%= form_with model: current_user.meetup_invitations.find_by(inviter: meetup), class: "self-end" do |form| %>
-            <%= form.hidden_field :is_accepted, value: true, required: true %>
-            <%= form.button :submit, class: "w-full btn btn--primary" do %>
-              I'm in
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <% if meetup.organizer == current_user %>
-    <aside class="px-4 flex self-end items-center gap-x-1 text-xs text-neutral-500">
-      <%= link_to meetup_comments_path(meetup), class: "flex items-center gap-x-0.5", data: { turbo_frame: "modal" } do %>
-        <%= heroicon "chat-bubble-left-right", options: { class: "h-3.5 w-3.5" } %>
-        <%= meetup.comments.count %>
+  <%= link_to meetup_path(meetup), class: "card flex flex-col gap-y-2", data: { turbo_frame: "modal" } do %>
+    <header class="flex flex-col">
+      <p class="text-sm"><%= meetup.start_time  %> - <%= meetup.end_time  %></p>
+      <h3 class="text-lg font-bold">
+        <%= meetup.title %>
+      </h3>
+      <% if meetup.description.present? %>
+        <p class="text-sm"><%= meetup.description %></p>
       <% end %>
+    </header>
+    <%= render partial: "users/avatars", locals: { users: [meetup.organizer] + meetup.attendees } %>
+  <% end %>
+  <aside class="self-end pr-4 flex items-center gap-x-1 text-xs text-neutral-500">
+    <% if meetup.organizer == current_user %>
+      <p class="flex items-center gap-x-0.5">
+        <%= heroicon "bolt", options: { class: "h-3.5 w-3.5" } %>
+        <%= meetup.attendees.count %>
+      </p>
+    <% else %>
+      <% invitation = current_user.meetup_invitations.find_by(inviter: meetup) %>
+      <%= form_with model: invitation, class: "self-end" do |form| %>
+        <%= form.hidden_field :is_accepted, value: !invitation.is_accepted, required: true %>
+        <%= form.button :submit, class: "flex items-center gap-x-0.5" do %>
+          <%= heroicon "bolt", variant: invitation.is_accepted ? "solid" : "outline", options: { class: class_names("h-3.5 w-3.5", { "text-yellow-500": invitation.is_accepted }) } %>
+          <%= meetup.attendees.count %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to meetup_comments_path(meetup), class: "flex items-center gap-x-0.5", data: { turbo_frame: "modal" } do %>
+      <%= heroicon "chat-bubble-left-right", options: { class: "h-3.5 w-3.5" } %>
+      <%= meetup.comments.count %>
+    <% end %>
+    <% if meetup.organizer == current_user %>
       <p class="flex items-center gap-x-0.5">
         <%= heroicon "eye", options: { class: "h-3.5 w-3.5" } %>
         <%= meetup.seen_invitees.count %>
@@ -50,6 +41,7 @@
         <%= heroicon "envelope", options: { class: "h-3.5 w-3.5" } %>
         <%= meetup.invitees.count %>
       </p>
-    </aside>
-  <% end %>
+    <% end %>
+  </aside>
+</div>
 </article>
