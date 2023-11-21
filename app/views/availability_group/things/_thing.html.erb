@@ -2,7 +2,7 @@
 <%= link_to availability_group_thing_path(thing, date: params[:date], time_of_day: params[:time_of_day]), class: "flex gap-x-4", data: { turbo_frame: "modal" } do %>
   <%= image_tag thing.image_url, class: "thumbnail rounded-lg h-32 w-32" %>
   <div class="flex flex-col gap-y-1">
-    <h4 class="font-semibold"><%= thing.title %></h4>
+    <h4 class="text-sm"><%= thing.title %></h4>
     <%= render partial: "users/avatars", locals: { users: users } %>
   </div>
 <% end %>
