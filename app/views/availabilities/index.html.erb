@@ -5,7 +5,7 @@
     <% @availability_group_users_pairs.each do |availability_group, users| %>
       <section class="snap-always snap-center min-w-full flex flex-col gap-y-8">
         <header class="shrink-0 flex flex-col gap-y-2">
-          <h2 class="font-semibold">
+          <h2 class="text-lg font-semibold">
             <%= relative_to_today(availability_group.date) %> <%= availability_group.time_of_day %>
           </h2>
           <%= render partial: "users/avatars", locals: { users: users, show_name: true } %>
