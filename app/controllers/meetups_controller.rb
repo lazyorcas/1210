@@ -109,6 +109,6 @@ class MeetupsController < SocialNetworkController
   def meetup_params
     params
       .require(:meetup)
-      .permit(:title, :description, :date, :start_time, :end_time, invitee_ids: [])
+      .permit(:title, :description, :date, :start_time, :end_time, :thing_id, invitee_ids: [])
   end
 end

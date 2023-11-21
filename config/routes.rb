@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   resources :memories, only: [:index, :show, :update]
 
-  resources :things, only: [:index]
+  resources :things, only: [:index, :show]
   scope module: "thing", path: "/thing/:thing_id", as: "thing" do
     resources :invitations, only: [:index, :create, :update]
   end

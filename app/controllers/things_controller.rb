@@ -22,7 +22,15 @@ class ThingsController < SocialNetworkController
     ahoy.track("saw_no_things") if @things.empty?
   end
 
+  def show
+    load_thing
+  end
+
   private
+
+  def load_thing
+    @thing = thing_scope.find(params[:id])
+  end
 
   def load_things
     @things = thing_scope

@@ -1,6 +1,11 @@
 <%= render ModalComponent.new do |component| %>
   <% component.with_toolbar do %>
-    <%= link_to idea_comments_path(@idea), data: { turbo_frame: "modal" } do %>
+    <% if @idea.thing.present? %>
+      <%= link_to thing_path(@idea.thing), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
+        <%= heroicon "map-pin", options: { class: "h-6 w-6" } %>
+      <% end %>
+    <% end %>
+    <%= link_to idea_comments_path(@idea), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
       <%= heroicon "chat-bubble-left-right", options: { class: "h-6 w-6" } %>
     <% end %>
   <% end %>
