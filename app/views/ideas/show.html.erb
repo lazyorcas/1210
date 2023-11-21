@@ -14,7 +14,9 @@
             <%= @idea.title %>
           <% end %>
         </h1>
-        <%= render partial: "users/avatars", locals: { users: (@idea.voters + [@idea.organizer]), show_name: true } %>
+        <% if @idea.polling? %>
+          <%= render partial: "users/avatars", locals: { users: ([@idea.organizer] + @idea.voters), show_name: true } %>
+        <% end %>
       </header>
       <% if @idea.looking_for_voters? %>
         <%= render partial: "invitees" %>

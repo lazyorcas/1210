@@ -1,9 +1,7 @@
 <%= render ModalComponent.new(title: "Photos") do |component| %>
   <% component.with_body do %>
     <div class="px-4 modal-pb flex flex-col gap-y-4">
-      <p class="text-sm">
-        <%= ([@memory.meetup.organizer] +  @memory.meetup.attendees).map(&:name).join(', ') %>
-      </p>
+      <%= render partial: "users/avatars", locals: { users: [@memory.meetup.organizer] +  @memory.meetup.attendees, show_name: true } %>
       <%= turbo_frame_tag "photos" do %>
         <% if @memory.photos.empty? %>
           <%= render partial: "no_photos" %>

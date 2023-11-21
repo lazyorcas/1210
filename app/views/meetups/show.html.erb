@@ -17,7 +17,7 @@
             <h2 class="text-sm">Who's going?</h2>
           </header>
           <p class="text-sm">
-            <%= render partial: "users/avatars", locals: { users: (@meetup.attendees + [@meetup.organizer]), show_name: true } %>
+            <%= render partial: "users/avatars", locals: { users: ([@meetup.organizer] + @meetup.attendees), show_name: true } %>
           </p>
         </section>
         <section class="flex flex-col gap-y-1">
