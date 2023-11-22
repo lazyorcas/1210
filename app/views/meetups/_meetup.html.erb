@@ -7,7 +7,7 @@
         <p class="text-sm"><%= meetup.description %></p>
       <% end %>
     </header>
-    <%= render partial: "users/avatars", locals: { users: [meetup.organizer] + meetup.attendees } %>
+    <%= render partial: "users/avatars", locals: { users: [meetup.organizer] + meetup.attendees.sort_by(&:name) } %>
   <% end %>
   <aside class="self-end pr-4 flex items-center gap-x-1 text-xs text-neutral-500">
     <% if meetup.organizer == current_user %>

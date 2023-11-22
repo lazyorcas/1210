@@ -8,7 +8,7 @@
           <h2 class="text-sm">Friends who find this interesting</h2>
         </header>
         <% if friends_interested.length > 0 %>
-          <%= render partial: "users/avatars", locals: { users: friends_interested, show_name: true } %>
+          <%= render partial: "users/avatars", locals: { users: friends_interested.sort_by(&:name), show_name: true } %>
         <% else %>
           <p class="text-sm">No one yet</p>
         <% end %>

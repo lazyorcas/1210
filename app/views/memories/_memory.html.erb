@@ -14,7 +14,7 @@
       <div class="flex flex-col gap-y-1">
         <h2 class="font-bold"><%= memory.meetup.title %></h2>
         <% if memory.photos.empty? %>
-          <%= render partial: "users/avatars", locals: { users: [memory.meetup.organizer] +  memory.meetup.attendees, show_name: true } %>
+          <%= render partial: "users/avatars", locals: { users: [memory.meetup.organizer] +  memory.meetup.attendees.sort_by(&:name), show_name: true } %>
         <% end %>
       </div>
     </div>

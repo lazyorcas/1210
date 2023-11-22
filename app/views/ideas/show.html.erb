@@ -20,7 +20,7 @@
           <% end %>
         </h1>
         <% if @idea.polling? %>
-          <%= render partial: "users/avatars", locals: { users: ([@idea.organizer] + @idea.voters), show_name: true } %>
+          <%= render partial: "users/avatars", locals: { users: [@idea.organizer] + @idea.voters.sort_by(&:name), show_name: true } %>
         <% end %>
       </header>
       <% if @idea.looking_for_voters? %>
