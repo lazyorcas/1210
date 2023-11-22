@@ -12,13 +12,12 @@
   <% component.with_body do %>
     <article class="px-4 modal-pb flex flex-col gap-y-8">
       <header class="flex flex-col gap-y-1">
-        <h1 class="font-bold">
-          <% if @idea.thing.present? %>
-            <%= link_to @idea.title, @idea.thing.becomes(Thing), data: { turbo_frame: "modal" } %>
-          <% else %>
-            <%= @idea.title %>
+        <div>
+          <h1 class="text-lg font-bold"><%= @idea.title %></h1>
+          <% if @idea.description.present? %>
+            <p class="text-sm linkable"><%= auto_link(@idea.description, html: { target: '_blank' }) %></p>
           <% end %>
-        </h1>
+        </div>
         <% if @idea.polling? %>
           <%= render partial: "users/avatars", locals: { users: [@idea.organizer] + @idea.voters.sort_by(&:name), show_name: true } %>
         <% end %>

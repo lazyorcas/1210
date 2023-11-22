@@ -13,7 +13,9 @@
     <article class="px-4 modal-pb flex flex-col gap-y-8">
       <header>
         <h1 class="text-lg font-bold"><%= @meetup.title %></h1>
-        <p class="text-sm linkable"><%= auto_link(@meetup.description, html: { target: '_blank' }) %></p>
+        <% if @meetup.description.present? %>
+          <p class="text-sm linkable"><%= auto_link(@meetup.description, html: { target: '_blank' }) %></p>
+        <% end %>
       </header>
       <div class="flex flex-col gap-y-4">
         <section class="flex flex-col gap-y-1">
