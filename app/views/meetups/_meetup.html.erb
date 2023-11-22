@@ -4,7 +4,7 @@
       <p class="text-sm"><%= meetup.start_time  %> - <%= meetup.end_time  %></p>
       <h3 class="font-bold"><%= meetup.title %></h3>
       <% if meetup.description.present? %>
-        <p class="text-sm"><%= meetup.description %></p>
+        <p class="text-sm line-clamp-2"><%= meetup.description %></p>
       <% end %>
     </header>
     <%= render partial: "users/avatars", locals: { users: [meetup.organizer] + meetup.attendees.sort_by(&:name) } %>
