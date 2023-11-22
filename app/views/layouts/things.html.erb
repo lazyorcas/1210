@@ -8,12 +8,7 @@
           <%= heroicon "chevron-left", options: { class: "h-6 w-6" } %>
         <% end %>
         <header>
-          <div class="flex items-center gap-x-1">
-            <h1 class="text-3xl font-black"><%= current_user.city %></h1>
-            <%= link_to help_things_path, class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
-              <%= heroicon "information-circle", options: { class: "h-6 w-6" } %>
-            <% end %>
-          </div>
+          <h1 class="text-3xl font-black"><%= current_user.city %></h1>
           <p class="text-sm text-neutral-500">Bookmark or skip to see more.</p>
         </header>
       </div>
