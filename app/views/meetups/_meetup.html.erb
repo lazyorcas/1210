@@ -2,9 +2,7 @@
   <%= link_to meetup_path(meetup), class: "card flex flex-col gap-y-2", data: { turbo_frame: "modal" } do %>
     <header class="flex flex-col">
       <p class="text-sm"><%= meetup.start_time  %> - <%= meetup.end_time  %></p>
-      <h3 class="text-lg font-bold">
-        <%= meetup.title %>
-      </h3>
+      <h3 class="font-bold"><%= meetup.title %></h3>
       <% if meetup.description.present? %>
         <p class="text-sm"><%= meetup.description %></p>
       <% end %>
