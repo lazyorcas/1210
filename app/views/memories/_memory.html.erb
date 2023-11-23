@@ -13,6 +13,6 @@
       <%= past_date(memory.meetup.date) %>
     </p>
     <h2 class="font-bold mb-2"><%= memory.meetup.title %></h2>
-    <%= render partial: "users/avatars", locals: { users: [memory.meetup.organizer] +  memory.meetup.attendees.sort_by(&:name), show_name: true } %>
+    <%= render partial: "users/avatars", locals: { users: [memory.meetup.organizer] +  memory.meetup.attendees.sort_by(&:name) } %>
   </div>
 <% end %>
