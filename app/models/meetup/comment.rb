@@ -12,7 +12,7 @@ class Meetup::Comment < Comment
   private
 
   def notifiees
-    [meetup.organizer] + meetup.invitees - [author]
+    [meetup.organizer] + meetup.invitees - meetup.declined_invitees - [author]
   end
 
   def notify_meetup_organizer_and_invitees

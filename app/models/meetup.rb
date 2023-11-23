@@ -28,6 +28,12 @@ class Meetup < ApplicationRecord
     as: :inviter
   has_many :attendees, through: :accepted_invitations, source: :invitee, source_type: "User"
 
+  has_many :declined_invitations,
+    -> { declined },
+    class_name: "Meetup::Invitation",
+    as: :inviter
+  has_many :declined_invitees, through: :declined_invitations, source: :invitee, source_type: "User"
+
   has_many :comments, class_name: "Meetup::Comment", as: :commentable
 
   has_one :memory
