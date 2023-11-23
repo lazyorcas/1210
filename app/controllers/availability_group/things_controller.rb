@@ -7,9 +7,6 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
     build_thing_users_pairs
     reject_empty_thing_users_pairs
     sort_thing_users_pairs
-    if @thing_users_pairs.empty?
-      head(:no_content)
-    end
   end
 
   def show
