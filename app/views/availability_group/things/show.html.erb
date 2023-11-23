@@ -13,22 +13,20 @@
           <% end %>
         <% end %>
       </div>
-      <div class="flex flex-col gap-y-8">
-        <div class="flex flex-col gap-y-4">
-          <header>
-            <h2 class="text-xl font-bold"><%= @thing.title %></h2>
-            <% if @thing.description.present? %>
-              <p class="text-sm"><%= @thing.description %></p>
-            <% end %>
-          </header>
-          <aside class="flex gap-1 flex-wrap">
-            <% @thing.tags.split('|').each do |tag| %>
-              <span class="chip chip--default">
-                <%= tag %>
-              </span>
-            <% end %>
-          </aside>
-        </div>
+      <div class="flex flex-col gap-y-4">
+        <header>
+          <h2 class="text-xl font-bold"><%= @thing.title %></h2>
+          <% if @thing.description.present? %>
+            <p class="text-sm"><%= @thing.description %></p>
+          <% end %>
+        </header>
+        <aside class="flex gap-1 flex-wrap">
+          <% @thing.tags.split('|').each do |tag| %>
+            <span class="chip chip--default">
+              <%= tag %>
+            </span>
+          <% end %>
+        </aside>
       </div>
     </article>
   <% end %>

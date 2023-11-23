@@ -23,17 +23,15 @@
       <%= render partial: "no_meetups" %>
     <% end %>
   <% else %>
-    <div class="flex flex-col gap-y-8">
-      <% @date_meetups_pairs.each do |date, meetups| %>
-        <section class="flex flex-col gap-y-2">
-          <h2 class="font-bold">
-            <%= relative_to_today(meetups.first.date) %>
-          </h2>
-          <div class="flex flex-col gap-y-4">
-            <%= render meetups %>
-          </div>
-        </section>
-      <% end %>
-    </div>
+    <% @date_meetups_pairs.each do |date, meetups| %>
+      <section class="flex flex-col gap-y-2">
+        <h2 class="font-bold">
+          <%= relative_to_today(meetups.first.date) %>
+        </h2>
+        <div class="flex flex-col gap-y-4">
+          <%= render meetups %>
+        </div>
+      </section>
+    <% end %>
   <% end %>
 </main>
