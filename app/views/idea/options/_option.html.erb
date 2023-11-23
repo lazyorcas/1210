@@ -9,8 +9,8 @@
     <div class="relative w-full h-4 bg-neutral-100 rounded-xl">
       <div class="<%= class_names("absolute h-full rounded-xl top-0 left-0", invitation.is_accepted ? "bg-green-500" : "bg-neutral-200" ) %>" style="width:<%= option.upvote_percent %>%"></div>
     </div>
-    <p class="text-neutral-500 text-xs self-end text-right">
-      <%= option.upvoters.order(:name).pluck(:name).join(', ') %>
-    </p>
+    <div class="self-end">
+      <%= render partial: "users/avatars", locals: { users: option.upvoters.sort_by(&:name) } %>
+    </div>
   </div>
 </section>
