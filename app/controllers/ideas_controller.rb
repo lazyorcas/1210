@@ -124,11 +124,11 @@ class IdeasController < SocialNetworkController
   def idea_scope
     Idea
       .looking_for_voters
-      .where(id: current_user.idea_ids + current_user.invited_idea_ids)
+      .where(id: current_user.ideas + current_user.invited_ideas)
       .or(
         Idea
         .polling
-        .where(id: current_user.idea_ids + current_user.voting_idea_ids),
+        .where(id: current_user.ideas + current_user.voting_ideas),
       )
   end
 

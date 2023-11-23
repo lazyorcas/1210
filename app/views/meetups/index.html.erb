@@ -8,8 +8,20 @@
   <% end %>
 <% end %>
 <main class="social-network__main">
-  <% if @date_meetups_pairs.empty? %>
-    <%= render partial: "no_meetups" %>
+  <nav class="flex gap-x-1">
+    <%= link_to meetups_path, class: class_names("chip flex items-center", params[:declined] ? "chip-tab--inactive" : "chip-tab--active") do %>
+      Going / Pending
+    <% end %>
+    <%= link_to meetups_path(declined: "true"), class: class_names("chip flex items-center", params[:declined] ? "chip-tab--active" : "chip-tab--inactive") do %>
+      Declined
+    <% end %>
+  </nav>
+  <% if @meetups.empty? %>
+    <% if params[:declined].present? %>
+      <%= render partial: "shared/nothing_here" %>
+    <% else %>
+      <%= render partial: "no_meetups" %>
+    <% end %>
   <% else %>
     <div class="flex flex-col gap-y-8">
       <% @date_meetups_pairs.each do |date, meetups| %>

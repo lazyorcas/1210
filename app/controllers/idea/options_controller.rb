@@ -24,7 +24,7 @@ class Idea::OptionsController < SocialNetworkController
   end
 
   def idea_scope
-    Idea.polling.where(id: current_user.idea_ids + current_user.voting_idea_ids)
+    Idea.polling.where(id: current_user.ideas + current_user.voting_ideas)
   end
 
   def idea_option_params

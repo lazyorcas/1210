@@ -30,6 +30,18 @@ class User < ApplicationRecord
     as: :invitee
   has_many :accepted_meetups, through: :accepted_meetup_invitations, source: :inviter, source_type: "Meetup"
 
+  has_many :pending_meetup_invitations,
+    -> { pending },
+    class_name: "Meetup::Invitation",
+    as: :invitee
+  has_many :pending_meetups, through: :pending_meetup_invitations, source: :inviter, source_type: "Meetup"
+
+  has_many :declined_meetup_invitations,
+    -> { declined },
+    class_name: "Meetup::Invitation",
+    as: :invitee
+  has_many :declined_meetups, through: :declined_meetup_invitations, source: :inviter, source_type: "Meetup"
+
   has_many :ideas, foreign_key: "organizer_id"
 
   has_many :idea_invitations,

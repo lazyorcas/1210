@@ -7,10 +7,10 @@
 <main class="social-network__main">
   <% if @should_filter %>
     <nav class="flex gap-x-1">
-      <%= link_to ideas_path, class: class_names("chip flex items-center gap-x-1", params[:inactive] ? "chip-tab--inactive" : "chip-tab--active") do %>
+      <%= link_to ideas_path, class: class_names("chip flex items-center", params[:inactive] ? "chip-tab--inactive" : "chip-tab--active") do %>
         Active
       <% end %>
-      <%= link_to ideas_path(inactive: "true"), class: class_names("chip flex items-center gap-x-1", params[:inactive] ? "chip-tab--active" : "chip-tab--inactive") do %>
+      <%= link_to ideas_path(inactive: "true"), class: class_names("chip flex items-center", params[:inactive] ? "chip-tab--active" : "chip-tab--inactive") do %>
         Inactive
       <% end %>
     </nav>

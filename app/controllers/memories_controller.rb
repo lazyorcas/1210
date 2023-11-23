@@ -47,7 +47,7 @@ class MemoriesController < SocialNetworkController
   end
 
   def memory_scope
-    Memory.where(meetup_id: current_user.organized_meetup_ids + current_user.accepted_meetup_ids)
+    Memory.where(meetup_id: current_user.organized_meetups + current_user.accepted_meetups)
   end
 
   def memory_params

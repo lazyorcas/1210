@@ -1,5 +1,8 @@
 <article class="flex flex-col gap-y-0.5" id="<%= dom_id(meetup) %>">
-  <%= link_to meetup_path(meetup), class: "card card--clickable flex flex-col gap-y-2", data: { turbo_frame: "modal" } do %>
+  <%= link_to meetup_path(meetup), class: "relative card card--clickable flex flex-col gap-y-2", data: { turbo_frame: "modal" } do %>
+    <% if current_user.pending_meetups.upcoming.exists?(meetup.id) %>
+      <span class="absolute top-0 right-0 -mt-1 -mr-1 status status--empty"></span>
+    <% end %>
     <header class="flex flex-col">
       <p class="text-sm"><%= meetup.start_time  %> - <%= meetup.end_time  %></p>
       <h3 class="font-semibold"><%= meetup.title %></h3>

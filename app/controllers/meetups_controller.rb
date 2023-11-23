@@ -7,6 +7,7 @@ class MeetupsController < SocialNetworkController
 
   def index
     load_meetups
+    filter_meetups
     order_meetups
     build_date_meetups_pairs
     sort_date_meetups_pairs
@@ -88,6 +89,22 @@ class MeetupsController < SocialNetworkController
     @meetups = meetup_scope
   end
 
+  def filter_meetups
+    if params[:declined]
+      filter_by_declined_meetups
+    else
+      filter_by_going_or_pending_meetups
+    end
+  end
+
+  def filter_by_going_or_pending_meetups
+    @meetups = @meetups.where.not(id: current_user.declined_meetups)
+  end
+
+  def filter_by_declined_meetups
+    @meetups = @meetups.where(id: current_user.declined_meetups)
+  end
+
   def order_meetups
     @meetups.order!(:date, :start_time)
   end
@@ -102,7 +119,7 @@ class MeetupsController < SocialNetworkController
 
   def meetup_scope
     Meetup
-      .where(id: current_user.organized_meetup_ids + current_user.invited_meetup_ids)
+      .where(id: current_user.organized_meetups + current_user.invited_meetups)
       .upcoming
   end
 

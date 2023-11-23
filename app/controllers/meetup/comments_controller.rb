@@ -33,7 +33,7 @@ class Meetup::CommentsController < SocialNetworkController
   end
 
   def meetup_scope
-    Meetup.where(id: current_user.organized_meetup_ids + current_user.invited_meetup_ids)
+    Meetup.where(id: current_user.organized_meetups + current_user.invited_meetups)
   end
 
   def meetup_comment_params

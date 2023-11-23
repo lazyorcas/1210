@@ -1,2 +1,6 @@
-<%= turbo_stream.replace @meetup_invitation.meetup, partial: "meetups/meetup", locals: { meetup: @meetup_invitation.meetup } %>
+<% if @meetup_invitation.is_accepted %>
+  <%= turbo_stream.replace @meetup_invitation.meetup, partial: "meetups/meetup", locals: { meetup: @meetup_invitation.meetup } %>
+<% else %>
+  <%= turbo_stream.remove @meetup_invitation.meetup %>
+<% end %>
 <%= turbo_stream.update "modal", "" %>

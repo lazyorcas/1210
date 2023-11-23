@@ -33,7 +33,7 @@ class Idea::CommentsController < SocialNetworkController
   end
 
   def idea_scope
-    Idea.where(id: current_user.idea_ids + current_user.invited_idea_ids)
+    Idea.where(id: current_user.ideas + current_user.invited_ideas)
   end
 
   def idea_comment_params
