@@ -16,7 +16,14 @@
           </h2>
           <%= render partial: "users/avatars", locals: { users: users.sort_by(&:name), show_name: true } %>
         </header>
-        <%= turbo_frame_tag "availability_group_#{availability_group.date}_#{availability_group.time_of_day}_things", src: availability_group_things_path(date: availability_group.date, time_of_day: availability_group.time_of_day), class: "card overflow-y-scroll", target: "_top" %>
+        <div class="card overflow-y-scroll flex flex-col gap-y-2">
+          <h3 class="font-semibold">Common Interests</h3>
+          <%= turbo_frame_tag "availability_group_#{availability_group.date}_#{availability_group.time_of_day}_things", src: availability_group_things_path(date: availability_group.date, time_of_day: availability_group.time_of_day), class: "flex flex-col gap-y-4", target: "_top" do %>
+            <% 3.times do %>
+              <%= render partial: "availability_group/things/thing_skeleton" %>
+            <% end %>
+          <% end %>
+        </div>
       </section>
     <% end %>
   </main>

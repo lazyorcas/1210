@@ -1,21 +1,16 @@
 <%= turbo_frame_tag "availability_group_#{params[:date]}_#{params[:time_of_day]}_things" do %>
-  <div class="flex flex-col gap-y-2">
-    <h3 class="font-semibold">Common Interests</h3>
-    <% if @thing_users_pairs.empty? %>
-      <% if Thing.pending(current_user).count > 0 %>
-        <%= link_to things_path, class: "btn btn--primary btn--with-icon" do %>
-          <%= heroicon "map", variant: "solid" %>
-          Discover
-        <% end %>
-      <% else %>
-        <p class="text-sm">Nothing yet.</p>
+  <% if @thing_users_pairs.empty? %>
+    <% if Thing.pending(current_user).count > 0 %>
+      <%= link_to things_path, class: "btn btn--primary btn--with-icon" do %>
+        <%= heroicon "map", variant: "solid" %>
+        Discover
       <% end %>
     <% else %>
-      <div class="flex flex-col gap-y-4">
-        <% @thing_users_pairs.each do |thing, users| %>
-          <%= render partial: "thing", locals: { thing: thing, users: users } %>
-        <% end %>
-      </div>
+      <p class="text-sm">Nothing yet.</p>
     <% end %>
-  </div>
+  <% else %>
+    <% @thing_users_pairs.each do |thing, users| %>
+      <%= render partial: "thing", locals: { thing: thing, users: users } %>
+    <% end %>
+  <% end %>
 <% end %>
