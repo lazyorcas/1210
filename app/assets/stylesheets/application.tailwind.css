@@ -311,14 +311,20 @@
     @apply w-full border-t;
     @apply flex justify-around gap-x-2;
     @apply min-h-[60px];
-    @apply pt-4 standalone:pb-12 px-6;
+    @apply pt-4 standalone:pb-10 px-6;
     @apply bg-white;
   }
 
   .social-network__main {
     @apply grow w-full;
     @apply flex flex-col gap-y-4;
-    @apply px-4 pt-4 pb-[72px] standalone:pb-[108px];
+    @apply px-4 pt-4 pb-[76px] standalone:pb-[100px];
+  }
+
+  .skeleton {
+    @apply bg-neutral-200;
+    @apply rounded-lg;
+    @apply animate-pulse;
   }
 }
 
