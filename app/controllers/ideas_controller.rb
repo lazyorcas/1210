@@ -69,7 +69,7 @@ class IdeasController < SocialNetworkController
   def resolve_layout
     case action_name
     when "index"
-      "ideas"
+      "main_tab"
     else
       false
     end

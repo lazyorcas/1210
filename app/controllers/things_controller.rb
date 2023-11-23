@@ -1,25 +1,24 @@
 # frozen_string_literal: true
 
 class ThingsController < SocialNetworkController
-  def index
-    if current_user.city.nil?
-      redirect_to(current_user_edit_city_path) and return
-    end
+  layout :resolve_layout
 
+  def index
     load_things
     filter_things_by_city
-    filter_things_by_interests
+    filter_things_by_pending
     load_old_uninteresting_things if @things.empty?
+    randomize_things
+    ahoy.track("visited_things")
+    track_things_are_empty
+  end
 
-    if params[:interesting].present?
-      order_things
-      ahoy.track("visited_interesting_things")
-    else
-      randomize_things
-      ahoy.track("visited_things")
-    end
-
-    ahoy.track("saw_no_things") if @things.empty?
+  def interesting
+    load_things
+    filter_things_by_interests
+    order_things
+    ahoy.track("visited_interesting_things")
+    track_things_are_empty
   end
 
   def show
@@ -27,6 +26,17 @@ class ThingsController < SocialNetworkController
   end
 
   private
+
+  def resolve_layout
+    case action_name
+    when "index"
+      "main_tab"
+    when "interesting"
+      "side_tab"
+    else
+      false
+    end
+  end
 
   def load_thing
     @thing = thing_scope.find(params[:id])
@@ -45,12 +55,11 @@ class ThingsController < SocialNetworkController
   end
 
   def filter_things_by_interests
-    @things =
-      if params[:interesting].present?
-        @things.where(id: current_user.interests)
-      else
-        @things.where.not(id: current_user.interests + current_user.disinterests)
-      end
+    @things = @things.where(id: current_user.interests)
+  end
+
+  def filter_things_by_pending
+    @things = @things.where(id: Thing.pending(current_user))
   end
 
   def order_things
@@ -59,6 +68,10 @@ class ThingsController < SocialNetworkController
 
   def randomize_things
     @things.order!("RANDOM()")
+  end
+
+  def track_things_are_empty
+    ahoy.track("saw_no_things") if @things.empty?
   end
 
   def thing_scope

@@ -1,5 +1,11 @@
+<% content_for :page_title, "Memories" %>
+<% content_for :toolbar do %>
+  <%= link_to new_past_meetup_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
+    <%= heroicon "plus" %>
+  <% end %>
+<% end %>
 <main class="social-network__main">
-  <%= turbo_frame_tag "memories", class: "flex flex-col gap-y-2" do %>
+  <%= turbo_frame_tag "memories", class: "flex flex-col gap-y-4" do %>
     <% if @memories.empty? %>
       <%= turbo_frame_tag "memories-header" do %>
         <%= render partial: "no_memories" %>

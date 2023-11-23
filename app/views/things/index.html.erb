@@ -1,7 +1,21 @@
+<% content_for :page_title, current_user.city %>
+<% content_for :toolbar do %>
+  <%= link_to interesting_things_path, class: "icon-btn icon-btn--small" do %>
+    <%= heroicon "bookmark" %>
+  <% end %>
+<% end %>
 <% if @things.empty? %>
-  <%= render partial: "nothing" %>
+  <div class="flex flex-col items-center px-4">
+    <%= image_tag "person-looking-at-map.svg", width: 320, height: 320 %>
+    <p class="text-center">
+      Nothing new. Come back in 1 week.
+    </p>
+    <%= link_to interesting_things_path, class: "mt-2 btn btn--primary" do %>
+      See bookmarks
+    <% end %>
+  </div>
 <% else %>
-  <main id="things" class="<%= class_names("pt-2 w-full grow flex snap-mandatory snap-x px-4", current_page?(interesting_things_path) ? "overflow-x-scroll gap-x-2" : "overflow-x-hidden gap-x-4") %>">
+  <main id="things" class="w-full grow flex snap-mandatory snap-x overflow-x-hidden gap-x-4 px-4 pt-4 pb-[72px] standalone:pb-[108px]">
     <%= render partial: "thing", collection: @things %>
   </main>
 <% end %>

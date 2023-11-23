@@ -1,0 +1,10 @@
+<section class="card flex flex-col gap-y-4">
+  <header>
+    <h2 class="font-semibold">Push Notifications</h2>
+    <p class="text-sm text-neutral-500">Stay in the loop with your friends.</p>
+  </header>
+  <%= button_tag class: "btn btn--primary btn--with-icon", data: { controller: "notification-permission",  action: "notification-permission#request" }, disabled: !browser.device.mobile? do %>
+    <%= heroicon "bell-alert", variant: "solid" %>
+    Enable push notification
+  <% end %>
+</section>

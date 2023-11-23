@@ -14,4 +14,8 @@ module Dateful
       "#{date.strftime("%a")}, #{date.strftime("%B")} #{date.day.ordinalize}"
     end
   end
+
+  def past_date(date)
+    "#{date.strftime("%B")} #{date.day.ordinalize}, #{date.strftime("%Y")}"
+  end
 end

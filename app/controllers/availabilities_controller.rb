@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AvailabilitiesController < SocialNetworkController
+  layout "main_tab"
+
   def index
     ahoy.track("visited_availabilities")
     load_availability_groups

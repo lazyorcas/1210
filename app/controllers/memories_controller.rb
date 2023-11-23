@@ -26,7 +26,7 @@ class MemoriesController < SocialNetworkController
   def resolve_layout
     case action_name
     when "index"
-      "memories"
+      "side_tab"
     else
       false
     end

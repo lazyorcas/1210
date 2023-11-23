@@ -1,15 +1,21 @@
+<% content_for :page_title, "Ideas" %>
+<% content_for :toolbar do %>
+  <%= link_to new_idea_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
+    <%= heroicon "plus" %>
+  <% end %>
+<% end %>
 <main class="social-network__main">
   <% if @should_filter %>
     <nav class="flex gap-x-1">
-      <%= link_to ideas_path, class: class_names("chip flex items-center gap-x-1", params[:inactive] ? "chip--inactive" : "chip--active") do %>
+      <%= link_to ideas_path, class: class_names("chip flex items-center gap-x-1", params[:inactive] ? "chip-tab--inactive" : "chip-tab--active") do %>
         Active
       <% end %>
-      <%= link_to ideas_path(inactive: "true"), class: class_names("chip flex items-center gap-x-1", params[:inactive] ? "chip--active" : "chip--inactive") do %>
+      <%= link_to ideas_path(inactive: "true"), class: class_names("chip flex items-center gap-x-1", params[:inactive] ? "chip-tab--active" : "chip-tab--inactive") do %>
         Inactive
       <% end %>
     </nav>
   <% end %>
-  <%= turbo_frame_tag "ideas", class: "flex flex-col gap-y-2" do %>
+  <%= turbo_frame_tag "ideas", class: "flex flex-col gap-y-4" do %>
     <% if @ideas.empty? %>
       <%= turbo_frame_tag "ideas-header", target: "_top" do %>
         <% if params[:inactive] || params[:mine] %>

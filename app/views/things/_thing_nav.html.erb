@@ -1,4 +1,4 @@
-<nav class="shrink-0 mt-auto mb-4 standalone:mb-8 flex gap-x-2 justify-center">
+<nav class="shrink-0 mt-auto flex gap-x-2 justify-center">
   <%= form_with model: thing.invitations.find_by(invitee: current_user) || Thing::Invitation.new(inviter: thing), url: thing_invitations_path(thing) do |form| %>
     <%= form.hidden_field :is_accepted, value: false, required: true %>
     <%= form.button class: "icon-btn icon-btn--big bg-red-500 text-white" do %>

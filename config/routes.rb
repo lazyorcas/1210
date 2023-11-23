@@ -17,9 +17,9 @@ Rails.application.routes.draw do
 
   scope path: "/me", as: "current_user" do
     get "/friends", to: "current_user#friends", as: "friends"
-    get "/profile", to: "current_user#profile", as: "profile"
     get "/edit_city", to: "current_user#edit_city", as: "edit_city"
     get "/edit_avatar", to: "current_user#edit_avatar", as: "edit_avatar"
+    get "/", to: "current_user#index"
     patch "/", to: "current_user#update", as: "update"
   end
 
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   resources :memories, only: [:index, :show, :update]
 
+  get "/things/interesting", to: "things#interesting", as: "interesting_things"
   resources :things, only: [:index, :show]
   scope module: "thing", path: "/thing/:thing_id", as: "thing" do
     resources :invitations, only: [:index, :create, :update]

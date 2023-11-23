@@ -114,10 +114,17 @@
     @apply rounded-lg;
     @apply h-11 px-5;
     @apply font-semibold;
-    @apply transition-shadow hover:shadow-md;
     @apply flex items-center justify-center;
 
     @apply whitespace-nowrap;
+  }
+
+  .btn > svg {
+    @apply h-6 w-6;
+  }
+
+  .btn--with-icon {
+    @apply gap-x-2;
   }
 
   .icon-btn {
@@ -126,12 +133,12 @@
     @apply flex items-center justify-center;
   }
 
-  .icon-btn--small {
-    @apply h-8 w-8;
+  .icon-btn > svg {
+    @apply h-6 w-6;
   }
 
-  .icon-btn--big {
-    @apply h-14 w-14;
+  .icon-btn--small {
+    @apply h-8 w-8;
   }
 
   .check-box {
@@ -160,15 +167,30 @@
 
   .btn:disabled {
     @apply bg-neutral-100 text-neutral-300;
-    @apply hover:shadow-none;
     @apply cursor-not-allowed;
   }
 
   .card {
     @apply bg-white;
     @apply p-4;
-    @apply rounded-xl border;
-    @apply transition-shadow hover:shadow-md;
+    @apply rounded-xl;
+  }
+
+  .card--clickable {
+    @apply shadow;
+  }
+
+  .polaroid {
+    @apply bg-white;
+    @apply rounded-xl;
+  }
+
+  .polaroid--clickable {
+    @apply shadow;
+  }
+
+  .polaroid__content {
+    @apply p-4;
   }
 
   .flash {
@@ -204,6 +226,16 @@
 
   .chip--inactive {
     @apply bg-neutral-100 text-neutral-400 border;
+  }
+
+  .chip-tab--active {
+    @apply font-semibold;
+    @apply bg-neutral-900 text-white;
+  }
+
+  .chip-tab--inactive {
+    @apply font-semibold;
+    @apply text-neutral-400;
   }
 
   .tag {
@@ -261,12 +293,16 @@
     @apply bg-red-400 text-red-800;
   }
 
+  .social-network__body {
+    @apply bg-neutral-75;
+  }
+
   .social-network__header {
     @apply shrink-0;
     @apply h-[68px];
     @apply px-4;
-    @apply bg-white;
     @apply flex items-center gap-x-4 justify-between;
+    @apply bg-white;
     @apply border-b;
   }
 
@@ -274,7 +310,7 @@
     @apply fixed bottom-0;
     @apply w-full border-t;
     @apply flex justify-around gap-x-2;
-    @apply min-h-[76px];
+    @apply min-h-[60px];
     @apply pt-4 standalone:pb-12 px-6;
     @apply bg-white;
   }
@@ -282,7 +318,7 @@
   .social-network__main {
     @apply grow w-full;
     @apply flex flex-col gap-y-4;
-    @apply px-4 pt-4 pb-[84px] standalone:pb-[120px];
+    @apply px-4 pt-4 pb-[72px] standalone:pb-[108px];
   }
 }
 

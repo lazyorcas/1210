@@ -5,8 +5,8 @@
         <%= image_tag photo_path(id: current_user.avatar.id), class: "self-center avatar rounded-xl" %>
       <% end %>
       <%= form.file_field :avatar, required: true, accept: 'image/*' %>
-      <%= form.button class: "w-full btn btn--primary gap-x-2", data: { uploader_target: "uploadBtn" } do %>
-        <%= heroicon "cloud-arrow-up", variant: "solid", options: { class: "h-6 w-6" } %>
+      <%= form.button class: "w-full btn btn--primary btn--with-icon", data: { uploader_target: "uploadBtn" } do %>
+        <%= heroicon "cloud-arrow-up", variant: "solid" %>
         Upload
       <% end %>
     <% end %>

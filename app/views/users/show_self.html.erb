@@ -4,7 +4,7 @@
       <div data-controller="clipboard">
         <input data-clipboard-target="source" type="text" value="<%= user_url(current_user) %>" readonly hidden>
         <button class="btn btn--primary flex items-center gap-x-2 w-full mb-4" data-action="clipboard#copy">
-          <%= heroicon "clipboard-document", variant: "solid", options: { class: "h-6 w-6" } %>
+          <%= heroicon "clipboard-document", variant: "solid" %>
           <span data-clipboard-target="buttonLabel">
             Copy invite link
           </span>

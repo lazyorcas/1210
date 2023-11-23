@@ -8,8 +8,8 @@ class MeetupsController < SocialNetworkController
   def index
     load_meetups
     order_meetups
-    build_date_meetups
-    sort_date_meetups
+    build_date_meetups_pairs
+    sort_date_meetups_pairs
   end
 
   def new
@@ -56,7 +56,7 @@ class MeetupsController < SocialNetworkController
   def resolve_layout
     case action_name
     when "index"
-      "meetups"
+      "main_tab"
     else
       false
     end
@@ -92,12 +92,12 @@ class MeetupsController < SocialNetworkController
     @meetups.order!(:date, :start_time)
   end
 
-  def build_date_meetups
-    @date_meetups = @meetups.group_by(&:date)
+  def build_date_meetups_pairs
+    @date_meetups_pairs = @meetups.group_by(&:date)
   end
 
-  def sort_date_meetups
-    @date_meetups.keys.sort!
+  def sort_date_meetups_pairs
+    @date_meetups_pairs.keys.sort!
   end
 
   def meetup_scope

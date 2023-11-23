@@ -1,7 +1,7 @@
 <% content_for :page_title, "Things" %>
 <% content_for :toolbar do %>
   <%= link_to new_admin_thing_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
-    <%= heroicon "plus", options: { class: "h-6 w-6" } %>
+    <%= heroicon "plus" %>
   <% end %>
 <% end %>
 <%= render template: "layouts/admin" %>

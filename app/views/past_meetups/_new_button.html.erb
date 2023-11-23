@@ -1,3 +1,4 @@
-<%= link_to new_past_meetup_path, class: "w-fit btn btn--primary", data: { turbo_frame: "modal" } do %>
-  Add memory
+<%= link_to new_past_meetup_path, class: "btn btn--primary btn--with-icon", data: { turbo_frame: "modal" } do %>
+  <%= heroicon "plus", variant: "solid" %>
+  Add past meetup
 <% end %>

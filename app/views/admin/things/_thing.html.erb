@@ -11,7 +11,7 @@
         <% end %>
       </header>
       <%= button_to admin_thing_path(thing), method: :delete, class: "shrink-0 icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this thing?" } do |form| %>
-        <%= heroicon "trash", options: { class: "h-6 w-6" } %>
+        <%= heroicon "trash" %>
       <% end %>
     </div>
     <aside class="flex gap-1 flex-wrap">

@@ -3,7 +3,10 @@
   <%= render "shared/head" %>
   <body class="social-network__body">
     <header class="social-network__header">
-      <div class="flex items-center gap-x-1">
+      <div class="flex items-center gap-x-2">
+        <%= link_to content_for?(:back_path) ? yield(:back_path) : :back, class: "icon-btn icon-btn--small" do %>
+          <%= heroicon "chevron-left" %>
+        <% end %>
         <h1 class="shrink-0 text-3xl font-black">
           <%= yield :page_title %>
         </h1>
@@ -16,6 +19,5 @@
     </header>
     <%= yield %>
     <%= turbo_frame_tag "modal", src: @default_modal_src, target: "_top" %>
-    <%= render partial: "shared/page_tabs" %>
   </body>
 </html>

@@ -1,0 +1,8 @@
+<%= link_to @path, class: class_names("relative flex-1 flex justify-center h-fit", { "text-neutral-400": !current_page?(@path) }) do %>
+  <%= heroicon @icon_name, variant: current_page?(@path) ? "solid" : "outline", options: { class: "h-6 w-6" } %>
+  <% if @indicator_count && @indicator_count > 0 %>
+    <div class="status status--textful absolute origin-center -mt-3 -mr-6">
+      <%= @indicator_count %>
+    </div>
+  <% end %>
+<% end %>

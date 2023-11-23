@@ -2,11 +2,11 @@
   <% component.with_toolbar do %>
     <%= link_to @thing.url, class: "icon-btn icon-btn--small", target: "_blank" do %>
       <% if @thing.url.include?("maps.app.goo.gl") %>
-        <%= heroicon "map", options: { class: "h-6 w-6" } %>
+        <%= heroicon "map" %>
       <% elsif @thing.url.include?("youtube") %>
-        <%= heroicon "video-camera", options: { class: "h-6 w-6" } %>
+        <%= heroicon "video-camera" %>
       <% else %>
-        <%= heroicon "arrow-top-right-on-square", options: { class: "h-6 w-6" } %>
+        <%= heroicon "arrow-top-right-on-square" %>
       <% end %>
     <% end %>
   <% end %>

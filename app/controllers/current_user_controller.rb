@@ -14,7 +14,7 @@ class CurrentUserController < SocialNetworkController
       if current_user_params[:city].present?
         redirect_to(root_path)
       else
-        redirect_to(current_user_profile_path)
+        redirect_to(current_user_path)
       end
     end
   end
@@ -23,10 +23,10 @@ class CurrentUserController < SocialNetworkController
 
   def resolve_layout
     case action_name
-    when "profile"
-      "current_user/profile"
+    when "index"
+      "main_tab"
     when "friends"
-      "current_user/friends"
+      "side_tab"
     else
       false
     end

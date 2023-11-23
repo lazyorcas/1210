@@ -1,15 +1,25 @@
-<main class="social-network__main">
-  <% if @date_meetups.empty? %>
-    <%= render partial: "no_meetups" %>
+<% content_for :page_title, "Meetups" %>
+<% content_for :toolbar do %>
+  <%= link_to memories_path, class: "icon-btn icon-btn--small" do %>
+    <%= heroicon "photo" %>
   <% end %>
-  <div class="flex flex-col gap-y-6">
-    <% @date_meetups.each do |date, meetups| %>
-      <section class="flex flex-col gap-y-2">
-        <h2 class="font-semibold">
-          <%= relative_to_today(meetups.first.date) %>
-        </h2>
-        <%= render meetups %>
-      </section>
-    <% end %>
-  </div>
+  <%= link_to new_meetup_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
+    <%= heroicon "plus", variant: "solid" %>
+  <% end %>
+<% end %>
+<main class="social-network__main">
+  <% if @date_meetups_pairs.empty? %>
+    <%= render partial: "no_meetups" %>
+  <% else %>
+    <div class="flex flex-col gap-y-8">
+      <% @date_meetups_pairs.each do |date, meetups| %>
+        <section class="flex flex-col gap-y-4">
+          <h2 class="font-bold">
+            <%= relative_to_today(meetups.first.date) %>
+          </h2>
+          <%= render meetups %>
+        </section>
+      <% end %>
+    </div>
+  <% end %>
 </main>
