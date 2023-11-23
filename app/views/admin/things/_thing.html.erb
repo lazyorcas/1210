@@ -2,7 +2,7 @@
 <article class="card flex gap-x-4" id="<%= dom_id(thing) %>">
   <%= image_tag thing.image_url, class: "thumbnail rounded-xl h-32 shrink-0" %>
   <div class="grow flex flex-col gap-y-4">
-    <div class="flex justify-between">
+    <div class="flex items-center justify-between">
       <header class="flex flex-col gap-y-1">
         <%= link_to thing.title, edit_admin_thing_path(thing), class: "text-xl font-bold w-fit", data: { turbo_frame: "modal" } %>
         <%= link_to thing.url, thing.url, class: "text-blue-600", target: "_blank" %>
@@ -10,7 +10,7 @@
           <p><%= thing.description %></p>
         <% end %>
       </header>
-      <%= button_to admin_thing_path(thing), method: :delete, class: "shrink-0 icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this thing?" } do |form| %>
+      <%= button_to admin_thing_path(thing), method: :delete, class: "shrink-0 icon-btn icon-btn--small", data: { turbo_confirm: "Are you sure you want to delete this thing?" } do |form| %>
         <%= heroicon "trash" %>
       <% end %>
     </div>

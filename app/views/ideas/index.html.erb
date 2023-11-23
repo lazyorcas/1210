@@ -18,7 +18,7 @@
   <%= turbo_frame_tag "ideas", class: "flex flex-col gap-y-4" do %>
     <% if @ideas.empty? %>
       <%= turbo_frame_tag "ideas-header", target: "_top" do %>
-        <% if params[:inactive] || params[:mine] %>
+        <% if params[:inactive] %>
           <%= render partial: "shared/nothing_here" %>
         <% else %>
           <%= render partial: "no_ideas" %>

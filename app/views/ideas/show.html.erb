@@ -35,12 +35,12 @@
         <%= turbo_frame_tag "new_idea_option", src: new_idea_option_path(idea_id: @idea.id) %>
       <% end %>
       <% if @idea.organizer == current_user %>
-        <div class="flex gap-x-2">
+        <div class="flex items-center gap-x-2">
           <% if @idea.looking_for_voters? %>
-            <%= button_to idea_path(@idea), method: :delete, class: "shrink-0 icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this idea?" } do |form| %>
+            <%= button_to idea_path(@idea), method: :delete, class: "shrink-0 icon-btn icon-btn--small", data: { turbo_confirm: "Are you sure you want to delete this idea?" } do |form| %>
               <%= heroicon "trash" %>
             <% end %>
-            <%= link_to edit_idea_path(@idea), class: "shrink-0 icon-btn btn--secondary", data: { turbo_frame: "modal" } do %>
+            <%= link_to edit_idea_path(@idea), class: "shrink-0 icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
               <%= heroicon "pencil-square" %>
             <% end %>
             <%= render partial: "polling_button" %>

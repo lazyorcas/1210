@@ -39,8 +39,8 @@
         </section>
       </div>
       <% if @meetup.organizer == current_user %>
-        <div class="flex gap-x-2">
-          <%= button_to meetup_path(@meetup), method: :delete, class: "icon-btn btn--secondary", data: { turbo_confirm: "Are you sure you want to delete this meetup?" } do |form| %>
+        <div class="flex items-center gap-x-2">
+          <%= button_to meetup_path(@meetup), method: :delete, class: "icon-btn icon-btn--small", data: { turbo_confirm: "Are you sure you want to delete this meetup?" } do |form| %>
             <%= heroicon "trash" %>
           <% end %>
           <%= link_to edit_meetup_path(@meetup), class: "grow btn btn--secondary", data: { turbo_frame: "modal" } do %>
