@@ -1,4 +1,4 @@
-<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
+<main class="social-network__main">
   <% if @should_filter %>
     <nav class="flex gap-x-1">
       <%= link_to ideas_path, class: class_names("chip flex items-center gap-x-1", params[:inactive] ? "chip--inactive" : "chip--active") do %>

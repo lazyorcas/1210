@@ -1,4 +1,4 @@
-<main class="grow w-full flex flex-col gap-y-4 pt-4 pb-[84px] standalone:pb-[120px]">
+<main class="social-network__main">
   <nav class="flex flex-wrap items-center gap-1">
     <p class="text-sm">Last met:</p>
     <%= link_to current_user_friends_path, class: class_names("chip flex items-center gap-x-1", params[:last_met].nil? ? "chip--active" : "chip--inactive") do %>

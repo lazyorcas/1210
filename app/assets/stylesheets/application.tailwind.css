@@ -165,6 +165,7 @@
   }
 
   .card {
+    @apply bg-white;
     @apply p-4;
     @apply rounded-xl border;
     @apply transition-shadow hover:shadow-md;
@@ -258,6 +259,34 @@
 
   .text-status--error {
     @apply bg-red-400 text-red-800;
+  }
+
+  .social-network__body {
+    @apply bg-neutral-50;
+  }
+
+  .social-network__header {
+    @apply shrink-0;
+    @apply h-[68px];
+    @apply px-4;
+    @apply bg-white;
+    @apply flex items-center gap-x-4 justify-between;
+    @apply border-b;
+  }
+
+  .social-network__nav {
+    @apply fixed bottom-0;
+    @apply w-full border-t;
+    @apply flex justify-around gap-x-2;
+    @apply min-h-[76px];
+    @apply pt-4 standalone:pb-12 px-6;
+    @apply bg-white;
+  }
+
+  .social-network__main {
+    @apply grow w-full;
+    @apply flex flex-col gap-y-4;
+    @apply px-4 pt-4 pb-[84px] standalone:pb-[120px];
   }
 }
 

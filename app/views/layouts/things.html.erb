@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
   <%= render "shared/head" %>
-  <body>
-    <header class="shrink-0 h-[68px] flex items-center gap-x-4 px-4 justify-between">
+  <body class="social-network__body">
+    <header class="social-network__header">
       <div class="flex items-center gap-x-1">
         <%= link_to ideas_path, class: "icon-btn icon-btn--small" do %>
           <%= heroicon "chevron-left", options: { class: "h-6 w-6" } %>
         <% end %>
-        <header>
+        <div>
           <h1 class="text-3xl font-black"><%= current_user.city %></h1>
           <p class="text-sm text-neutral-500">Bookmark or skip to see more.</p>
-        </header>
+        </div>
       </div>
       <%= link_to current_page?(interesting_things_path) ? things_path : interesting_things_path, class: "icon-btn icon-btn--small" do %>
         <%= heroicon "bookmark", variant: current_page?(interesting_things_path) ? "solid" : "outline", options: { class: "h-6 w-6" } %>

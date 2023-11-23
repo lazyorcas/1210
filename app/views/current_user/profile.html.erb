@@ -1,4 +1,4 @@
-<main class="grow w-full flex flex-col gap-y-8 pt-4 pb-[84px] standalone:pb-[120px]">
+<main class="social-network__main">
   <% content_for :toolbar do %>
     <%= link_to current_user_availabilities_path, class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
       <%= heroicon "calendar-days", options: { class: "h-6 w-6" } %>

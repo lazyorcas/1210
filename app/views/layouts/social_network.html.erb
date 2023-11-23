@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <%= render "shared/head" %>
-  <body class="px-4">
-    <header class="shrink-0 h-[68px] flex items-center gap-x-4 justify-between">
+  <body class="social-network__body">
+    <header class="social-network__header">
       <div class="flex items-center gap-x-1">
         <h1 class="shrink-0 text-3xl font-black">
           <%= yield :page_title %>
@@ -14,7 +14,6 @@
         </div>
       <% end %>
     </header>
-    <hr />
     <%= yield %>
     <%= turbo_frame_tag "modal", src: @default_modal_src, target: "_top" %>
     <%= render partial: "shared/page_tabs" %>
