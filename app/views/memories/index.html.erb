@@ -4,7 +4,7 @@
     <%= heroicon "plus" %>
   <% end %>
 <% end %>
-<main class="social-network__main">
+<main class="grow w-full flex flex-col gap-y-4 p-4 standalone:pb-9">
   <%= turbo_frame_tag "memories", class: "flex flex-col gap-y-4" do %>
     <% if @memories.empty? %>
       <%= turbo_frame_tag "memories-header" do %>
