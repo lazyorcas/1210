@@ -5,7 +5,7 @@
     <%= heroicon "user-plus", variant: current_user.friends.count > 10 ? "outline" : "solid" %>
   <% end %>
 <% end %>
-<main class="social-network__main">
+<main class="grow w-full flex flex-col gap-y-4 p-4 standalone:pb-9">
   <nav class="flex gap-1">
     <%= link_to current_user_friends_path, class: class_names("chip flex items-center gap-x-1", params[:last_met].nil? ? "chip-tab--active" : "chip-tab--inactive") do %>
       All
