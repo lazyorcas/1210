@@ -5,6 +5,8 @@
       <div class="status status--textful absolute top-0 right-0 -mt-3 -mr-3">
         <%= @indicator_count %>
       </div>
+    <% elsif @show_indicator %>
+      <div class="status status--empty absolute top-0 right-0 -mt-2 -mr-2"></div>
     <% end %>
   </div>
 <% end %>
