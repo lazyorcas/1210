@@ -18,6 +18,15 @@
         <%= form.email_field :email, required: true, placeholder: "you@awesome.com", class: "input" %>
       </div>
       <div class="input-container">
+        <datalist id="cities">
+          <% City.all.each do |city| %>
+            <option value="<%= city %>"></option>
+          <% end %>
+        </datalist>
+        <%= form.label :city %>
+        <%= form.text_field :city, list: "cities", class: "input", required: true, placeholder: "e.g. Munich", autocomplete: "off", maxlength: 30 %>
+      </div>
+      <div class="input-container">
         <%= form.label :time_zone %>
         <%= form.time_zone_select :time_zone, nil, { default: "Berlin", include_blank: true }, { class: "input select", required: true } %>
       </div>
