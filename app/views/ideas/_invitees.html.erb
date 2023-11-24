@@ -7,18 +7,16 @@
     <% if @idea.voters.empty? %>
       <p>None</p>
     <% else %>
-      <%= render partial: "users/avatars", locals: { users: @idea.voters.sort_by(&:name), show_name: true } %>
+      <%= render partial: "users/avatars", locals: { users: ([@idea.organizer] + @idea.voters).sort_by(&:name), show_name: true } %>
     <% end %>
   </section>
-  <section class="flex flex-col gap-y-1">
-    <header class="flex gap-x-2 items-center text-neutral-500">
-      <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
-      <h2 class="text-sm">Pending / Not interested</h2>
-    </header>
-    <% if @idea.pending_invitees.empty? %>
-      <p>None</p>
-    <% else %>
+  <% if @idea.pending_invitees.present? %>
+    <section class="flex flex-col gap-y-1">
+      <header class="flex gap-x-2 items-center text-neutral-500">
+        <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
+        <h2 class="text-sm">Pending / Not interested</h2>
+      </header>
       <%= render partial: "users/avatars", locals: { users: @idea.pending_invitees.sort_by(&:name), show_name: true } %>
-    <% end %>
-  </section>
+    </section>
+  <% end %>
 </div>
