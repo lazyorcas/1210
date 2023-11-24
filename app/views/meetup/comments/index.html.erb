@@ -1,6 +1,6 @@
 <%= render ModalComponent.new(title: "Messages") do |component| %>
   <% component.with_body do %>
-    <%= turbo_frame_tag "#{dom_id(@meetup)}_comments", class: "px-4 comments" do %>
+    <%= turbo_frame_tag "#{dom_id(@meetup)}_comments", class: "px-4 comments", data: { controller: "comments" } do %>
       <%= render partial: "comments/comment", collection: @meetup_comments %>
     <% end %>
   <% end %>
