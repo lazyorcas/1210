@@ -4,7 +4,7 @@ class Idea::Option::Invitation < Invitation
   default_scope { where(inviter_type: "Idea::Option", invitee_type: "User") }
 
   after_create :notify_invitee, if: -> { idea_option.notify? }
-  after_update :notify_idea_organizer_and_voters, if: :is_accepted
+  after_update :notify_idea_organizer, if: :is_accepted
 
   def idea_option
     inviter
@@ -24,8 +24,8 @@ class Idea::Option::Invitation < Invitation
     end
   end
 
-  def notify_idea_organizer_and_voters
-    PushSubscription.where(user: [idea.organizer] + idea.voters).each do |push_subscription|
+  def notify_idea_organizer
+    PushSubscription.where(user_id: idea.organizer_id).each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[Idea] #{idea.title}",
