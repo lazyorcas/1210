@@ -326,6 +326,11 @@
     @apply rounded-lg;
     @apply animate-pulse;
   }
+
+  .comments {
+    @apply flex flex-col gap-y-4;
+    @apply scroll-mb-0;
+  }
 }
 
 @layer utilities {
