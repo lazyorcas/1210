@@ -26,9 +26,7 @@
             <%= heroicon "bolt", options: { class: "h-4 w-4" } %>
             <h2 class="text-sm">Who's in?</h2>
           </div>
-          <p class="text-sm">
-            <%= render partial: "users/avatars", locals: { users: [@meetup.organizer] + @meetup.attendees.sort_by(&:name), show_name: true } %>
-          </p>
+          <%= render partial: "users/avatars", locals: { users: [@meetup.organizer] + @meetup.attendees.sort_by(&:name), show_name: true } %>
         </section>
         <% if @meetup.declined_invitees.present? %>
           <section class="flex flex-col gap-y-1">
@@ -36,9 +34,7 @@
               <%= heroicon "face-frown", options: { class: "h-4 w-4" } %>
               <h2 class="text-sm">Who's out?</h2>
             </div>
-            <p class="text-sm">
-              <%= render partial: "users/avatars", locals: { users: @meetup.declined_invitees.sort_by(&:name), show_name: true } %>
-            </p>
+            <%= render partial: "users/avatars", locals: { users: @meetup.declined_invitees.sort_by(&:name), show_name: true } %>
           </section>
         <% end %>
       </div>
