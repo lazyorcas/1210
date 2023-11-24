@@ -3,6 +3,10 @@
 class CurrentUserController < SocialNetworkController
   layout :resolve_layout
 
+  def index
+    @pending_user_invitations = current_user.received_invitations.pending.includes(:inviter)
+  end
+
   def friends
     ahoy.track("visited_friends")
     load_friends

@@ -14,8 +14,9 @@ class User::InvitationsController < SocialNetworkController
 
   def update
     load_user_invitation
+
     if @user_invitation.update(update_user_invitation_params)
-      redirect_to(current_user_friends_path)
+      turbo_stream
     end
   end
 

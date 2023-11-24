@@ -149,7 +149,6 @@
 
   .check-box--primary {
     @apply text-white bg-green-500;
-    @apply transition-colors;
   }
 
   .check-box--secondary {
