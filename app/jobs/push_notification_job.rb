@@ -5,6 +5,8 @@ class PushNotificationJob < ApplicationJob
 
   queue_as :default
 
+  discard_on WebPush::ExpiredSubscription
+
   def perform(push_subscription:, title:, body:)
     WebPush.payload_send(
       message: JSON.generate({
