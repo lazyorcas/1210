@@ -24,12 +24,12 @@
     <div class="input-container">
       <div>
         <%= form.label :invitee_ids do %>
-          Whom do you want to share with?
+          Whom is it visible to?
         <% end %>
         <p class="text-sm text-neutral-400">Leave it empty to share with all your friends.</p>
       </div>
-      <%= form.collection_select :invitee_ids, meetup.organizer.friends.order(:name), :id, :name, {}, { multiple: true } %>
+      <%= form.collection_select :invitee_ids, meetup.organizer.friends_in_the_same_city.order(:name), :id, :name, {}, { multiple: true } %>
     </div>
   </div>
-  <%= form.button "Let your friends know", class: "btn btn--primary" %>
+  <%= form.button :submit, class: "btn btn--primary" %>
 <% end %>

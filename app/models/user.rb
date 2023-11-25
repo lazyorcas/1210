@@ -127,7 +127,8 @@ class User < ApplicationRecord
   end
 
   def friends_in_the_same_city
-    User.where(id: friend_ids, city: city)
+    # TODO: remove nil
+    User.where(id: friend_ids, city: [city, nil])
   end
 
   private
