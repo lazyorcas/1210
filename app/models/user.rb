@@ -55,6 +55,12 @@ class User < ApplicationRecord
     as: :invitee
   has_many :voting_ideas, through: :accepted_idea_invitations, source: :inviter, source_type: "Idea"
 
+  has_many :pending_idea_invitations,
+    -> { pending },
+    class_name: "Idea::Invitation",
+    as: :invitee
+  has_many :pending_ideas, through: :pending_idea_invitations, source: :inviter, source_type: "Idea"
+
   has_many :declined_idea_invitations,
     -> { declined },
     class_name: "Idea::Invitation",

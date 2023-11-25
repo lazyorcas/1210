@@ -1,6 +1,6 @@
 <nav class="social-network__nav">
   <%= render MainTabLinkComponent.new(path: things_path, icon_name: "map", indicator_count: Thing.pending(current_user).count) %>
-  <%= render MainTabLinkComponent.new(path: ideas_path, icon_name: "heart") %>
+  <%= render MainTabLinkComponent.new(path: ideas_path, icon_name: "heart", indicator_count: current_user.pending_ideas.count) %>
   <%= render MainTabLinkComponent.new(path: meetups_path, icon_name: "bolt", indicator_count: current_user.pending_meetups.upcoming.count) %>
   <%= render MainTabLinkComponent.new(path: availabilities_path, icon_name: "calendar-days", show_indicator: current_user.availabilities.empty?) %>
   <%= render MainTabLinkComponent.new(path: current_user_path, icon_name: "user-circle", indicator_count: current_user.received_invitations.pending.count) %>

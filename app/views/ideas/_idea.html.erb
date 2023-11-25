@@ -2,6 +2,8 @@
   <%= link_to idea_path(idea), class: "relative card card--clickable flex flex-col gap-y-2", data: { turbo_frame: "modal" } do %>
     <% if idea.polling? %>
       <span class="absolute top-0 right-0 -mt-1 -mr-1 w-3 h-3 bg-green-500 rounded-full"></span>
+    <% elsif current_user.pending_ideas.exists?(idea.id) %>
+      <span class="absolute top-0 right-0 -mt-1 -mr-1 status status--empty"></span>
     <% end %>
     <header class="flex flex-col">
       <h2 class="font-semibold"><%= idea.title %></h2>
