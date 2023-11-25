@@ -14,7 +14,18 @@ class SocialNetworkController < ApplicationController
       @default_modal_src = user_path(current_user)
     elsif current_user.city.nil?
       @default_modal_src = current_user_edit_city_path
+    elsif current_user.availabilities.empty? || !has_visited_current_user_availabilities_event_today
+      @default_modal_src = current_user_availabilities_path
     end
+  end
+
+  def has_visited_current_user_availabilities_event_today
+    Ahoy::Event
+      .where(user: current_user, name: "visited_current_user_availabilities")
+      .order(time: :desc)
+      .first
+      .time
+      .to_date == Time.zone.today
   end
 
   def associate_visit_with_current_user
