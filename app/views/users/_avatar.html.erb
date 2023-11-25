@@ -1,5 +1,5 @@
 <div class="<%= class_names({ "flex items-center gap-x-1": local_assigns[:show_name] }) %>">
-  <% if current_user.friend_ids.include?(user.id) && user.avatar.attached? %>
+  <% if (current_user == user || current_user.friend_ids.include?(user.id)) && user.avatar.attached? %>
     <%= image_tag photo_path(id: user.avatar.id), class: class_names("avatar", {
     "rounded w-6 h-6": size == "tiny",
     "rounded w-8 h-8": size == "small",
