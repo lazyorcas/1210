@@ -23,9 +23,7 @@ class SocialNetworkController < ApplicationController
     Ahoy::Event
       .where(user: current_user, name: "visited_current_user_availabilities")
       .order(time: :desc)
-      .first
-      .time
-      .to_date == Time.zone.today
+      .first&.time&.to_date == Time.zone.today
   end
 
   def associate_visit_with_current_user
