@@ -9,13 +9,13 @@
           <div class="flex gap-x-2">
             <%= form_with model: user_invitation do |form| %>
               <%= form.hidden_field :is_accepted, value: true, required: true %>
-              <%= form.button :submit, class: "icon-btn btn--secondary" do %>
+              <%= form.button :submit, class: "icon-btn bg-green-500 text-white" do %>
                 <%= heroicon "check" %>
               <% end %>
             <% end %>
             <%= form_with model: user_invitation do |form| %>
               <%= form.hidden_field :is_accepted, value: false, required: true %>
-              <%= form.button :submit, class: "icon-btn btn--secondary" do %>
+              <%= form.button :submit, class: "icon-btn bg-red-500 text-white" do %>
                 <%= heroicon "x-mark" %>
               <% end %>
             <% end %>

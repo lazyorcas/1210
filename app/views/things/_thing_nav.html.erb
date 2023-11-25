@@ -3,7 +3,7 @@
     <%= form.hidden_field :is_accepted, value: false, required: true %>
     <%= form.button class: "w-full btn btn--with-icon bg-red-500 text-white" do %>
       <%= heroicon "x-mark", variant: "solid", options: { class: "h-8 w-8" } %>
-      Skip for now
+      Skip
     <% end %>
   <% end %>
   <%= form_with model: thing.invitations.find_by(invitee: current_user) || Thing::Invitation.new(inviter: thing), url: thing_invitations_path(thing), class: "flex-1" do |form| %>
