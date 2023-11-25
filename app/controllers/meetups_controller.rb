@@ -90,7 +90,7 @@ class MeetupsController < SocialNetworkController
   end
 
   def filter_meetups
-    if params[:declined]
+    if params[:filter] == "declined"
       filter_by_declined_meetups
     else
       filter_by_going_or_pending_meetups
