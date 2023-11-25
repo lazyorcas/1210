@@ -14,7 +14,7 @@ class SocialNetworkController < ApplicationController
       @default_modal_src = user_path(current_user)
     elsif current_user.city.nil?
       @default_modal_src = current_user_edit_city_path
-    elsif current_user.availabilities.empty? || !has_visited_current_user_availabilities_event_today
+    elsif !has_visited_current_user_availabilities_event_today
       @default_modal_src = current_user_availabilities_path
     end
   end
