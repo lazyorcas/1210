@@ -30,7 +30,7 @@ class CurrentUser::AvailabilitiesController < SocialNetworkController
   private
 
   def set_availabilities_date_range
-    @date_range = Time.zone.now.to_date..1.week.from_now.to_date
+    @date_range = Time.zone.now.to_date..7.days.from_now.to_date
   end
 
   def load_availabilities
