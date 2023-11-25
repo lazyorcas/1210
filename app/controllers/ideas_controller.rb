@@ -6,7 +6,7 @@ class IdeasController < SocialNetworkController
   after_action :track_saw_ideas, only: [:index]
 
   def index
-    if params[:inactive]
+    if params[:filter] == "inactive"
       ahoy.track("visited_inactive_ideas")
     else
       ahoy.track("visited_ideas")
@@ -102,8 +102,10 @@ class IdeasController < SocialNetworkController
   end
 
   def filter_ideas
-    if params[:inactive]
+    if params[:filter] == "inactive"
       filter_by_inactive_ideas
+    elsif params[:filter] == "declined"
+      filter_by_declined_ideas
     else
       filter_by_active_ideas
     end
@@ -115,6 +117,10 @@ class IdeasController < SocialNetworkController
 
   def filter_by_inactive_ideas
     @ideas = @ideas.inactive
+  end
+
+  def filter_by_declined_ideas
+    @ideas = @ideas.where(id: current_user.declined_ideas)
   end
 
   def order_ideas

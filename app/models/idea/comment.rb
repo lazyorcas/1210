@@ -17,7 +17,7 @@ class Idea::Comment < Comment
   end
 
   def notifiees
-    [idea.organizer] + idea.voters - [author]
+    [idea.organizer] + idea.voters - idea.declined_invitees - [author]
   end
 
   def notify_idea_organizer_and_voters

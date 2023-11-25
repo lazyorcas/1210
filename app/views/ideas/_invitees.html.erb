@@ -10,9 +10,18 @@
     <section class="flex flex-col gap-y-1">
       <div class="flex items-center gap-x-1 text-neutral-500">
         <%= heroicon "question-mark-circle", options: { class: "h-4 w-4" } %>
-        <h2 class="text-sm">Pending / Not interested</h2>
+        <h2 class="text-sm">Pending</h2>
       </div>
       <%= render partial: "users/avatars", locals: { users: @idea.pending_invitees.sort_by(&:name), show_name: true } %>
+    </section>
+  <% end %>
+  <% if @idea.declined_invitees.present? %>
+    <section class="flex flex-col gap-y-1">
+      <div class="flex items-center gap-x-1 text-neutral-500">
+        <%= heroicon "face-frown", options: { class: "h-4 w-4" } %>
+        <h2 class="text-sm">Not interested</h2>
+      </div>
+      <%= render partial: "users/avatars", locals: { users: @idea.declined_invitees.sort_by(&:name), show_name: true } %>
     </section>
   <% end %>
 </div>

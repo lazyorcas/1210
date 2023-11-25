@@ -23,10 +23,16 @@ class Idea < ApplicationRecord
   has_many :voters, through: :accepted_invitations, source: :invitee, source_type: "User"
 
   has_many :pending_invitations,
-    -> { acceptable },
+    -> { pending },
     class_name: "Idea::Invitation",
     as: :inviter
   has_many :pending_invitees, through: :pending_invitations, source: :invitee, source_type: "User"
+
+  has_many :declined_invitations,
+    -> { declined },
+    class_name: "Idea::Invitation",
+    as: :inviter
+  has_many :declined_invitees, through: :declined_invitations, source: :invitee, source_type: "User"
 
   has_many :options, class_name: "Idea::Option", as: :pollable
 
