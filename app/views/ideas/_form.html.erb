@@ -13,7 +13,7 @@
         <% end %>
         <p class="text-sm text-neutral-400">Leave it empty to let all of your friends vote.</p>
       </div>
-      <%= form.collection_select :invitee_ids, idea.organizer.friends_in_the_same_city.order(:name), :id, :name, {}, { multiple: true } %>
+      <%= form.collection_select :invitee_ids, idea.organizer.friends.order(:name), :id, :name, {}, { multiple: true } %>
     </div>
   </div>
   <%= form.button :submit, class: "btn btn--primary" %>
