@@ -50,7 +50,7 @@ class Idea::Option < Pollable::Option
   end
 
   def previous_option
-    stack(self).second
+    Idea::Option.stack(self).second
   end
 
   def notify?
