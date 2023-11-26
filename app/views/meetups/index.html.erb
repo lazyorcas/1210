@@ -17,7 +17,7 @@
     <% end %>
   </nav>
   <% if @meetups.empty? %>
-    <% if params[:declined].present? %>
+    <% if params[:filter].present? %>
       <%= render partial: "shared/nothing_here" %>
     <% else %>
       <%= render partial: "no_meetups" %>
