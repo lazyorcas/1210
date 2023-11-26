@@ -4,8 +4,6 @@ class Invitation < ApplicationRecord
   belongs_to :inviter, polymorphic: true
   belongs_to :invitee, polymorphic: true
 
-  validates_presence_of :inviter, :invitee
-
   scope :acceptable, -> { where(is_accepted: [nil, false]) }
   scope :pending, -> { where(is_accepted: nil) }
   scope :accepted, -> { where(is_accepted: true) }

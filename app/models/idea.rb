@@ -38,7 +38,7 @@ class Idea < ApplicationRecord
 
   has_many :comments, class_name: "Idea::Comment", as: :commentable
 
-  validates_presence_of :title, :organizer
+  validates_presence_of :title
 
   after_commit :notify_of_new_idea, on: :create
   after_update :notify_voters_of_status_changed_to_polling, if: -> { saved_change_to_status? && polling? }

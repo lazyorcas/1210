@@ -38,7 +38,7 @@ class Meetup < ApplicationRecord
 
   has_one :memory
 
-  validates_presence_of :title, :date, :organizer
+  validates_presence_of :title, :date
 
   validates :start_time,
     :end_time,
