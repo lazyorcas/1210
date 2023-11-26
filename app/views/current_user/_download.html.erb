@@ -1,0 +1,10 @@
+<section class="card flex flex-col gap-y-4 standalone:hidden">
+  <header>
+    <h2 class="font-semibold">Download</h2>
+    <p class="text-sm text-neutral-500">Save the website to your home screen.</p>
+  </header>
+  <%= link_to download_path, class: "btn btn--primary btn--with-icon", data: { turbo_frame: "modal" }  do %>
+    <%= heroicon "arrow-down-tray", variant: "solid" %>
+    Download
+  <% end %>
+</section>

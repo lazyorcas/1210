@@ -1,17 +1,14 @@
-<main class="w-full max-w-[320px] m-auto flex flex-col gap-y-16">
-  <header class="w-full flex flex-col">
-    <h1 class="text-5xl font-black">1210</h1>
-    <p>Only available on mobile</p>
-  </header>
-  <div class="flex flex-col gap-y-4">
-    <p>To download:</p>
-    <ol class="flex flex-col gap-y-1">
-      <li class="flex items-center gap-x-1">1. Click <%= heroicon browser.platform.ios? ? "arrow-up-on-square" : "ellipsis-vertical", options: { class: "h-6 w-6" } %> on your browser toolbar.</li>
-      <li>2. Click <b>"Add to Home Screen"</b>.</li>
-      <li>3. A popup will appear, click <b>"Add"</b>.</li>
-    </ol>
-    <% if browser.platform.ios? && browser.safari?("< 16.4") %>
-      <p>Your iOS version must be <b>at least 16.4</b>.</p>
-    <% end %>
-  </div>
-</main>
+<%= render ModalComponent.new(title: "Download") do |component| %>
+  <% component.with_body do %>
+    <div class="flex flex-col gap-y-4 px-4 modal-pb">
+      <ol class="flex flex-col gap-y-1">
+        <li class="flex items-center gap-x-1">1. Click <%= heroicon browser.platform.ios? ? "arrow-up-on-square" : "ellipsis-vertical", options: { class: "h-6 w-6" } %> on your browser toolbar.</li>
+        <li>2. Click <b>"Add to Home Screen"</b>.</li>
+        <li>3. A popup will appear, click <b>"Add"</b>.</li>
+      </ol>
+      <% if browser.platform.ios? && browser.safari?("< 16.4") %>
+        <p>Your iOS version must be <b>at least 16.4</b>.</p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
