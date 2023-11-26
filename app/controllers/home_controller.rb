@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     when "index"
       "application"
     else
-      false
+      "modal"
     end
   end
 end

@@ -32,7 +32,7 @@ class CurrentUserController < SocialNetworkController
     when "friends"
       "side_tab"
     else
-      false
+      "modal"
     end
   end
 

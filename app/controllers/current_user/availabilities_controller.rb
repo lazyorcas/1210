@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CurrentUser::AvailabilitiesController < SocialNetworkController
-  layout false
+  layout "modal"
 
   def index
     ahoy.track("visited_current_user_availabilities")

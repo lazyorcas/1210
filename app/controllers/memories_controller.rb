@@ -28,7 +28,7 @@ class MemoriesController < SocialNetworkController
     when "index"
       "side_tab"
     else
-      false
+      "modal"
     end
   end
 

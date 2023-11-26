@@ -34,7 +34,7 @@ class ThingsController < SocialNetworkController
     when "interesting"
       "side_tab"
     else
-      false
+      "modal"
     end
   end
 

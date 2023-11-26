@@ -59,7 +59,7 @@ class MeetupsController < SocialNetworkController
     when "index"
       "main_tab"
     else
-      false
+      "modal"
     end
   end
 

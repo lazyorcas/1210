@@ -48,7 +48,7 @@ class Admin::ThingsController < AdminController
     when "index"
       "admin/things"
     else
-      false
+      "modal"
     end
   end
 
