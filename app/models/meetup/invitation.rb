@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Meetup::Invitation < Invitation
+  include Invitation::IsComplete
   include Dateful
 
   default_scope { where(inviter_type: "Meetup", invitee_type: "User") }

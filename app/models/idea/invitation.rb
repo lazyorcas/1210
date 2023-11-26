@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Idea::Invitation < Invitation
+  include Invitation::IsComplete
+
   default_scope { where(inviter_type: "Idea", invitee_type: "User") }
 
   after_create :notify_invitee

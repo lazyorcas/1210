@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Thing::Invitation < Invitation
+  include Invitation::IsComplete
+
   default_scope { where(inviter_type: "Thing", invitee_type: "User") }
 
   # after_create :notify_thing_interestees_who_are_friends, if: :is_accepted

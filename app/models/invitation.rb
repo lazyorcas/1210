@@ -2,7 +2,7 @@
 
 class Invitation < ApplicationRecord
   belongs_to :inviter, polymorphic: true
-  belongs_to :invitee, polymorphic: true
+  belongs_to :invitee, polymorphic: true, optional: true
 
   scope :acceptable, -> { where(is_accepted: [nil, false]) }
   scope :pending, -> { where(is_accepted: nil) }
