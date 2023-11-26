@@ -3,7 +3,7 @@
 class Idea < ApplicationRecord
   include FriendsOnly
 
-  scope :ongoing, -> { where(status: [:looking_for_voters, :polling]) }
+  default_scope { where(status: [:looking_for_voters, :polling]) }
   scope :inactive, -> { where("last_activity_at < ?", 3.days.ago) }
 
   enum status: { looking_for_voters: 0, deleted: -1, polled: 1, polling: 2 }

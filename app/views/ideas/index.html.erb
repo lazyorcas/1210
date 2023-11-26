@@ -5,19 +5,17 @@
   <% end %>
 <% end %>
 <main class="social-network__main">
-  <% if @should_filter %>
-    <nav class="flex gap-x-1">
-      <%= link_to ideas_path, class: class_names("chip flex items-center", params[:filter] ? "chip-tab--inactive" : "chip-tab--active") do %>
-        Active
-      <% end %>
-      <%= link_to ideas_path(filter: "inactive"), class: class_names("chip flex items-center", params[:filter] == "inactive" ? "chip-tab--active" : "chip-tab--inactive") do %>
-        Inactive
-      <% end %>
-      <%= link_to ideas_path(filter: "declined"), class: class_names("chip flex items-center", params[:filter] == "declined" ? "chip-tab--active" : "chip-tab--inactive") do %>
-        Declined
-      <% end %>
-    </nav>
-  <% end %>
+  <nav class="flex gap-x-1">
+    <%= link_to ideas_path, class: class_names("chip flex items-center", params[:filter] ? "chip-tab--inactive" : "chip-tab--active") do %>
+      Active
+    <% end %>
+    <%= link_to ideas_path(filter: "inactive"), class: class_names("chip flex items-center", params[:filter] == "inactive" ? "chip-tab--active" : "chip-tab--inactive") do %>
+      Inactive
+    <% end %>
+    <%= link_to ideas_path(filter: "declined"), class: class_names("chip flex items-center", params[:filter] == "declined" ? "chip-tab--active" : "chip-tab--inactive") do %>
+      Declined
+    <% end %>
+  </nav>
   <%= turbo_frame_tag "ideas", class: "flex flex-col gap-y-4" do %>
     <% if @ideas.empty? %>
       <%= turbo_frame_tag "ideas-header", target: "_top" do %>

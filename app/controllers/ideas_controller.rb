@@ -13,8 +13,7 @@ class IdeasController < SocialNetworkController
     end
 
     load_ideas
-    @should_filter = @ideas.count >= 5
-    filter_ideas if @should_filter
+    filter_ideas
     order_ideas
 
     ahoy.track("saw_no_ideas") if @ideas.empty?
@@ -112,11 +111,11 @@ class IdeasController < SocialNetworkController
   end
 
   def filter_by_active_ideas
-    @ideas = @ideas.where.not(id: @ideas.inactive)
+    @ideas = @ideas.where.not(id: idea_scope.inactive + current_user.declined_ideas)
   end
 
   def filter_by_inactive_ideas
-    @ideas = @ideas.inactive
+    @ideas = @ideas.inactive.where.not(id: current_user.declined_ideas)
   end
 
   def filter_by_declined_ideas
