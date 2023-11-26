@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   def resolve_layout
     case action_name
     when "index"
-      "home"
+      "application"
     else
       false
     end
