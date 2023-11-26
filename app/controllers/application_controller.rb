@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   def require_mobile!
     unless browser.device.mobile?
-      redirect_to(download_path)
+      redirect_to(root_path)
     end
   end
 end

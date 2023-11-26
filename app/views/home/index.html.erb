@@ -1,34 +1,5 @@
-<main class="max-w-[320px] sm:max-w-none mx-auto">
-  <header class="py-32 sm:py-64">
-    <h1 class="text-5xl font-black">1210</h1>
-    <p class="text-3xl font-bold">
-      Meetups. <br />
-      With your friends. <br/>
-      More often.
-    </p>
-    <div class="flex flex-col gap-y-4 sm:flex-row sm:gap-y-0 sm:gap-x-4 mt-16">
-      <%= link_to new_user_path, class: "sm:flex-1 btn btn--primary" do %>
-        Create account
-      <% end %>
-      <%= link_to users_sign_in_path, class: "sm:flex-1 btn btn--secondary" do %>
-        Sign in
-      <% end %>
-    </div>
-  </header>
-  <section class="flex flex-col gap-y-8">
-    <header>
-      <h2 class="text-2xl font-bold">What is this?</h2>
-      <p>1210 – pronounced "one to ten" – is a social network that focuses on helping friends meet up more often.</p>
-    </header>
-    <section class="flex flex-col gap-y-4">
-      <header>
-        <h3 class="text-xl font-semibold">Meetups</h3>
-        <p>Post spontaneous meetups. See who's down without messaging every friend of yours individually.</p>
-      </header>
-      <div class="flex flex-col gap-y-4 sm:flex-row sm:gap-y-0 sm:gap-x-2">
-        <%= image_tag "new-meetup.webp", class: "sm:flex-1 sm:w-64 rounded-xl border-2" %>
-        <%= image_tag "meetups.webp", class: "sm:flex-1 sm:w-64 rounded-xl border-2" %>
-      </div>
-    </section>
-  </section>
-</main>
+<% if browser.device.mobile? %>
+  <%= render partial: "mobile_home" %>
+<% else %>
+  <%= render partial: "desktop_home" %>
+<% end %>
