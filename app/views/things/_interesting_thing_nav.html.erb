@@ -1,6 +1,11 @@
 <nav class="shrink-0 flex items-center gap-x-2 justify-between pr-2 pb-4 standalone:pb-10 min-h-[60px]">
   <%= render partial: "thing/invitations/index_link", locals: { thing: thing } %>
-  <%= link_to new_idea_path(thing_id: thing.id), class: "grow btn btn--primary", data: { turbo_frame: "modal" } do %>
-    Plan a meetup
-  <% end %>
+  <div class="grow flex gap-x-2">
+    <%= link_to new_idea_path(thing_id: thing.id), class: "flex-1 btn btn--primary", data: { turbo_frame: "modal" } do %>
+      Plan
+    <% end %>
+    <%= link_to new_meetup_path(thing_id: thing.id), class: "flex-1 btn btn--primary", data: { turbo_frame: "modal" } do %>
+      Meet
+    <% end %>
+  </div>
 </nav>
