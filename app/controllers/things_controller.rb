@@ -80,7 +80,7 @@ class ThingsController < SocialNetworkController
   end
 
   def filter_things_by_users
-    @things = @things.joins(:interestees).where({ users: { id: @user_filters } })
+    @things = @things.joins(:interestees).where({ users: { id: @user_filters } }).distinct
   end
 
   def order_things
