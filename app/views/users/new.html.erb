@@ -1,4 +1,4 @@
-<main class="w-full p-4 flex flex-col gap-y-16">
+<main class="my-auto w-full p-4 flex flex-col gap-y-16">
   <header class="w-full flex flex-col">
     <%= link_to root_path, class: "text-xl font-black flex items-center gap-x-2" do %>
       <%= heroicon "chevron-left", options: { class: "h-4 w-4" } %>
@@ -31,8 +31,8 @@
         <%= form.time_zone_select :time_zone, nil, { default: "Berlin", include_blank: true }, { class: "input select", required: true } %>
       </div>
     </div>
-    <% if params[:inviter_id].present? %>
-      <%= form.hidden_field :inviter_id, value: params[:inviter_id] %>
+    <% if params[:user_invitation_public_hash_value].present? %>
+      <%= form.hidden_field :user_invitation_public_hash_value, value: params[:user_invitation_public_hash_value] %>
     <% end %>
     <%= form.button "Create account", class: "btn btn--primary" %>
   <% end %>

@@ -1,0 +1,9 @@
+<div class="px-4 modal-pb" data-controller="clipboard">
+  <input data-clipboard-target="source" type="text" value="<%= user_invitation_public_hash_url(@user_invitation.public_hash.value) %>" readonly hidden>
+  <button class="btn btn--primary flex items-center gap-x-2 w-full mb-4" data-action="clipboard#copy">
+    <%= heroicon "clipboard-document", variant: "solid" %>
+    <span data-clipboard-target="buttonLabel">
+      Copy link to clipboard
+    </span>
+  </button>
+</div>

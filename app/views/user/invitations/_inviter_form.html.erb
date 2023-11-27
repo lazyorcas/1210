@@ -1,7 +1,0 @@
-<%= form_with model: invitation do |form| %>
-  <%= form.hidden_field :invitee_id, required: true %>
-  <%= form.button :submit, class: "btn btn--primary flex items-center gap-x-2 w-full" do %>
-    <%= heroicon "user-plus", variant: "solid" %>
-    Add friend
-  <% end %>
-<% end %>

@@ -1,7 +1,7 @@
 <% content_for :page_title, "Friends" %>
 <% content_for :back_path, current_user_path %>
 <% content_for :toolbar do %>
-  <%= link_to user_path(current_user), class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
+  <%= link_to new_user_invitation_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
     <%= heroicon "user-plus", variant: current_user.friends.count > 10 ? "outline" : "solid" %>
   <% end %>
 <% end %>

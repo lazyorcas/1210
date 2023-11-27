@@ -1,40 +1,42 @@
 # frozen_string_literal: true
 
 class User::InvitationsController < SocialNetworkController
+  def new
+    @user_invitation = User::Invitation.new(inviter: current_user)
+  end
+
   def create
-    @user_invitation = User::Invitation.new(
-      inviter: current_user,
-      invitee_id: create_user_invitation_params[:invitee_id],
-    )
+    @user_invitation = User::Invitation.new(inviter: current_user)
 
     if @user_invitation.save
-      redirect_to(current_user_friends_path)
+      turbo_stream
     end
   end
 
   def update
     load_user_invitation
+    @user_invitation.is_accepted = user_invitation_params[:is_accepted]
+    @user_invitation.invitee = current_user
 
-    if @user_invitation.update(update_user_invitation_params)
-      turbo_stream
+    if @user_invitation.save
+      redirect_to(root_path)
     end
   end
 
   private
 
+  def resolve_layout
+    case action_name
+    when "new"
+      "modal"
+    end
+  end
+
   def load_user_invitation
-    @user_invitation = user_invitation_scope.find(params[:id])
+    @user_invitation = User::Invitation.find(params[:id])
   end
 
-  def user_invitation_scope
-    User::Invitation.where(invitee: current_user)
-  end
-
-  def create_user_invitation_params
-    params.require(:user_invitation).permit(:invitee_id)
-  end
-
-  def update_user_invitation_params
+  def user_invitation_params
     params.require(:user_invitation).permit(:is_accepted)
   end
 end

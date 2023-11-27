@@ -5,25 +5,11 @@ class User::Invitation < Invitation
 
   default_scope { where(inviter_type: "User", invitee_type: "User") }
 
-  after_create :notify_invitee
+  after_create :create_public_hash, if: -> { invitee.nil? }
   after_update :notify_inviter, if: :is_accepted
+  after_update :expire_public_hash, if: :is_accepted
 
-  def notify_invitee_by_push
-    invitee.push_subscriptions.each do |push_subscription|
-      PushNotificationJob.perform_later(
-        push_subscription: push_subscription,
-        title: "Friend Request",
-        body: "✌️ #{inviter.name} sent you a friend request!",
-      )
-    end
-  end
-
-  def notify_invitee_by_email
-    User::InvitationMailer
-      .with(invitation: self)
-      .new_invitation_notification
-      .deliver_later
-  end
+  has_one :public_hash, class_name: "User::Invitation::PublicHash", as: :hashable
 
   def notify_invitee
     if invitee.push_subscriptions.any?
@@ -41,5 +27,15 @@ class User::Invitation < Invitation
         body: "👍 #{invitee.name} accepted your friend request!",
       )
     end
+  end
+
+  private
+
+  def create_public_hash
+    User::Invitation::PublicHash.create(hashable: self, expired_at: 24.hours.from_now)
+  end
+
+  def expire_public_hash
+    public_hash.expire
   end
 end

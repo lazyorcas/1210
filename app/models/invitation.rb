@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Invitation < ApplicationRecord
+  self.abstract_class = true
+  self.table_name = "invitations"
+
   belongs_to :inviter, polymorphic: true
   belongs_to :invitee, polymorphic: true, optional: true
 

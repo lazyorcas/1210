@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_17_212758) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_26_142542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -180,6 +180,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_17_212758) do
     t.datetime("created_at", null: false)
     t.datetime("updated_at", null: false)
     t.index(["pollable_type", "pollable_id"], name: "index_pollable_options_on_pollable")
+  end
+
+  create_table "public_hashes", force: :cascade do |t|
+    t.string("hashable_type")
+    t.bigint("hashable_id")
+    t.string("value")
+    t.datetime("expired_at")
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.index(["expired_at"], name: "index_public_hashes_on_expired_at")
+    t.index(["hashable_type", "hashable_id"], name: "index_public_hashes_on_hashable")
+    t.index(["value"], name: "index_public_hashes_on_value")
   end
 
   create_table "push_subscriptions", force: :cascade do |t|

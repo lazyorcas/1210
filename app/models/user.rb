@@ -110,7 +110,6 @@ class User < ApplicationRecord
   passwordless_with :email
 
   after_create :create_session
-  after_create :create_accepted_invitation, if: -> { inviter.present? }
 
   has_many :push_subscriptions
 
@@ -147,13 +146,5 @@ class User < ApplicationRecord
 
   def create_session
     Passwordless::Session.create(authenticatable: self)
-  end
-
-  def create_accepted_invitation
-    User::Invitation.create(
-      inviter: inviter,
-      invitee: self,
-      is_accepted: true,
-    )
   end
 end

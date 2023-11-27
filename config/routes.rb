@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   passwordless_for :users
   mount Sidekiq::Web => "/sidekiq", constraints: AdminConstraint.new
 
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create]
   namespace :user do
-    resources :invitations, only: [:create, :update]
+    resources :invitations, only: [:new, :create, :update]
+    namespace :invitation do
+      resources :public_hashes, only: [:show]
+    end
   end
 
   scope path: "/me", as: "current_user" do

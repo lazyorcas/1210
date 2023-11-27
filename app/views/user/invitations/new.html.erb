@@ -1,0 +1,14 @@
+<%= render ModalComponent.new(title: "Add friend") do |component| %>
+  <% component.with_body do %>
+    <div class="px-4 modal-pb" id="new_user_invitation">
+      <div class="flex flex-col gap-y-4">
+        <%= form_with model: @user_invitation do |form| %>
+          <%= form.button class: "w-full btn btn--primary" do %>
+            Generate auto-accept link
+          <% end %>
+        <% end %>
+        <p class="text-sm">This link will expire after 24 hours or when someone accepts it.</p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

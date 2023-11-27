@@ -4,9 +4,17 @@ class UsersController < ApplicationController
   before_action :require_mobile!
 
   def create
-    @user = User.new(user_params)
+    load_user_invitation_public_hash
+    load_user_invitation
+
+    @user = User.new(user_params.except(:user_invitation_public_hash_value))
+    @user.inviter = @inviter
 
     if @user.save
+      if @user_invitation.present?
+        @user_invitation.update(invitee: @user, is_accepted: true)
+      end
+
       @session = build_passwordless_session(@user)
       if @session.save
         sign_in(@session)
@@ -21,35 +29,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    load_user
-
-    if current_user.present?
-      if current_user == @user
-        render("show_self")
-      elsif current_user.friends.find_by(id: @user.id)
-        redirect_to(current_user_friends_path)
-      else
-        @user_invitation = User::Invitation.bidirectional_find_by(
-          inviter: current_user,
-          invitee: @user,
-        )
-        @user_invitation ||= User::Invitation.new(inviter: current_user, invitee: @user)
-
-        render("show_signed_in_user")
-      end
-    else
-      render("show_new_user")
-    end
-  end
-
   private
 
-  def load_user
-    @user = User.find(params[:id])
+  def load_user_invitation_public_hash
+    @user_invitation_public_hash = User::Invitation::PublicHash.find_by(
+      value: user_params[:user_invitation_public_hash_value],
+    )
+  end
+
+  def load_user_invitation
+    @user_invitation = @user_invitation_public_hash&.user_invitation
+  end
+
+  def load_inviter
+    @inviter = @user_invitation&.inviter
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :city, :time_zone, :inviter_id)
+    params.require(:user).permit(:name, :email, :city, :time_zone, :user_invitation_public_hash_value)
   end
 end
