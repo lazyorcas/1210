@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "new_idea_option" do %>
   <%= form_with model: @idea_option, class: "flex gap-x-2", data: { controller: "form", action: "turbo:submit-end->form#clear", turbo_confirm: "You won't be able to edit or remove the option after. Have you proofread it?" } do |form| %>
-    <%= form.text_field :title, placeholder: "location, date, time, preference, …", class: "w-full input", autocomplete: "off", required: true %>
+    <%= form.text_field :title, placeholder: "enter an option…", class: "w-full input", autocomplete: "off", required: true %>
     <%= form.button class: "shrink-0 icon-btn btn--primary" do %>
       <%= heroicon "plus" %>
     <% end %>
