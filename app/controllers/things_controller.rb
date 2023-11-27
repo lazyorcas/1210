@@ -68,7 +68,7 @@ class ThingsController < SocialNetworkController
   end
 
   def load_type_filters
-    @type_filters = params[:type].reject(&:blank?) if params[:type].present?
+    @type_filters = params[:type]&.reject(&:blank?) || []
   end
 
   def filter_things_by_types
@@ -76,7 +76,7 @@ class ThingsController < SocialNetworkController
   end
 
   def load_user_filters
-    @user_filters = params[:user_id].reject(&:blank?) if params[:user_id].present?
+    @user_filters = params[:user_id]&.reject(&:blank?) || []
   end
 
   def filter_things_by_users

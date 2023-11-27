@@ -1,8 +1,11 @@
 <% content_for :page_title, "Bookmarks" %>
 <% content_for :back_path, things_path %>
 <% content_for :toolbar do %>
-  <%= link_to filter_things_path(type: @type_filters, user_id: @user_filters), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
+  <%= link_to filter_things_path(type: @type_filters, user_id: @user_filters), class: "relative icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
     <%= heroicon "funnel", variant: @type_filters.present? || @user_filters.present? ? "solid" : "outline" %>
+    <div class="status status--textful absolute -mr-6 -mt-6">
+      <%= (@type_filters || [] + @user_filters || []).length %>
+    </div>
   <% end %>
 <% end %>
 <% if @things.empty? %>
