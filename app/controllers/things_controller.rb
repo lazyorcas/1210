@@ -3,6 +3,9 @@
 class ThingsController < SocialNetworkController
   layout :resolve_layout
 
+  before_action :load_type_filters, only: [:interesting, :filter]
+  before_action :load_user_filters, only: [:interesting, :filter]
+
   def index
     load_things
     filter_things_by_city
@@ -16,6 +19,8 @@ class ThingsController < SocialNetworkController
   def interesting
     load_things
     filter_things_by_interests
+    filter_things_by_types if @type_filters.present?
+    filter_things_by_users if @user_filters.present?
     order_things
     ahoy.track("visited_interesting_things")
     track_things_are_empty
@@ -60,6 +65,22 @@ class ThingsController < SocialNetworkController
 
   def filter_things_by_pending
     @things = @things.where(id: Thing.pending(current_user))
+  end
+
+  def load_type_filters
+    @type_filters = params[:type].reject(&:blank?) if params[:type].present?
+  end
+
+  def filter_things_by_types
+    @things = @things.where(type: @type_filters)
+  end
+
+  def load_user_filters
+    @user_filters = params[:user_id].reject(&:blank?) if params[:user_id].present?
+  end
+
+  def filter_things_by_users
+    @things = @things.joins(:interestees).where({ users: { id: @user_filters } })
   end
 
   def order_things

@@ -10,7 +10,7 @@
 <main class="social-network__main">
   <nav class="flex gap-x-1">
     <%= link_to meetups_path, class: class_names("chip flex items-center", params[:filter] ? "chip-tab--inactive" : "chip-tab--active") do %>
-      Going / Pending
+      Upcoming
     <% end %>
     <%= link_to meetups_path(filter: "declined"), class: class_names("chip flex items-center", params[:filter] == "declined" ? "chip-tab--active" : "chip-tab--inactive") do %>
       Declined

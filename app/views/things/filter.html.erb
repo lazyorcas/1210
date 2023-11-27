@@ -1,0 +1,17 @@
+<%= render ModalComponent.new(title: "Filter") do |component| %>
+  <% component.with_body do %>
+    <%= form_with url: interesting_things_path, method: :get, class: "px-4 modal-pb form-flow" do |form| %>
+      <div class="input-container">
+        <%= form.label :type, "Types" %>
+        <%= form.select :type, Thing::TYPES, { selected: @type_filters }, class: "input select", multiple: true %>
+      </div>
+      <div class="input-container">
+        <%= form.label :user_id, "Friends" %>
+        <%= form.collection_select :user_id, current_user.friends_in_the_same_city.order(:name), :id, :name, { selected: @user_filters }, { multiple: true } %>
+      </div>
+      <%= form.button :submit, class: "w-full btn btn--primary", name: nil do %>
+        Filter
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
