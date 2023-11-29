@@ -12,7 +12,9 @@ class SocialNetworkController < ApplicationController
   def load_default_modal_src
     if current_user.city.nil?
       @default_modal_src = current_user_edit_city_path
-    elsif !has_visited_current_user_availabilities_event_today && Time.zone.now >= "07:00"
+    elsif !has_visited_current_user_availabilities_event_today &&
+        Time.zone.now >= "07:00" &&
+        current_user.friends.count > 0
       @default_modal_src = current_user_availabilities_path
     end
   end
