@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     load_user_invitation_public_hash
     load_user_invitation
+    load_inviter
 
     @user = User.new(user_params.except(:user_invitation_public_hash_value))
     @user.inviter = @inviter
