@@ -11,9 +11,11 @@
         <%= form.label :invitee_ids do %>
           Who can vote?
         <% end %>
-        <p class="text-sm text-neutral-400">Leave it empty to let all of your friends vote.</p>
+        <% unless current_user.has_enough_friends %>
+          <p class="text-sm text-neutral-400">Leave it empty to let all of your friends vote.</p>
+        <% end %>
       </div>
-      <%= form.collection_select :invitee_ids, idea.organizer.friends.order(:name), :id, :name, {}, { multiple: true } %>
+      <%= form.collection_select :invitee_ids, idea.organizer.friends.order(:name), :id, :name, {}, { multiple: true, required: current_user.has_enough_friends } %>
     </div>
   </div>
   <%= form.button :submit, class: "btn btn--primary" %>

@@ -137,6 +137,10 @@ class User < ApplicationRecord
     friends
   end
 
+  def has_enough_friends
+    friends.length > 5
+  end
+
   def friends_in_the_same_city
     # TODO: remove nil
     User.where(id: friend_ids, city: [city, nil])

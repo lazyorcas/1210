@@ -26,9 +26,11 @@
         <%= form.label :invitee_ids do %>
           Whom is it visible to?
         <% end %>
-        <p class="text-sm text-neutral-400">Leave it empty to share with all your friends.</p>
+        <% unless current_user.has_enough_friends %>
+          <p class="text-sm text-neutral-400">Leave it empty to share with all your friends.</p>
+        <% end %>
       </div>
-      <%= form.collection_select :invitee_ids, meetup.organizer.friends.order(:name), :id, :name, {}, { multiple: true } %>
+      <%= form.collection_select :invitee_ids, meetup.organizer.friends.order(:name), :id, :name, {}, { multiple: true, required: true } %>
     </div>
   </div>
   <%= form.button :submit, class: "btn btn--primary" %>

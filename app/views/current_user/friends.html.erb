@@ -2,7 +2,7 @@
 <% content_for :back_path, current_user_path %>
 <% content_for :toolbar do %>
   <%= link_to new_user_invitation_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
-    <%= heroicon "user-plus", variant: current_user.friends.count > 10 ? "outline" : "solid" %>
+    <%= heroicon "user-plus", variant: "solid" %>
   <% end %>
 <% end %>
 <main class="grow w-full flex flex-col gap-y-4 p-4 standalone:pb-10">
