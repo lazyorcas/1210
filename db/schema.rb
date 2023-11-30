@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_26_142542) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_30_095151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -169,7 +169,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_142542) do
     t.datetime("claimed_at", precision: nil)
     t.datetime("created_at", precision: nil, null: false)
     t.datetime("updated_at", precision: nil, null: false)
+    t.string("identifier")
     t.index(["authenticatable_type", "authenticatable_id"], name: "authenticatable")
+    t.index(["identifier"], name: "index_passwordless_sessions_on_identifier", unique: true)
     t.index(["token_digest"], name: "index_passwordless_sessions_on_token_digest")
   end
 
