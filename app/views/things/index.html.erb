@@ -11,8 +11,12 @@
     <%= image_tag "person-looking-at-map.svg", width: 320, height: 320 %>
     <p class="text-center">Discover things to do in the city <br />
       and your common interests.</p>
-    <%= link_to new_user_invitation_path, class: "mt-2 btn btn--primary", data: { turbo_frame: "modal" } do %>
-      Add 3 friends first
+    <%= link_to current_user_friends_path, class: "mt-2 btn btn--primary", data: { turbo_frame: "modal" } do %>
+      <% if current_user.friends.empty? %>
+        Add 3 friends first
+      <% else %>
+        Add <%= 3 - current_user.friends.length %> more friends
+      <% end %>
     <% end %>
   </div>
 <% elsif @things.empty? %>
