@@ -6,7 +6,7 @@ Sentry.init do |config|
 
   # To activate performance monitoring, set one of these options.
   # We recommend adjusting the value in production:
-  config.traces_sample_rate = 1.0
+  config.traces_sample_rate = 0.1
   # or
   # config.traces_sampler = lambda do |_context|
   #   true
