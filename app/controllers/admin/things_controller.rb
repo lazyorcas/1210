@@ -6,6 +6,7 @@ class Admin::ThingsController < AdminController
   def index
     load_things
     filter_things_by_city if params[:city].present?
+    order_things
   end
 
   def new
@@ -58,6 +59,10 @@ class Admin::ThingsController < AdminController
 
   def filter_things_by_city
     @things = @things.where(city: [nil, params[:city]])
+  end
+
+  def order_things
+    @things = @things.order(updated_at: :desc)
   end
 
   def load_thing
