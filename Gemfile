@@ -78,6 +78,7 @@ gem "aws-sdk-s3", require: false
 gem "browser"
 gem "heroicon"
 gem "passwordless"
+gem "rack-attack"
 gem "rails_autolink"
 gem "rubocop-shopify", require: false
 gem "sentry-ruby"
