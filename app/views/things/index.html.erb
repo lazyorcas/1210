@@ -1,22 +1,18 @@
 <% content_for :page_title, current_user.city %>
-<% if current_user.friends.count >= 3 %>
+<% if current_user.friends.present? %>
   <% content_for :toolbar do %>
     <%= link_to interesting_things_path, class: "icon-btn icon-btn--small" do %>
       <%= heroicon "bookmark" %>
     <% end %>
   <% end %>
 <% end %>
-<% if current_user.friends.count < 3 %>
+<% if current_user.friends.empty? %>
   <div class="flex flex-col items-center px-4">
     <%= image_tag "person-looking-at-map.svg", width: 320, height: 320 %>
     <p class="text-center">Discover things to do in the city <br />
       and your common interests.</p>
     <%= link_to current_user_friends_path, class: "mt-2 btn btn--primary", data: { turbo_frame: "modal" } do %>
-      <% if current_user.friends.empty? %>
-        Add 3 friends first
-      <% else %>
-        Add <%= 3 - current_user.friends.length %> more friends
-      <% end %>
+      Add a friend first
     <% end %>
   </div>
 <% elsif @things.empty? %>
