@@ -6,6 +6,7 @@ class City::ThingsController < SocialNetworkController
   def index
     load_city
     load_things
+    randomize_things
     ahoy.track("visited_city_things", { city: @city })
   end
 
@@ -21,6 +22,10 @@ class City::ThingsController < SocialNetworkController
 
   def load_things
     @things = thing_scope.where(city: @city)
+  end
+
+  def randomize_things
+    @things.order!("RANDOM()")
   end
 
   def thing_scope
