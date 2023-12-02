@@ -53,6 +53,10 @@ Rails.application.routes.draw do
     resources :invitations, only: [:index, :create, :update]
   end
 
+  scope module: "city", path: "/city/:city_name", as: "city" do
+    resources :things, only: [:index]
+  end
+
   resources :ideas
   namespace :idea do
     resources :invitations, only: [:update]

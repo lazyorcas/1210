@@ -1,0 +1,16 @@
+<div class="social-network__body flex flex-col h-full">
+  <header class="shrink-0 w-full flex flex-col p-4">
+    <%= link_to "1210", root_path, class: 'text-xl font-black' %>
+    <h1 class="text-3xl font-black">What's there to do <br/> in <%= @city %>?</h1>
+  </header>
+  <main class="grow w-full flex snap-mandatory snap-x overflow-x-scroll gap-x-2 px-4 pb-4 standalone:pb-10">
+    <%= render partial: "thing", collection: @things[0..10] %>
+    <div class="snap-always snap-center min-w-full flex flex-col gap-y-2 items-center justify-center">
+      <%= link_to new_user_path, class: "btn btn--primary" do %>
+        Sign up to discover more
+      <% end %>
+      <p class="text-sm text-center px-4">Discover common interests with your friends. New things added weekly. </p>
+    </div>
+  </main>
+</div>
+
