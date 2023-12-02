@@ -8,6 +8,8 @@
       </ol>
       <% if browser.platform.ios? && browser.safari?("< 16.4") %>
         <p>Your iOS version must be <b>at least 16.4</b>.</p>
+      <% elsif browser.chrome?("< 119") %>
+        <p>Your Chrome version must be <b>at least 119</b>.</p>
       <% end %>
     </div>
   <% end %>
