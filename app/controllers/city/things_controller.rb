@@ -7,6 +7,7 @@ class City::ThingsController < ApplicationController
   def index
     load_city
     load_things
+    limit_things
     randomize_things
     ahoy.track("visited_city_things", { city: @city })
   end
@@ -23,6 +24,10 @@ class City::ThingsController < ApplicationController
 
   def load_things
     @things = thing_scope.where(city: @city)
+  end
+
+  def limit_things
+    @things.limit!(20)
   end
 
   def randomize_things

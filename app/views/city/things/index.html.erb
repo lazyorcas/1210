@@ -4,7 +4,7 @@
     <h1 class="text-3xl font-black"><%= @city %></h1>
   </header>
   <main class="grow w-full flex snap-mandatory snap-x overflow-x-scroll gap-x-2 px-4 pb-4 standalone:pb-10">
-    <%= render partial: "thing", collection: @things[0..10] %>
+    <%= render partial: "thing", collection: @things %>
     <div class="snap-always snap-center min-w-full flex flex-col gap-y-2 items-center justify-center">
       <%= link_to new_user_path, class: "btn btn--primary" do %>
         Sign up to discover more
