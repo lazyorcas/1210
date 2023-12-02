@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class City::ThingsController < SocialNetworkController
+class City::ThingsController < ApplicationController
+  before_action :require_mobile!
   before_action :redirect_to_things_path, if: -> { current_user.present? }
 
   def index
