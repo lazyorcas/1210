@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class City::ThingsController < SocialNetworkController
-  # before_action :redirect_to_things_path, if: -> { current_user.present? }
+  before_action :redirect_to_things_path, if: -> { current_user.present? }
 
   def index
     load_city
