@@ -10,7 +10,6 @@ class ThingsController < SocialNetworkController
     load_things
     filter_things_by_city
     filter_things_by_pending
-    load_old_uninteresting_things if @things.empty?
     randomize_things
     ahoy.track("visited_things")
     track_things_are_empty
@@ -49,10 +48,6 @@ class ThingsController < SocialNetworkController
 
   def load_things
     @things = thing_scope
-  end
-
-  def load_old_uninteresting_things
-    @things = current_user.old_disinterests
   end
 
   def filter_things_by_city
