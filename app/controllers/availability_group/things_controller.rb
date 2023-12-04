@@ -23,6 +23,7 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
     @users = current_user
       .friends
       .joins(:availabilities)
+      .includes(users: [:interests])
       .where(
         availabilities: {
           date: params[:date],
