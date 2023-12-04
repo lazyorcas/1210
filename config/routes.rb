@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :memories, only: [:index, :show, :update]
 
   get "/things/interesting", to: "things#interesting", as: "interesting_things"
+  get "/things/uninteresting", to: "things#uninteresting", as: "uninteresting_things"
   get "/things/filter", to: "things#filter", as: "filter_things"
   resources :things, only: [:index, :show]
   scope module: "thing", path: "/thing/:thing_id", as: "thing" do

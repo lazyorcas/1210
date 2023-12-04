@@ -22,7 +22,13 @@ class ThingsController < SocialNetworkController
     filter_things_by_users if @user_filters.present?
     order_things
     ahoy.track("visited_interesting_things")
-    track_things_are_empty
+  end
+
+  def uninteresting
+    load_things
+    filter_things_by_disinterests
+    order_things
+    ahoy.track("visited_uninteresting_things")
   end
 
   def show
@@ -35,7 +41,7 @@ class ThingsController < SocialNetworkController
     case action_name
     when "index"
       "main_tab"
-    when "interesting"
+    when "interesting", "uninteresting"
       "side_tab"
     else
       "modal"
@@ -56,6 +62,10 @@ class ThingsController < SocialNetworkController
 
   def filter_things_by_interests
     @things = @things.where(id: current_user.interests)
+  end
+
+  def filter_things_by_disinterests
+    @things = @things.where(id: current_user.disinterests)
   end
 
   def filter_things_by_pending
