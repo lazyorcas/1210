@@ -52,7 +52,7 @@ Rails.application.configure do
   }
 
   # Disable email devliveries.
-  config.action_mailer.perform_deliveries = false
+  # config.action_mailer.perform_deliveries = false
 
   config.action_mailer.perform_caching = false
 
