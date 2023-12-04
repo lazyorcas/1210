@@ -22,6 +22,7 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
   def load_users_in_availability_group
     @users = current_user
       .friends
+      .includes(:interests)
       .joins(:availabilities)
       .where(
         availabilities: {
