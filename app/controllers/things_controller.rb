@@ -75,7 +75,13 @@ class ThingsController < SocialNetworkController
   end
 
   def filter_things_by_users
-    @things = @things.joins(:interestees).where({ users: { id: @user_filters } }).distinct
+    @things =
+      @things
+        .joins(:interestees)
+        .where({ users: { id: @user_filters } })
+        .group("things.id")
+        .having("COUNT(users.id) = ?", @user_filters.length)
+        .distinct
   end
 
   def order_things
