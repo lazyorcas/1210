@@ -271,7 +271,7 @@
   }
 
   .status--textful {
-    @apply text-xs w-5 h-5 flex items-center justify-center font-bold;
+    @apply text-xs px-1 min-w-5 h-5 flex items-center justify-center font-bold;
   }
 
   .text-status {
