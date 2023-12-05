@@ -32,7 +32,7 @@ task remind_user_availabilities: :environment do
     PushNotificationJob.perform_later(
       push_subscription: push_subscription,
       title: "👋 Are you free today?",
-      body: "Mark your free time if you wanna see your friends today.",
+      body: "Mark your free time if you wanna meet up with your friends today.",
     )
   end
 end
