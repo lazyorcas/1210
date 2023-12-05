@@ -22,3 +22,17 @@ task create_memories: :environment do
       end
     end
 end
+
+task remind_user_availabilities: :environment do
+  puts "Reminding users to mark their availabilities"
+
+  PushSubscription.all.each do |push_subscription|
+    puts "Reminding user #{push_subscription.user_id}..."
+
+    PushNotificationJob.perform_later(
+      push_subscription: push_subscription,
+      title: "👋 Are you free today?",
+      body: "Mark your free time if you wanna see your friends today.",
+    )
+  end
+end
