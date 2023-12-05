@@ -26,7 +26,7 @@ class City::ThingsController < ApplicationController
   end
 
   def limit_things
-    @things.limit!(20)
+    @things.limit!(10)
   end
 
   def randomize_things
