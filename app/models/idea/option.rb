@@ -54,6 +54,8 @@ class Idea::Option < Pollable::Option
   end
 
   def notify?
+    return false if previous_option.nil?
+
     previous_option.created_at < 5.minutes.ago
   end
 
