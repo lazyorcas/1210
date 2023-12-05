@@ -16,6 +16,10 @@ class SocialNetworkController < ApplicationController
         Time.zone.now >= "07:00" &&
         current_user.friends.count > 0
       @default_modal_src = current_user_availabilities_path
+    elsif current_user.interests.count > 0 &&
+        current_user.friends.count == 0 &&
+        current_user.created_at <= Time.zone.yesterday
+      @default_modal_src = current_user_friends_path
     end
   end
 
