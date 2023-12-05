@@ -42,6 +42,8 @@ class Thing < ApplicationRecord
     as: :inviter
   has_many :interestees, through: :accepted_invitations, source: :invitee, source_type: "User"
 
+  has_many :meetups
+
   validates_presence_of :type, :title, :url, :image_url
 
   before_save :set_city_to_nil, if: -> { city.blank? }
