@@ -10,6 +10,7 @@ class Availability < ApplicationRecord
   belongs_to :user
 
   validates_presence_of :date, :time_of_day
+  validates_uniqueness_of :user_id, scope: [:date, :time_of_day]
 
   after_commit :notify_friends, on: [:create]
 
