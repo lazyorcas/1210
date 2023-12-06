@@ -38,17 +38,17 @@ class Availability < ApplicationRecord
 
   def time_of_day_emoji
     case time_of_day
-    when :breakfast
+    when "breakfast"
       "🥞"
-    when :morning
+    when "morning"
       "🏙️"
-    when :lunch
+    when "lunch"
       "🍔"
-    when :afternoon
+    when "afternoon"
       "🌆"
-    when :dinner
+    when "dinner"
       "🍕"
-    when :evening
+    when "evening"
       "🌃"
     end
   end

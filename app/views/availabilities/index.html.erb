@@ -12,7 +12,7 @@
       <section class="snap-always snap-center min-w-full flex flex-col gap-y-4">
         <header class="card shrink-0 flex flex-col gap-y-2">
           <h2 class="font-semibold">
-            <%= relative_to_today(availability_group.date) %> <%= availability_group.time_of_day %>
+            <%= availability_group.time_of_day_emoji %> <%= relative_to_today(availability_group.date) %> <%= availability_group.time_of_day %>
           </h2>
           <%= render partial: "users/avatars", locals: { users: users.sort_by(&:name), show_name: true } %>
         </header>
