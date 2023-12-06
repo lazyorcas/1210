@@ -30,9 +30,26 @@ class Availability < ApplicationRecord
     PushSubscription.where(user: user_friends_in_availbility_group).each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
-        title: "🟢 #{relative_to_today(date).capitalize} #{time_of_day}",
+        title: "#{time_of_day_emoji} #{relative_to_today(date).capitalize} #{time_of_day}",
         body: "#{user.name} might be free to meet up.",
       )
+    end
+  end
+
+  def time_of_day_emoji
+    case time_of_day
+    when :breakfast
+      "🥞"
+    when :morning
+      "🏙️"
+    when :lunch
+      "🍔"
+    when :afternoon
+      "🌆"
+    when :dinner
+      "🍕"
+    when :evening
+      "🌃"
     end
   end
 end
