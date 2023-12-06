@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-y-4 px-4 modal-pb">
       <ol class="flex flex-col gap-y-1">
         <li class="flex items-center gap-x-1">1. Click <%= heroicon browser.platform.ios? ? "arrow-up-on-square" : "ellipsis-vertical", options: { class: "h-6 w-6" } %> on your browser toolbar.</li>
-        <li>2. Click <b>"Add to Home Screen"</b>.</li>
+        <li>2. Click <b>"Add to Home Screen"</b><% if browser.chrome? %> or <b>"Install app"</b><% end%>.</li>
         <li>3. A popup will appear, click <b>"Add"</b>.</li>
       </ol>
       <% if browser.platform.ios? && browser.safari?("< 16.4") %>
