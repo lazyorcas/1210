@@ -9,7 +9,15 @@
     <% end %>
   <% end %>
 <% end %>
-<% if @things.empty? %>
+<% if current_user.friends.count < 2 && current_user.created_at < Time.zone.yesterday %>
+  <div class="flex flex-col items-center px-4">
+    <%= image_tag "person-looking-at-map.svg", width: 320, height: 320 %>
+    <p class="text-center">Invite your friends to see more. It's not social until your friends join.</p>
+    <%= link_to current_user_friends_path, class: "mt-2 btn btn--primary" do %>
+      Invite friends
+    <% end %>
+  </div>
+<% elsif @things.empty? %>
   <div class="flex flex-col items-center px-4">
     <%= image_tag "person-looking-at-map.svg", width: 320, height: 320 %>
     <% if current_user.friends.empty? %>
