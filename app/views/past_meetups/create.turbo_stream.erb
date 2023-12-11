@@ -1,3 +1,2 @@
-<%= turbo_stream.remove "memories-header" %>
 <%= turbo_stream.prepend "memories", partial: "memories/memory", locals: { memory: @past_meetup.memory } %>
 <%= turbo_stream.update "modal", "" %>

@@ -4,14 +4,6 @@
     <%= heroicon "plus" %>
   <% end %>
 <% end %>
-<main class="grow w-full flex flex-col gap-y-4 p-4 standalone:pb-10">
-  <%= turbo_frame_tag "memories", class: "flex flex-col gap-y-4" do %>
-    <% if @memories.empty? %>
-      <%= turbo_frame_tag "memories-header" do %>
-        <%= render partial: "no_memories" %>
-      <% end %>
-    <% else %>
-      <%= render @memories %>
-    <% end %>
-  <% end %>
+<main id="memories" class="grow w-full flex flex-col gap-y-4 p-4 standalone:pb-10">
+  <%= render @memories %>
 </main>
