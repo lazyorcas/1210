@@ -2,14 +2,16 @@
   <% component.with_body do %>
     <article class="px-4 flex flex-col gap-y-4">
       <div class="relative">
-        <%= image_tag @thing.image_url, class: "thumbnail rounded-xl w-full" %>
-        <%= link_to @thing.url, class: "absolute right-2 top-2 icon-btn btn--secondary", target: "_blank" do %>
-          <% if @thing.url.include?("maps.app.goo.gl") %>
-            <%= heroicon "map" %>
-          <% elsif @thing.url.include?("youtube") %>
-            <%= heroicon "video-camera" %>
-          <% else %>
-            <%= heroicon "arrow-top-right-on-square" %>
+        <%= image_tag @thing.image.attached? ? photo_path(id: @thing.image.id) : @thing.image_url, class: "thumbnail rounded-xl w-full" %>
+        <% if @thing.url.present? %>
+          <%= link_to @thing.url, class: "absolute right-2 top-2 icon-btn btn--secondary", target: "_blank" do %>
+            <% if @thing.url.include?("maps.app.goo.gl") %>
+              <%= heroicon "map" %>
+            <% elsif @thing.url.include?("youtube") %>
+              <%= heroicon "video-camera" %>
+            <% else %>
+              <%= heroicon "arrow-top-right-on-square" %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

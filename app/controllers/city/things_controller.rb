@@ -34,6 +34,6 @@ class City::ThingsController < ApplicationController
   end
 
   def thing_scope
-    Thing.all
+    Thing.where(owner: nil)
   end
 end

@@ -1,18 +1,20 @@
 <%= render ModalComponent.new(title: @thing.type) do |component| %>
-  <% component.with_toolbar do %>
-    <%= link_to @thing.url, class: "icon-btn icon-btn--small", target: "_blank" do %>
-      <% if @thing.url.include?("maps.app.goo.gl") %>
-        <%= heroicon "map" %>
-      <% elsif @thing.url.include?("youtube") %>
-        <%= heroicon "video-camera" %>
-      <% else %>
-        <%= heroicon "arrow-top-right-on-square" %>
+  <% if @thing.url.present? %>
+    <% component.with_toolbar do %>
+      <%= link_to @thing.url, class: "icon-btn icon-btn--small", target: "_blank" do %>
+        <% if @thing.url.include?("maps.app.goo.gl") %>
+          <%= heroicon "map" %>
+        <% elsif @thing.url.include?("youtube") %>
+          <%= heroicon "video-camera" %>
+        <% else %>
+          <%= heroicon "arrow-top-right-on-square" %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
   <% component.with_body do %>
     <article class="px-4 modal-pb flex flex-col gap-y-4">
-      <%= image_tag @thing.image_url, class: "thumbnail rounded-xl w-full" %>
+      <%= image_tag @thing.image.attached? ? photo_path(id: @thing.image.id) : @thing.image_url, class: "thumbnail rounded-xl w-full" %>
       <div class="flex flex-col gap-y-8">
         <div class="flex flex-col gap-y-4">
           <header>

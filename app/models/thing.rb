@@ -49,7 +49,18 @@ class Thing < ApplicationRecord
 
   has_many :meetups
 
-  validates_presence_of :type, :title, :url, :image_url
+  has_one_attached :image do |attachable|
+    attachable.variant(:webp, resize_to_limit: [2000, 2000], convert: :webp)
+  end
+
+  validates_presence_of :image_url, if: -> { image.nil? }
+  validates_presence_of :image, if: -> { image_url.nil? }
+
+  validates :image,
+    content_type: %r{\Aimage/.*\z},
+    size: { less_than: 10.megabytes }
+
+  validates_presence_of :type, :title
 
   before_save :set_city_to_nil, if: -> { city.blank? }
 

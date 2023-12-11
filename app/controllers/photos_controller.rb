@@ -17,6 +17,8 @@ class PhotosController < SocialNetworkController
       memory_scope.find(@photo.record_id)
     elsif @photo.record_type == "User"
       user_scope.find(@photo.record_id)
+    elsif @photo.record_type == "Thing"
+      thing_scope.find(@photo.record_id)
     end
   end
 
@@ -34,5 +36,9 @@ class PhotosController < SocialNetworkController
 
   def user_scope
     User.where(id: [current_user] + current_user.friends)
+  end
+
+  def thing_scope
+    Thing.all
   end
 end

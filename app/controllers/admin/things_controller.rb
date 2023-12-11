@@ -74,7 +74,7 @@ class Admin::ThingsController < AdminController
   end
 
   def thing_scope
-    Thing.all
+    Thing.where(owner: nil)
   end
 
   def thing_params
