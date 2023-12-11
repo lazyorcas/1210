@@ -78,6 +78,6 @@ class Admin::ThingsController < AdminController
   end
 
   def thing_params
-    params.require(:thing).permit(:type, :title, :description, :tags, :city, :url, :image_url)
+    params.require(:thing).permit(:type, :title, :description, :tags, :city, :url, :image_url, :image)
   end
 end

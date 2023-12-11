@@ -18,7 +18,9 @@
     </div>
     <div class="input-container">
       <%= form.label :image %>
-      <%= form.hidden_field :image, value: thing.image.signed_id %>
+      <% if thing.image.attached? %>
+        <%= form.hidden_field :image, value: thing.image.signed_id %>
+      <% end %>
       <%= form.file_field :image, required: !thing.persisted?, accept: 'image/*' %>
     </div>
   </div>

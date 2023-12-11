@@ -26,7 +26,14 @@
     </div>
     <div class="input-container">
       <%= form.label :image_url %>
-      <%= form.text_field :image_url, class: "input", required: true, autocomplete: "off" %>
+      <%= form.text_field :image_url, class: "input", autocomplete: "off" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :image %>
+      <% if thing.image.attached? %>
+        <%= form.hidden_field :image, value: thing.image.signed_id %>
+      <% end %>
+      <%= form.file_field :image, accept: 'image/*' %>
     </div>
   </div>
   <%= form.submit class: "btn btn--primary" %>
