@@ -1,6 +1,6 @@
 <% thing = thing.becomes(Thing) %>
 <article class="card flex gap-x-4" id="<%= dom_id(thing) %>">
-  <%= image_tag thing.image_url, class: "thumbnail rounded-xl h-32 shrink-0" %>
+  <%= image_tag thing.image.attached? ? photo_path(id: thing.image.id) : thing.image_url, class: "thumbnail rounded-xl h-32 shrink-0" %>
   <div class="grow flex flex-col gap-y-4">
     <div class="flex items-center justify-between">
       <header class="flex flex-col gap-y-1">

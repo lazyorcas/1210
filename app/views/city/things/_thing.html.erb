@@ -1,7 +1,7 @@
 <article class="snap-always snap-center min-w-full flex flex-col gap-y-4">
   <div class="polaroid overflow-y-scroll grow">
     <div class="relative">
-      <%= image_tag thing.image_url, class: "thumbnail rounded-t-xl w-full" %>
+      <%= image_tag thing.image.attached? ? photo_path(id: thing.image.id) : thing.image_url, class: "thumbnail rounded-t-xl w-full" %>
       <%= link_to thing.url, class: "absolute right-2 top-2 icon-btn btn--secondary", target: "_blank" do %>
         <% if thing.url.include?("maps.app.goo.gl") %>
           <%= heroicon "map" %>
