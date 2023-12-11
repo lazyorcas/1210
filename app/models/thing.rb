@@ -4,6 +4,7 @@ class Thing < ApplicationRecord
   TYPES = [
     "Bar",
     "Cafe",
+    "Dish",
     "Exhibition",
     "Fair",
     "Film",
@@ -11,7 +12,6 @@ class Thing < ApplicationRecord
     "Music",
     "Restaurant",
     "Workshop",
-    "Dish",
   ].freeze
 
   USER_TYPES = ["Dish"].freeze
