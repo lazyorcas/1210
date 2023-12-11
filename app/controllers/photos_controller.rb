@@ -2,7 +2,6 @@
 
 class PhotosController < ApplicationController
   before_action :require_user!
-  before_action :associate_visit_with_current_user
   skip_before_action :track_ahoy_visit
 
   def show
