@@ -26,7 +26,7 @@ class Thing < ApplicationRecord
       where(type: "Restaurant")
     when "morning", "afternoon"
       where.not(type: ["Music", "Restaurant", "Dish", "Bar"])
-    when "lunch"
+    when "dinner"
       where(type: ["Restaurant", "Dish"])
     when "evening"
       where.not(type: ["Cafe", "Restaurant", "Dish", "Exhibition"])
