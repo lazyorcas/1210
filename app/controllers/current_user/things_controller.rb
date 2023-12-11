@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CurrentUser::ThingsController < AdminController
+class CurrentUser::ThingsController < SocialNetworkController
   layout :resolve_layout
 
   def index
