@@ -23,7 +23,7 @@ class AvailabilitiesController < SocialNetworkController
   end
 
   def load_friend_availabilities
-    @friend_availabilities = Availability.where(user: current_user.friends).includes(:user)
+    @friend_availabilities = Availability.where(user: current_user.friends_in_the_same_city).includes(:user)
   end
 
   def build_availability_group_users_pairs
