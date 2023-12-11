@@ -37,7 +37,7 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
       [
         thing,
         @users.filter do |user|
-          user.interests.include?(thing)
+          user.interests.include?(thing) || thing.owner_id == user.id
         end,
       ]
     end
@@ -56,6 +56,6 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
   end
 
   def thing_scope
-    current_user.interests
+    Thing.where(id: current_user.interests + current_user.things)
   end
 end

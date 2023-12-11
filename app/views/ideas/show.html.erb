@@ -2,7 +2,7 @@
   <% component.with_toolbar do %>
     <% if @idea.thing.present? %>
       <%= link_to thing_path(@idea.thing), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
-        <%= heroicon "map-pin" %>
+        <%= heroicon @idea.thing.owner.present? ? "information-circle" : "map-pin" %>
       <% end %>
     <% end %>
     <%= link_to idea_comments_path(@idea), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>

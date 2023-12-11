@@ -1,0 +1,7 @@
+<%= render ModalComponent.new(title: "Edit thing") do |component| %>
+  <% component.with_body do %>
+    <div class="px-4 modal-pb">
+      <%= render "form", thing: @thing %>
+    </div>
+  <% end %>
+<% end %>

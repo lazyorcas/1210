@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     patch "/", to: "current_user#update", as: "update"
   end
 
+  scope module: "current_user", path: "/me", as: "current_user" do
+    resources :things, except: [:show]
+  end
+
   resources :availabilities, only: [:index]
   scope module: "availability_group", path: "/availability_group/:date/:time_of_day", as: "availability_group" do
     resources :things, only: [:index, :show]

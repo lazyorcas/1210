@@ -2,7 +2,7 @@
   <% component.with_toolbar do %>
     <% if @meetup.thing.present? %>
       <%= link_to thing_path(@meetup.thing), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>
-        <%= heroicon "map-pin" %>
+        <%= heroicon @meetup.thing.owner.present? ? "information-circle" : "map-pin" %>
       <% end %>
     <% end %>
     <%= link_to meetup_comments_path(@meetup), class: "icon-btn icon-btn--small", data: { turbo_frame: "modal" } do %>

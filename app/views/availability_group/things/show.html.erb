@@ -21,6 +21,11 @@
           <% if @thing.description.present? %>
             <p class="text-sm"><%= @thing.description %></p>
           <% end %>
+          <% if @thing.owner.present? %>
+            <div class="mt-2">
+              <%= render partial: "users/avatar", locals: { user: @thing.owner, show_name: true, size: "tiny" } %>
+            </div>
+          <% end %>
         </header>
         <aside class="flex gap-1 flex-wrap">
           <% @thing.tags.split('|').each do |tag| %>

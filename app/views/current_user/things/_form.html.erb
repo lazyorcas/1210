@@ -1,0 +1,29 @@
+<%= form_with model: thing, url: thing.persisted? ? current_user_thing_path(thing) : current_user_things_path, class: "form-flow", data: { controller: "uploader" } do |form| %>
+  <div class="form-inputs-flow">
+    <div class="input-container">
+      <%= form.label :type %>
+      <%= form.select :type, Thing::USER_TYPES, { include_blank: true }, class: "input select", required: true %>
+    </div>
+    <div class="input-container">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "input", required: true, maxlength: 255, autocomplete: "off" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :description %>
+      <%= form.text_field :description, placeholder: "e.g. food allergies", class: "input", maxlength: 255, autocomplete: "off" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :tags %>
+      <%= form.text_field :tags, placeholder: "separate each tag by \"|\"", class: "input", required: true, maxlength: 255, autocomplete: "off" %>
+    </div>
+    <div class="input-container">
+      <%= form.label :image %>
+      <%= form.hidden_field :image, value: thing.image.signed_id %>
+      <%= form.file_field :image, required: !thing.persisted?, accept: 'image/*' %>
+    </div>
+  </div>
+  <div class="w-full flex flex-col gap-y-2">
+    <p class="text-sm text-neutral-500">Visible to all friends in your city.</p>
+    <%= form.submit class: "w-full btn btn--primary", data: { uploader_target: "uploadBtn" }  %>
+  </div>
+<% end %>

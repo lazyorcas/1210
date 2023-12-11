@@ -14,6 +14,8 @@ class Thing < ApplicationRecord
     "Dish",
   ].freeze
 
+  USER_TYPES = ["Dish"].freeze
+
   default_scope { where(is_deleted: nil) }
 
   scope :time_of_day, ->(time_of_day) {

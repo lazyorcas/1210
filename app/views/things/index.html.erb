@@ -1,11 +1,11 @@
 <% content_for :page_title, current_user.city %>
 <% if current_user.friends.present? %>
   <% content_for :toolbar do %>
-    <%= link_to current_user_things_path, class: "icon-btn icon-btn--small" do %>
-      <%= heroicon "folder" %>
-    <% end %>
     <%= link_to uninteresting_things_path, class: "icon-btn icon-btn--small" do %>
       <%= heroicon "hand-thumb-down" %>
+    <% end %>
+    <%= link_to current_user_things_path, class: "icon-btn icon-btn--small" do %>
+      <%= heroicon "folder" %>
     <% end %>
     <%= link_to interesting_things_path, class: "icon-btn icon-btn--small" do %>
       <%= heroicon "bookmark" %>

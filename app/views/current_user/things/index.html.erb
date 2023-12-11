@@ -1,0 +1,9 @@
+<% content_for :page_title, "Yours" %>
+<% content_for :toolbar do %>
+  <%= link_to new_current_user_thing_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
+    <%= heroicon "plus", variant: "solid" %>
+  <% end %>
+<% end %>
+<main id="things" class="grow w-full flex snap-mandatory snap-x overflow-x-scroll gap-x-2 p-4 standalone:pb-10">
+  <%= render partial: "thing", collection: @things %>
+</main>
