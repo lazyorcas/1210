@@ -107,6 +107,6 @@ class ThingsController < SocialNetworkController
   end
 
   def thing_scope
-    Thing.all
+    Thing.where.not(owner: current_user)
   end
 end
