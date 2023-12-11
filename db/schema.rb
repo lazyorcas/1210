@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_30_095151) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_11_124019) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -218,7 +218,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_095151) do
     t.boolean("is_deleted")
     t.datetime("created_at", null: false)
     t.datetime("updated_at", null: false)
+    t.bigint("owner_id")
     t.index(["city"], name: "index_things_on_city")
+    t.index(["owner_id"], name: "index_things_on_owner_id")
     t.index(["type"], name: "index_things_on_type")
   end
 

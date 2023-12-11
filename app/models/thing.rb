@@ -32,6 +32,8 @@ class Thing < ApplicationRecord
     where(city: [user.city, nil]).where.not(id: user.things_discovered)
   }
 
+  belongs_to :owner, class_name: "User", optional: true
+
   has_many :invitations,
     class_name: "Thing::Invitation",
     as: :inviter
