@@ -5,18 +5,18 @@ class Thing::Invitation < Invitation
 
   default_scope { where(inviter_type: "Thing", invitee_type: "User") }
 
-  # after_create :notify_thing_interestees_who_are_friends, if: :is_accepted
+  after_create :notify_thing_owner, if: -> { thing.owner.present? && is_accepted }
 
   def thing
     inviter
   end
 
-  def notify_thing_interestees_who_are_friends
-    PushSubscription.where(user: thing.interestees & invitee.friends_in_the_same_city).each do |push_subscription|
+  def notify_thing_owner
+    thing.owner.push_subscriptions.each do |push_subscription|
       PushNotificationJob.perform_later(
         push_subscription: push_subscription,
         title: "[#{thing.type}] #{thing.title}",
-        body: "🤩 #{invitee.name} is also interested!",
+        body: "🤩 #{invitee.name} is interested!",
       )
     end
   end
