@@ -6,6 +6,7 @@ class CurrentUser::ThingsController < SocialNetworkController
   def index
     load_things
     order_things
+    ahoy.track("visited_current_user_things")
   end
 
   def new
