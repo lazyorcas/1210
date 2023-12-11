@@ -11,6 +11,7 @@ class Thing < ApplicationRecord
     "Music",
     "Restaurant",
     "Workshop",
+    "Dish",
   ].freeze
 
   default_scope { where(is_deleted: nil) }
@@ -19,12 +20,14 @@ class Thing < ApplicationRecord
     case time_of_day
     when "breakfast"
       where(type: ["Cafe", "Restaurant"])
-    when "lunch", "dinner"
+    when "lunch"
       where(type: "Restaurant")
     when "morning", "afternoon"
-      where.not(type: ["Music", "Restaurant", "Bar"])
+      where.not(type: ["Music", "Restaurant", "Dish", "Bar"])
+    when "lunch"
+      where(type: ["Restaurant", "Dish"])
     when "evening"
-      where.not(type: ["Cafe", "Restaurant", "Exhibition"])
+      where.not(type: ["Cafe", "Restaurant", "Dish", "Exhibition"])
     end
   }
 
