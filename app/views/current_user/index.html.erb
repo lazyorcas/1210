@@ -18,7 +18,9 @@
     <% end %>
   <% end %>
   <%= render partial: "download" %>
-  <%= render partial: "push_notification" %>
+  <% if current_user.push_subscriptions.empty? %>
+    <%= render partial: "push_notification" %>
+  <% end %>
   <%= render partial: "guide" %>
   <%= render partial: "feedback" %>
 </main>
