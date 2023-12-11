@@ -16,7 +16,7 @@ class Availability < ApplicationRecord
 
   def user_friends_in_availbility_group
     user
-      .friends
+      .friends_in_the_same_city
       .joins(:availabilities)
       .where(
         availabilities: {
