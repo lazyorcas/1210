@@ -39,6 +39,6 @@ class PhotosController < SocialNetworkController
   end
 
   def thing_scope
-    Thing.all
+    Thing.where(owner: [nil, current_user] + current_user.friends)
   end
 end
