@@ -32,7 +32,7 @@ class Thing < ApplicationRecord
   }
 
   scope :pending, ->(user) {
-    where(city: [user.city, nil]).where.not(id: user.things_discovered)
+    where(city: [user.city, nil]).where.not(id: user.things_discovered + user.things)
   }
 
   belongs_to :owner, class_name: "User", optional: true

@@ -91,6 +91,8 @@ class User < ApplicationRecord
 
   has_many :availabilities
 
+  has_many :things, foreign_key: "owner_id"
+
   validates_presence_of :name, :email, :time_zone
 
   validates :email,
