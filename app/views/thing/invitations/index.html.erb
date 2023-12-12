@@ -1,11 +1,11 @@
 <% friends_interested = @thing.interestees & current_user.friends_in_the_same_city %>
-<%= render ModalComponent.new(title: "Interests") do |component| %>
+<%= render ModalComponent.new(title: "Bookmark") do |component| %>
   <% component.with_body do %>
     <div class="px-4 modal-pb flex flex-col gap-y-4">
       <section class="flex flex-col gap-y-1">
         <header class="flex gap-x-2 items-center text-neutral-500">
           <%= heroicon "bookmark", options: { class: "h-4 w-4" } %>
-          <h2 class="text-sm">Friends who find this interesting</h2>
+          <h2 class="text-sm">Bookmarked</h2>
         </header>
         <% if friends_interested.length > 0 %>
           <%= render partial: "users/avatars", locals: { users: friends_interested.sort_by(&:name), show_name: true } %>
