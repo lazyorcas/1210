@@ -9,6 +9,16 @@ class Availability < ApplicationRecord
 
   belongs_to :user
 
+  has_many :thing_invitations,
+    class_name: "Thing::Availability::Invitation",
+    as: :invitee
+
+  has_many :accepted_thing_invitations,
+    -> { accepted },
+    class_name: "Thing::Availability::Invitation",
+    as: :invitee
+  has_many :accepted_things, through: :accepted_thing_invitations, source: :inviter, source_type: "Thing"
+
   validates_presence_of :date, :time_of_day
   validates_uniqueness_of :user_id, scope: [:date, :time_of_day]
 

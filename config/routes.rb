@@ -56,6 +56,10 @@ Rails.application.routes.draw do
   resources :things, only: [:index, :show]
   scope module: "thing", path: "/thing/:thing_id", as: "thing" do
     resources :invitations, only: [:create, :show, :update]
+
+    scope module: "availability", path: "/availability/:availability_id", as: "availability" do
+      resources :invitations, only: [:create, :update]
+    end
   end
 
   scope module: "city", path: "/city/:city_name", as: "city" do

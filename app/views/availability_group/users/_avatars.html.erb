@@ -1,0 +1,12 @@
+<ul class="flex items-center flex-wrap gap-y-2 gap-x-1">
+  <% users.map do |user| %>
+    <li class="relative">
+      <%= render partial: "availability_group/users/avatar", locals: { user: user } %>
+      <% if accepted_users.include?(user) %>
+        <div class="absolute -bottom-1 -right-1 w-3 h-3 bg-white rounded-full p-0.5">
+          <div class="w-full h-full bg-green-500 rounded-full"></div>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

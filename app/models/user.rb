@@ -90,6 +90,7 @@ class User < ApplicationRecord
   has_many :disinterests, through: :declined_thing_invitations, source: :inviter, source_type: "Thing"
 
   has_many :availabilities
+  has_many :available_accepted_things, through: :availabilities, source: :accepted_things
 
   has_many :things, foreign_key: "owner_id"
 

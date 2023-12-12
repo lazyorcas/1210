@@ -49,6 +49,10 @@ class Thing < ApplicationRecord
     as: :inviter
   has_many :interestees, through: :accepted_invitations, source: :invitee, source_type: "User"
 
+  has_many :availability_invitations,
+    class_name: "Thing::Availability::Invitation",
+    as: :inviter
+
   has_many :meetups
 
   has_one_attached :image do |attachable|

@@ -23,6 +23,7 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
     @users = current_user
       .friends_in_the_same_city
       .includes(:interests)
+      .includes(:available_accepted_things)
       .joins(:availabilities)
       .where(
         availabilities: {
