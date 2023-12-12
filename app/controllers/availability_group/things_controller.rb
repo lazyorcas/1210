@@ -62,7 +62,7 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
 
   def sort_thing_users_pairs
     @thing_users_pairs.sort_by! do |thing, _|
-      @current_user_available_accepted_things.include?(thing) ? -1 : 0
+      [@current_user_available_accepted_things.include?(thing) ? -1 : 0, thing.title]
     end
   end
 
