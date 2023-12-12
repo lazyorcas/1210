@@ -6,6 +6,7 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
     load_users_in_availability_group
     build_thing_users_pairs
     reject_empty_thing_users_pairs
+    load_current_user_available_accepted_things
     sort_thing_users_pairs
   end
 
@@ -48,8 +49,21 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
     @thing_users_pairs.reject! { |_, users| users.empty? }
   end
 
+  def load_current_user_available_accepted_things
+    @current_user_available_accepted_things =
+      current_user
+        .available_accepted_things
+        .where(availabilities: {
+          date: params[:date],
+          time_of_day: params[:time_of_day],
+        })
+        .all
+  end
+
   def sort_thing_users_pairs
-    @thing_users_pairs.sort_by! { |thing, _| thing.title }
+    @thing_users_pairs.sort_by! do |thing, _|
+      @current_user_available_accepted_things.include?(thing) ? -1 : 0
+    end
   end
 
   def load_thing
