@@ -28,13 +28,13 @@
       </aside>
     </div>
   </div>
-  <nav class="shrink-0 mt-auto flex justify-center gap-x-2">
+  <nav class="shrink-0 mt-auto flex justify-center gap-x-2 px-2">
     <%= link_to new_user_path, class: "flex-1 btn btn--with-icon bg-red-400 text-red-800" do %>
-      <%= heroicon "hand-thumb-down", variant: "solid", options: { class: "h-8 w-8" } %>
+      <%= heroicon "forward", variant: "solid", options: { class: "h-8 w-8" } %>
       Skip
     <% end %>
     <%= link_to new_user_path, class: "flex-1 btn btn--with-icon bg-green-400 text-green-800" do %>
-      <%= heroicon "hand-thumb-up", variant: "solid", options: { class: "h-8 w-8" } %>
+      <%= heroicon "bookmark", variant: "solid", options: { class: "h-8 w-8" } %>
       Bookmark
     <% end %>
   </nav>

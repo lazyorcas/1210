@@ -57,7 +57,7 @@ class Availability < ApplicationRecord
     when "afternoon"
       "🌆"
     when "dinner"
-      "🍔"
+      "🍕"
     when "evening"
       "🌃"
     end

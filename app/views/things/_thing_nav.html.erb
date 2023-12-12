@@ -1,5 +1,5 @@
 <% thing_invitation = thing.invitations.find_by(invitee: current_user) || Thing::Invitation.new(inviter: thing) %>
-<nav class="shrink-0 mt-auto flex justify-center gap-x-2">
+<nav class="shrink-0 mt-auto flex justify-center gap-x-2 px-2">
   <% if thing_invitation.is_accepted.nil? %>
     <%= form_with model: thing_invitation, url: thing_invitation.persisted? ? thing_invitation_path(thing, thing_invitation) : thing_invitations_path(thing), class: "flex-1" do |form| %>
       <%= form.hidden_field :is_accepted, value: false, required: true %>
