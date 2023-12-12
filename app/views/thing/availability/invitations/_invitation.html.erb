@@ -1,16 +1,17 @@
 <div class="self-end" id="<%= thing_availability_invitation_dom_id(invitation) %>">
-<% if invitation.persisted? %>
-  <%= form_with model: invitation, url: thing_availability_invitation_path(invitation.thing, invitation.availability, invitation) do |form| %>
-    <%= form.hidden_field :is_accepted, value: invitation.is_accepted ? nil : true, required: true %>
-    <%= form.button class: class_names("icon-btn icon-btn--small" , invitation.is_accepted ? "text-green-500" : "text-neutral-300") do %>
-      <%= heroicon "hand-thumb-up", variant: "solid" %>
+  <% if invitation.persisted? %>
+    <%= form_with model: invitation, url: thing_availability_invitation_path(invitation.thing, invitation.availability, invitation) do |form| %>
+      <%= form.hidden_field :is_accepted, value: invitation.is_accepted ? nil : true, required: true %>
+      <%= form.button class: class_names("icon-btn icon-btn--small" , invitation.is_accepted ? "text-green-500" : "text-neutral-300") do %>
+        <%= heroicon "hand-thumb-up", variant: "solid" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_with model: invitation, url: thing_availability_invitations_path(invitation.thing, invitation.availability) do |form| %>
+      <%= form.hidden_field :is_accepted, value: true, required: true %>
+      <%= form.button class: "icon-btn icon-btn--small text-neutral-300" do %>
+        <%= heroicon "hand-thumb-up", variant: "solid" %>
+      <% end %>
     <% end %>
   <% end %>
-<% else %>
-  <%= form_with model: invitation, url: thing_availability_invitations_path(invitation.thing, invitation.availability) do |form| %>
-    <%= form.hidden_field :is_accepted, value: true, required: true %>
-    <%= form.button class: "icon-btn icon-btn--small text-neutral-300" do %>
-      <%= heroicon "hand-thumb-up", variant: "solid" %>
-    <% end %>
-  <% end %>
-<% end %>
+</div>
