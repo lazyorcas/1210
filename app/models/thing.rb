@@ -52,7 +52,6 @@ class Thing < ApplicationRecord
   has_many :availability_invitations,
     class_name: "Thing::Availability::Invitation",
     as: :inviter
-  has_many :availabilities, through: :availability_invitations, source: :invitee, source_type: "Availability"
 
   has_many :meetups
 
