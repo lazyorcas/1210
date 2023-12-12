@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   get "/things/filter", to: "things#filter", as: "filter_things"
   resources :things, only: [:index, :show]
   scope module: "thing", path: "/thing/:thing_id", as: "thing" do
-    resources :invitations, only: [:index, :create, :update]
+    resources :invitations, only: [:create, :show, :update]
   end
 
   scope module: "city", path: "/city/:city_name", as: "city" do

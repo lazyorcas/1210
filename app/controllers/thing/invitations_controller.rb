@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 class Thing::InvitationsController < SocialNetworkController
-  def index
-    load_thing
-    abstract_thing
-    load_current_user_thing_invitation
-
-    @thing_invitation ||= Thing::Invitation.new(inviter: @thing)
-  end
-
   def create
     load_thing
     abstract_thing
@@ -20,6 +12,12 @@ class Thing::InvitationsController < SocialNetworkController
     if @thing_invitation.save
       turbo_stream
     end
+  end
+
+  def show
+    load_thing
+    abstract_thing
+    load_current_user_thing_invitation
   end
 
   def update
@@ -43,7 +41,7 @@ class Thing::InvitationsController < SocialNetworkController
   end
 
   def load_current_user_thing_invitation
-    @thing_invitation = Thing::Invitation.find_by(inviter: @thing, invitee: current_user)
+    @thing_invitation = current_user.thing_invitations.find(inviter_id: params[:id])
   end
 
   def thing_invitation_params
