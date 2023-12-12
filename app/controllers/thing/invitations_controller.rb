@@ -41,7 +41,7 @@ class Thing::InvitationsController < SocialNetworkController
   end
 
   def load_current_user_thing_invitation
-    @thing_invitation = current_user.thing_invitations.find(inviter_id: params[:id])
+    @thing_invitation = current_user.thing_invitations.find(params[:id])
   end
 
   def thing_scope
