@@ -109,6 +109,8 @@ class User < ApplicationRecord
 
   has_many :push_subscriptions
 
+  before_validation :remove_whitespaces
+
   def friend_ids
     sent_invitations.accepted.pluck(:invitee_id) +
       received_invitations.accepted.pluck(:inviter_id)
@@ -146,5 +148,9 @@ class User < ApplicationRecord
 
   def create_session
     Passwordless::Session.create(authenticatable: self)
+  end
+
+  def remove_whitespaces
+    city.strip!
   end
 end
