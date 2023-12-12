@@ -33,7 +33,7 @@ class Thing::InvitationsController < SocialNetworkController
   private
 
   def load_thing
-    @thing = Thing.find(params[:thing_id])
+    @thing = thing_scope.find(params[:thing_id])
   end
 
   def abstract_thing
@@ -42,6 +42,10 @@ class Thing::InvitationsController < SocialNetworkController
 
   def load_current_user_thing_invitation
     @thing_invitation = current_user.thing_invitations.find(inviter_id: params[:id])
+  end
+
+  def thing_scope
+    Thing.where(owner: [nil] + current_user.friends, city: current_user.city)
   end
 
   def thing_invitation_params
