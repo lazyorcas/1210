@@ -1,5 +1,5 @@
 <% thing = thing.becomes(Thing) %>
-<article class="relative flex gap-x-4">
+<article class="flex gap-x-4">
   <%= image_tag thing.image.attached? ? photo_path(id: thing.image.id) : thing.image_url, class: "shrink-0 thumbnail rounded-lg h-24 w-24" %>
   <div class="grow flex flex-col gap-y-2">
     <div>
