@@ -2,7 +2,6 @@
 
 class Idea::Option::Invitation < Invitation
   include Invitation::IsComplete
-  include Invitation::IsUnique
 
   default_scope { where(inviter_type: "Idea::Option", invitee_type: "User") }
 

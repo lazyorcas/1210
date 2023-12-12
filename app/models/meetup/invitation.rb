@@ -2,7 +2,6 @@
 
 class Meetup::Invitation < Invitation
   include Invitation::IsComplete
-  include Invitation::IsUnique
   include Dateful
 
   default_scope { where(inviter_type: "Meetup", invitee_type: "User") }

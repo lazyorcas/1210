@@ -20,7 +20,6 @@ class Thing::InvitationsController < SocialNetworkController
     load_current_user_thing_invitation
   end
 
-  # when user removes it from their bookmark
   def update
     load_thing
     abstract_thing
