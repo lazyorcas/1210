@@ -2,7 +2,7 @@
 <% if current_user.friends.present? %>
   <% content_for :toolbar do %>
     <%= link_to uninteresting_things_path, class: "icon-btn icon-btn--small" do %>
-      <%= heroicon "hand-thumb-down" %>
+      <%= heroicon "forward" %>
     <% end %>
     <%= link_to current_user_things_path, class: "icon-btn icon-btn--small" do %>
       <%= heroicon "folder" %>
