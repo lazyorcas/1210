@@ -2,6 +2,7 @@
 
 class Thing::Invitation < Invitation
   include Invitation::IsComplete
+  include Invitation::IsUnique
 
   default_scope { where(inviter_type: "Thing", invitee_type: "User") }
 
