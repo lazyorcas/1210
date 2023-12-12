@@ -45,7 +45,7 @@ class Thing::InvitationsController < SocialNetworkController
   end
 
   def thing_scope
-    Thing.where(owner: [nil] + current_user.friends, city: current_user.city)
+    Thing.where(owner: [nil] + current_user.friends)
   end
 
   def thing_invitation_params
