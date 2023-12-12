@@ -30,7 +30,7 @@
       </section>
     </div>
   <% end %>
-  <div class="flex items-center gap-x-2">
+  <div class="flex items-center gap-x-2 px-2">
     <%= button_to current_user_thing_path(thing), method: :delete, class: "shrink-0 icon-btn icon-btn--small", data: { turbo_confirm: "Are you sure you want to delete this thing?" } do |form| %>
       <%= heroicon "trash" %>
     <% end %>
