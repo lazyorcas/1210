@@ -1,5 +1,5 @@
 <% thing = thing.becomes(Thing) %>
-<div class="flex flex-col">
+<div class="pt-2 flex flex-col">
   <%= link_to availability_group_thing_path(thing, date: params[:date], time_of_day: params[:time_of_day]), class: "flex gap-x-4", data: { turbo_frame: "modal" } do %>
     <%= image_tag thing.image.attached? ? photo_path(id: thing.image.id) : thing.image_url, class: "shrink-0 thumbnail rounded-lg h-24 w-24" %>
     <div class="grow flex flex-col gap-y-2">
