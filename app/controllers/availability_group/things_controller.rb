@@ -17,14 +17,17 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
   private
 
   def load_things
-    @things = thing_scope.time_of_day(params[:time_of_day])
+    @things = thing_scope
+      .time_of_day(params[:time_of_day])
+      .includes(:owner)
+      .includes(:availability_invitations)
+      .with_attached_image
   end
 
   def load_users_in_availability_group
     @users = current_user
       .friends_in_the_same_city
       .includes(:interests)
-      .includes(:available_accepted_things)
       .joins(:availabilities)
       .where(
         availabilities: {
@@ -57,7 +60,6 @@ class AvailabilityGroup::ThingsController < SocialNetworkController
           date: params[:date],
           time_of_day: params[:time_of_day],
         })
-        .all
   end
 
   def sort_thing_users_pairs
