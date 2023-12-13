@@ -107,8 +107,6 @@ class ThingsController < SocialNetworkController
   end
 
   def thing_scope
-    Thing
-      .where(owner: [nil] + current_user.friends_in_the_same_city)
-      .or(Thing.where(id: current_user.things))
+    Thing.where(owner: [nil] + current_user.friends_in_the_same_city)
   end
 end

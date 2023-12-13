@@ -18,6 +18,7 @@
         </header>
         <div class="relative card card--clickable overflow-y-scroll flex flex-col">
           <h3 class="font-semibold">Common Interests</h3>
+          <p class="text-sm text-neutral-500">You can pick multiple preferences.</p>
           <%= turbo_frame_tag "availability_group_#{availability_group.date}_#{availability_group.time_of_day}_things", src: availability_group_things_path(date: availability_group.date, time_of_day: availability_group.time_of_day), class: "flex flex-col divide-y", target: "_top" do %>
             <% 3.times do %>
               <%= render partial: "availability_group/things/thing_skeleton" %>
