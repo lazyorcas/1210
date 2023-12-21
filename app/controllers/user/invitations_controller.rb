@@ -5,6 +5,10 @@ class User::InvitationsController < SocialNetworkController
     @user_invitation = User::Invitation.new(inviter: current_user)
   end
 
+  def create
+    @user_invitation = User::Invitation.create(inviter: current_user)
+  end
+
   private
 
   def resolve_layout
