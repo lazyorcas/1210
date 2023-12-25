@@ -21,7 +21,7 @@ class User::InvitationsController < SocialNetworkController
 
   private
 
-  def load_invitaiton
+  def load_invitation
     @user_invitation = User::Invitation.find(params[:id])
   end
 
