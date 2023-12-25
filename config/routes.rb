@@ -46,9 +46,9 @@ Rails.application.routes.draw do
   scope module: "meetup", path: "/meetup/:meetup_id", as: "meetup" do
     resources :comments, only: [:index, :create]
   end
-  resources :past_meetups, only: [:new, :create]
 
-  resources :memories, only: [:index, :show, :update]
+  # resources :past_meetups, only: [:new, :create]
+  # resources :memories, only: [:index, :show, :update]
 
   get "/things/interesting", to: "things#interesting", as: "interesting_things"
   get "/things/uninteresting", to: "things#uninteresting", as: "uninteresting_things"

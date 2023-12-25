@@ -1,8 +1,5 @@
 <% content_for :page_title, "Meetups" %>
 <% content_for :toolbar do %>
-  <%= link_to memories_path, class: "icon-btn icon-btn--small" do %>
-    <%= heroicon "photo" %>
-  <% end %>
   <%= link_to new_meetup_path, class: "icon-btn btn--primary", data: { turbo_frame: "modal" } do %>
     <%= heroicon "plus", variant: "solid" %>
   <% end %>
