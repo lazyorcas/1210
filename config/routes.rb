@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   namespace :user do
-    resources :invitations, only: [:new, :create]
+    resources :invitations, only: [:new, :create, :update]
     namespace :invitation do
       resources :public_hashes, only: [:show]
     end
