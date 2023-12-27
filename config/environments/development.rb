@@ -83,8 +83,7 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.hosts << "1210.local:3000"
-  config.hosts << "catchup.1210.local:3000"
+  # ngrok
   config.hosts << Rails.application.credentials.dig(:ngrok, :host)
 end
 
