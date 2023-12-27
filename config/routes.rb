@@ -4,6 +4,10 @@ require "sidekiq/web"
 require "admin_constraint"
 
 Rails.application.routes.draw do
+  constraints subdomain: "catchup" do
+    get "/", to: "catch_up_application#index"
+  end
+
   root "home#index"
   get "/download", to: "home#download", as: "download"
 

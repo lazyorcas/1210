@@ -1,0 +1,22 @@
+{
+  "name": "Catch Up - Friends Reminder",
+  "short_name": "Catch Up",
+  "theme_color": "#ffffff",
+  "description": "Set reminder for yourself to see your friends.",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/catch_up/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/catch_up/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/"
+}
